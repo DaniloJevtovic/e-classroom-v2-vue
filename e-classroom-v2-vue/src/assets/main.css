@@ -1,3 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: springgreen;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* forms */
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 3px;
+  box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.05);
+  border: 1px solid indigo;
+  background: white;
+}
+
+input,
+select,
+textarea {
+  border: 0;
+  border-bottom: 1px solid indigo;
+  padding: 10px;
+  outline: none;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 20px auto;
+}
+
+/* buttons */
+button {
+  background: indigo;
+  color: white;
+  border-radius: 8px;
+  border: 0;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+  margin: 5px;
+}
+
+button:hover {
+  background: springgreen;
+  color: white;
+}
+
+button:disabled {
+  opacity: 0.5;
+  color: white;
+  background: gray;
+  cursor: not-allowed;
 }
