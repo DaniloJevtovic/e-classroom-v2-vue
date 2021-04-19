@@ -2,9 +2,9 @@
   <form @submit.prevent="handleLogin">
     <h2>Login</h2>
     <input
-      type="email"
-      v-model="loginData.email"
-      placeholder="email"
+      type="text"
+      v-model="loginData.username"
+      placeholder="username"
       required
     />
     <input
@@ -19,13 +19,17 @@
 
 <script>
 import { reactive } from "vue";
+import { useStore } from "vuex";
 
 export default {
   setup() {
-    const loginData = reactive({ email: "", password: "" });
+    const store = useStore();
 
-    const handleLogin = () => {
+    const loginData = reactive({ username: "", password: "" });
+
+    const handleLogin = async () => {
       console.log(loginData);
+      await store.dispatch("login", loginData);
     };
 
     return { loginData, handleLogin };

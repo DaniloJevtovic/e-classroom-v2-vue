@@ -60,3 +60,8 @@ button:disabled {
   background: gray;
   cursor: not-allowed;
 }
+
+.container {
+  margin: 50px 80px;
+  background: rgb(37, 109, 109);
+}
