@@ -4,17 +4,24 @@ import Home from "../views/Home.vue";
 import Login from "../views/auth/Login.vue";
 import Signup from "../views/auth/Signup.vue";
 
-import AdminHome from "../views/admin/AdminHome.vue";
-import AllUsers from "../views/admin/AllUsers.vue";
-import AllTeachers from "../views/admin/AllTeachers.vue";
-import AllStudents from "../views/admin/AllStudents.vue";
-import AllCourses from "../views/admin/AllCourses.vue";
-import AllSchoolClasses from "../views/admin/AllSchoolClasses.vue";
-import AllStudentClasses from "../views/admin/AllStudentClasses.vue";
+import AdminHome from "../views/homePages/AdminHome.vue";
+import AllUsers from "../views/users/AllUsers.vue";
+import AllTeachers from "../views/users/AllTeachers.vue";
+import AllStudents from "../views/users/AllStudents.vue";
 
-import TeacherHome from "../views/teacher/TeacherHome.vue";
+import AllCourses from "../views/courses/AllCourses.vue";
+import NewCourse from "../views/courses/NewCourse.vue";
+import CourseDetails from "../views/courses/CourseDetails.vue";
 
-import StudentHome from "../views/student/StudentHome.vue";
+import AllSchoolClasses from "../views/schoolClasses/AllSchoolClasses.vue";
+import SchoolClassDetails from "../views/schoolClasses/SchoolClassDetails.vue";
+import NewSchoolClass from "../views/schoolClasses/NewSchoolClass.vue";
+
+import AllStudentClasses from "../views/studentClasses/AllStudentClasses.vue";
+
+import TeacherHome from "../views/homePages/TeacherHome.vue";
+
+import StudentHome from "../views/homePages/StudentHome.vue";
 
 const routes = [
   {
@@ -62,14 +69,36 @@ const routes = [
     component: AllCourses,
   },
   {
-    path: '/allSchoolClases',
-    name: 'AllScClasses',
-    component: AllSchoolClasses
+    path: "/newCourse",
+    name: "NewCourse",
+    component: NewCourse,
   },
   {
-    path: '/allStudentClases',
-    name: 'AllStClasses',
-    component: AllStudentClasses
+    path: "/courseDetails/:id",
+    name: "CourseDetails",
+    component: CourseDetails,
+    props: true,
+  },
+  {
+    path: "/allSchoolClases",
+    name: "AllScClasses",
+    component: AllSchoolClasses,
+  },
+  {
+    path: "/newSchoolClass",
+    name: "NewSchoolClass",
+    component: NewSchoolClass,
+  },
+  {
+    path: "/scClassDetails/:id",
+    name: "ScClassDetails",
+    component: SchoolClassDetails,
+    props: true,
+  },
+  {
+    path: "/allStudentClases",
+    name: "AllStClasses",
+    component: AllStudentClasses,
   },
 
   //teacher
