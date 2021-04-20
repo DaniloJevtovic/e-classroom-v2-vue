@@ -4,15 +4,44 @@
       <img src="@/assets/logo.png" />
       <h2>e-classroom</h2>
       <div class="links">
-        <router-link :to="{ name: 'Login' }">Login</router-link>
-        <router-link :to="{ name: 'Signup' }">Signup</router-link>
+        <div v-if="loggedUser">
+          <router-link v-for="link in links" :key="link" :to="{ name: link }">
+            {{ link }}
+          </router-link>
+          <span>Hi, {{ loggedUser.firstName }}</span>
+          <button @click="handleLogout">Logout</button>
+        </div>
+        <div v-else>
+          <router-link :to="{ name: 'Login' }">Login</router-link>
+        </div>
       </div>
     </nav>
   </div>
 </template>
 
 <script>
-export default {};
+import { computed } from "vue";
+import { useStore } from "vuex";
+
+export default {
+  setup() {
+    const store = useStore();
+
+    const loggedUser = computed(() => {
+      return store.getters["getLoggedUser"];
+    });
+
+    const links = computed(() => {
+      return store.getters["getLinksForLoggedUser"];
+    });
+
+    const handleLogout = () => {
+      store.dispatch("logout");
+    };
+
+    return { loggedUser, links, handleLogout };
+  },
+};
 </script>
 
 <style scoped>
@@ -52,5 +81,15 @@ button {
 
 nav img {
   max-height: 30px;
+}
+
+span {
+  display: inline-block;
+  margin: 0 16px;
+  padding: 5px 26px;
+  border-radius: 5px;
+  border-left: 15px solid rgb(11, 253, 233); /*uspravna crtica mala*/
+  color: white;
+  background: indigo;
 }
 </style>
