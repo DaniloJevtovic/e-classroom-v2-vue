@@ -7,7 +7,13 @@ export default createStore({
     loggedUser: null,
     linksForLoggedUser: [],
 
-    adminLinks: ["AdminHome", "AllUsers", "AllCourses", "AllScClasses"],
+    adminLinks: [
+      "AdminHome",
+      "AllUsers",
+      "AllCourses",
+      "AllScClasses",
+      "AllStClasses",
+    ],
     teacherLinks: ["TeacherHome"],
     studentLinks: ["StudentHome"],
   },
