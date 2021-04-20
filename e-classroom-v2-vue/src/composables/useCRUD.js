@@ -32,10 +32,32 @@ const getById = async (items, id) => {
   }
 };
 
+//za razred sva odjeljenja npr ili za profesora sve predmete
+//http://localhost:5555/api/courses/teacher/teacherId
+//http://localhost:5555/api/stClasses/scClass/scClassId
+const getSubItems = async (items, subItems, itemId) => {
+  try {
+    const response = await axios.get(
+      url + items + "/" + subItems + "/" + itemId,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
+
 const save = async (items, data) => {
   try {
     const response = await axios.post(url + items, JSON.stringify(data), {
       headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
         Accept: "application/json",
         "Content-Type": "application/json",
       },
@@ -54,6 +76,7 @@ const editById = async (items, id, data) => {
       JSON.stringify(data),
       {
         headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -76,7 +99,7 @@ const deleteById = async (items, id) => {
 };
 
 const useCRUD = () => {
-  return { getAll, getById, save, editById, deleteById };
+  return { getAll, getById, getSubItems, save, editById, deleteById };
 };
 
 export default useCRUD;
