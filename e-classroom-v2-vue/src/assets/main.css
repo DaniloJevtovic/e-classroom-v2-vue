@@ -65,3 +65,13 @@ button:disabled {
   margin: 50px 80px;
   background: rgb(37, 109, 109);
 }
+
+.container-header {
+  background: orangered;
+  align-items: center;
+  display: flex;
+}
+
+.container-body {
+  background: hotpink;
+}

@@ -12,7 +12,6 @@ export default createStore({
       "AllUsers",
       "AllCourses",
       "AllScClasses",
-      "AllStClasses",
     ],
     teacherLinks: ["TeacherHome"],
     studentLinks: ["StudentHome"],
