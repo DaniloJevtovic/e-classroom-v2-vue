@@ -1,15 +1,32 @@
 <template>
   <div class="container">
-      <h2>welcome admin</h2>
+    <div class="container-header">
+      <h2>Welcome admin</h2>
+    </div>
+    <div class="container-body">
+      <router-link :to="{ name: 'AllUsers' }">
+        <button>All Users</button>
+      </router-link>
+      <router-link :to="{ name: 'AllCourses' }">
+        <button>All Courses</button>
+      </router-link>
+      <router-link :to="{ name: 'AllScClasses' }">
+        <button>All School Classes</button>
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
+<style scoped>
+button {
+  font-size: 15px;
+  width: 30%;
+  display: inline;
+  padding: 50px;
+}
 
 </style>
