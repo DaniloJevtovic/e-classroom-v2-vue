@@ -3,19 +3,34 @@
     <div class="container-header" v-if="scClassInfo">
       <h2>
         Name: {{ scClassInfo.name }}
-        <hr />
+        <br />
         Description {{ scClassInfo.description }}
       </h2>
+
+      <!-- id iz propa da ne selektujes razred -->
+      <router-link :to="{ name: 'NewStudentClass', params: { id: id } }">
+        <button>New Student Class</button>
+      </router-link>
+
+      <router-link :to="{ name: 'AllScClasses' }">
+        <button>Back to all SchoolClasses</button>
+      </router-link>
     </div>
 
     <div class="container-body">
       <h2>Student classes:</h2>
       <div class="stClasses" v-for="stClass in stClasses" :key="stClass.id">
-        <button>
-          Name: {{ stClass.name }}
-          <hr />
-          Description: {{ stClass.description }}
-        </button>
+        <router-link
+          :to="{ name: 'StudentClassDetails', params: { scId: id, stClassId: stClass.id } }"
+        >
+          <button>
+            Name: {{ stClass.name }}
+            <hr />
+            SchoolCLass: {{ stClass.schoolClass.name }}
+            <hr />
+            Description: {{ stClass.description }}
+          </button>
+        </router-link>
       </div>
     </div>
   </div>
