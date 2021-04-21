@@ -1,33 +1,33 @@
 <template>
   <div class="container">
-    <h2>All users</h2>
-    <nav>
-      <router-link :to="{ name: 'AllUsers' }">All Users</router-link>/
-      <router-link :to="{ name: 'AllTeachers' }">All Teachers</router-link>/
-      <router-link :to="{ name: 'AllStudents' }">All Students</router-link>/
-    </nav>
-    <router-view />
-    <!-- <all-teachers></all-teachers>
-    <all-students></all-students> -->
-
-    <!-- {{ users }} -->
+    <div class="container-header">
+      <h2>All users</h2>
+      <router-link :to="{ name: 'AllTeachers' }">
+        <button>All Teachers</button>
+      </router-link>
+      <router-link :to="{ name: 'AllStudents' }">
+        <button>All Students</button>
+      </router-link>
+    </div>
+    <div class="container-body">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-// import AllTeachers from "./AllTeachers.vue";
-// import AllStudents from "./AllStudents.vue";
 import { ref, onMounted } from "vue";
-import useUsers from "../../composables/useUsers.js";
+import useCRUD from "../../composables/useCRUD.js";
 
 export default {
   //components: { AllTeachers, AllStudents },
   setup() {
-    const { getAllUsers } = useUsers();
+    const { getAll } = useCRUD();
 
     const users = ref([]);
+
     const getUsers = async () => {
-      users.value = await getAllUsers();
+      users.value = await getAll("users");
     };
     onMounted(getUsers);
 
