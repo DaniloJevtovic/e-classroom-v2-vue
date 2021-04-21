@@ -16,6 +16,8 @@
             Teacher: {{ course.teacher.firstName }}
             {{ course.teacher.lastName }}
             <hr />
+            School Class: {{ course.schoolClass.name}}
+            <hr />
             Description: {{ course.description }}
           </button>
         </router-link>
@@ -27,15 +29,15 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import useCourses from "../../composables/useCourses.js";
+import useCRUD from "@/composables/useCRUD.js";
 
 export default {
   setup() {
-    const { getAllCourses } = useCourses();
+    const { getAll } = useCRUD();
 
     const courses = ref([]);
     const getCourses = async () => {
-      courses.value = await getAllCourses();
+      courses.value = await getAll("courses");
     };
     onMounted(getCourses);
 

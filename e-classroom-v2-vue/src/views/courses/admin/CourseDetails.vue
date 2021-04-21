@@ -2,6 +2,8 @@
   <form v-if="courseInfo">
     <h2>Name: {{ courseInfo.name }}</h2>
     <h3>Description: {{ courseInfo.description }}</h3>
+    <h4>School Class: {{ courseInfo.schoolClass.name }}</h4>
+
     <hr />
     <hr />
     <h4>
@@ -10,15 +12,15 @@
     </h4>
     <h4>Teacher Email: {{ courseInfo.teacher.email }}</h4>
 
-    <router-link :to="{name: 'AllCourses'}">
-        <button>Back to all Courses</button>
+    <router-link :to="{ name: 'AllCourses' }">
+      <button>Back to all Courses</button>
     </router-link>
   </form>
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
-import useCRUD from "../../composables/useCRUD.js";
+import useCRUD from "@/composables/useCRUD.js";
 
 export default {
   props: ["id"],
