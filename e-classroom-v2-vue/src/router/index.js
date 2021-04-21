@@ -9,17 +9,22 @@ import AllUsers from "../views/users/AllUsers.vue";
 import AllTeachers from "../views/users/AllTeachers.vue";
 import AllStudents from "../views/users/AllStudents.vue";
 
-import AllCourses from "../views/courses/AllCourses.vue";
-import NewCourse from "../views/courses/NewCourse.vue";
-import CourseDetails from "../views/courses/CourseDetails.vue";
+import AllCourses from "../views/courses/admin/AllCourses.vue";
+import NewCourse from "../views/courses/admin/NewCourse.vue";
+import CourseDetails from "../views/courses/admin/CourseDetails.vue";
 
 import AllSchoolClasses from "../views/schoolClasses/AllSchoolClasses.vue";
 import SchoolClassDetails from "../views/schoolClasses/SchoolClassDetails.vue";
 import NewSchoolClass from "../views/schoolClasses/NewSchoolClass.vue";
 
 import AllStudentClasses from "../views/studentClasses/AllStudentClasses.vue";
+import StudentClassDetails from "../views/studentClasses/StudentClassDetails.vue";
+import NewStudentClass from "../views/studentClasses/NewStudentClass.vue";
 
 import TeacherHome from "../views/homePages/TeacherHome.vue";
+import MyCourses from "../views/courses/teacher/MyCourses.vue";
+import MyCourseDetails from "../views/courses/teacher/MyCourseDetails.vue";
+import TeacherCourses from "../views/courses/TeacherCourses.vue";
 
 import StudentHome from "../views/homePages/StudentHome.vue";
 
@@ -100,12 +105,40 @@ const routes = [
     name: "AllStClasses",
     component: AllStudentClasses,
   },
+  {
+    path: "/scoolClass/:scId/stClass/:stClassId",
+    name: "StudentClassDetails",
+    component: StudentClassDetails,
+    props: true,
+  },
+  {
+    path: "/sc/:id/newStudentClass",
+    name: "NewStudentClass",
+    component: NewStudentClass,
+    props: true,
+  },
 
   //teacher
   {
     path: "/teacherHome",
     name: "TeacherHome",
     component: TeacherHome,
+  },
+  {
+    path: "/myCourses",
+    name: "MyCourses",
+    component: MyCourses,
+  },
+  {
+    path: "/myCourse/:id",
+    name: "MyCourseDetails",
+    component: MyCourseDetails,
+    props: true,
+  },
+  {
+    path: "/teacherCourses",
+    name: "TeacherCourses",
+    component: TeacherCourses,
   },
 
   //student
