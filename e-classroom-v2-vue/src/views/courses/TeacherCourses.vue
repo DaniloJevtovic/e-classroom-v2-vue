@@ -12,6 +12,8 @@
             Teacher: {{ course.teacher.firstName }}
             {{ course.teacher.lastName }}
             <hr />
+            School Class: {{ course.schoolClass.name }}
+            <hr />
             Description: {{ course.description }}
           </button>
         </router-link>

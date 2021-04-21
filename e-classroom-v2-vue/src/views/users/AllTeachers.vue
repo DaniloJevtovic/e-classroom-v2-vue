@@ -9,15 +9,16 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import useUsers from "../../composables/useUsers.js";
+import useCRUD from "../../composables/useCRUD.js";
 
 export default {
   setup() {
-    const { getAllTeachers } = useUsers();
+    const { getAll } = useCRUD();
 
     const teachers = ref([]);
+
     const getTeachers = async () => {
-      teachers.value = await getAllTeachers();
+      teachers.value = await getAll("teachers");
     };
     onMounted(getTeachers);
 

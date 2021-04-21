@@ -3,6 +3,7 @@
     <nav>
       <img src="@/assets/logo.png" />
       <h2>e-classroom</h2>
+
       <div class="links">
         <div v-if="loggedUser">
           <router-link v-for="link in links" :key="link" :to="{ name: link }">

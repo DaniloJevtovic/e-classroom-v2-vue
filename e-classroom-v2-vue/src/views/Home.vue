@@ -1,6 +1,8 @@
 <template>
-  <div class="home">
-    <h2>Welcome to e-classroom</h2>
+  <div class="container">
+    <div class="container-header">
+      <h2>Welcome to e-classroom</h2>
+    </div>
   </div>
 </template>
 
