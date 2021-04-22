@@ -14,7 +14,7 @@ export default createStore({
       "AllScClasses",
     ],
     teacherLinks: ["MyCourses"],
-    studentLinks: ["StudentHome"],
+    studentLinks: ["StudentCourses"],
   },
   getters: {
     getLoggedUser(state) {
@@ -49,12 +49,12 @@ export default createStore({
           state.loggedUser.authorities[0].authority === "ROLE_TEACHER"
         ) {
           state.linksForLoggedUser = state.teacherLinks;
-          router.push({ name: "TeacherHome" });
+          router.push({ name: "MyCourses" });
         } else if (
           state.loggedUser.authorities[0].authority === "ROLE_STUDENT"
         ) {
           state.linksForLoggedUser = state.studentLinks;
-          router.push({ name: "StudentHome" });
+          router.push({ name: "StudentCourses" });
         } else {
           state.loggedUserLinks = [];
           router.push({ name: "Login" });

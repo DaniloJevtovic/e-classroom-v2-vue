@@ -7,7 +7,9 @@ import Signup from "../views/auth/Signup.vue";
 import AdminHome from "../views/homePages/AdminHome.vue";
 import AllUsers from "../views/users/AllUsers.vue";
 import AllTeachers from "../views/users/AllTeachers.vue";
+import NewTeacher from "../views/users/NewTeacher.vue";
 import AllStudents from "../views/users/AllStudents.vue";
+import NewStudent from "../views/users/NewStudent.vue";
 
 import AllCourses from "../views/courses/admin/AllCourses.vue";
 import NewCourse from "../views/courses/admin/NewCourse.vue";
@@ -27,6 +29,8 @@ import MyCourseDetails from "../views/courses/teacher/MyCourseDetails.vue";
 import TeacherCourses from "../views/courses/TeacherCourses.vue";
 
 import StudentHome from "../views/homePages/StudentHome.vue";
+import StudentCourses from "../views/courses/student/StudentCourses.vue";
+import StudentCourseDetails from "../views/courses/student/StudentCourseDetails.vue";
 
 const routes = [
   {
@@ -66,8 +70,19 @@ const routes = [
         name: "AllStudents",
         component: AllStudents,
       },
+      {
+        path: "/newTeacher",
+        name: "NewTeacher",
+        component: NewTeacher,
+      },
+      {
+        path: "/newStudent",
+        name: "NewStudent",
+        component: NewStudent,
+      },
     ],
   },
+
   {
     path: "/allCourses",
     name: "AllCourses",
@@ -146,6 +161,17 @@ const routes = [
     path: "/studentHome",
     name: "StudentHome",
     component: StudentHome,
+  },
+  {
+    path: "/studentCourses",
+    name: "StudentCourses",
+    component: StudentCourses,
+  },
+  {
+    path: "/studentCourses/:id",
+    name: "StCourseDetails",
+    component: StudentCourseDetails,
+    props: true,
   },
 ];
 
