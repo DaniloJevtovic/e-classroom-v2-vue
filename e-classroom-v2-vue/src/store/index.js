@@ -8,12 +8,12 @@ export default createStore({
     linksForLoggedUser: [],
 
     adminLinks: [
-      "AdminHome",
+      // "AdminHome",
       "AllUsers",
       "AllCourses",
       "AllScClasses",
     ],
-    teacherLinks: ["TeacherHome"],
+    teacherLinks: ["MyCourses"],
     studentLinks: ["StudentHome"],
   },
   getters: {

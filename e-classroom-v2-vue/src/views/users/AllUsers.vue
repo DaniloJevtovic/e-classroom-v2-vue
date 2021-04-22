@@ -5,8 +5,14 @@
       <router-link :to="{ name: 'AllTeachers' }">
         <button>All Teachers</button>
       </router-link>
+      <router-link :to="{ name: 'NewTeacher' }">
+        <button>New Teacher</button>
+      </router-link>
       <router-link :to="{ name: 'AllStudents' }">
         <button>All Students</button>
+      </router-link>
+      <router-link :to="{ name: 'NewStudent' }">
+        <button>New Student</button>
       </router-link>
     </div>
     <div class="container-body">
