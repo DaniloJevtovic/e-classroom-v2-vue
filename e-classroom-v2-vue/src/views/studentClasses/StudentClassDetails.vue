@@ -1,14 +1,25 @@
 <template>
   <div class="container">
     <div class="container-header">
-      <h2>Detalji razreda: {{ stClassId }}</h2>
-      <br />
-      <h2>Name: {{ stClassInfo.name }}</h2>
-      <br />
-      <h2>Description: {{ stClassInfo.description }}</h2>
+      <h2>
+        Name: {{ stClassInfo.name }}
+        <br />
+        Description: {{ stClassInfo.description }}
+        <br />
+        School Class: {{ stClassId }}
+        <br />
+        Number of Students: {{ students.length }}
+      </h2>
     </div>
-
-    <h1>ucenici</h1>
+    <div class="container-body">
+      <h1>Students</h1>
+      <div class="students" v-for="student in students" :key="student.id">
+        <button>
+          Name{{ student.firstName }} {{ student.lastName }} <hr>
+          Email: {{ student.email }}
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -19,19 +30,35 @@ import useCRUD from "@/composables/useCRUD.js";
 export default {
   props: ["stClassId"],
   setup(props) {
+    const { getById, getSubItems } = useCRUD();
+
     const stClassInfo = ref("");
-    const { getById } = useCRUD();
+    const students = ref([]);
 
     const getStClassDetails = async () => {
       stClassInfo.value = await getById("stClasses", props.stClassId);
     };
 
-    onMounted(getStClassDetails);
+    const getStudents = async () => {
+      students.value = await getSubItems(
+        "students",
+        "stClass",
+        props.stClassId
+      );
+    };
 
-    return { stClassInfo };
+    onMounted(() => {
+      getStClassDetails();
+      getStudents();
+    });
+
+    return { stClassInfo, students };
   },
 };
 </script>
 
 <style>
+.students {
+  display: inline;
+}
 </style>
