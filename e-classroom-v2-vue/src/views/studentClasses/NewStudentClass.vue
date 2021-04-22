@@ -1,12 +1,14 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <h2>New Student Class</h2>
-    <input type="text" v-model="newStClass.name" placeholder="name" />
+    <input type="text" v-model="newStClass.name" placeholder="name" required />
     <textarea
       rows="3"
       v-model="newStClass.description"
       placeholder="description"
-    ></textarea>
+      required
+    >
+    </textarea>
     <button>Save</button>
     <router-link :to="{ name: 'ScClassDetails', params: { id: id } }">
       <button>Cancel</button>

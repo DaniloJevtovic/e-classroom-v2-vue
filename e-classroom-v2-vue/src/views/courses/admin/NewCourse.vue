@@ -27,9 +27,11 @@
 
     <button>Save</button>
 
-    <router-link :to="{ name: 'AllCourses' }">
+    <!-- <router-link :to="{ name: 'AllCourses' }">
       <button>Cancel</button>
-    </router-link>
+    </router-link> -->
+
+    <button @click="$router.go(-1)">Cancel</button>
   </form>
   <div v-else class="container">
     <h2>Nije moguce kreirati predmet bez profesora ili razreda!</h2>

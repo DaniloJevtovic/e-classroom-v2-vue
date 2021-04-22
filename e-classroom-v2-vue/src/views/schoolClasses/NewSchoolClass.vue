@@ -1,11 +1,12 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <h2>New School Class</h2>
-    <input type="text" v-model="newScClass.name" placeholder="name" />
+    <input type="text" v-model="newScClass.name" placeholder="name" required />
     <textarea
       rows="4"
       v-model="newScClass.description"
       placeholder="description"
+      required
     >
     </textarea>
     <button>Save</button>
