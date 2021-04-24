@@ -28,6 +28,9 @@ import MyCourses from "../views/courses/teacher/MyCourses.vue";
 import MyCourseDetails from "../views/courses/teacher/MyCourseDetails.vue";
 import TeacherCourses from "../views/courses/TeacherCourses.vue";
 
+import NewMaterial from "../views/materials/teacher/NewMaterial.vue";
+import MaterialDetails from "../views/materials/teacher/MaterialDetails.vue";
+
 import StudentHome from "../views/homePages/StudentHome.vue";
 import StudentCourses from "../views/courses/student/StudentCourses.vue";
 import StudentCourseDetails from "../views/courses/student/StudentCourseDetails.vue";
@@ -154,6 +157,18 @@ const routes = [
     path: "/teacherCourses",
     name: "TeacherCourses",
     component: TeacherCourses,
+  },
+  {
+    path: "/myCourse/:id/newMaterial",
+    name: "NewMaterial",
+    component: NewMaterial,
+    props: true,
+  },
+  {
+    path: "/myCourse/:id/materialDetails/:matId",
+    name: "MaterialDetails",
+    component: MaterialDetails,
+    props: true,
   },
 
   //student
