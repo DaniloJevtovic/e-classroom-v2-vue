@@ -31,6 +31,9 @@ import TeacherCourses from "../views/courses/TeacherCourses.vue";
 import NewMaterial from "../views/materials/teacher/NewMaterial.vue";
 import MaterialDetails from "../views/materials/teacher/MaterialDetails.vue";
 
+import NewQuiz from "../views/quizzes/teacher/NewQuiz.vue";
+import QuizDetails from "../views/quizzes/teacher/QuizDetails.vue";
+
 import StudentHome from "../views/homePages/StudentHome.vue";
 import StudentCourses from "../views/courses/student/StudentCourses.vue";
 import StudentCourseDetails from "../views/courses/student/StudentCourseDetails.vue";
@@ -168,6 +171,18 @@ const routes = [
     path: "/myCourse/:id/materialDetails/:matId",
     name: "MaterialDetails",
     component: MaterialDetails,
+    props: true,
+  },
+  {
+    path: "/myCourse/:id/newQuiz",
+    name: "NewQuiz",
+    component: NewQuiz,
+    props: true,
+  },
+  {
+    path: "/myCourse/:id/quizDetails/:quizId",
+    name: "QuizDetails",
+    component: QuizDetails,
     props: true,
   },
 
