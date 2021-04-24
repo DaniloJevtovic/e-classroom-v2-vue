@@ -25,15 +25,28 @@
         <h3>Description: {{ material.description }}</h3>
         <router-link
           :to="{ name: 'MaterialDetails', params: { matId: material.id } }"
-          ><button>details</button></router-link
         >
+          <button>details</button>
+        </router-link>
         <hr />
       </div>
       <!-- {{ materials }} -->
 
       <hr />
       <h2>Quizzes</h2>
-      <button>New Quiz</button>
+      <router-link :to="{ name: 'NewQuiz', params: { id: courseInfo.id } }">
+        <button>New Quiz</button>
+      </router-link>
+
+      <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
+        <h2>Name: {{ quiz.name }}</h2>
+        <h3>Instruction: {{ quiz.instructions }}</h3>
+        <h4>Duration: {{ quiz.duration }} minutes.</h4>
+        <router-link :to="{ name: 'QuizDetails', params: { quizId: quiz.id } }">
+          <button>details</button>
+        </router-link>
+        <hr />
+      </div>
 
       <hr />
       <h2>Students</h2>
@@ -54,6 +67,7 @@ export default {
   setup(props) {
     const courseInfo = ref("");
     const materials = ref([]);
+    const quizzes = ref([]);
     const students = ref([]);
     const { getById, getSubItems } = useCRUD();
 
@@ -65,6 +79,10 @@ export default {
       materials.value = await getSubItems("materials", "course", props.id);
     };
 
+    const getQuizzesForCourse = async () => {
+      quizzes.value = await getSubItems("quizzes", "course", props.id);
+    };
+
     const getStudentsFromCourse = async () => {
       students.value = await getSubItems("students", "course", props.id);
     };
@@ -72,10 +90,11 @@ export default {
     onMounted(() => {
       getCourseDetails();
       getMaterialsForCourse();
+      getQuizzesForCourse();
       getStudentsFromCourse();
     });
 
-    return { courseInfo, materials, students };
+    return { courseInfo, materials, quizzes, students };
   },
 };
 </script>
@@ -83,5 +102,8 @@ export default {
 <style>
 .materials {
   color: yellow;
+}
+.quizzes {
+  color: springgreen;
 }
 </style>
