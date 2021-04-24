@@ -14,7 +14,22 @@
     </div>
     <div class="container-body">
       <h2>Materials</h2>
-      <button>New Material</button>
+
+      <!-- moze ja mislim: params: { id: courseInfo.id } ili params: { id: id} -->
+      <router-link :to="{ name: 'NewMaterial', params: { id: courseInfo.id } }">
+        <button>New Material</button>
+      </router-link>
+
+      <div class="materials" v-for="material in materials" :key="material.id">
+        <h2>Name: {{ material.name }}</h2>
+        <h3>Description: {{ material.description }}</h3>
+        <router-link
+          :to="{ name: 'MaterialDetails', params: { matId: material.id } }"
+          ><button>details</button></router-link
+        >
+        <hr />
+      </div>
+      <!-- {{ materials }} -->
 
       <hr />
       <h2>Quizzes</h2>
@@ -26,8 +41,6 @@
       <div class="students" v-for="student in students" :key="student.id">
         <button>{{ student.firstName }} {{ student.lastName }}</button>
       </div>
-
-    
     </div>
   </div>
 </template>
@@ -40,11 +53,16 @@ export default {
   props: ["id"],
   setup(props) {
     const courseInfo = ref("");
+    const materials = ref([]);
     const students = ref([]);
     const { getById, getSubItems } = useCRUD();
 
     const getCourseDetails = async () => {
       courseInfo.value = await getById("courses", props.id);
+    };
+
+    const getMaterialsForCourse = async () => {
+      materials.value = await getSubItems("materials", "course", props.id);
     };
 
     const getStudentsFromCourse = async () => {
@@ -53,13 +71,17 @@ export default {
 
     onMounted(() => {
       getCourseDetails();
+      getMaterialsForCourse();
       getStudentsFromCourse();
     });
 
-    return { courseInfo, students };
+    return { courseInfo, materials, students };
   },
 };
 </script>
 
 <style>
+.materials {
+  color: yellow;
+}
 </style>
