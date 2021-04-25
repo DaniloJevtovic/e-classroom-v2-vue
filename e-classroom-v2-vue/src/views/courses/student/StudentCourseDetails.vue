@@ -25,7 +25,16 @@
 
       <hr />
       <h2>Quizzes</h2>
-
+      <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
+        <h2>Name: {{ quiz.name }}</h2>
+        <h3>Instruction {{ quiz.instruction }}</h3>
+        <h4>Duration: {{quiz.duration}}</h4>
+        <router-link
+          :to="{ name: 'StudentQuizDetails', params: { quizId: quiz.id } }"
+          ><button>details</button></router-link
+        >
+        <hr />
+      </div>
       <hr />
     </div>
   </div>
@@ -42,6 +51,7 @@ export default {
 
     const courseInfo = ref("");
     const materials = ref("");
+    const quizzes = ref("");
 
     const getCourseDetails = async () => {
       courseInfo.value = await getById("courses", props.id);
@@ -51,12 +61,17 @@ export default {
       materials.value = await getSubItems("materials", "course", props.id);
     };
 
+    const getCourseQuizzes = async () => {
+      quizzes.value = await getSubItems("quizzes", "course", props.id);
+    };
+
     onMounted(() => {
       getCourseDetails();
       getCourseMaterials();
+      getCourseQuizzes();
     });
 
-    return { courseInfo, materials };
+    return { courseInfo, materials, quizzes };
   },
 };
 </script>
