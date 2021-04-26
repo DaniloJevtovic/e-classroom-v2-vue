@@ -37,6 +37,8 @@ import QuizDetails from "../views/quizzes/teacher/QuizDetails.vue";
 import StudentHome from "../views/homePages/StudentHome.vue";
 import StudentCourses from "../views/courses/student/StudentCourses.vue";
 import StudentCourseDetails from "../views/courses/student/StudentCourseDetails.vue";
+import StudentQuizDetails from "../views/quizzes/student/StudentQuizDetails.vue";
+import StudentSolveQuiz from "../views/quizzes/student/StudentSolveQuiz.vue";
 
 const routes = [
   {
@@ -201,6 +203,18 @@ const routes = [
     path: "/studentCourses/:id",
     name: "StCourseDetails",
     component: StudentCourseDetails,
+    props: true,
+  },
+  {
+    path: "/studentCourses/:id/quizDetails/:quizId",
+    name: "StudentQuizDetails",
+    component: StudentQuizDetails,
+    props: true,
+  },
+  {
+    path: "/studentCourses/:id/solveQuiz/:quizId",
+    name: "StudentSolveQuiz",
+    component: StudentSolveQuiz,
     props: true,
   },
 ];
