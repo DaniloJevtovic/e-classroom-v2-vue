@@ -5,8 +5,15 @@
       rows="8"
       v-model="question.question"
       placeholder="enter question"
-    ></textarea>
-    <input type="number" v-model="question.points" placeholder="points" />
+      required
+    >
+    </textarea>
+    <input
+      type="number"
+      v-model="question.points"
+      placeholder="points"
+      required
+    />
     <button>Save</button>
   </form>
 </template>

@@ -58,4 +58,8 @@ label {
   text-align: center;
   line-height: 150%;
 }
+
+form {
+  background: blue;
+}
 </style>
