@@ -33,6 +33,8 @@ import MaterialDetails from "../views/materials/teacher/MaterialDetails.vue";
 
 import NewQuiz from "../views/quizzes/teacher/NewQuiz.vue";
 import QuizDetails from "../views/quizzes/teacher/QuizDetails.vue";
+import NewQuestion from "../views/quizzes/teacher/NewQuestion.vue";
+import NewAnswer from "../views/quizzes/teacher/NewAnswer.vue";
 
 import StudentHome from "../views/homePages/StudentHome.vue";
 import StudentCourses from "../views/courses/student/StudentCourses.vue";
@@ -185,6 +187,18 @@ const routes = [
     path: "/myCourse/:id/quizDetails/:quizId",
     name: "QuizDetails",
     component: QuizDetails,
+    props: true,
+  },
+  {
+    path: "/myCourse/:id/quizDetails/:quizId/newQuestion",
+    name: "NewQuestion",
+    component: NewQuestion,
+    props: true,
+  },
+  {
+    path: "/myCourse/:id/quizDetails/:quizId/question/:questionId/newAnswer",
+    name: "NewAnswer",
+    component: NewAnswer,
     props: true,
   },
 
