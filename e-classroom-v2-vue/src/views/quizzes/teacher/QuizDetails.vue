@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="container-header">
-      <h3>Details</h3>
+      <!-- <h3>Details</h3> -->
       <!-- <button @click="$router.go(-2)">Back</button> -->
       <router-link :to="{ name: 'MyCourseDetails', params: { id: id } }">
         <button>Back to course</button>
@@ -13,27 +13,13 @@
       <h3>Duration: {{ quizInfo.duration }}</h3>
       <hr />
 
-      <h3>Questions</h3>
+      <h1>Questions</h1>
       <router-link :to="{ name: 'NewQuestion', params: { quizId: quizId } }">
         <button>New Question</button>
       </router-link>
 
-      <div
-        class="question-div"
-        v-for="question in questions"
-        :key="question.id"
-      >
-        <p>
-          Question: {{ question.question }} / points: {{ question.points }}
-          <router-link
-            :to="{ name: 'NewAnswer', params: { questionId: question.id } }"
-          >
-            <button>New Answer</button>
-          </router-link>
-        </p>
-        <h4>Answers</h4>
+      <div v-for="question in questions" :key="question.id">
         <question-details :questionId="question.id"></question-details>
-        <hr />
         <hr />
       </div>
     </div>
