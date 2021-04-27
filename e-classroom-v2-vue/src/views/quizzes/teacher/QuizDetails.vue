@@ -2,7 +2,8 @@
   <div class="container">
     <div class="container-header">
       <h3>Details</h3>
-      <button @click="$router.go(-1)">Back</button>
+      <!-- vracam za 2 -->
+      <button @click="$router.go(-2)">Back</button> 
     </div>
     <div class="container-body">
       <h3>Name: {{ quizInfo.name }}</h3>
@@ -20,13 +21,13 @@ import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 
 export default {
-  props: ["id"],
+  props: ["quizId"],
   setup(props) {
     const { getById } = useCRUD();
     const quizInfo = ref("");
 
     const getQuiz = async () => {
-      quizInfo.value = await getById("quizzes", props.id);
+      quizInfo.value = await getById("quizzes", props.quizId);
     };
 
     onMounted(() => {
