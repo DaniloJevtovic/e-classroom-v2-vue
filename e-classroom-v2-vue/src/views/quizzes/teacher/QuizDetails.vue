@@ -23,7 +23,18 @@
         v-for="question in questions"
         :key="question.id"
       >
-        <p>Question: {{ question.question }}</p>
+        <p>
+          Question: {{ question.question }} / points: {{ question.points }}
+          <router-link
+            :to="{ name: 'NewAnswer', params: { questionId: question.id } }"
+          >
+            <button>New Answer</button>
+          </router-link>
+        </p>
+        <h4>Answers</h4>
+        <question-details :questionId="question.id"></question-details>
+        <hr />
+        <hr />
       </div>
     </div>
   </div>
@@ -32,9 +43,11 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
+import QuestionDetails from "./QuestionDetails.vue";
 
 export default {
   props: ["id", "quizId"],
+  components: { QuestionDetails },
   setup(props) {
     const { getById, getSubItems } = useCRUD();
     const quizInfo = ref("");
