@@ -1,0 +1,67 @@
+<template>
+  <form @submit.prevent="handleSubmit">
+    <h2>Edit Answer</h2>
+    <h2>Question: {{ question.question }}</h2>
+    <input type="text" v-model="answer.answer" placeholder="answer" required />
+
+    <label for="checkbox">Tacno?</label>
+    <input
+      type="checkbox"
+      id="checkbox"
+      v-model="answer.correct"
+      placeholder="tacno?"
+    />
+
+    <button>Save</button>
+  </form>
+</template>
+
+<script>
+import { ref, onMounted } from "vue";
+import useCRUD from "@/composables/useCRUD.js";
+import { useRouter } from "vue-router";
+
+export default {
+  props: ["questionId", "answerId"],
+  setup(props) {
+    const { getById, editById } = useCRUD();
+    const router = useRouter();
+
+    const answer = ref("");
+
+    const question = ref("");
+
+    const loadQuestion = async () => {
+      question.value = await getById("questions", props.questionId);
+    };
+
+    const getAnswer = async () => {
+      answer.value = await getById("answers", props.answerId);
+    };
+
+    onMounted(() => {
+      loadQuestion();
+      getAnswer();
+    });
+
+    const handleSubmit = async () => {
+      await editById("answers", props.answerId, answer.value);
+      router.go(-1);
+    };
+
+    return { question, answer, handleSubmit };
+  },
+};
+</script>
+
+<style scoped>
+label {
+  display: block;
+  text-align: center;
+  line-height: 150%;
+}
+
+form {
+  background: yellow;
+}
+</style>
