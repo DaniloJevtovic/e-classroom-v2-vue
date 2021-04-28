@@ -29,7 +29,10 @@
         </router-link>
 
         <div v-for="question in questions" :key="question.id">
-          <question-details :questionId="question.id"></question-details>
+          <question-details
+            :questionId="question.id"
+            @deleteFromList="deleteQuestion"
+          ></question-details>
           <hr />
         </div>
       </div>
@@ -63,12 +66,18 @@ export default {
       questions.value.push("ss");
     };
 
+    //brisanje iz liste (prikaz) - brisanje na bekendu je u question details komponenti!
+    const deleteQuestion = (id) => {
+      let index = questions.value.findIndex((question) => question.id === id);
+      questions.value.splice(index, 1);
+    };
+
     onMounted(() => {
       getQuiz();
       getQuestionsForQuiz();
     });
 
-    return { quizInfo, questions, newQuestion };
+    return { quizInfo, questions, newQuestion, deleteQuestion };
   },
 };
 </script>

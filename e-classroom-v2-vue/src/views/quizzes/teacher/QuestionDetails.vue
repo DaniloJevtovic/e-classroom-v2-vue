@@ -13,7 +13,7 @@
         <button>Edit</button>
       </router-link>
 
-      <button>Delete</button>
+      <button @click="deleteQuestion(questionId)">Delete</button>
     </div>
     <div class="answers" v-for="(answer, index) in answers" :key="answer.id">
       {{ index + 1 }}. {{ answer.answer }} - corect? - {{ answer.correct }}
@@ -27,7 +27,7 @@
         <button>Edit</button>
       </router-link>
 
-      <button>Delete</button>
+      <button @click="deleteAnswer(answer.id)">Delete</button>
     </div>
   </div>
 </template>
@@ -38,8 +38,8 @@ import useCRUD from "@/composables/useCRUD.js";
 
 export default {
   props: ["questionId"],
-  setup(props) {
-    const { getById, getSubItems } = useCRUD();
+  setup(props, context) {
+    const { getById, getSubItems, deleteById } = useCRUD();
 
     const question = ref("");
 
@@ -57,12 +57,34 @@ export default {
       );
     };
 
+    const deleteQuestion = async (id) => {
+      if (
+        confirm(
+          "Da li ste sigurni da zelite obrisati pitanje?" +
+            "Brisanjem pitanja brisu se i svi odgovori za pitanje!"
+        )
+      ) {
+        await deleteById("questions", id);
+        //saljem id za brisanje iz liste roditeljskoj komponenti! - quiz details
+        context.emit("deleteFromList", id);
+      }
+    };
+
+    const deleteAnswer = async (id) => {
+      if (confirm("Da li ste sigurni da zelite obrisati odgovor?")) {
+        await deleteById("answers", id);
+
+        let index = answers.value.findIndex((answer) => answer.id === id);
+        answers.value.splice(index, 1);
+      }
+    };
+
     onMounted(() => {
       getQuestion();
       getAnswersForQuestion();
     });
 
-    return { question, answers };
+    return { question, answers, deleteQuestion, deleteAnswer };
   },
 };
 </script>
