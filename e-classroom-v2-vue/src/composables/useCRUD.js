@@ -91,7 +91,11 @@ const editById = async (items, id, data) => {
 
 const deleteById = async (items, id) => {
   try {
-    const response = await axios.delete(url + items + "/" + id);
+    const response = await axios.delete(url + items + "/" + id, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
     return response.data;
   } catch (error) {
     console.log(error);
