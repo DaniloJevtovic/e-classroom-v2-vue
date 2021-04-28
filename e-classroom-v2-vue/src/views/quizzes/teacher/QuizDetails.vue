@@ -8,19 +8,30 @@
       </router-link>
     </div>
     <div class="container-body">
-      <h3>Name: {{ quizInfo.name }}</h3>
-      <h3>Instructions: {{ quizInfo.instructions }}</h3>
-      <h3>Duration: {{ quizInfo.duration }}</h3>
+      <div class="quiz-info">
+        <h1>Name: {{ quizInfo.name }}</h1>
+        <h2>Instructions: {{ quizInfo.instructions }}</h2>
+        <h2>Duration: {{ quizInfo.duration }}</h2>
+        <h3>Total questions: {{ questions.length }}</h3>
+        <router-link :to="{ name: 'EditQuiz', params: { quziId: quizId } }">
+          <button>Edit</button>
+        </router-link>
+
+        <button>Delete</button>
+      </div>
+
       <hr />
 
-      <h1>Questions</h1>
-      <router-link :to="{ name: 'NewQuestion', params: { quizId: quizId } }">
-        <button>New Question</button>
-      </router-link>
+      <div class="questions">
+        <h1>Questions</h1>
+        <router-link :to="{ name: 'NewQuestion', params: { quizId: quizId } }">
+          <button>New Question</button>
+        </router-link>
 
-      <div v-for="question in questions" :key="question.id">
-        <question-details :questionId="question.id"></question-details>
-        <hr />
+        <div v-for="question in questions" :key="question.id">
+          <question-details :questionId="question.id"></question-details>
+          <hr />
+        </div>
       </div>
     </div>
   </div>
@@ -63,4 +74,14 @@ export default {
 </script>
 
 <style>
+.quiz-info {
+  padding: 14px;
+  border: 7px solid darkblue;
+  background: blue;
+  border-radius: 20px;
+}
+
+.questions {
+  padding: 10px;
+}
 </style>

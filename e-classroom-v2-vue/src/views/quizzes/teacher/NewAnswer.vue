@@ -1,8 +1,8 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <!-- <h2>New Answer</h2> -->
+    <h2>New Answer</h2>
     <h2>Question: {{ question.question }}</h2>
-    <input type="text" v-model="answer.answer" placeholder="answer" />
+    <input type="text" v-model="answer.answer" placeholder="answer" required />
 
     <label for="checkbox">Tacno?</label>
     <input
@@ -60,6 +60,6 @@ label {
 }
 
 form {
-  background: blue;
+  background: yellow;
 }
 </style>

@@ -9,12 +9,24 @@
         <button>New Answer</button>
       </router-link>
 
-      <button>Edit</button>
+      <router-link :to="{ name: 'EditQuestion', params: { questionId } }">
+        <button>Edit</button>
+      </router-link>
+
       <button>Delete</button>
     </div>
     <div class="answers" v-for="(answer, index) in answers" :key="answer.id">
       {{ index + 1 }}. {{ answer.answer }} - corect? - {{ answer.correct }}
-      <button>Edit</button>
+
+      <router-link
+        :to="{
+          name: 'EditAnswer',
+          params: { questionId, answerId: answer.id },
+        }"
+      >
+        <button>Edit</button>
+      </router-link>
+
       <button>Delete</button>
     </div>
   </div>
