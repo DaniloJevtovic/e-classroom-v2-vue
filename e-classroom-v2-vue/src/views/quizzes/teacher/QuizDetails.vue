@@ -12,12 +12,14 @@
         <h1>Name: {{ quizInfo.name }}</h1>
         <h2>Instructions: {{ quizInfo.instructions }}</h2>
         <h2>Duration: {{ quizInfo.duration }}</h2>
+        <h2>QuizStatus: {{ quizInfo.status }}</h2>
         <h3>Total questions: {{ questions.length }}</h3>
+
         <router-link :to="{ name: 'EditQuiz', params: { quziId: quizId } }">
           <button>Edit</button>
         </router-link>
 
-        <button>Delete</button>
+        <button @click="deleteQuiz">Delete</button>
       </div>
 
       <hr />
@@ -44,18 +46,26 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import QuestionDetails from "./QuestionDetails.vue";
+import { useRouter, userRouter } from "vue-router";
 
 export default {
   props: ["id", "quizId"],
   components: { QuestionDetails },
   setup(props) {
-    const { getById, getSubItems } = useCRUD();
+    const { getById, getSubItems, deleteById } = useCRUD();
+    const router = useRouter();
+
     const quizInfo = ref("");
 
     const questions = ref([]);
 
     const getQuiz = async () => {
       quizInfo.value = await getById("quizzes", props.quizId);
+    };
+
+    const deleteQuiz = async () => {
+      await deleteById("quizzes", props.quizId);
+      router.push({ name: "MyCourseDetails", params: { id: props.id } });
     };
 
     const getQuestionsForQuiz = async () => {
@@ -77,7 +87,7 @@ export default {
       getQuestionsForQuiz();
     });
 
-    return { quizInfo, questions, newQuestion, deleteQuestion };
+    return { quizInfo, questions, newQuestion, deleteQuiz, deleteQuestion };
   },
 };
 </script>
