@@ -1,9 +1,17 @@
 <template>
-  <div class="container">
-    <h2>All students</h2>
-    <p v-for="student in students" :key="student.id">
-      {{ student.firstName }} {{ student.lastName }}
-    </p>
+  <div class="students-info">
+    <h1>All students</h1>
+    <h2>Number of students: {{ students.length }}</h2>
+    <router-link :to="{ name: 'NewStudent' }">
+      <button>New student</button>
+    </router-link>
+  </div>
+  <div class="studentss" v-for="student in students" :key="student.id">
+    <div class="studentt">
+      <h1>Full Name: {{ student.firstName }} {{ student.lastName }}</h1>
+      <h2>Email: {{ student.email }}</h2>
+      <h3>StClass: {{ student.studentClass.name }}</h3>
+    </div>
   </div>
 </template>
 
@@ -18,7 +26,7 @@ export default {
     const students = ref([]);
 
     const getStudents = async () => {
-      students.value = await getAll("students")
+      students.value = await getAll("students");
     };
     onMounted(getStudents);
 
@@ -27,5 +35,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.students-info {
+  background: darkkhaki;
+  padding: 10px;
+}
+.studentss {
+  background: blue;
+  padding: 10px;
+}
+.studentt {
+  background: white;
+  padding: 10px;
+}
 </style>

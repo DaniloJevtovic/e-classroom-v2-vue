@@ -1,22 +1,19 @@
 <template>
-  <div class="container">
-    <div class="container-header">
-      <h2>All users</h2>
-      <router-link :to="{ name: 'AllTeachers' }">
-        <button>All Teachers</button>
-      </router-link>
-      <router-link :to="{ name: 'NewTeacher' }">
-        <button>New Teacher</button>
-      </router-link>
-      <router-link :to="{ name: 'AllStudents' }">
-        <button>All Students</button>
-      </router-link>
-      <router-link :to="{ name: 'NewStudent' }">
-        <button>New Student</button>
-      </router-link>
-    </div>
-    <div class="container-body">
-      <router-view />
+  <div class="users-info">
+    <h1>All users</h1>
+    <h2>Number of users: {{ users.length }}</h2>
+    <router-link :to="{ name: 'NewTeacher' }">
+      <button>New teacher</button>
+    </router-link>
+    <router-link :to="{ name: 'NewStudent' }">
+      <button>New student</button>
+    </router-link>
+  </div>
+  <div class="users" v-for="user in users" :key="user.id">
+    <div class="user">
+      <h1>Full Name: {{ user.firstName }} {{ user.lastName }}</h1>
+      <h2>Email: {{ user.email }}</h2>
+      <h3>Role: {{ user.authorities[0].authority }}</h3>
     </div>
   </div>
 </template>
@@ -26,7 +23,6 @@ import { ref, onMounted } from "vue";
 import useCRUD from "../../composables/useCRUD.js";
 
 export default {
-  //components: { AllTeachers, AllStudents },
   setup() {
     const { getAll } = useCRUD();
 
@@ -42,5 +38,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.users-info {
+  background: darkkhaki;
+  padding: 10px;
+}
+.users {
+  background: blue;
+  padding: 10px;
+}
+.user {
+  background: white;
+  padding: 10px;
+}
 </style>
