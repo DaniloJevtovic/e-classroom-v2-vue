@@ -1,9 +1,8 @@
 <template>
-  <div class="students-info">
-    <h2>Students</h2>
-    <!-- za predmet nadjes kojem razredu pripada, zatim sa tim id om nadjes sva odjeljenja -->
-    <div class="students" v-for="student in students" :key="student.id">
-      <button>{{ student.firstName }} {{ student.lastName }}</button>
+  <div class="my-students-info">
+    <div class="my-students" v-for="student in students" :key="student.id">
+      <h2>Name: {{ student.firstName }} {{ student.lastName }}</h2>
+      <h3>email: {{ student.email }}</h3>
     </div>
   </div>
 </template>
@@ -13,17 +12,22 @@ import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
 
 export default {
-  props: ["id"],
+  props: ["stClassId"],
   setup(props) {
-    const students = ref([]);
     const { getSubItems } = useCRUD();
 
-    const getStudentsFromCourse = async () => {
-      students.value = await getSubItems("students", "course", props.id);
+    const students = ref([]);
+
+    const getStudentsFromStClass = async () => {
+      students.value = await getSubItems(
+        "students",
+        "stClass",
+        props.stClassId
+      );
     };
 
     onMounted(() => {
-      getStudentsFromCourse();
+      getStudentsFromStClass();
     });
 
     return { students };
@@ -31,5 +35,16 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.my-students-info {
+  padding: 10px;
+  background: rgb(27, 27, 184);
+}
+
+.my-students {
+  color: yellow;
+  border: 2px solid pink;
+  background: blueviolet;
+  padding: 8px;
+}
 </style>
