@@ -1,13 +1,14 @@
 <template>
   <div class="container">
     <div class="container-header">
-      <h2>All SchoolClasses</h2>
       <router-link :to="{ name: 'NewSchoolClass' }">
         <button>New School Class</button>
       </router-link>
     </div>
 
     <div class="container-body">
+      <h2>All School Classes</h2>
+
       <div class="scClasses" v-for="scClass in scClasses" :key="scClass.id">
         <router-link
           :to="{ name: 'ScClassDetails', params: { id: scClass.id } }"

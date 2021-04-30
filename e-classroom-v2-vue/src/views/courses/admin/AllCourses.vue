@@ -8,6 +8,7 @@
     </div>
 
     <div class="container-body">
+      <h2>SchoolClasses</h2>
       <div class="courses" v-for="course in courses" :key="course.id">
         <router-link :to="{ name: 'CourseDetails', params: { id: course.id } }">
           <button>
@@ -16,7 +17,7 @@
             Teacher: {{ course.teacher.firstName }}
             {{ course.teacher.lastName }}
             <hr />
-            School Class: {{ course.schoolClass.name}}
+            School Class: {{ course.schoolClass.name }}
             <hr />
             Description: {{ course.description }}
           </button>

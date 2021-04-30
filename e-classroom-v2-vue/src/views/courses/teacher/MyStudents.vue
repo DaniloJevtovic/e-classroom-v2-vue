@@ -1,8 +1,12 @@
 <template>
   <div class="my-students-info">
+    <h3>Students: {{ students.length }}</h3>
     <div class="my-students" v-for="student in students" :key="student.id">
       <h2>Name: {{ student.firstName }} {{ student.lastName }}</h2>
       <h3>email: {{ student.email }}</h3>
+      <button>Contact</button>
+      <button>Contact parant</button>
+      <button>View Profile</button>
     </div>
   </div>
 </template>
