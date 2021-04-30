@@ -1,65 +1,15 @@
 <template>
   <div class="container">
-    <div class="container-header" v-if="scClassInfo">
-      <h2>
-        Name: {{ scClassInfo.name }}
-        <br />
-        Description {{ scClassInfo.description }}
-      </h2>
-
-      <!-- id iz propa da ne selektujes razred -->
-      <router-link :to="{ name: 'NewStudentClass', params: { id: id } }">
-        <button>New Student Class</button>
-      </router-link>
-
-      <router-link :to="{ name: 'NewCourse'}">
-        <button>New Course</button>
-      </router-link>
-
-      <router-link :to="{ name: 'AllScClasses' }">
-        <button>Back to all SchoolClasses</button>
-      </router-link>
+    <div class="container-header">
+      <child-navbar :links="links"></child-navbar>
     </div>
 
     <div class="container-body">
-      <h1>Student classes</h1>
-      <div class="stClasses" v-for="stClass in stClasses" :key="stClass.id">
-        <router-link
-          :to="{
-            name: 'StudentClassDetails',
-            params: { scId: id, stClassId: stClass.id },
-          }"
-        >
-          <button>
-            Name: {{ stClass.name }}
-            <hr />
-            SchoolCLass: {{ stClass.schoolClass.name }}
-            <hr />
-            Description: {{ stClass.description }}
-          </button>
-        </router-link>
+      <div class="scClass-admin">
+        <h1>Name: {{ scClassInfo.name }}</h1>
+        <h2>Description {{ scClassInfo.description }}</h2>
       </div>
-
-      <hr />
-
-      <h1>Courses</h1>
-      <div class="stClasses" v-for="course in courses" :key="course.id">
-        <router-link
-          :to="{
-            name: 'CourseDetails',
-            params: { id: course.id },
-          }"
-        >
-          <button>
-            Name: {{ course.name }}
-            <hr />
-            Description: {{ course.description }}
-            <hr />
-            Teacher: {{ course.teacher.firstName }}
-            {{ course.teacher.lastName }}
-          </button>
-        </router-link>
-      </div>
+      <router-view />
     </div>
   </div>
 </template>
@@ -67,44 +17,50 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "../../composables/useCRUD.js";
+import ChildNavbar from "../../components/ChildNavbar.vue";
 
 export default {
   props: ["id"],
+  components: { ChildNavbar },
   setup(props) {
     const scClassInfo = ref("");
-    const stClasses = ref([]);
-    const courses = ref([]);
-    const { getById, getSubItems } = useCRUD();
 
-    //2 zahtjeva :/
+    const { getById } = useCRUD();
 
-    //informacije o razredu
+    const links = ref([
+      {
+        name: "Back to SCClasses",
+        path: "AllScClasses",
+      },
+      {
+        name: "Courses for SC",
+        path: "CoursesForScClass",
+      },
+      {
+        name: "Students",
+        path: "StClassesForScClass",
+      },
+    ]);
+
     const getDetailsSC = async () => {
       scClassInfo.value = await getById("scClasses", props.id);
     };
 
-    //spisak svih odjeljenja
-    const getAllStClasses = async () => {
-      stClasses.value = await getSubItems("stClasses", "scClass", props.id);
-    };
-
-    //spisak svih predmeta
-    const getAllCourses = async () => {
-      courses.value = await getSubItems("courses", "schoolClass", props.id);
-    };
-
     onMounted(() => {
       getDetailsSC();
-      getAllStClasses();
-      getAllCourses();
     });
 
-    return { scClassInfo, stClasses, courses };
+    return { scClassInfo, links };
   },
 };
 </script>
 
 <style scoped>
+.scClass-admin {
+  padding: 10px;
+  background: cyan;
+}
+
 .stClasses {
   display: inline;
 }
