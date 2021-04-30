@@ -11,6 +11,7 @@ import AllTeachers from "../views/users/AllTeachers.vue";
 import NewTeacher from "../views/users/NewTeacher.vue";
 import AllStudents from "../views/users/AllStudents.vue";
 import NewStudent from "../views/users/NewStudent.vue";
+import NewStudentForStClass from "../views/users/NewStudentForStClass.vue";
 
 import AllCourses from "../views/courses/admin/AllCourses.vue";
 import NewCourse from "../views/courses/admin/NewCourse.vue";
@@ -23,6 +24,9 @@ import NewSchoolClass from "../views/schoolClasses/NewSchoolClass.vue";
 import AllStudentClasses from "../views/studentClasses/AllStudentClasses.vue";
 import StudentClassDetails from "../views/studentClasses/StudentClassDetails.vue";
 import NewStudentClass from "../views/studentClasses/NewStudentClass.vue";
+import CoursesForScClass from "../views/courses/admin/CoursesForScClass.vue";
+import StClassesForScClass from "../views/studentClasses/StClassesForScClass.vue";
+import NewCourseForScClass from "../views/courses/admin/NewCourseForScClass.vue";
 
 import TeacherHome from "../views/homePages/TeacherHome.vue";
 import MyCourses from "../views/courses/teacher/MyCourses.vue";
@@ -108,6 +112,7 @@ const routes = [
     name: "NewStudent",
     component: NewStudent,
   },
+ 
 
   {
     path: "/allCourses",
@@ -140,6 +145,26 @@ const routes = [
     name: "ScClassDetails",
     component: SchoolClassDetails,
     props: true,
+    children: [
+      {
+        path: "courses",
+        name: "CoursesForScClass",
+        component: CoursesForScClass,
+        props: true,
+      },
+      {
+        path: "students",
+        name: "StClassesForScClass",
+        component: StClassesForScClass,
+        props: true,
+      },
+    ],
+  },
+  {
+    path: "/stClass/:id/newStudent",
+    name: "NewStudentForStClass",
+    component: NewStudentForStClass,
+    props: true,
   },
   {
     path: "/allStudentClases",
@@ -156,6 +181,12 @@ const routes = [
     path: "/sc/:id/newStudentClass",
     name: "NewStudentClass",
     component: NewStudentClass,
+    props: true,
+  },
+  {
+    path: "/sc/:id/newCourse",
+    name: "NewCourseForScClass",
+    component: NewCourseForScClass,
     props: true,
   },
 
