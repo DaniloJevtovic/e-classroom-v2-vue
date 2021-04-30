@@ -9,7 +9,7 @@ export default createStore({
 
     adminLinks: [
       // "AdminHome",
-      "AllUsers",
+      "Users",
       "AllCourses",
       "AllScClasses",
     ],

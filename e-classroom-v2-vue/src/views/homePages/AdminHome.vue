@@ -4,7 +4,7 @@
       <h2>Welcome admin</h2>
     </div>
     <div class="container-body">
-      <router-link :to="{ name: 'AllUsers' }">
+      <router-link :to="{ name: 'Users' }">
         <button>All Users</button>
       </router-link>
       <router-link :to="{ name: 'AllCourses' }">

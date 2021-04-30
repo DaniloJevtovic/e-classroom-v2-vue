@@ -44,12 +44,13 @@ export default {
 <style scoped>
 .materials-info {
   padding: 10px;
-  background: blue;
+  background: rgb(27, 27, 184);
 }
 
 .materials {
   color: yellow;
   border: 2px solid pink;
+  background: darkred;
   padding: 8px;
 }
 </style>

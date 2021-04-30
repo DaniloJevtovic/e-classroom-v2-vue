@@ -1,8 +1,7 @@
 <template>
   <div class="container">
     <div class="container-header">
-      <h3>Details</h3>
-      <button @click="$router.go(-1)">Back</button>
+      <button @click="$router.go(-1)">Back to materials</button>
     </div>
     <div class="container-body">
       <h3>Name: {{ materialInfo.name }}</h3>

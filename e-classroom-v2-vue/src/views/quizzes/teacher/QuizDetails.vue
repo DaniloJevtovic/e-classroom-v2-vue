@@ -1,11 +1,10 @@
 <template>
   <div class="container">
     <div class="container-header">
-      <!-- <h3>Details</h3> -->
-      <!-- <button @click="$router.go(-2)">Back</button> -->
-      <router-link :to="{ name: 'MyCourseDetails', params: { id: id } }">
+     <button @click="$router.go(-1)">Back to quizzes</button>
+      <!-- <router-link :to="{ name: 'MyCourseDetails', params: { id: id } }">
         <button>Back to course</button>
-      </router-link>
+      </router-link> -->
     </div>
     <div class="container-body">
       <div class="quiz-info">

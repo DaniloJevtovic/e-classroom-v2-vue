@@ -1,6 +1,6 @@
 <template>
   <div class="quizzes-info">
-    <h2>Quizzes</h2>
+    <h1>Quizzes</h1>
     <router-link :to="{ name: 'NewQuiz', params: { id } }">
       <button>New Quiz</button>
     </router-link>
@@ -55,7 +55,7 @@ export default {
 .quizzes {
   background: rgb(11, 11, 65);
   color: springgreen;
-  border: 2px solid pink;
+  border: 5px solid pink;
   padding: 8px;
 }
 </style>
