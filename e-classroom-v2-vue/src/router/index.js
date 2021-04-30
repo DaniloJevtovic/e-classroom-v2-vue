@@ -5,6 +5,7 @@ import Login from "../views/auth/Login.vue";
 import Signup from "../views/auth/Signup.vue";
 
 import AdminHome from "../views/homePages/AdminHome.vue";
+import Users from "../views/users/Users.vue";
 import AllUsers from "../views/users/AllUsers.vue";
 import AllTeachers from "../views/users/AllTeachers.vue";
 import NewTeacher from "../views/users/NewTeacher.vue";
@@ -25,6 +26,12 @@ import NewStudentClass from "../views/studentClasses/NewStudentClass.vue";
 
 import TeacherHome from "../views/homePages/TeacherHome.vue";
 import MyCourses from "../views/courses/teacher/MyCourses.vue";
+import MyQuizzes from "../views/courses/teacher/MyQuizzes.vue";
+import MyStudentClasses from "../views/courses/teacher/MyStudentClasses.vue";
+import MyStudents from "../views/courses/teacher/MyStudents.vue";
+import MyMaterials from "../views/courses/teacher/MyMaterials.vue";
+import MyCourseInfo from "../views/courses/teacher/MyCourseInfo.vue";
+
 import MyCourseDetails from "../views/courses/teacher/MyCourseDetails.vue";
 import TeacherCourses from "../views/courses/TeacherCourses.vue";
 
@@ -69,31 +76,37 @@ const routes = [
     component: AdminHome,
   },
   {
-    path: "/allUsers",
-    name: "AllUsers",
-    component: AllUsers,
+    path: "/users",
+    name: "Users",
+    component: Users,
+    redirect: "/users/allUsers",
     children: [
       {
-        path: "/allTeachers",
+        path: "allUsers",
+        name: "AllUsers",
+        component: AllUsers,
+      },
+      {
+        path: "allTeachers",
         name: "AllTeachers",
         component: AllTeachers,
       },
       {
-        path: "/allStudents",
+        path: "allStudents",
         name: "AllStudents",
         component: AllStudents,
       },
-      {
-        path: "/newTeacher",
-        name: "NewTeacher",
-        component: NewTeacher,
-      },
-      {
-        path: "/newStudent",
-        name: "NewStudent",
-        component: NewStudent,
-      },
     ],
+  },
+  {
+    path: "/newTeacher",
+    name: "NewTeacher",
+    component: NewTeacher,
+  },
+  {
+    path: "/newStudent",
+    name: "NewStudent",
+    component: NewStudent,
   },
 
   {
@@ -162,6 +175,34 @@ const routes = [
     name: "MyCourseDetails",
     component: MyCourseDetails,
     props: true,
+    children: [
+      // {
+      //   path: "/myCourse/:id",
+      //   name: "MyCourseInfo",
+      //   component: MyCourseInfo,
+      // },
+      {
+        path: "/myCourse/:id/materials",
+        name: "MyMaterials",
+        component: MyMaterials,
+      },
+      {
+        path: "/myCourse/:id/newMaterial",
+        name: "NewMaterial",
+        component: NewMaterial,
+        props: true,
+      },
+      {
+        path: "/myCourse/:id/quizzes",
+        name: "MyQuizzes",
+        component: MyQuizzes,
+      },
+      {
+        path: "/myCourse/:id/students",
+        name: "MyStudents",
+        component: MyStudentClasses,
+      },
+    ],
   },
   {
     path: "/teacherCourses",
