@@ -48,6 +48,6 @@ export default {
   border: 3px solid yellow;
 }
 .my-stClass h2 {
-    padding: 10px;
+  padding: 10px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="container-header">
-     <button @click="$router.go(-1)">Back to quizzes</button>
+      <button @click="$router.go(-1)">Back to quizzes</button>
       <!-- <router-link :to="{ name: 'MyCourseDetails', params: { id: id } }">
         <button>Back to course</button>
       </router-link> -->
