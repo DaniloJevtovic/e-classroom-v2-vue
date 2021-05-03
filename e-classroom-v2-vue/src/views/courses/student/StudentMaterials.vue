@@ -1,6 +1,6 @@
 <template>
   <div class="materials-info">
-    <h2>Materials</h2>
+    <h1>Materials</h1>
 
     <div class="basic-grid">
       <div class="materials" v-for="material in materials" :key="material.id">

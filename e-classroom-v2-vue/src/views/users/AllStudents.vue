@@ -5,6 +5,10 @@
     <router-link :to="{ name: 'NewStudent' }">
       <button>New student</button>
     </router-link>
+    <div class="search-students">
+      <input type="text" placeholder="filter by name" />
+      <input type="text" placeholder="filter by stClass" />
+    </div>
   </div>
   <div class="studentss" v-for="student in students" :key="student.id">
     <div class="studentt">
@@ -47,5 +51,13 @@ export default {
 .studentt {
   background: white;
   padding: 10px;
+}
+
+.search-students {
+  display: flex;
+}
+
+input {
+  margin: 10px;
 }
 </style>

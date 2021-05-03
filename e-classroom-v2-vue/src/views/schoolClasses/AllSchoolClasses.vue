@@ -9,7 +9,7 @@
     <div class="container-body">
       <h2>All School Classes</h2>
 
-      <div class="scClasses" v-for="scClass in scClasses" :key="scClass.id">
+      <!-- <div class="scClasses" v-for="scClass in scClasses" :key="scClass.id">
         <router-link
           :to="{ name: 'ScClassDetails', params: { id: scClass.id } }"
         >
@@ -19,6 +19,18 @@
             Description: {{ scClass.description }}
           </button>
         </router-link>
+      </div> -->
+
+      <div class="basic-grid">
+        <div class="sc-card" v-for="scClass in scClasses" :key="scClass.id">
+          <router-link
+            :to="{ name: 'ScClassDetails', params: { id: scClass.id } }"
+          >
+            <h1>Name: {{ scClass.name }}</h1>
+
+            <h2>Description: {{ scClass.description }}</h2>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -45,7 +57,14 @@ export default {
 </script>
 
 <style scoped>
-.scClasses {
-  display: inline;
+.card {
+  background: cyan;
+}
+
+.sc-card {
+  background: violet;
+  margin: 10px;
+  padding: 10px;
+  border: 3px solid white;
 }
 </style>

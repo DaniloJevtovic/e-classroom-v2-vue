@@ -6,7 +6,7 @@
     <div class="container-body">
       <div class="courses" v-for="course in courses" :key="course.id">
         <router-link
-          :to="{ name: 'StCourseDetails', params: { id: course.id } }"
+          :to="{ name: 'StudentCourseDetails', params: { id: course.id } }"
         >
           <button>
             Name: {{ course.name }}

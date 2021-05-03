@@ -12,8 +12,7 @@
   <div class="basic-grid">
     <div class="sclasses" v-for="stClass in stClasses" :key="stClass.id">
       <h1>StClass: {{ stClass.name }}</h1>
-
-
+      
       <StudentsForSCClass :id="stClass.id" />
       <br />
     </div>

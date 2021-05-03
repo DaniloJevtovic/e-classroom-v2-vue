@@ -7,7 +7,7 @@
       <div v-for="(student, index) in students" :key="student.id">
       <div>
         <h3>
-          {{ index + 1 }}. Name: {{ student.firstName }} {{ student.lastName }}
+          {{ index + 1 }}. {{ student.firstName }} {{ student.lastName }}
         </h3>
       </div>
     </div>
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style scoped>
-.stsForClass {
+/* .stsForClass {
   background: oldlace;
-}
+} */
 </style>

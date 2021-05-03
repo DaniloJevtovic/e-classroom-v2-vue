@@ -6,7 +6,7 @@
 
     <div class="container-body">
       <div class="scClass-admin">
-        <h1>Name: {{ scClassInfo.name }}</h1>
+        <h1>ScClass: {{ scClassInfo.name }}</h1>
         <h2>Description {{ scClassInfo.description }}</h2>
       </div>
       <router-view />

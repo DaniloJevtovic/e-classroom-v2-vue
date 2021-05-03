@@ -1,15 +1,16 @@
 <template>
-  <div class="container">
-    <div class="container-header">
-      <h3>Details</h3>
-      <button @click="$router.go(-1)">Back</button>
-    </div>
-    <div class="container-body">
+  <div class="student-quiz-details">
+    <div class="st-quiz-info">
       <h3>Name: {{ quizInfo.name }}</h3>
       <h3>Instruction: {{ quizInfo.instructions }}</h3>
       <h4>Duration: {{ quizInfo.duration }}</h4>
 
-      <button v-if="true">Start</button>
+      <router-link
+        v-if="true"
+        :to="{ name: 'StudentSolveQuiz', params: { quizId: id } }"
+      >
+        <button>Start</button>
+      </router-link>
       <div v-else>
         <student-quiz-results></student-quiz-results>
       </div>
@@ -45,5 +46,9 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
+.st-quiz-info {
+  background: rgb(136, 132, 163);
+  padding: 15px;
+}
 </style>
