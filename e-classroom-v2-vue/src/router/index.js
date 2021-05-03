@@ -25,6 +25,7 @@ import AllStudentClasses from "../views/studentClasses/AllStudentClasses.vue";
 import StudentClassDetails from "../views/studentClasses/StudentClassDetails.vue";
 import NewStudentClass from "../views/studentClasses/NewStudentClass.vue";
 import CoursesForScClass from "../views/courses/admin/CoursesForScClass.vue";
+import CourseDetailsForScClass from "../views/courses/admin/CourseDetailsForScClass.vue";
 import StClassesForScClass from "../views/studentClasses/StClassesForScClass.vue";
 import NewCourseForScClass from "../views/courses/admin/NewCourseForScClass.vue";
 
@@ -112,7 +113,6 @@ const routes = [
     name: "NewStudent",
     component: NewStudent,
   },
- 
 
   {
     path: "/allCourses",
@@ -152,6 +152,7 @@ const routes = [
         component: CoursesForScClass,
         props: true,
       },
+      
       {
         path: "students",
         name: "StClassesForScClass",
@@ -159,6 +160,12 @@ const routes = [
         props: true,
       },
     ],
+  },
+  {
+    path: "/courseDetails/:id",
+    name: "CourseDetailsForScClass",
+    component: CourseDetailsForScClass,
+    props: true,
   },
   {
     path: "/stClass/:id/newStudent",
