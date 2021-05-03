@@ -1,41 +1,13 @@
 <template>
   <div class="container" v-if="courseInfo">
     <div class="container-header">
-      <h2>Course details</h2>
-      <router-link :to="{ name: 'StudentCourses' }">
-        <button>Back to my Courses</button>
-      </router-link>
+      <child-navbar :links="linksForNavbar"></child-navbar>
     </div>
     <div class="container-body">
-      <h2>Name: {{ courseInfo.name }}</h2>
+      <h2>Course: {{ courseInfo.name }}</h2>
       <h2>Description: {{ courseInfo.description }}</h2>
       <h2>Teacher: {{ courseInfo.teacher.firstName }}</h2>
-      <hr />
-
-      <h2>Materials</h2>
-      <div class="materials" v-for="material in materials" :key="material.id">
-        <h2>Name: {{ material.name }}</h2>
-        <h3>Description: {{ material.description }}</h3>
-        <router-link
-          :to="{ name: 'MaterialDetails', params: { matId: material.id } }"
-          ><button>details</button></router-link
-        >
-        <hr />
-      </div>
-
-      <hr />
-      <h2>Quizzes</h2>
-      <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
-        <h2>Name: {{ quiz.name }}</h2>
-        <h3>Instruction {{ quiz.instruction }}</h3>
-        <h4>Duration: {{quiz.duration}}</h4>
-        <router-link
-          :to="{ name: 'StudentQuizDetails', params: { quizId: quiz.id } }"
-          ><button>details</button></router-link
-        >
-        <hr />
-      </div>
-      <hr />
+      <router-view :id="id" />
     </div>
   </div>
 </template>
@@ -43,11 +15,19 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
+import ChildNavbar from "../../../components/ChildNavbar.vue";
 
 export default {
   props: ["id"],
+  components: { ChildNavbar },
   setup(props) {
     const { getById, getSubItems } = useCRUD();
+
+    const linksForNavbar = ref([
+      { name: "Back to my Courses", path: "StudentCourses" },
+      { name: "Materials", path: "StudentMaterials" },
+      { name: "Quizzes", path: "StudentQuizzes" },
+    ]);
 
     const courseInfo = ref("");
     const materials = ref("");
@@ -71,7 +51,7 @@ export default {
       getCourseQuizzes();
     });
 
-    return { courseInfo, materials, quizzes };
+    return { linksForNavbar, courseInfo, materials, quizzes };
   },
 };
 </script>
