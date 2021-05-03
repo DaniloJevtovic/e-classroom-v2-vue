@@ -5,14 +5,16 @@
       <button>New Material</button>
     </router-link>
 
-    <div class="materials" v-for="material in materials" :key="material.id">
-      <h2>Name: {{ material.name }}</h2>
-      <h3>Description: {{ material.description }}</h3>
-      <router-link
-        :to="{ name: 'MaterialDetails', params: { matId: material.id } }"
-      >
-        <button>details</button>
-      </router-link>
+    <div class="basic-grid">
+      <div class="materials" v-for="material in materials" :key="material.id">
+        <h2>Name: {{ material.name }}</h2>
+        <h3>Description: {{ material.description }}</h3>
+        <router-link
+          :to="{ name: 'MaterialDetails', params: { matId: material.id } }"
+        >
+          <button>details</button>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -48,9 +50,10 @@ export default {
 }
 
 .materials {
-  color: yellow;
+  color: white;
   border: 2px solid pink;
-  background: darkred;
+  border-radius: 10px;
+  background: deepskyblue;
   padding: 8px;
 }
 </style>

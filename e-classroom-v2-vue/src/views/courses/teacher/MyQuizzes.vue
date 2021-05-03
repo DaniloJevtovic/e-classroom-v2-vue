@@ -5,19 +5,21 @@
       <button>New Quiz</button>
     </router-link>
 
-    <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
-      <!-- samo kvizovi koji nisu obrisani -->
-      <!-- <div v-if="quiz.status !== 'DELETED'"> -->
-      <h2>Name: {{ quiz.name }}</h2>
-      <h3>Instruction: {{ quiz.instructions }}</h3>
-      <h4>Duration: {{ quiz.duration }} minutes.</h4>
-      <router-link
-        :to="{ name: 'QuizDetails', params: { id: id, quizId: quiz.id } }"
-      >
-        <button>details</button>
-      </router-link>
+    <div class="basic-grid">
+      <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
+        <!-- samo kvizovi koji nisu obrisani -->
+        <!-- <div v-if="quiz.status !== 'DELETED'"> -->
+        <h2>Name: {{ quiz.name }}</h2>
+        <h3>Instruction: {{ quiz.instructions }}</h3>
+        <h4>Duration: {{ quiz.duration }} minutes.</h4>
+        <router-link
+          :to="{ name: 'QuizDetails', params: { id: id, quizId: quiz.id } }"
+        >
+          <button>details</button>
+        </router-link>
 
-      <!-- </div> -->
+        <!-- </div> -->
+      </div>
     </div>
   </div>
 </template>

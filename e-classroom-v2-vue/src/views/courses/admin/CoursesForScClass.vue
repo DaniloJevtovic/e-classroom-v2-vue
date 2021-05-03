@@ -1,20 +1,25 @@
 <template>
   <div>
     <div>
+      <h1>Courses</h1>
       <router-link
         :to="{ name: 'NewCourseForScClass', params: { scClassId: id } }"
       >
         <button>New Course For this sc</button>
       </router-link>
     </div>
-    <div v-for="course in courses" :key="course.id">
-      <div>
-        <h1>Name: {{ course.name }}</h1>
-        <h2>
-          Teacher: {{ course.teacher.firstName }} {{ course.teacher.lastName }}
-        </h2>
-        <h3>description: {{ course.description }}</h3>
-        <hr />
+    <div class="basic-grid">
+      <div v-for="course in courses" :key="course.id">
+        <router-link :to="{ name: 'CourseDetailsForScClass', params: { id: course.id } }">
+          <div class="sc-courses">
+            <h1>Name: {{ course.name }}</h1>
+            <h2>
+              Teacher: {{ course.teacher.firstName }}
+              {{ course.teacher.lastName }}
+            </h2>
+            <h3>description: {{ course.description }}</h3>
+          </div>
+        </router-link>
       </div>
     </div>
   </div>
@@ -43,5 +48,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.sc-courses {
+  background: indigo;
+  color: aqua;
+  padding: 10px;
+  border-radius: 7px;
+}
 </style>
