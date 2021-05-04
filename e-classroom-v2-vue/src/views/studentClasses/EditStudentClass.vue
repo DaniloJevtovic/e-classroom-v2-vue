@@ -1,0 +1,62 @@
+<template>
+  <form @submit.prevent="handleSubmit">
+    <h2>Edit Student Class</h2>
+    <h2>SchoolClass: {{ scClass.name }}</h2>
+    <input type="text" v-model="stClass.name" placeholder="name" required />
+    <textarea
+      rows="3"
+      v-model="stClass.description"
+      placeholder="description"
+      required
+    >
+    </textarea>
+    <button>Save</button>
+    <router-link :to="{ name: 'ScClassDetails', params: { id: id } }">
+      <button>Cancel</button>
+    </router-link>
+  </form>
+</template>
+
+<script>
+import { reactive, ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+import useCRUD from "../../composables/useCRUD.js";
+
+export default {
+  props: ["id", "stcId"],
+  setup(props) {
+    const { getById, editById } = useCRUD();
+    const router = useRouter();
+
+    const scClass = ref("");
+    const stClass = reactive({});
+
+    const getScClassById = async () => {
+      scClass.value = await getById("scClasses", props.id);
+    };
+
+    const getStClassById = async () => {
+      let studentClass = await getById("stClasses", props.stcId);
+      console.log(studentClass);
+      stClass.name = studentClass.name;
+      stClass.description = studentClass.description;
+      stClass.scClassId = studentClass.schoolClass.id;
+    };
+
+    onMounted(() => {
+      getScClassById();
+      getStClassById();
+    });
+
+    const handleSubmit = async () => {
+      await editById("stClasses", props.stcId, stClass);
+      router.go(-1);
+    };
+
+    return { scClass, stClass, handleSubmit };
+  },
+};
+</script>
+
+<style>
+</style>
