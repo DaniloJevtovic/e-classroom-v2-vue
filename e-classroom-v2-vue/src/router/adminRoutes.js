@@ -14,6 +14,7 @@ import CourseDetails from "../views/courses/admin/CourseDetails.vue";
 import AllSchoolClasses from "../views/schoolClasses/AllSchoolClasses.vue";
 import SchoolClassDetails from "../views/schoolClasses/SchoolClassDetails.vue";
 import NewSchoolClass from "../views/schoolClasses/NewSchoolClass.vue";
+import EditSchoolClass from "../views/schoolClasses/EditSchoolClass.vue";
 
 import AllStudentClasses from "../views/studentClasses/AllStudentClasses.vue";
 import StudentClassDetails from "../views/studentClasses/StudentClassDetails.vue";
@@ -92,6 +93,12 @@ export default [
     path: "/newSchoolClass",
     name: "NewSchoolClass",
     component: NewSchoolClass,
+  },
+  {
+    path: "/editSchoolClass/:id",
+    name: "EditSchoolClass",
+    component: EditSchoolClass,
+    props: true,
   },
   {
     path: "/scClassDetails/:id",

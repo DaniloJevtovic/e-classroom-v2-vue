@@ -10,6 +10,7 @@ import MyCourseDetails from "../views/courses/teacher/MyCourseDetails.vue";
 import TeacherCourses from "../views/courses/TeacherCourses.vue";
 
 import NewMaterial from "../views/materials/teacher/NewMaterial.vue";
+import EditMaterial from "../views/materials/teacher/EditMaterial.vue";
 import MaterialDetails from "../views/materials/teacher/MaterialDetails.vue";
 
 import NewQuiz from "../views/quizzes/teacher/NewQuiz.vue";
@@ -60,6 +61,12 @@ export default [
         component: MyStudentClasses,
       },
     ],
+  },
+  {
+    path: "/material/:id",
+    name: "EditMaterial",
+    component: EditMaterial,
+    props: true,
   },
   {
     path: "/teacherCourses",
