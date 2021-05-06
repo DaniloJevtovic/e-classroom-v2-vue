@@ -47,8 +47,8 @@ export default {
 
 <style scoped>
 .navbar {
-  padding: 16px 10px;
-  margin-bottom: 50px;
+  /* padding: 16px 10px; */
+  margin-bottom: 20px;
   background: white;
 }
 
@@ -69,15 +69,15 @@ nav .links {
 nav .links a,
 button {
   margin-left: 10px; /*razmak izmedju dugmica */
-  font-size: 20px;
+  /* font-size: 20px; */
 }
 
 .links a.router-link-exact-active {
   background: cyan;
   color: indigo;
-  padding: 10px;
-  font-weight: bold;
-  border-radius: 10px;
+  padding: 7px;
+  /* font-weight: bold; */
+  border-radius: 7px;
 }
 
 nav img {
@@ -86,10 +86,10 @@ nav img {
 
 span {
   display: inline-block;
-  margin: 0 16px;
-  padding: 5px 26px;
+  margin: 0 10px;
+  padding: 5px 10px;
   border-radius: 5px;
-  border-left: 15px solid rgb(11, 253, 233); /*uspravna crtica mala*/
+  border-left: 5px solid rgb(0, 253, 76); /*uspravna crtica mala*/
   color: white;
   background: indigo;
 }

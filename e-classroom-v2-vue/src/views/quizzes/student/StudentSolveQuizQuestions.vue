@@ -8,7 +8,7 @@
       <label class="answer">
         {{ index + 1 }}. {{ answer.answer }}
         <input type="checkbox" />
-        <span class="checkmark"></span>
+        <span class="checkmark"></span>{{ index + 1 }}. {{ answer.answer }}
       </label>
     </div>
   </div>
@@ -123,7 +123,7 @@ export default {
 }
 
 /* When the checkbox is checked, add a blue background */
-.answer input:checked ~ .checkmark {
+.answer input:checked ~ .checkmark, .answer  {
   background-color: #2196F3;
 }
 

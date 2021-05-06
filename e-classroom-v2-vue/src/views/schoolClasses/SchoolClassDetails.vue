@@ -5,10 +5,15 @@
     </div>
 
     <div class="container-body">
-      <div class="scClass-admin">
-        <h1>ScClass: {{ scClassInfo.name }}</h1>
-        <h2>Description {{ scClassInfo.description }}</h2>
-      </div>
+      <router-link
+        :to="{ name: 'EditSchoolClass', params: { id: scClassInfo.id } }"
+      >
+        <div class="scClass-admin">
+          <h1>ScClass: {{ scClassInfo.name }}</h1>
+          <p>Description: {{ scClassInfo.description }}</p>
+        </div>
+      </router-link>
+
       <router-view />
     </div>
   </div>
@@ -59,6 +64,7 @@ export default {
 .scClass-admin {
   padding: 10px;
   background: cyan;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .stClasses {

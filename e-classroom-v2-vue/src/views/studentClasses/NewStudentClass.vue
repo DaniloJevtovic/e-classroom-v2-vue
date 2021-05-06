@@ -1,6 +1,7 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <h2>New Student Class</h2>
+    <h2>SchoolClass: {{ scClass.name }}</h2>
     <input type="text" v-model="newStClass.name" placeholder="name" required />
     <textarea
       rows="3"
@@ -10,21 +11,30 @@
     >
     </textarea>
     <button>Save</button>
-    <router-link :to="{ name: 'ScClassDetails', params: { id: id } }">
-      <button>Cancel</button>
-    </router-link>
+    <button @click="$router.go(-1)">Cancel</button>
   </form>
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import useCRUD from "../../composables/useCRUD.js";
 
 export default {
   props: ["id"],
   setup(props) {
-    const { save } = useCRUD();
+    const { getById, save } = useCRUD();
+
+    const scClass = ref("");
+
+    const getScClassById = async () => {
+      scClass.value = await getById("scClasses", props.id);
+    };
+
+    onMounted(() => {
+      getScClassById();
+    });
+
     const newStClass = reactive({
       name: "",
       description: "",
@@ -35,10 +45,11 @@ export default {
 
     const handleSubmit = async () => {
       await save("stClasses", newStClass);
-      router.push({ name: "ScClassDetails", params: { id: props.id } });
+      //router.push({ name: "ScClassDetails", params: { id: props.id } });
+      router.go(-1);
     };
 
-    return { newStClass, handleSubmit };
+    return { scClass, newStClass, handleSubmit };
   },
 };
 </script>

@@ -1,21 +1,24 @@
 <template>
   <div class="quizzes-info">
-    <h1>Quizzes</h1>
+    <h2>Quizzes</h2>
+
     <router-link :to="{ name: 'NewQuiz', params: { id } }">
       <button>New Quiz</button>
     </router-link>
 
-    <div class="basic-grid">
+    <input type="text" placeholder="search" />
+
+    <div class="te-quizzes">
       <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
         <!-- samo kvizovi koji nisu obrisani -->
         <!-- <div v-if="quiz.status !== 'DELETED'"> -->
-        <h2>Name: {{ quiz.name }}</h2>
-        <h3>Instruction: {{ quiz.instructions }}</h3>
-        <h4>Duration: {{ quiz.duration }} minutes.</h4>
+
         <router-link
           :to="{ name: 'QuizDetails', params: { id: id, quizId: quiz.id } }"
         >
-          <button>details</button>
+          <h2>Name: {{ quiz.name }}</h2>
+          <h3>Instruction: {{ quiz.instructions }}</h3>
+          <h4>Duration: {{ quiz.duration }} minutes.</h4>
         </router-link>
 
         <!-- </div> -->
@@ -51,13 +54,12 @@ export default {
 <style scoped>
 .quizzes-info {
   padding: 10px;
-  background: orange;
+  background: rgb(48, 43, 48);
 }
 
 .quizzes {
-  background: rgb(11, 11, 65);
-  color: springgreen;
-  border: 5px solid pink;
+  background: rgb(97, 185, 159);
+  color: white;
   padding: 8px;
 }
 </style>

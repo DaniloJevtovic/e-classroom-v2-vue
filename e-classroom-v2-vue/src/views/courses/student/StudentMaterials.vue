@@ -2,14 +2,18 @@
   <div class="materials-info">
     <h1>Materials</h1>
 
-    <div class="basic-grid">
+    <input type="text" placeholder="search" />
+
+    <div>
       <div class="materials" v-for="material in materials" :key="material.id">
-        <h2>Name: {{ material.name }}</h2>
-        <h3>Description: {{ material.description }}</h3>
         <router-link
-          :to="{ name: 'StudentMaterialDetails', params: { matId: material.id } }"
+          :to="{
+            name: 'StudentMaterialDetails',
+            params: { matId: material.id },
+          }"
         >
-          <button>details</button>
+          <h2>Name: {{ material.name }}</h2>
+          <h3>Description: {{ material.description }}</h3>
         </router-link>
       </div>
     </div>
@@ -48,9 +52,8 @@ export default {
 
 .materials {
   color: white;
-  border: 2px solid pink;
-  border-radius: 10px;
   background: deepskyblue;
   padding: 8px;
+  margin: 10px;
 }
 </style>

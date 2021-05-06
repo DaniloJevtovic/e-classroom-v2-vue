@@ -3,16 +3,19 @@
     <router-link :to="{ name: 'NewStudentForStClass', params: { id } }">
       <button>Add new Student</button>
     </router-link>
+
+    <router-link :to="{ name: 'EditStudentClass', params: { stcId: id } }">
+      <button>Edit StClass</button>
+    </router-link>
     <div>
       <div v-for="(student, index) in students" :key="student.id">
-      <div>
-        <h3>
-          {{ index + 1 }}. {{ student.firstName }} {{ student.lastName }}
-        </h3>
+        <div>
+          <h3>
+            {{ index + 1 }}. {{ student.firstName }} {{ student.lastName }}
+          </h3>
+        </div>
       </div>
     </div>
-    </div>
-    
   </div>
 </template>
 

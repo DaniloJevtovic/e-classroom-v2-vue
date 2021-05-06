@@ -1,18 +1,23 @@
 <template>
   <div class="materials-info">
     <h2>Materials</h2>
+
     <router-link :to="{ name: 'NewMaterial', params: { id: id } }">
       <button>New Material</button>
     </router-link>
 
-    <div class="basic-grid">
+    <input type="text" placeholder="search" />
+
+    <div class="te-materials">
       <div class="materials" v-for="material in materials" :key="material.id">
-        <h2>Name: {{ material.name }}</h2>
-        <h3>Description: {{ material.description }}</h3>
-        <router-link
+        <!-- <router-link
           :to="{ name: 'MaterialDetails', params: { matId: material.id } }"
+        > -->
+        <router-link
+          :to="{ name: 'EditMaterial', params: { id: material.id } }"
         >
-          <button>details</button>
+          <h2>Name: {{ material.name }}</h2>
+          <h3>Description: {{ material.description }}</h3>
         </router-link>
       </div>
     </div>
@@ -46,14 +51,17 @@ export default {
 <style scoped>
 .materials-info {
   padding: 10px;
-  background: rgb(27, 27, 184);
+  background: wheat;
 }
 
 .materials {
   color: white;
-  border: 2px solid pink;
-  border-radius: 10px;
   background: deepskyblue;
   padding: 8px;
+  margin: 10px;
 }
+
+/* .te-materials {
+  margin: 10px;
+} */
 </style>

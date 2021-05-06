@@ -2,18 +2,20 @@
   <div class="quizzes-info">
     <h1>Quizzes</h1>
 
-    <div class="basic-grid">
+    <input type="text" placeholder="search" />
+
+    <div class="st-qq">
       <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
-        <h2>Quiz Name: {{ quiz.name }}</h2>
-        <h3>Instruction: {{ quiz.instructions }}</h3>
-        <h4>Duration: {{ quiz.duration }} minutes.</h4>
         <router-link
-          :to="{ name: 'StudentQuizDetails', params: { id: id, quizId: quiz.id } }"
+          :to="{
+            name: 'StudentQuizDetails',
+            params: { id: id, quizId: quiz.id },
+          }"
         >
-          <button>details</button>
+          <h2>Quiz Name: {{ quiz.name }}</h2>
+          <h3>Instruction: {{ quiz.instructions }}</h3>
+          <h4>Duration: {{ quiz.duration }} minutes.</h4>
         </router-link>
-
-
       </div>
     </div>
   </div>
@@ -50,9 +52,9 @@ export default {
 }
 
 .quizzes {
-  background: rgb(11, 11, 65);
+  background: rgb(3, 3, 39);
   color: springgreen;
-  border: 5px solid pink;
   padding: 8px;
+  margin: 10px;
 }
 </style>

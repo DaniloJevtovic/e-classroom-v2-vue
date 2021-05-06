@@ -2,7 +2,7 @@
   <div class="my-stClass-info">
     <div class="my-stClasses" v-for="stClass in stClasses" :key="stClass.id">
       <div class="my-stClass">
-        <h2>Student class{{ stClass.name }}</h2>
+        <h2>Student class: {{ stClass.name }}</h2>
 
         <my-students :stClassId="stClass.id"></my-students>
       </div>
@@ -38,7 +38,7 @@ export default {
 <style scoped>
 .my-stClass-info {
   background: chartreuse;
-  padding: 20px;
+  padding: 10px;
 }
 .my-stClasses {
   background: orangered;

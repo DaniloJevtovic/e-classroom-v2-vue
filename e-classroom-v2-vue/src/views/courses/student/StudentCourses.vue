@@ -3,6 +3,7 @@
     <div class="container-header">
       <h2>My Courses</h2>
     </div>
+
     <div class="container-body">
       <div class="courses" v-for="course in courses" :key="course.id">
         <router-link
@@ -34,11 +35,14 @@ export default {
 
     const courses = ref([]);
     const getCourses = async () => {
-
       let student = store.getters["getLoggedUser"];
-        console.log(student)
+      console.log(student);
 
-      courses.value = await getSubItems("courses", "stClass", student.studentClass.id); //id razreda kojem ucenik pripada
+      courses.value = await getSubItems(
+        "courses",
+        "stClass",
+        student.studentClass.id
+      ); //id razreda kojem ucenik pripada
     };
 
     onMounted(getCourses);
