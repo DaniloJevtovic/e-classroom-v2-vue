@@ -7,7 +7,7 @@
     <input type="file" placeholder="select" />
 
     <button>Save</button>
-    <button @click="$router.go(-1)">Cancel</button>
+    <button @click.prevent="$router.go(-1)">Cancel</button>
   </form>
 </template>
 
