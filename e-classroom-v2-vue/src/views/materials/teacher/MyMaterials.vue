@@ -9,16 +9,33 @@
     <input type="text" placeholder="search" />
 
     <div class="te-materials">
-      <div class="materials" v-for="material in materials" :key="material.id">
+      <div
+        class="materials"
+        v-for="(material, index) in materials"
+        :key="material.id"
+      >
         <!-- <router-link
           :to="{ name: 'MaterialDetails', params: { matId: material.id } }"
-        > -->
-        <router-link
-          :to="{ name: 'EditMaterial', params: { id: material.id } }"
         >
           <h2>Name: {{ material.name }}</h2>
           <h3>Description: {{ material.description }}</h3>
+        </router-link> -->
+
+        <h2>Name: {{ material.name }}</h2>
+        <h3>Description: {{ material.description }}</h3>
+        <router-link
+          :to="{ name: 'EditMaterial', params: { id: material.id } }"
+        >
+          <button>Edit</button>
         </router-link>
+        <router-link
+          :to="{ name: 'MaterialDetails', params: { matId: material.id } }"
+        >
+          <button>Details</button>
+        </router-link>
+        <button @click.prevent="deleteMaterial(material.id, index)">
+          Delete
+        </button>
       </div>
     </div>
   </div>
@@ -33,7 +50,7 @@ export default {
   setup(props) {
     const materials = ref([]);
 
-    const { getById, getSubItems } = useCRUD();
+    const { getById, getSubItems, deleteById } = useCRUD();
 
     const getMaterialsForCourse = async () => {
       materials.value = await getSubItems("materials", "course", props.id);
@@ -43,7 +60,13 @@ export default {
       getMaterialsForCourse();
     });
 
-    return { materials };
+    const deleteMaterial = async (matId, index) => {
+      await deleteById("materials", matId);
+
+      materials.value.splice(index, 1);
+    };
+
+    return { materials, deleteMaterial };
   },
 };
 </script>
