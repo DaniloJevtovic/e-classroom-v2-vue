@@ -5,14 +5,14 @@
     </div>
     <div class="container-body">
       <h3>Name: {{ materialInfo.name }}</h3>
-      <h3>Description: {{ materialInfo.description }}</h3>
+      <h3>Descriptions: {{ materialInfo.description }}</h3>
 
       <hr />
 
       <h3>Files</h3>
 
       <div v-for="file in files" :key="file.id">
-        <button @click.prevent="downloadFile(file.id)">
+        <button @click.prevent="downFile(file)">
           <h3>{{ file.name }}</h3>
         </button>
       </div>
@@ -23,12 +23,14 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
-import axios from "axios";
+import useUpDownFile from "@/composables/useUpDownFile.js";
 
 export default {
   props: ["matId"],
   setup(props) {
     const { getById, getSubItems } = useCRUD();
+    const { downloadFile } = useUpDownFile();
+
     const materialInfo = ref("");
     const files = ref([]);
 
@@ -45,28 +47,11 @@ export default {
       getFilesForMaterial();
     });
 
-    const downloadFile = async (id) => {
-      console.log(id);
-      try {
-        const response = await axios.get(
-          "http://localhost:5555/api/files/downloadFile/" + id,
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          }
-        );
-
-        console.log(response);
-
-        return response.data;
-      } catch (err) {
-        console.log(err);
-        return err;
-      }
+    const downFile = async (file) => {
+      await downloadFile(file);
     };
 
-    return { materialInfo, files, downloadFile };
+    return { materialInfo, files, downFile };
   },
 };
 </script>
