@@ -7,7 +7,7 @@
     <div class="answers" v-for="(answer, index) in answers" :key="answer.id">
       <label class="answer">
         {{ index + 1 }}. {{ answer.answer }}
-        <input type="checkbox" />
+        <input type="checkbox" @click="selectAnswer(answer.id)" />
         <span class="checkmark"></span>{{ index + 1 }}. {{ answer.answer }}
       </label>
     </div>
@@ -39,34 +39,16 @@ export default {
       );
     };
 
-    const deleteQuestion = async (id) => {
-      if (
-        confirm(
-          "Da li ste sigurni da zelite obrisati pitanje?" +
-            "Brisanjem pitanja brisu se i svi odgovori za pitanje!"
-        )
-      ) {
-        await deleteById("questions", id);
-        //saljem id za brisanje iz liste roditeljskoj komponenti! - quiz details
-        context.emit("deleteFromList", id);
-      }
-    };
-
-    const deleteAnswer = async (id) => {
-      if (confirm("Da li ste sigurni da zelite obrisati odgovor?")) {
-        await deleteById("answers", id);
-
-        let index = answers.value.findIndex((answer) => answer.id === id);
-        answers.value.splice(index, 1);
-      }
-    };
-
     onMounted(() => {
       getQuestion();
       getAnswersForQuestion();
     });
 
-    return { question, answers, deleteQuestion, deleteAnswer };
+    const selectAnswer = async (id) => {
+      console.log(id)
+    };
+
+    return { question, answers, selectAnswer };
   },
 };
 </script>
@@ -123,8 +105,9 @@ export default {
 }
 
 /* When the checkbox is checked, add a blue background */
-.answer input:checked ~ .checkmark, .answer  {
-  background-color: #2196F3;
+.answer input:checked ~ .checkmark,
+.answer {
+  background-color: #2196f3;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
