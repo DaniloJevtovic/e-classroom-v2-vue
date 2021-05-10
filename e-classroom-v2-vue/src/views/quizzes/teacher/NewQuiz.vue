@@ -14,7 +14,7 @@
       required
     />
     <button>Create</button>
-    <button @click="$router.go(-1)">Cancel</button>
+    <button @click.prevent="$router.go(-1)">Cancel</button>
   </form>
 </template>
 
