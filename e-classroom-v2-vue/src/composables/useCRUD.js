@@ -53,6 +53,41 @@ const getSubItems = async (items, subItems, itemId) => {
   }
 };
 
+//http://localhost:5555/api/results/student/{studentId}/quiz/{quizId}
+//http://localhost:5555/api/items/subItems/{itemId}/subItems/{subItemId}
+const getSubSubItems = async (
+  items,
+  subItems,
+  subSubItems,
+  itemId,
+  subItemId
+) => {
+  try {
+    const response = await axios.get(
+      url +
+        items +
+        "/" +
+        subItems +
+        "/" +
+        itemId +
+        "/" +
+        subSubItems +
+        "/" +
+        subItemId,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
+
 const save = async (items, data) => {
   try {
     const response = await axios.post(url + items, JSON.stringify(data), {
@@ -103,7 +138,15 @@ const deleteById = async (items, id) => {
 };
 
 const useCRUD = () => {
-  return { getAll, getById, getSubItems, save, editById, deleteById };
+  return {
+    getAll,
+    getById,
+    getSubItems,
+    getSubSubItems,
+    save,
+    editById,
+    deleteById,
+  };
 };
 
 export default useCRUD;
