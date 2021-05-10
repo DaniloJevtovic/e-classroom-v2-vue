@@ -7,7 +7,7 @@
 
       <router-link
         v-if="true"
-        :to="{ name: 'StudentSolveQuiz', params: { quizId: id } }"
+        :to="{ name: 'StudentSolveQuiz', params: { quizId: quizId } }"
       >
         <button>Start</button>
       </router-link>
@@ -24,7 +24,7 @@ import useCRUD from "@/composables/useCRUD.js";
 import StudentQuizResults from "./StudentQuizResults.vue";
 
 export default {
-  props: ["id"],
+  props: ["quizId"],
   components: {
     StudentQuizResults,
   },
@@ -33,7 +33,7 @@ export default {
     const quizInfo = ref("");
 
     const getQuizInfo = async () => {
-      quizInfo.value = await getById("quizzes", props.id);
+      quizInfo.value = await getById("quizzes", props.quizId);
     };
 
     onMounted(() => {
