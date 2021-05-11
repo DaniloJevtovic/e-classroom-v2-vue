@@ -4,7 +4,7 @@ import StudentCourseDetails from "../views/courses/student/StudentCourseDetails.
 import StudentMaterials from "../views/courses/student/StudentMaterials.vue";
 import StudentMaterialDetails from "../views/materials/student/StudentMaterialDetails.vue";
 
-import StudentQuizzes from "../views/courses/student/StudentQuizzes.vue";
+import StudentQuizzes from "../views/quizzes/student/StudentQuizzes.vue";
 import StudentQuizDetails from "../views/quizzes/student/StudentQuizDetails.vue";
 import StudentSolveQuiz from "../views/quizzes/student/StudentSolveQuiz.vue";
 
