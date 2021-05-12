@@ -13,12 +13,17 @@
         <h1>Questions</h1>
 
         <div v-for="question in questions" :key="question.id">
-          <student-solve-quiz-questions :questionId="question.id">
+          <student-solve-quiz-questions
+            :questionId="question.id"
+            :stRes="stRes"
+          >
           </student-solve-quiz-questions>
         </div>
       </div>
 
-      <button>FINISH</button>
+      <router-link :to="{ name: 'StudentQuizDetails', params: { quizId } }">
+        <button>FINISH</button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -30,7 +35,7 @@ import StudentSolveQuizQuestions from "./StudentSolveQuizQuestions.vue";
 import { useRouter, userRouter } from "vue-router";
 
 export default {
-  props: ["id", "quizId"],
+  props: ["id", "quizId", "stRes"],
   components: { StudentSolveQuizQuestions },
   setup(props) {
     const { getById, getSubItems, deleteById } = useCRUD();
