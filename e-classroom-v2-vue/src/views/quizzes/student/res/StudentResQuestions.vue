@@ -1,14 +1,16 @@
 <template>
   <div>
-    <h2>Pitanja za kviz: {{ quizId }}</h2>
-
-    <div v-for="question in questions" :key="question.id">
-      <h1>{{ question.question }}</h1>
-      <student-quiz-answers
-        :questionId="question.id"
-        :resId="resId"
-      ></student-quiz-answers>
-      <hr />
+    <div class="res-quest">
+      <div v-for="(question, index) in questions" :key="question.id">
+        <div class="quest-answers">
+          <h1>
+            {{ index + 1 }}. {{ question.question }} - points:
+            {{ question.points }}
+          </h1>
+          <student-quiz-answers :questionId="question.id" :resId="resId">
+          </student-quiz-answers>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -40,5 +42,16 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.res-quest {
+  background: yellow;
+  margin: 10px;
+}
+
+.quest-answers {
+  background: plum;
+  border: 10px solid indigo;
+  margin: 20px;
+  padding: 20px;
+}
 </style>

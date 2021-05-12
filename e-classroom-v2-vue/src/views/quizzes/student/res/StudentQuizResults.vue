@@ -1,12 +1,16 @@
 <template>
   <div class="container">
-    <h2>Results</h2>
-    <h2>Points: {{ result.points }}</h2>
+    <div class="res-score">
+      <!-- <h2>Results</h2> -->
+      <h1>Your Score: {{ result.points }} points / ?</h1>
+    </div>
 
-    <student-res-questions
-      :quizId="result.quiz.id"
-      :resId="result.id"
-    ></student-res-questions>
+    <div class="st-res-quest">
+      <student-res-questions
+        :quizId="result.quiz.id"
+        :resId="result.id"
+      ></student-res-questions>
+    </div>
   </div>
 </template>
 
@@ -20,5 +24,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.res-score {
+  background: orange;
+  padding: 8px;
+}
+
+.st-res-quest {
+  background: hotpink;
+}
 </style>
