@@ -21,7 +21,7 @@ import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import StudentQuizResults from "./StudentQuizResults.vue";
+import StudentQuizResults from "./res/StudentQuizResults.vue";
 
 export default {
   props: ["quizId"],
