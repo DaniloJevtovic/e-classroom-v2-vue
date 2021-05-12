@@ -137,6 +137,22 @@ const deleteById = async (items, id) => {
   }
 };
 
+const deleteByMultipleIds = async (items, first, firstId, second, secondId) => {
+  try {
+    const response = await axios.delete(
+      url + items + "/" + first + "/" + firstId + "/" + second + "/" + secondId,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const useCRUD = () => {
   return {
     getAll,
@@ -146,6 +162,7 @@ const useCRUD = () => {
     save,
     editById,
     deleteById,
+    deleteByMultipleIds,
   };
 };
 
