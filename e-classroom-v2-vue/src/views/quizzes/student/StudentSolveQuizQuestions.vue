@@ -6,8 +6,8 @@
     </div>
     <div class="answers" v-for="(answer, index) in answers" :key="answer.id">
       <label class="answer">
-        {{ index + 1 }}. {{ answer.answer }}
-        <input type="checkbox" @click="selectAnswer(answer.id)" />
+        <!-- {{ index + 1 }}. {{ answer.answer }} -->
+        <input type="checkbox" @change="selectAnswer($event, answer)" />
         <span class="checkmark"></span>{{ index + 1 }}. {{ answer.answer }}
       </label>
     </div>
@@ -17,11 +17,13 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
+import { useRoute } from "vue-router";
 
 export default {
-  props: ["questionId"],
+  props: ["questionId", "stRes"],
   setup(props, context) {
-    const { getById, getSubItems, deleteById } = useCRUD();
+    const { getById, getSubItems, save, deleteById } = useCRUD();
+    const route = useRoute();
 
     const question = ref("");
 
@@ -40,12 +42,31 @@ export default {
     };
 
     onMounted(() => {
+      console.log(route.query.stRes);
       getQuestion();
       getAnswersForQuestion();
     });
 
-    const selectAnswer = async (id) => {
-      console.log(id)
+    const selectAnswer = async (event, answer) => {
+      console.log(event.target.checked);
+      console.log(answer.id);
+
+      if (event.target.checked) {
+        //pozovi na bekendu cuvanje odgovora
+
+        console.log("stres", props.stRes);
+        let newAnswer = {
+          questionId: answer.question.id,
+          stQuizResId: props.stRes,
+          answerId: answer.id,
+        };
+        const res = await save("stAnswers", newAnswer);
+        console.log("dodao odgovor", res);
+      } else {
+        //pozovi na bekendu brisanje odgovora
+        await deleteById("stAnswers", answer.id);
+        console.log("obrisao odgovor");
+      }
     };
 
     return { question, answers, selectAnswer };
