@@ -40,7 +40,7 @@ export default [
         props: true,
       },
       {
-        path: "quizzes/res/:stRes/quiz/:quizId/solve",
+        path: "quizzes/quiz/:quizId/solve",
         name: "StudentSolveQuiz",
         component: StudentSolveQuiz,
         props: true,
