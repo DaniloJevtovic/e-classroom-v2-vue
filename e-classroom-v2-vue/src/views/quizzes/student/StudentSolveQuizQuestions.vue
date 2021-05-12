@@ -22,7 +22,7 @@ import { useRoute } from "vue-router";
 export default {
   props: ["questionId", "stRes"],
   setup(props, context) {
-    const { getById, getSubItems, save, deleteById } = useCRUD();
+    const { getById, getSubItems, save, deleteByMultipleIds } = useCRUD();
     const route = useRoute();
 
     const question = ref("");
@@ -64,7 +64,16 @@ export default {
         console.log("dodao odgovor", res);
       } else {
         //pozovi na bekendu brisanje odgovora
-        await deleteById("stAnswers", answer.id);
+
+        console.log(props.stRes, answer.id);
+
+        await deleteByMultipleIds(
+          "stAnswers",
+          "res",
+          props.stRes,
+          "ans",
+          answer.id
+        );
         console.log("obrisao odgovor");
       }
     };
