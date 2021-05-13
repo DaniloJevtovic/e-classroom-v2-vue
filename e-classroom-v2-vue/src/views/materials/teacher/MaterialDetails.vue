@@ -16,23 +16,48 @@
           <h3>{{ file.name }}</h3>
         </button>
       </div>
+
+      <hr />
+      <h3>Comments</h3>
+      <div v-for="(comment, index) in comments" :key="comment.id">
+        <div>
+          <p>{{ comment.author.firstName }}: {{ comment.comment }}</p>
+          <button @click.prevent="deleteComment(index, comment.id)">
+            delete
+          </button>
+        </div>
+      </div>
+      <textarea rows="3" v-model="comment.comment"></textarea>
+      <button @click.prevent="newComment">comment</button>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import useUpDownFile from "@/composables/useUpDownFile.js";
+
+import { useStore } from "vuex";
 
 export default {
   props: ["matId"],
   setup(props) {
-    const { getById, getSubItems } = useCRUD();
+    const { getById, getSubItems, save, deleteById } = useCRUD();
     const { downloadFile } = useUpDownFile();
+    const store = useStore();
 
     const materialInfo = ref("");
     const files = ref([]);
+    const comments = ref([]);
+
+    const author = store.getters["getLoggedUser"];
+
+    const comment = reactive({
+      comment: "",
+      materialId: props.matId,
+      authorId: author.id,
+    });
 
     const getMaterial = async () => {
       materialInfo.value = await getById("materials", props.matId);
@@ -42,16 +67,44 @@ export default {
       files.value = await getSubItems("files", "material", props.matId);
     };
 
+    const getCommentsForMaterial = async () => {
+      comments.value = await getSubItems(
+        "matComments",
+        "material",
+        props.matId
+      );
+    };
+
     onMounted(() => {
       getMaterial();
       getFilesForMaterial();
+      getCommentsForMaterial();
     });
 
     const downFile = async (file) => {
       await downloadFile(file);
     };
 
-    return { materialInfo, files, downFile };
+    const newComment = async () => {
+      let res = await save("matComments", comment);
+      comments.value.push(res);
+      comment.comment = "";
+    };
+
+    const deleteComment = async (index, id) => {
+      comments.value.splice(index, 1); //brisanje iz liste
+      await deleteById("matComments", id); //brisanje na bekendu
+    };
+
+    return {
+      materialInfo,
+      files,
+      comment,
+      comments,
+      downFile,
+      newComment,
+      deleteComment,
+    };
   },
 };
 </script>
