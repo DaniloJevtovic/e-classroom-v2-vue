@@ -14,7 +14,7 @@ export default createStore({
       "AllScClasses",
     ],
     teacherLinks: ["MyCourses"],
-    studentLinks: ["StudentCourses"],
+    studentLinks: ["StudentCourses", "StudentAllResults"],
   },
   getters: {
     getLoggedUser(state) {

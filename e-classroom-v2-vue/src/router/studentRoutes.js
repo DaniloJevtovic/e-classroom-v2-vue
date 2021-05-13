@@ -8,6 +8,8 @@ import StudentQuizzes from "../views/quizzes/student/StudentQuizzes.vue";
 import StudentQuizDetails from "../views/quizzes/student/StudentQuizDetails.vue";
 import StudentSolveQuiz from "../views/quizzes/student/StudentSolveQuiz.vue";
 
+import StudentAllResults from "../views/quizzes/student/res/StudentAllResults.vue";
+
 export default [
   {
     path: "/studentCourses",
@@ -52,5 +54,10 @@ export default [
     name: "StudentMaterialDetails",
     component: StudentMaterialDetails,
     props: true,
+  },
+  {
+    path: "/allMyResults",
+    name: "StudentAllResults",
+    component: StudentAllResults,
   },
 ];
