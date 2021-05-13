@@ -11,11 +11,15 @@
 
       <h3>Files</h3>
 
+      <hr />
+
       <div v-for="file in files" :key="file.id">
         <button @click.prevent="downFile(file)">
           <h3>{{ file.name }}</h3>
         </button>
       </div>
+
+      <material-comments :matId="matId"></material-comments>
     </div>
   </div>
 </template>
@@ -25,8 +29,11 @@ import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import useUpDownFile from "@/composables/useUpDownFile.js";
 
+import MaterialComments from "./../MaterialComments.vue";
+
 export default {
   props: ["id", "matId"],
+  components: { MaterialComments },
   setup(props) {
     const { getById, getSubItems } = useCRUD();
     const { downloadFile } = useUpDownFile();
