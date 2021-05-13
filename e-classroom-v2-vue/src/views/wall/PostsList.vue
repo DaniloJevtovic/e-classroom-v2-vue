@@ -1,18 +1,35 @@
 <template>
-  <div class="container">
+  <div class="posts-list">
     <div class="new-post">
-      <textarea rows="3" v-model="post.post" placeholder="type something">
+      <textarea
+        rows="5"
+        v-model="post.post"
+        placeholder="type something"
+        required
+      >
       </textarea>
       <button @click.prevent="newPost">post</button>
     </div>
+
     <div class="post-list">
       <div v-for="(post, index) in posts" :key="post.id">
         <div class="post">
-          <h1>{{ post.post }}</h1>
-          <p>{{ post.author.firstName }} {{ post.author.lastName }}</p>
-          <button @click.prevent="deletePost(index, post.id)">
-            Delete post
-          </button>
+          <div class="post-info">
+            <h3>{{ post.post }}</h3>
+            <p>{{ post.author.firstName }} {{ post.author.lastName }}</p>
+
+            <div
+              v-if="
+                author.id == post.author.id ||
+                author.authorities[0].authority == 'ROLE_TEACHER'
+              "
+            >
+              <button @click.prevent="deletePost(index, post.id)">
+                Delete post
+              </button>
+            </div>
+          </div>
+
           <comments-list :postId="post.id"></comments-list>
         </div>
       </div>
@@ -63,13 +80,50 @@ export default {
       getPosts();
     });
 
-    return { post, posts, newPost, deletePost };
+    return { post, posts, newPost, deletePost, author };
   },
 };
 </script>
 
 <style scoped>
+.posts-list {
+  padding: 5px;
+  background: wheat;
+}
+
+/* new post */
+.new-post {
+  background: springgreen;
+  display: flex;
+  border: 2px solid black;
+}
+.new-post button {
+  color: aqua;
+}
+.new-post button:hover {
+  background: orangered;
+}
+.new-post textarea {
+  margin: 0px;
+}
+
+/* list posts */
 .post-list {
   background: blue;
+  border: 2px solid orange;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.post {
+  background: yellow;
+  border: 1px solid rgb(145, 255, 0);
+  margin: 8px;
+  border-radius: 7px;
+  padding-top: 20px;
+}
+
+.post-info {
+  border: 3px solid indigo;
 }
 </style>

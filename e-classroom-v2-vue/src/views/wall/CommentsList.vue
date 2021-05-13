@@ -1,13 +1,21 @@
 <template>
-  <div class="container">
+  <div class="coments-container">
     <div class="coments-list">
       <div v-for="(comment, index) in comments" :key="comment.id">
         <div class="comment">
           <h3>{{ comment.comment }}</h3>
           <p>{{ comment.author.firstName }}</p>
-          <button @click.prevent="deleteComment(index, comment.id)">
-            delete
-          </button>
+
+          <div
+            v-if="
+              author.id == comment.author.id ||
+              author.authorities[0].authority == 'ROLE_TEACHER'
+            "
+          >
+            <button @click.prevent="deleteComment(index, comment.id)">
+              delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -16,6 +24,7 @@
         rows="3"
         v-model="comment.comment"
         placeholder="type comment"
+        required
       ></textarea>
       <button @click.prevent="newComment">comment</button>
     </div>
@@ -62,10 +71,37 @@ export default {
       await deleteById("postComents", id); //brisanje na bekendu
     };
 
-    return { comment, comments, newComment, deleteComment };
+    return { author, comment, comments, newComment, deleteComment };
   },
 };
 </script>
 
-<style>
+<style scoped>
+.coments-container {
+  background: hotpink;
+  margin-left: 180px;
+  margin-right: 10px;
+}
+
+.coments-list {
+  background: red;
+  padding: 8px;
+  border: 1px solid oldlace;
+}
+
+.comment {
+  background: rgb(96, 244, 207);
+  margin: 8px;
+}
+
+.new-comment {
+  margin: 8px;
+  background: rgb(165, 155, 10);
+  display: flex;
+  padding: 8px;
+}
+
+.new-comment textarea {
+  margin: 0px;
+}
 </style>
