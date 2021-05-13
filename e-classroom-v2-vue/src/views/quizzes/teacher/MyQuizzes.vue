@@ -16,9 +16,11 @@
         <router-link
           :to="{ name: 'QuizDetails', params: { id: id, quizId: quiz.id } }"
         >
-          <h2>Name: {{ quiz.name }}</h2>
-          <h3>Instruction: {{ quiz.instructions }}</h3>
-          <h4>Duration: {{ quiz.duration }} minutes.</h4>
+          <div class="singlee-quiz">
+            <h2>Name: {{ quiz.name }}</h2>
+            <h3>Instruction: {{ quiz.instructions }}</h3>
+            <h4>Duration: {{ quiz.duration }} minutes.</h4>
+          </div>
         </router-link>
 
         <!-- </div> -->
@@ -58,8 +60,14 @@ export default {
 }
 
 .quizzes {
-  background: rgb(97, 185, 159);
+  background: springgreen;
   color: white;
   padding: 8px;
+}
+
+.singlee-quiz {
+  background: coral;
+  color: white;
+  padding: 5px;
 }
 </style>

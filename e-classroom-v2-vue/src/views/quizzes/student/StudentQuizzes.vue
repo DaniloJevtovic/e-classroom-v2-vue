@@ -12,9 +12,13 @@
             params: { id: id, quizId: quiz.id },
           }"
         >
-          <h2>Quiz Name: {{ quiz.name }}</h2>
-          <h3>Instruction: {{ quiz.instructions }}</h3>
-          <h4>Duration: {{ quiz.duration }} minutes.</h4>
+          <div class="st-quiz-det">
+            <h2>Quiz Name: {{ quiz.name }}</h2>
+            <h3>Instruction: {{ quiz.instructions }}</h3>
+            <h4>Duration: {{ quiz.duration }} minutes.</h4>
+          </div>
+
+          <student-quizzes-ress :quizId="quiz.id"></student-quizzes-ress>
         </router-link>
       </div>
     </div>
@@ -25,8 +29,11 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
 
+import StudentQuizzesRess from "./StudentQuizzesRess.vue";
+
 export default {
   props: ["id"],
+  components: { StudentQuizzesRess },
   setup(props) {
     const quizzes = ref([]);
 
@@ -49,6 +56,11 @@ export default {
 .quizzes-info {
   padding: 10px;
   background: orange;
+}
+
+.st-quiz-det {
+  padding: 14px;
+  color: cornflowerblue;
 }
 
 .quizzes {

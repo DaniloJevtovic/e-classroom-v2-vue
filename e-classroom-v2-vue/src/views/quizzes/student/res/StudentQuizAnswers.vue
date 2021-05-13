@@ -8,7 +8,7 @@
     <div class="res-st-answers">
       <h4>Your answers</h4>
       <div v-for="stAnswer in studentAnswers" :key="stAnswer.id">
-        {{ stAnswer.answer.answer }}
+        {{ stAnswer.answer.answer }} - {{ stAnswer.answer.correct }}
       </div>
     </div>
   </div>

@@ -5,19 +5,19 @@
     </div>
 
     <div class="container-body">
-      <div class="courses" v-for="course in courses" :key="course.id">
+      <div class="coursess" v-for="course in courses" :key="course.id">
         <router-link
           :to="{ name: 'StudentCourseDetails', params: { id: course.id } }"
         >
-          <button>
-            Name: {{ course.name }}
-            <hr />
-            School Class: {{ course.schoolClass.name }}
-            <hr />
-            Description: {{ course.description }}
-          </button>
+          <div class="st-course">
+            <h1>Name: {{ course.name }}</h1>
+            <h2>
+              Teacher: {{ course.teacher.firstName }}
+              {{ course.teacher.lastName }}
+            </h2>
+            <p>Details: {{ course.description }}</p>
+          </div>
         </router-link>
-        <!-- <hr /> -->
       </div>
     </div>
   </div>
@@ -51,8 +51,17 @@ export default {
 };
 </script>
 
-<style>
-.courses {
+<style scoped>
+.coursess {
   display: inline;
+  margin: 2px;
+}
+
+.st-course {
+  background: honeydew;
+  border: 2px solid indigo;
+  border-radius: 7px;
+  padding: 7px;
+  margin: 5px;
 }
 </style>
