@@ -21,6 +21,8 @@ import EditQuestion from "../views/quizzes/teacher/EditQuestion.vue";
 import NewAnswer from "../views/quizzes/teacher/NewAnswer.vue";
 import EditAnswer from "../views/quizzes/teacher/EditAnswer.vue";
 
+import Wall from "../views/wall/Wall.vue";
+
 export default [
   {
     path: "/teacherHome",
@@ -37,8 +39,14 @@ export default [
     name: "MyCourseDetails",
     component: MyCourseDetails,
     props: true,
-    redirect: { name: "MyMaterials" },
+    redirect: { name: "TeacherWall" },
     children: [
+      {
+        path: "teacherWall",
+        name: "TeacherWall",
+        component: Wall,
+        props: true,
+      },
       {
         path: "materials",
         name: "MyMaterials",

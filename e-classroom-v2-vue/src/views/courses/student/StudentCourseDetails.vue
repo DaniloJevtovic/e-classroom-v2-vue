@@ -25,6 +25,7 @@ export default {
 
     const linksForNavbar = ref([
       { name: "Back to my Courses", path: "StudentCourses" },
+      { name: "Wall", path: "StudentWall" },
       { name: "Materials", path: "StudentMaterials" },
       { name: "Quizzes", path: "StudentQuizzes" },
     ]);

@@ -10,6 +10,8 @@ import StudentSolveQuiz from "../views/quizzes/student/StudentSolveQuiz.vue";
 
 import StudentAllResults from "../views/quizzes/student/res/StudentAllResults.vue";
 
+import Wall from "../views/wall/Wall.vue";
+
 export default [
   {
     path: "/studentCourses",
@@ -21,8 +23,14 @@ export default [
     name: "StudentCourseDetails",
     component: StudentCourseDetails,
     props: true,
-    redirect: { name: "StudentMaterials" },
+    redirect: { name: "StudentWall" },
     children: [
+      {
+        path: "studentWall",
+        name: "StudentWall",
+        component: Wall,
+        props: true,
+      },
       {
         path: "materials",
         name: "StudentMaterials",

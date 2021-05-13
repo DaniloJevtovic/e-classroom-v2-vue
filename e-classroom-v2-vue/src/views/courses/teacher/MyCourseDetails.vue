@@ -28,6 +28,7 @@ export default {
   setup(props) {
     const linksForNavbar = ref([
       { name: "Back to my Courses", path: "MyCourses" },
+      { name: "Wall", path: "TeacherWall" },
       { name: "Materials", path: "MyMaterials" },
       { name: "Quizzes", path: "MyQuizzes" },
       { name: "Students", path: "MyStudents" },
