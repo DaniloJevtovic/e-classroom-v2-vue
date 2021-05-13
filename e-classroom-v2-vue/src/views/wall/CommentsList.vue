@@ -96,7 +96,7 @@ export default {
 
 .new-comment {
   margin: 8px;
-  background: rgb(165, 155, 10);
+  background: rgb(105, 20, 64);
   display: flex;
   padding: 8px;
 }

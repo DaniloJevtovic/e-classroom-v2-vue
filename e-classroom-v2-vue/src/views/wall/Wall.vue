@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="wall">
     <posts-lists :courseId="id"></posts-lists>
   </div>
 </template>
@@ -15,4 +15,7 @@ export default {
 </script>
 
 <style scoped>
+.wall {
+  margin: 8px;
+}
 </style>

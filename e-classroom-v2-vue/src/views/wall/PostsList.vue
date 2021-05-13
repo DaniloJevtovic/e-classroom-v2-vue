@@ -15,7 +15,9 @@
       <div v-for="(post, index) in posts" :key="post.id">
         <div class="post">
           <div class="post-info">
-            <h3>{{ post.post }}</h3>
+            <h2>{{ post.post }}</h2>
+
+            <!-- <textarea rows="3" v-model="post.post"></textarea> -->
             <p>{{ post.author.firstName }} {{ post.author.lastName }}</p>
 
             <div
@@ -27,6 +29,8 @@
               <button @click.prevent="deletePost(index, post.id)">
                 Delete post
               </button>
+
+              <button>Edit post</button>
             </div>
           </div>
 
@@ -125,5 +129,9 @@ export default {
 
 .post-info {
   border: 3px solid indigo;
+  padding: 10px;
+  margin: 0px 10px 4px;
+  background: rgb(17, 169, 189);
+  color: white;
 }
 </style>
