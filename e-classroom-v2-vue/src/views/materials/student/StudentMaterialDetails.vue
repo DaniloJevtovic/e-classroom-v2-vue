@@ -7,11 +7,7 @@
       <h3>Name: {{ materialInfo.name }}</h3>
       <h3>Description: {{ materialInfo.description }}</h3>
 
-      <hr />
-
       <material-files :matId="matId"></material-files>
-
-      <hr />
 
       <material-comments :matId="matId"></material-comments>
     </div>
