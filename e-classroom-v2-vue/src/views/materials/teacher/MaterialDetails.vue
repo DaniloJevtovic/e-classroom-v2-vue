@@ -9,13 +9,7 @@
 
       <hr />
 
-      <h3>Files</h3>
-
-      <div v-for="file in files" :key="file.id">
-        <button @click.prevent="downFile(file)">
-          <h3>{{ file.name }}</h3>
-        </button>
-      </div>
+      <material-files :matId="matId"></material-files>
 
       <hr />
 
@@ -27,42 +21,28 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
-import useUpDownFile from "@/composables/useUpDownFile.js";
-import MaterialComments from "./../MaterialComments.vue";
 
-import { useStore } from "vuex";
+import MaterialFiles from "../MaterialFiles.vue";
+import MaterialComments from "./../MaterialComments.vue";
 
 export default {
   props: ["matId"],
-  components: { MaterialComments },
+  components: { MaterialFiles, MaterialComments },
   setup(props) {
-    const { getById, getSubItems } = useCRUD();
-    const { downloadFile } = useUpDownFile();
+    const { getById } = useCRUD();
 
     const materialInfo = ref("");
-    const files = ref([]);
 
     const getMaterial = async () => {
       materialInfo.value = await getById("materials", props.matId);
     };
 
-    const getFilesForMaterial = async () => {
-      files.value = await getSubItems("files", "material", props.matId);
-    };
-
     onMounted(() => {
       getMaterial();
-      getFilesForMaterial();
     });
-
-    const downFile = async (file) => {
-      await downloadFile(file);
-    };
 
     return {
       materialInfo,
-      files,
-      downFile,
     };
   },
 };
