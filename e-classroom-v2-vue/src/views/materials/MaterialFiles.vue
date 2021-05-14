@@ -1,10 +1,12 @@
 <template>
-  <div>
+  <div class="files-container">
     <h2>Files</h2>
-    <div v-for="file in files" :key="file.id">
-      <button @click.prevent="downFile(file)">
-        <h3>{{ file.name }}</h3>
-      </button>
+    <div class="files-list">
+      <div v-for="file in files" :key="file.id">
+        <button @click.prevent="downFile(file)">
+          <h3>{{ file.name }}</h3>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -39,5 +41,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.files-container {
+  background: rgb(0, 255, 221);
+  margin: 10px;
+  padding: 10px;
+}
+
+.files-list {
+  /* background: rgb(255, 160, 207); */
+  display: flex;
+}
 </style>

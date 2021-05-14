@@ -1,16 +1,31 @@
 <template>
-  <div>
-    <h3>Comments</h3>
+  <div class="mat-com-list">
+    <h2>Comments</h2>
     <div v-for="(comment, index) in comments" :key="comment.id">
-      <div>
+      <div class="mat-com">
         <p>{{ comment.author.firstName }}: {{ comment.comment }}</p>
-        <button @click.prevent="deleteComment(index, comment.id)">
-          delete
-        </button>
+
+        <div
+          v-if="
+            author.id == comment.author.id ||
+            author.authorities[0].authority == 'ROLE_TEACHER'
+          "
+        >
+          <button @click.prevent="deleteComment(index, comment.id)">
+            delete
+          </button>
+        </div>
       </div>
     </div>
-    <textarea rows="3" v-model="comment.comment"></textarea>
-    <button @click.prevent="newComment">comment</button>
+
+    <div class="new-mat-com">
+      <textarea
+        rows="3"
+        v-model="comment.comment"
+        placeholder="type comment"
+      ></textarea>
+      <button @click.prevent="newComment">comment</button>
+    </div>
   </div>
 </template>
 
@@ -58,10 +73,35 @@ export default {
       await deleteById("matComments", id); //brisanje na bekendu
     };
 
-    return { comment, comments, newComment, deleteComment };
+    return { comment, comments, newComment, deleteComment, author };
   },
 };
 </script>
 
-<style>
+<style scoped>
+.mat-com-list {
+  background: slateblue;
+  margin: 10px;
+  padding: 10px;
+}
+
+.mat-com,
+.new-mat-com {
+  background: springgreen;
+  padding: 8px;
+  margin: 8px;
+}
+
+.new-mat-com {
+  background: plum;
+  display: flex;
+}
+
+button:hover {
+  background: coral;
+}
+
+textarea {
+  margin: 0px;
+}
 </style>
