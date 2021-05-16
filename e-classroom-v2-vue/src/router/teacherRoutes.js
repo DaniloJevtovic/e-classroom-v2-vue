@@ -1,8 +1,8 @@
 import TeacherHome from "../views/homePages/TeacherHome.vue";
 import MyCourses from "../views/courses/teacher/MyCourses.vue";
 import MyQuizzes from "../views/quizzes/teacher/MyQuizzes.vue";
-import MyStudentClasses from "../views/courses/teacher/MyStudentClasses.vue";
-import MyStudents from "../views/courses/teacher/MyStudents.vue";
+import MyStudentClasses from "../views/studentClasses/teacher/MyStudentClasses.vue";
+import MyStudents from "../views/users/teacher/MyStudents.vue";
 import MyMaterials from "../views/materials/teacher/MyMaterials.vue";
 import MyCourseInfo from "../views/courses/teacher/MyCourseInfo.vue";
 
