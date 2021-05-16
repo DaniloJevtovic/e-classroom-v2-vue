@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import adminRoutes from "./adminRoutes.js";
 import teacherRoutes from "./teacherRoutes.js";
 import studentRoutes from "./studentRoutes.js";
+import parentRoutes from "./parentRoutes.js";
 
 import Home from "../views/Home.vue";
 
@@ -13,6 +14,7 @@ const routes = [
   ...adminRoutes,
   ...teacherRoutes,
   ...studentRoutes,
+  ...parentRoutes,
   {
     path: "/",
     name: "Home",
