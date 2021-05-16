@@ -15,6 +15,7 @@ export default createStore({
     ],
     teacherLinks: ["MyCourses"],
     studentLinks: ["StudentCourses", "StudentAllResults"],
+    parentLinks: ['ParentStList'],
   },
   getters: {
     getLoggedUser(state) {
@@ -55,6 +56,11 @@ export default createStore({
         ) {
           state.linksForLoggedUser = state.studentLinks;
           router.push({ name: "StudentCourses" });
+        } else if (
+          state.loggedUser.authorities[0].authority === "ROLE_PARENT"
+        ) {
+          state.linksForLoggedUser = state.parentLinks;
+          router.push({ name: "ParentStList" });
         } else {
           state.loggedUserLinks = [];
           router.push({ name: "Login" });
