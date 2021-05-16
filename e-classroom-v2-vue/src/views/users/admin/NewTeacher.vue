@@ -42,7 +42,7 @@
 <script>
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import useCRUD from "../../composables/useCRUD.js";
+import useCRUD from "../../../composables/useCRUD.js";
 
 export default {
   setup() {

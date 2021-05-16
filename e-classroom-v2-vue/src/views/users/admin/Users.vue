@@ -11,7 +11,7 @@
 
 <script>
 import { ref } from "vue";
-import ChildNavbar from "../../components/ChildNavbar.vue";
+import ChildNavbar from "../../../components/ChildNavbar.vue";
 
 export default {
   components: { ChildNavbar },
