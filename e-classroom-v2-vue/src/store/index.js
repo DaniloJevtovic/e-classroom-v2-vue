@@ -12,10 +12,11 @@ export default createStore({
       "Users",
       "AllCourses",
       "AllScClasses",
+      "Messages"
     ],
-    teacherLinks: ["MyCourses"],
-    studentLinks: ["StudentCourses", "StudentAllResults"],
-    parentLinks: ['ParentStList'],
+    teacherLinks: ["MyCourses", "Messages"],
+    studentLinks: ["StudentCourses", "StudentAllResults", "Messages"],
+    parentLinks: ['ParentStList', "Messages"],
   },
   getters: {
     getLoggedUser(state) {

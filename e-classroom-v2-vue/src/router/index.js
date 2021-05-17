@@ -4,6 +4,7 @@ import adminRoutes from "./adminRoutes.js";
 import teacherRoutes from "./teacherRoutes.js";
 import studentRoutes from "./studentRoutes.js";
 import parentRoutes from "./parentRoutes.js";
+import messageRoutes from "./messageRoutes.js";
 
 import Home from "../views/Home.vue";
 
@@ -15,6 +16,7 @@ const routes = [
   ...teacherRoutes,
   ...studentRoutes,
   ...parentRoutes,
+  ...messageRoutes,
   {
     path: "/",
     name: "Home",

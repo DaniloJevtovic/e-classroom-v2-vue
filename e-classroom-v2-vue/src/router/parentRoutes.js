@@ -14,7 +14,7 @@ export default [
     component: ParentStudentsList,
   },
   {
-    path: "/parentStudents/student/:id",
+    path: "/parentStudents/student/:studId",
     name: "ParentStDetails",
     component: StudentProfileDetails,
     props: true,

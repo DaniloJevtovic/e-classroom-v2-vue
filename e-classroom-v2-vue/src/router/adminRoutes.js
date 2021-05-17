@@ -4,8 +4,10 @@ import AllUsers from "../views/users/admin/AllUsers.vue";
 import AllTeachers from "../views/users/admin/AllTeachers.vue";
 import NewTeacher from "../views/users/admin/NewTeacher.vue";
 import AllStudents from "../views/users/admin/AllStudents.vue";
+import AllParents from "../views/users/admin/AllParents.vue";
 import NewStudent from "../views/users/admin/NewStudent.vue";
 import NewStudentForStClass from "../views/users/admin/NewStudentForStClass.vue";
+import StudentProfileDetails from "../views/users/StudentProfileDetails.vue";
 
 import AllCourses from "../views/courses/admin/AllCourses.vue";
 import NewCourse from "../views/courses/admin/NewCourse.vue";
@@ -54,6 +56,11 @@ export default [
         path: "allStudents",
         name: "AllStudents",
         component: AllStudents,
+      },
+      {
+        path: "allParents",
+        name: "AllParents",
+        component: AllParents,
       },
     ],
   },
@@ -123,8 +130,21 @@ export default [
         component: StClassesForScClass,
         props: true,
       },
+      {
+        path: "studentDetails/:studId",
+        name: "StDetailsAdmin",
+        component: StudentProfileDetails,
+        props: true,
+      },
     ],
   },
+
+  // {
+  //   path: "/students/:id",
+  //   name: "StDetailsAdmin",
+  //   component: StudentProfileDetails,
+  //   props: true,
+  // },
   {
     path: "/courseDetails/:id",
     name: "CourseDetailsForScClass",
