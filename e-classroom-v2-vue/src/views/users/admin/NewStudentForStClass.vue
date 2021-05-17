@@ -1,36 +1,70 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <h2>New Student</h2>
-    <h3>Student Class: {{ stClass.name }}</h3>
-    <input
-      type="email"
-      v-model="newStudent.email"
-      placeholder="email"
-      required
-    />
-    <input
-      type="text"
-      v-model="newStudent.username"
-      placeholder="username"
-      required
-    />
-    <input
-      type="text"
-      v-model="newStudent.firstName"
-      placeholder="First name"
-      required
-    />
-    <input
-      type="text"
-      v-model="newStudent.lastName"
-      placeholder="Last name"
-      required
-    />
+    <div class="st-par">
+      <div class="student-form">
+        <h2>New Student</h2>
+        <h3>Student Class: {{ stClass.name }}</h3>
+        <input
+          type="email"
+          v-model="newStudent.email"
+          placeholder="email"
+          required
+        />
+        <input
+          type="text"
+          v-model="newStudent.username"
+          placeholder="username"
+          required
+        />
+        <input
+          type="text"
+          v-model="newStudent.firstName"
+          placeholder="First name"
+          required
+        />
+        <input
+          type="text"
+          v-model="newStudent.lastName"
+          placeholder="Last name"
+          required
+        />
 
-    <button>Save</button>
-    <router-link :to="{ name: 'AllStudents' }">
-      <button>Cancel</button>
-    </router-link>
+        <button>Save</button>
+        <router-link :to="{ name: 'AllStudents' }">
+          <button>Cancel</button>
+        </router-link>
+      </div>
+
+      <div class="parent-form">
+        <h2>Parent data</h2>
+        <!-- <h3>Student Class: {{ stClass.name }}</h3> -->
+        <h3>Dat</h3>
+        <input
+          type="email"
+          v-model="newParent.email"
+          placeholder="parent email"
+          required
+        />
+        <input
+          type="text"
+          v-model="newParent.username"
+          placeholder="parent username"
+          required
+        />
+        <input
+          type="text"
+          v-model="newParent.firstName"
+          placeholder="First name"
+          required
+        />
+        <input
+          type="text"
+          v-model="newParent.lastName"
+          placeholder="Last name"
+          required
+        />
+      </div>
+    </div>
   </form>
 </template>
 
@@ -64,6 +98,15 @@ export default {
       stClassId: props.id,
     });
 
+    const newParent = reactive({
+      email: "",
+      username: "",
+      password: "123",
+      firstName: "",
+      lastName: "",
+      enabled: true,
+    });
+
     const stClasses = ref([]);
     const loadStClasses = async () => {
       stClasses.value = await getAll("stClasses");
@@ -73,14 +116,30 @@ export default {
 
     const handleSubmit = async () => {
       //console.log(newStudent);
+      let res = await save("stParents", newParent);
+
+      newStudent.parentId = res.id; // dodjela roditelja uceniku!
+
       await save("students", newStudent);
       router.go(-1);
     };
 
-    return { stClass, newStudent, handleSubmit };
+    return { stClass, newStudent, newParent, handleSubmit };
   },
 };
 </script>
 
-<style>
+<style scoped>
+form {
+  max-width: 900px;
+}
+
+.student-form,
+.parent-form {
+  width: 50%;
+  margin: 20px;
+}
+.st-par {
+  display: flex;
+}
 </style>
