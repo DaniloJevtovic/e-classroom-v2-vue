@@ -7,6 +7,14 @@
       <h2>Course: {{ courseInfo.name }}</h2>
       <h2>Description: {{ courseInfo.description }}</h2>
       <h2>Teacher: {{ courseInfo.teacher.firstName }}</h2>
+      <router-link
+        :to="{
+          name: 'NewMessage',
+          params: { senderId: loggedUser.id, reciverId: courseInfo.teacher.id },
+        }"
+      >
+        <button>Send message</button>
+      </router-link>
       <router-view :id="id" />
     </div>
   </div>
@@ -16,12 +24,16 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
 import ChildNavbar from "../../../components/ChildNavbar.vue";
+import { useStore } from "vuex";
 
 export default {
   props: ["id"],
   components: { ChildNavbar },
   setup(props) {
     const { getById, getSubItems } = useCRUD();
+    const store = useStore();
+
+    const loggedUser = store.getters["getLoggedUser"];
 
     const linksForNavbar = ref([
       { name: "Back to my Courses", path: "StudentCourses" },
@@ -52,7 +64,7 @@ export default {
       getCourseQuizzes();
     });
 
-    return { linksForNavbar, courseInfo, materials, quizzes };
+    return { linksForNavbar, courseInfo, materials, quizzes, loggedUser };
   },
 };
 </script>

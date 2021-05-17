@@ -14,6 +14,14 @@
       <h1>Full Name: {{ user.firstName }} {{ user.lastName }}</h1>
       <h2>Email: {{ user.email }}</h2>
       <h3>Role: {{ user.authorities[0].authority }}</h3>
+      <router-link
+        :to="{
+          name: 'NewMessage',
+          params: { reciverId: user.id },
+        }"
+      >
+        <button>Send message</button>
+      </router-link>
     </div>
   </div>
 </template>

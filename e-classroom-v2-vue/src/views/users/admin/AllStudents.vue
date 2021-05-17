@@ -15,6 +15,14 @@
       <h1>Full Name: {{ student.firstName }} {{ student.lastName }}</h1>
       <h2>Email: {{ student.email }}</h2>
       <h3>StClass: {{ student.studentClass.name }}</h3>
+      <router-link
+        :to="{
+          name: 'NewMessage',
+          params: { reciverId: student.id },
+        }"
+      >
+        <button>Send message</button>
+      </router-link>
     </div>
   </div>
 </template>

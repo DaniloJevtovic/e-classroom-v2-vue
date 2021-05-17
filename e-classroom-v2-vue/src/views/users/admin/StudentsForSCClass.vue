@@ -10,9 +10,13 @@
     <div>
       <div v-for="(student, index) in students" :key="student.id">
         <div>
-          <h3>
-            {{ index + 1 }}. {{ student.firstName }} {{ student.lastName }}
-          </h3>
+          <router-link
+            :to="{ name: 'StDetailsAdmin', params: { studId: student.id } }"
+          >
+            <h3>
+              {{ index + 1 }}. {{ student.firstName }} {{ student.lastName }}
+            </h3>
+          </router-link>
         </div>
       </div>
     </div>
