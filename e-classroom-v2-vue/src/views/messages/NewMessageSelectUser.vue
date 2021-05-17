@@ -1,0 +1,72 @@
+<template>
+  <form @submit.prevent="sendMessage">
+    <h2>New Message</h2>
+
+    <select name="users" v-model="message.reciverId" required>
+      <option disabled value="">Select reciver</option>
+      <option v-for="user in users" :key="user" :value="user.id">
+        {{ user.firstName }} {{ user.lastName }}
+      </option>
+    </select>
+
+    <input
+      type="text"
+      v-model="message.subject"
+      placeholder="subject"
+      required
+    />
+    <textarea rows="8" v-model="message.message" placeholder="message" required>
+    </textarea>
+    <button>Send</button>
+    <button @click.prevent="$router.go(-1)">Cancel</button>
+  </form>
+</template>
+
+<script>
+import { ref, onMounted, reactive } from "vue";
+import useCRUD from "@/composables/useCRUD.js";
+import { useRouter, useRoute } from "vue-router";
+import { useStore } from "vuex";
+
+export default {
+  props: [],
+  setup(props) {
+    const { getAll, getById, save } = useCRUD();
+    const store = useStore();
+    const router = useRouter();
+    const route = useRoute();
+
+    const loggedUser = store.getters["getLoggedUser"];
+
+    const users = ref([]);
+
+    const message = reactive({
+      subject: "",
+      message: "",
+      senderId: loggedUser.id,
+      reciverId: "",
+    });
+
+    const loadUsers = async () => {
+      users.value = await getAll("users");
+    };
+
+    const sendMessage = async () => {
+      await save("messages", message);
+      router.go(-1);
+    };
+
+    onMounted(() => {
+      loadUsers();
+    });
+
+    return { message, sendMessage, users };
+  },
+};
+</script>
+
+<style scoped>
+form {
+  min-width: 800px;
+}
+</style>
