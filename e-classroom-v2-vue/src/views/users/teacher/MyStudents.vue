@@ -5,9 +5,30 @@
       <div class="my-students" v-for="student in students" :key="student.id">
         <h2>Name: {{ student.firstName }} {{ student.lastName }}</h2>
         <h3>email: {{ student.email }}</h3>
-        <button>Contact</button>
-        <button>Contact parant</button>
-        <button>View Profile</button>
+        <router-link
+          :to="{
+            name: 'NewMessage',
+            params: { reciverId: student.id },
+          }"
+        >
+          <button>Send message</button>
+        </router-link>
+        <!-- ako ima registrovanog roditelja -->
+        <router-link
+          v-if="student.stParent"
+          :to="{
+            name: 'NewMessage',
+            params: { reciverId: student.stParent.id },
+          }"
+        >
+          <button>Contact parent</button>
+        </router-link>
+
+        <router-link
+          :to="{ name: 'StDetailsProf', params: { studId: student.id } }"
+        >
+          <button>View Profile</button>
+        </router-link>
       </div>
     </div>
   </div>
@@ -53,5 +74,4 @@ export default {
   background: blueviolet;
   padding: 8px;
 }
-
 </style>
