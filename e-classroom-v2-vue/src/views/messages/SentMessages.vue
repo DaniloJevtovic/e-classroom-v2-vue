@@ -1,11 +1,14 @@
 <template>
-  <div>
-    <h2>Sent messages</h2>
+  <div class="sent-messages">
+    <h2>Sent messages ({{ sentMessages.length }})</h2>
     <div v-for="message in sentMessages" :key="message.id">
       <div class="message">
-        <p>Reciver: {{ message.reciver.firstName }}</p>
+        <p>
+          Reciver: {{ message.reciver.firstName }}
+          {{ message.reciver.lastName }}
+        </p>
         <p>Subject: {{ message.subject }}</p>
-        <p>Subject: {{ message.message }}</p>
+        <p>Message: {{ message.message }}</p>
       </div>
     </div>
   </div>
@@ -39,9 +42,16 @@ export default {
 </script>
 
 <style scoped>
+.sent-messages {
+  margin: 10px;
+  padding: 4px;
+}
+
 .message {
-  background: oldlace;
-  border: 1px solid violet;
+  background: rgb(241, 199, 121);
+  border: 2px solid violet;
   margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
 }
 </style>

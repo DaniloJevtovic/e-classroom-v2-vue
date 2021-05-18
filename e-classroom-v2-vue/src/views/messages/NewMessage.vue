@@ -11,7 +11,7 @@
       placeholder="subject"
       required
     />
-    <textarea rows="4" v-model="message.message" placeholder="message" required>
+    <textarea rows="8" v-model="message.message" placeholder="message" required>
     </textarea>
     <button>Send</button>
     <button @click.prevent="$router.go(-1)">Cancel</button>
@@ -63,5 +63,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+form {
+  min-width: 800px;
+}
 </style>

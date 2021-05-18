@@ -72,7 +72,8 @@ button {
   /* font-size: 20px; */
 }
 
-.links a.router-link-exact-active {
+/* .links a.router-link-exact-active { */
+.links a.router-link-active {
   background: cyan;
   color: indigo;
   padding: 7px;

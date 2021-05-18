@@ -5,13 +5,13 @@
     </div>
     <div class="container-body">
       <router-link :to="{ name: 'Users' }">
-        <button>All Users</button>
+        <h1>Users</h1>
       </router-link>
       <router-link :to="{ name: 'AllCourses' }">
-        <button>All Courses</button>
+       <h1>Courses</h1>
       </router-link>
       <router-link :to="{ name: 'AllScClasses' }">
-        <button>All School Classes</button>
+        <h1>School Classes</h1>
       </router-link>
     </div>
   </div>
@@ -26,7 +26,7 @@ button {
   font-size: 15px;
   width: 30%;
   display: inline;
-  padding: 50px;
+  padding: 40px;
 }
 
 </style>

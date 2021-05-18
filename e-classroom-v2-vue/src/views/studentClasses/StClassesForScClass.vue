@@ -26,7 +26,7 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "../../composables/useCRUD.js";
-import StudentsForSCClass from "../users/StudentsForSCClass.vue";
+import StudentsForSCClass from "../users/admin/StudentsForSCClass.vue";
 
 export default {
   props: ["id"],

@@ -5,7 +5,7 @@
       <div v-for="student in students" :key="student.id">
         <div>
           <router-link
-            :to="{ name: 'ParentStDetails', params: { id: student.id } }"
+            :to="{ name: 'ParentStDetails', params: { studId: student.id } }"
           >
             <h1>{{ student.firstName }} {{ student.lastName }}</h1>
           </router-link>
