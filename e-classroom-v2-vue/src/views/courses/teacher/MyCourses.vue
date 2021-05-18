@@ -4,17 +4,18 @@
       <h2>My Courses</h2>
     </div>
     <div class="container-body">
-      <div class="courses" v-for="course in courses" :key="course.id">
-        <router-link :to="{ name: 'MyCourseDetails', params: { id: course.id } }">
-          <button>
-            Name: {{ course.name }}
-            <hr />
-            School Class: {{ course.schoolClass.name}}
-            <hr />
-            Description: {{ course.description }}
-          </button>
-        </router-link>
-        <!-- <hr /> -->
+      <div class="basic-grid">
+        <div class="courses" v-for="course in courses" :key="course.id">
+          <router-link
+            :to="{ name: 'MyCourseDetails', params: { id: course.id } }"
+          >
+            <div class="st-course">
+              <h1>Name: {{ course.name }}</h1>
+              <h2>School Class: {{ course.schoolClass.name }}</h2>
+              <p>Description: {{ course.description }}</p>
+            </div>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -42,8 +43,11 @@ export default {
 };
 </script>
 
-<style>
-.courses {
-  display: inline;
+<style scoped>
+.st-course {
+  border: 2px solid orange;
+  padding: 5px;
+  color: rgb(214, 211, 236);
+  background: indigo;
 }
 </style>

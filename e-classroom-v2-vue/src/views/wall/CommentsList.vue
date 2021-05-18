@@ -1,12 +1,15 @@
 <template>
   <div class="coments-container">
-    <div class="coments-list">
+    <div class="coments-list" v-if="comments.length">
       <div v-for="(comment, index) in comments" :key="comment.id">
         <div class="comment">
-          <h3>{{ comment.comment }}</h3>
-          <p>{{ comment.author.firstName }}</p>
+          <div class="comment-text">
+            <p>{{ comment.author.firstName }}</p>
+            <h3>{{ comment.comment }}</h3>
+          </div>
 
           <div
+            class="comment-button"
             v-if="
               author.id == comment.author.id ||
               author.authorities[0].authority == 'ROLE_TEACHER'
@@ -85,13 +88,25 @@ export default {
 
 .coments-list {
   background: red;
-  padding: 8px;
+  padding: 5px;
   border: 1px solid oldlace;
 }
 
 .comment {
   background: rgb(96, 244, 207);
-  margin: 8px;
+  margin: 5px;
+  display: flex;
+  padding: 4px;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.comment-text {
+  text-align: left;
+}
+
+.comment-button {
+  margin-left: auto;
 }
 
 .new-comment {

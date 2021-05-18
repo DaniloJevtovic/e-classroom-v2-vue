@@ -5,19 +5,21 @@
     </div>
 
     <div class="container-body">
-      <div class="coursess" v-for="course in courses" :key="course.id">
-        <router-link
-          :to="{ name: 'StudentCourseDetails', params: { id: course.id } }"
-        >
-          <div class="st-course">
-            <h1>Name: {{ course.name }}</h1>
-            <h2>
-              Teacher: {{ course.teacher.firstName }}
-              {{ course.teacher.lastName }}
-            </h2>
-            <p>Details: {{ course.description }}</p>
-          </div>
-        </router-link>
+      <div class="basic-grid">
+        <div class="coursess" v-for="course in courses" :key="course.id">
+          <router-link
+            :to="{ name: 'StudentCourseDetails', params: { id: course.id } }"
+          >
+            <div class="st-course">
+              <h1>Name: {{ course.name }}</h1>
+              <h2>
+                Teacher: {{ course.teacher.firstName }}
+                {{ course.teacher.lastName }}
+              </h2>
+              <p>Details: {{ course.description }}</p>
+            </div>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -58,7 +60,8 @@ export default {
 }
 
 .st-course {
-  background: honeydew;
+  background: rgb(188, 226, 188);
+  color: rgb(82, 10, 46);
   border: 2px solid indigo;
   border-radius: 7px;
   padding: 7px;

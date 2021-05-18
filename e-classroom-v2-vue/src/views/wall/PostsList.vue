@@ -15,12 +15,13 @@
       <div v-for="(post, index) in posts" :key="post.id">
         <div class="post">
           <div class="post-info">
-            <h2>{{ post.post }}</h2>
-
-            <!-- <textarea rows="3" v-model="post.post"></textarea> -->
-            <p>{{ post.author.firstName }} {{ post.author.lastName }}</p>
+            <div class="post-text">
+              <p>{{ post.author.firstName }} {{ post.author.lastName }}</p>
+              <h2>{{ post.post }}</h2>
+            </div>
 
             <div
+              class="post-buttons"
               v-if="
                 author.id == post.author.id ||
                 author.authorities[0].authority == 'ROLE_TEACHER'
@@ -75,6 +76,8 @@ export default {
       post.post = "";
     };
 
+    const updatePost = async () => {};
+
     const deletePost = async (index, id) => {
       posts.value.splice(index, 1); //brisanje iz liste
       await deleteById("posts", id); //brisanje na bekendu
@@ -84,7 +87,14 @@ export default {
       getPosts();
     });
 
-    return { post, posts, newPost, deletePost, author };
+    return {
+      post,
+      posts,
+      newPost,
+      updatePost,
+      deletePost,
+      author,
+    };
   },
 };
 </script>
@@ -133,5 +143,17 @@ export default {
   margin: 0px 10px 4px;
   background: rgb(17, 169, 189);
   color: white;
+  display: flex;
+  align-items: center;
+}
+
+.post-text {
+  text-align: left;
+}
+
+.post-buttons {
+  text-align: right;
+  display: flex;
+  margin-left: auto; /*poravnava u udesno */
 }
 </style>

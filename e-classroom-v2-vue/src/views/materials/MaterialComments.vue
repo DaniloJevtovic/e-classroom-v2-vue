@@ -6,6 +6,7 @@
         <p>{{ comment.author.firstName }}: {{ comment.comment }}</p>
 
         <div
+          class="mat-com-button"
           v-if="
             author.id == comment.author.id ||
             author.authorities[0].authority == 'ROLE_TEACHER'
@@ -85,20 +86,28 @@ export default {
   padding: 10px;
 }
 
-.mat-com,
-.new-mat-com {
+.mat-com {
   background: springgreen;
   padding: 8px;
   margin: 8px;
+  display: flex;
+  align-items: center;
 }
 
 .new-mat-com {
+  padding: 8px;
+  margin: 8px;
+  display: flex;
   background: plum;
   display: flex;
 }
 
 button:hover {
   background: coral;
+}
+
+.mat-com-button {
+  margin-left: auto;
 }
 
 textarea {

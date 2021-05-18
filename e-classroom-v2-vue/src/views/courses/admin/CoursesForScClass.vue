@@ -15,10 +15,10 @@
         >
           <div class="sc-courses">
             <h1>Name: {{ course.name }}</h1>
-            <h2>
+            <h3>
               Teacher: {{ course.teacher.firstName }}
               {{ course.teacher.lastName }}
-            </h2>
+            </h3>
             <h3>description: {{ course.description }}</h3>
             <router-link
               :to="{
