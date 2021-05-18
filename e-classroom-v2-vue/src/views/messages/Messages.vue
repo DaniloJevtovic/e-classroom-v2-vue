@@ -15,6 +15,7 @@ export default {
   components: { ChildNavbar },
   setup() {
     const links = [
+      { name: "New Message", path: "NewMessageSelectUser" },
       { name: "Recived messages", path: "RecivedMessages" },
       { name: "Sent Messages", path: "SentMessages" },
     ];

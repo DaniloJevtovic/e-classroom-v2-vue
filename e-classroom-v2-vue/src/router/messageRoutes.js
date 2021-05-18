@@ -1,3 +1,4 @@
+import NewMessageSelectUser from "../views/messages/NewMessageSelectUser.vue";
 import NewMessage from "../views/messages/NewMessage.vue";
 import Messages from "../views/messages/Messages.vue";
 import RecivedMessages from "../views/messages/RecivedMessages.vue";
@@ -5,6 +6,12 @@ import SentMessages from "../views/messages/SentMessages.vue";
 import MessageDetails from "../views/messages/MessageDetails.vue";
 
 export default [
+  {
+    path: "/newMessage",
+    name: "NewMessageSelectUser",
+    component: NewMessageSelectUser,
+    props: true,
+  },
   {
     //path: "/sender/:senderId/newMessage/reciver/:reciverId",
     path: "/newMessage/reciver/:reciverId",

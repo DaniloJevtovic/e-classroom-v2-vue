@@ -1,12 +1,18 @@
 <template>
-  <div>
-    <h2>Recived messages</h2>
+  <div class="recived-messages">
+    <h2>Recived messages ({{ recivedMessages.length }})</h2>
     <div v-for="message in recivedMessages" :key="message.id">
-      <div class="message">
-        <p>Sender: {{ message.sender.firstName }} {{ message.sender.lastName }}</p>
-        <p>Subject: {{ message.subject }}</p>
-        <p>Subject: {{ message.message }}</p>
-      </div>
+      <router-link
+        :to="{ name: 'MessageDetails', params: { messId: message.id } }"
+      >
+        <div class="message">
+          <p>
+            Sender: {{ message.sender.firstName }} {{ message.sender.lastName }}
+          </p>
+          <p>Subject: {{ message.subject }}</p>
+          <p>Message: {{ message.message }}</p>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -43,9 +49,16 @@ export default {
 </script>
 
 <style scoped>
+.recived-messages {
+  margin: 10px;
+  padding: 4px;
+}
+
 .message {
-  background: oldlace;
-  border: 1px solid violet;
+  background: skyblue;
+  border: 2px solid violet;
   margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
 }
 </style>

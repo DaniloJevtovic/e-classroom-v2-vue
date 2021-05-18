@@ -10,7 +10,9 @@
     </div>
     <div class="basic-grid">
       <div v-for="course in courses" :key="course.id">
-        <router-link :to="{ name: 'CourseDetailsForScClass', params: { id: course.id } }">
+        <router-link
+          :to="{ name: 'CourseDetailsForScClass', params: { id: course.id } }"
+        >
           <div class="sc-courses">
             <h1>Name: {{ course.name }}</h1>
             <h2>
@@ -18,6 +20,14 @@
               {{ course.teacher.lastName }}
             </h2>
             <h3>description: {{ course.description }}</h3>
+            <router-link
+              :to="{
+                name: 'NewMessage',
+                params: { reciverId:  course.teacher.id },
+              }"
+            >
+              <button>Send message</button>
+            </router-link>
           </div>
         </router-link>
       </div>

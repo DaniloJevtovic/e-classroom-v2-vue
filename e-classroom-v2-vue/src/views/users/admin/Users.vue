@@ -20,6 +20,7 @@ export default {
       { name: "All Users", path: "AllUsers" },
       { name: "All Teachers", path: "AllTeachers" },
       { name: "All Students", path: "AllStudents" },
+      { name: "All Parents", path: "AllParents" },
     ]);
     return { usersLinks };
   },

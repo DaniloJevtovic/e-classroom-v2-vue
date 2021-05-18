@@ -57,6 +57,13 @@ export default [
         name: "AllStudents",
         component: AllStudents,
       },
+      // i dole imas istu ovu komponentu kad detaljima pristupas iz odjeljenja!
+      {
+        path: "allStudents/:studId",
+        name: "StUserDetailsAdmin",
+        component: StudentProfileDetails,
+        props: true,
+      },
       {
         path: "allParents",
         name: "AllParents",

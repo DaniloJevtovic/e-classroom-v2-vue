@@ -23,6 +23,12 @@
       >
         <button>Send message</button>
       </router-link>
+
+      <router-link
+        :to="{ name: 'StUserDetailsAdmin', params: { studId: student.id } }"
+      >
+        <button>Details</button>
+      </router-link>
     </div>
   </div>
 </template>

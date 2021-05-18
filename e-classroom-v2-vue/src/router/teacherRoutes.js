@@ -3,6 +3,7 @@ import MyCourses from "../views/courses/teacher/MyCourses.vue";
 import MyQuizzes from "../views/quizzes/teacher/MyQuizzes.vue";
 import MyStudentClasses from "../views/studentClasses/teacher/MyStudentClasses.vue";
 import MyStudents from "../views/users/teacher/MyStudents.vue";
+import StudentProfileDetails from "../views/users/StudentProfileDetails.vue";
 import MyMaterials from "../views/materials/teacher/MyMaterials.vue";
 import MyCourseInfo from "../views/courses/teacher/MyCourseInfo.vue";
 
@@ -67,6 +68,12 @@ export default [
         path: "students",
         name: "MyStudents",
         component: MyStudentClasses,
+      },
+      {
+        path: "students/:studId",
+        name: "StDetailsProf",
+        component: StudentProfileDetails,
+        props: true,
       },
     ],
   },
