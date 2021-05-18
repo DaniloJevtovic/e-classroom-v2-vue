@@ -36,16 +36,24 @@
             },
           }"
         >
-          <button>Send message</button>
+          <!-- da roditelje samom sebi ne salje poruke :) -->
+          <button v-if="studentDetails.stParent.id != loggedUser.id">
+            Send message
+          </button>
         </router-link>
       </div>
     </div>
     <div class="studentResults">
+      <h2>Results</h2>
       <div v-for="result in results" :key="result.id">
         <div class="st-result">
           <h2>Quiz: {{ result.quiz.name }}</h2>
           <h3>Subject: {{ result.quiz.course.name }}</h3>
-          <h3>Points: {{ result.points }} / ?</h3>
+          <h3>
+            Teacher: {{ result.quiz.course.teacher.firstName }}
+            {{ result.quiz.course.teacher.lastName }}
+          </h3>
+          <h3 class="points">Points: {{ result.points }} / ?</h3>
         </div>
       </div>
     </div>
@@ -89,23 +97,32 @@ export default {
 <style scoped>
 .studentDetails {
   background: orange;
+  padding: 15px;
+}
+
+.student-info {
+  background: deepskyblue;
+  padding: 15px;
+}
+
+.parent-details {
+  background: yellowgreen;
+  padding: 15px;
 }
 
 .studentResults {
-  background: orangered;
-  /* margin: 10px; */
+  background: indigo;
+  padding: 15px;
 }
 
 .st-result {
   margin: 5px;
   background: cyan;
+  padding: 15px;
 }
 
-.student-info {
-  background: deepskyblue;
-}
-
-.parent-details {
-  background: yellowgreen;
+.points {
+  /* width: 200px; */
+  background: red;
 }
 </style>
