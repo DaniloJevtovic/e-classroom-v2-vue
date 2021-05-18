@@ -6,7 +6,8 @@
         <h2>Instructions: {{ quizInfo.instructions }}</h2>
         <h2>Duration: {{ quizInfo.duration }}</h2>
         <h3>Total questions: {{ questions.length }}</h3>
-        <h1>TIME: 14:24</h1>
+        <!-- <h1>TIME: {{ timer }} s</h1> -->
+        <h1>TIME: {{ timer2 }}</h1>
       </div>
 
       <div class="questions">
@@ -32,7 +33,7 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import StudentSolveQuizQuestions from "./StudentSolveQuizQuestions.vue";
-import { useRouter, userRouter } from "vue-router";
+import { useRouter } from "vue-router";
 
 export default {
   props: ["id", "quizId", "stRes"],
@@ -43,13 +44,54 @@ export default {
 
     const quizInfo = ref("");
     const questions = ref([]);
+    const timer = ref();
+
+    const timer2 = ref("");
 
     const getQuiz = async () => {
-      quizInfo.value = await getById("quizzes", props.quizId);
+      //quizInfo.value = await getById("quizzes", props.quizId);
+      let quiz = await getById("quizzes", props.quizId);
+      quizInfo.value = quiz;
+      timer.value = quiz.duration * 60; // 1m = 60s
+      startTimer();
     };
 
     const getQuestionsForQuiz = async () => {
       questions.value = await getSubItems("questions", "quiz", props.quizId);
+    };
+
+    const startTimer = () => {
+      if (timer.value > 0) {
+        setTimeout(() => {
+          timer.value -= 1;
+
+          timer2.value = secondsToHms(timer.value);
+
+          startTimer();
+        }, 1000);
+      } else {
+        router.push({
+          name: "StudentQuizDetails",
+          params: { quizId: props.quizId },
+        });
+      }
+    };
+
+    //https://stackoverflow.com/questions/5539028/converting-seconds-into-hhmmss
+    const secondsToHms = (d) => {
+      d = Number(d);
+
+      var h = Math.floor(d / 3600);
+      var m = Math.floor((d % 3600) / 60);
+      var s = Math.floor((d % 3600) % 60);
+
+      return (
+        ("0" + h).slice(-2) +
+        ":" +
+        ("0" + m).slice(-2) +
+        ":" +
+        ("0" + s).slice(-2)
+      );
     };
 
     onMounted(() => {
@@ -57,7 +99,7 @@ export default {
       getQuestionsForQuiz();
     });
 
-    return { quizInfo, questions };
+    return { quizInfo, questions, timer, timer2 };
   },
 };
 </script>
