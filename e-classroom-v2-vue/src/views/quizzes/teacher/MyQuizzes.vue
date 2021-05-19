@@ -20,6 +20,12 @@
             <h2>Name: {{ quiz.name }}</h2>
             <h3>Instruction: {{ quiz.instructions }}</h3>
             <h4>Duration: {{ quiz.duration }} minutes.</h4>
+
+            <router-link
+              :to="{ name: 'ProfResForQuiz', params: { quizId: quiz.id } }"
+            >
+              <button>See Results</button>
+            </router-link>
           </div>
         </router-link>
 
