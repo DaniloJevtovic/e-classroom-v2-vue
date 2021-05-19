@@ -7,8 +7,10 @@
             {{ index + 1 }}. {{ question.question }} - points:
             {{ question.points }}
           </h1>
+
           <student-quiz-answers :questionId="question.id" :resId="resId">
           </student-quiz-answers>
+        
         </div>
       </div>
     </div>
@@ -45,12 +47,14 @@ export default {
 <style scoped>
 .res-quest {
   background: yellow;
-  margin: 10px;
+  margin: 20px;
+  padding: 8px;
+  border-radius: 10px;
 }
 
 .quest-answers {
   background: plum;
-  border: 10px solid indigo;
+  border: 1px solid indigo;
   margin: 20px;
   padding: 20px;
 }
