@@ -22,6 +22,8 @@ import EditQuestion from "../views/quizzes/teacher/EditQuestion.vue";
 import NewAnswer from "../views/quizzes/teacher/NewAnswer.vue";
 import EditAnswer from "../views/quizzes/teacher/EditAnswer.vue";
 
+import ResultsListForQuiz from "../views/quizzes/teacher/ResultsListForQuiz.vue";
+
 import Wall from "../views/wall/Wall.vue";
 
 export default [
@@ -73,6 +75,12 @@ export default [
         path: "students/:studId",
         name: "StDetailsProf",
         component: StudentProfileDetails,
+        props: true,
+      },
+      {
+        path: "results/quiz/:quizId",
+        name: "ProfResForQuiz",
+        component: ResultsListForQuiz,
         props: true,
       },
     ],
