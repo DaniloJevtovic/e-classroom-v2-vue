@@ -4,7 +4,7 @@
       <!-- <h1 v-if="result.points < 0">Your Score: 0 points / ?</h1>
       <h1 v-else>Your Score: {{ result.points }} points / ?</h1> -->
 
-      <h1>Your Score: {{ result.points }} points / ?</h1>
+      <h1>Score: {{ result.points }} points / ?</h1>
     </div>
 
     <student-res-questions :quizId="result.quiz.id" :resId="result.id">

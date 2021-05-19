@@ -1,14 +1,24 @@
 <template>
   <div class="st-quest-answers">
     <div class="res-answers">
-      <div v-for="answer in quizAnswers" :key="answer.di">
-        <h2>{{ answer.answer }} - {{ answer.correct }}</h2>
+      <div v-for="answer in quizAnswers" :key="answer.id">
+        <h2>
+          {{ answer.answer }} -
+          <span style="color: green" v-if="answer.correct">&#10004;</span>
+          <span style="color: red" v-else>&#10007;</span>
+        </h2>
       </div>
     </div>
     <div class="res-st-answers">
-      <h4>Your answers</h4>
+      <h4>Student answers</h4>
       <div v-for="stAnswer in studentAnswers" :key="stAnswer.id">
-        {{ stAnswer.answer.answer }} - {{ stAnswer.answer.correct }}
+        <h3>
+          {{ stAnswer.answer.answer }} -
+          <span style="color: green" v-if="stAnswer.answer.correct"
+            >&#10004;</span
+          >
+          <span style="color: red" v-else>&#10007;</span>
+        </h3>
       </div>
     </div>
   </div>

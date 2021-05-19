@@ -12,7 +12,7 @@
           </div>
 
           <div v-if="author.id == comment.author.id" class="comment-button">
-            <button @click="deleteComment(index, comment.id)">Delete</button>
+            <button @click="deleteComment(index, comment.id)">Delete &#10007;</button>
           </div>
         </div>
       </div>
