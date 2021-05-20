@@ -20,8 +20,24 @@
 
           <button @click="showResult = !showResult">View details</button>
 
-          <button>Contact Student</button>
-          <button v-if="result.student.stParent">Contact parent</button>
+          <router-link
+            :to="{
+              name: 'NewMessage',
+              params: { reciverId: result.student.id },
+            }"
+          >
+            <button>Contact Student</button>
+          </router-link>
+
+          <router-link
+            v-if="result.student.stParent"
+            :to="{
+              name: 'NewMessage',
+              params: { reciverId: result.student.stParent.id },
+            }"
+          >
+            <button>Contact parent</button>
+          </router-link>
         </div>
       </div>
     </div>
