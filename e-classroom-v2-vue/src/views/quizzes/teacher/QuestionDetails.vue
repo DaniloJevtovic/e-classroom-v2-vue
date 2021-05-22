@@ -16,18 +16,23 @@
       <button @click="deleteQuestion(questionId)">Delete</button>
     </div>
     <div class="answers" v-for="(answer, index) in answers" :key="answer.id">
-      {{ index + 1 }}. {{ answer.answer }} - corect? - {{ answer.correct }}
+      <div class="ans">
+        {{ index + 1 }}. {{ answer.answer }} -
 
-      <router-link
-        :to="{
-          name: 'EditAnswer',
-          params: { questionId, answerId: answer.id },
-        }"
-      >
-        <button>Edit</button>
-      </router-link>
+        <span style="color: green" v-if="answer.correct">&#10004;</span>
+        <span style="color: red" v-else>&#10007;</span>
 
-      <button @click="deleteAnswer(answer.id)">Delete</button>
+        <router-link
+          :to="{
+            name: 'EditAnswer',
+            params: { questionId, answerId: answer.id },
+          }"
+        >
+          <button>Edit</button>
+        </router-link>
+
+        <button @click="deleteAnswer(answer.id)">Delete</button>
+      </div>
     </div>
   </div>
 </template>
@@ -100,6 +105,11 @@ export default {
   background: cyan;
 }
 .answers {
-  background: yellow;
+  background: rgb(157, 255, 0);
+}
+
+.ans {
+  background: rgb(255, 224, 50);
+  margin: 3px;
 }
 </style>
