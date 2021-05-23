@@ -25,9 +25,9 @@
 
       <div class="questions">
         <h1>Questions</h1>
-        <router-link :to="{ name: 'NewQuestion', params: { quizId: quizId } }">
+        <!-- <router-link :to="{ name: 'NewQuestion', params: { quizId: quizId } }">
           <button>New Question</button>
-        </router-link>
+        </router-link> -->
 
         <div v-for="question in questions" :key="question.id">
           <question-details
@@ -35,6 +35,43 @@
             @deleteFromList="deleteQuestion"
           ></question-details>
           <hr />
+        </div>
+        <button @click="addNewQuestionForm">New Question 222</button>
+      </div>
+
+      <!-- lista za nova pitanja kad se klikne na dugme da se doda pitanje -->
+      <div
+        class="new-questions-list"
+        v-for="(newQuest, index) in newQuestionsList"
+        :key="newQuest"
+      >
+        <div class="new-question">
+          <form @submit.prevent="saveQuestion(newQuest, index)">
+            <div class="flex-div">
+              <select name="ans-type" v-model="newQuest.questionType" required>
+                <option disabled value="">Select answer type</option>
+                <option value="MULTIPLE_CHOICE">Multiple choice</option>
+                <option value="TRUE_FALSE">True false</option>
+                <option value="FILL">Fill</option>
+              </select>
+              <input
+                type="number"
+                v-model="newQuest.points"
+                placeholder="points"
+                required
+              />
+            </div>
+
+            <input
+              type="text"
+              v-model="newQuest.question"
+              placeholder="new question"
+              required
+            />
+
+            <button>Save</button>
+            <button @click.prevent="cancelQuestion(index)">Cancel</button>
+          </form>
         </div>
       </div>
     </div>
@@ -45,18 +82,20 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import QuestionDetails from "./QuestionDetails.vue";
-import { useRouter, userRouter } from "vue-router";
+import { useRouter } from "vue-router";
 
 export default {
   props: ["id", "quizId"],
   components: { QuestionDetails },
   setup(props) {
-    const { getById, getSubItems, deleteById } = useCRUD();
+    const { getById, getSubItems, deleteById, save } = useCRUD();
     const router = useRouter();
 
     const quizInfo = ref("");
 
     const questions = ref([]);
+
+    const newQuestionsList = ref([]);
 
     const getQuiz = async () => {
       quizInfo.value = await getById("quizzes", props.quizId);
@@ -71,10 +110,6 @@ export default {
       questions.value = await getSubItems("questions", "quiz", props.quizId);
     };
 
-    const newQuestion = () => {
-      questions.value.push("ss");
-    };
-
     //brisanje iz liste (prikaz) - brisanje na bekendu je u question details komponenti!
     const deleteQuestion = (id) => {
       let index = questions.value.findIndex((question) => question.id === id);
@@ -86,12 +121,46 @@ export default {
       getQuestionsForQuiz();
     });
 
-    return { quizInfo, questions, newQuestion, deleteQuiz, deleteQuestion };
+    const addNewQuestionForm = () => {
+      newQuestionsList.value.push({
+        question: "",
+        points: "",
+        quizId: props.quizId,
+        questionType: "",
+      });
+    };
+
+    const saveQuestion = async (question, index) => {
+      console.log(question);
+
+      let res = await save("questions", question);
+
+      //console.log("odg", res);
+      questions.value.push(res);
+
+      // brisem iz liste novih pitanja - jer sam dodao na bekend
+      newQuestionsList.value.splice(index, 1);
+    };
+
+    const cancelQuestion = (index) => {
+      newQuestionsList.value.splice(index, 1);
+    };
+
+    return {
+      quizInfo,
+      questions,
+      deleteQuiz,
+      deleteQuestion,
+      newQuestionsList,
+      addNewQuestionForm,
+      saveQuestion,
+      cancelQuestion,
+    };
   },
 };
 </script>
 
-<style>
+<style scoped>
 .quiz-info {
   padding: 14px;
   border: 7px solid darkblue;
@@ -101,5 +170,25 @@ export default {
 
 .questions {
   padding: 10px;
+}
+
+.new-question {
+  background: rgb(70, 3, 50);
+  padding: 10px;
+}
+
+form {
+  background: springgreen;
+  min-width: 90%;
+}
+
+input,
+select {
+  margin: 5px;
+}
+
+.flex-div {
+  display: flex;
+  min-width: 100%;
 }
 </style>
