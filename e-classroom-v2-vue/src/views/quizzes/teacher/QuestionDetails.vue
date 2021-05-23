@@ -28,9 +28,6 @@
               placeholder="tacno?"
             />
 
-            <!-- <span style="color: green" v-if="answer.correct">&#10004;</span>
-          <span style="color: red" v-else>&#10007;</span> -->
-
             <button @click.prevent="updateAnswer(answer)">Save changes</button>
 
             <button @click.prevent="deleteAnswer(answer.id)">
@@ -192,11 +189,5 @@ input[type="radio"] {
 
 input[type="text"] {
   margin: 10px;
-}
-
-.correct-div {
-  display: flex;
-  align-items: center;
-  margin: 0px;
 }
 </style>
