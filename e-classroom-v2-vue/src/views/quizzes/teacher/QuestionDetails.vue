@@ -4,19 +4,6 @@
       <h2>Question: {{ question.question }}</h2>
       <h3>Points: {{ question.points }}</h3>
       <p>Type: {{ question.questionType }}</p>
-      <!-- <router-link
-        :to="{ name: 'NewAnswer', params: { questionId: questionId } }"
-      >
-        <button>New Answer</button>
-      </router-link> -->
-
-      <!-- u zavisnosti od tipa pitanja prikazace se jedno od ova 3 -->
-      <!-- <button
-        v-if="question.questionType == 'MULTIPLE_CHOICE'"
-        @click.prevent="addNewAnswer"
-      >
-        Newww Answer
-      </button> -->
 
       <router-link :to="{ name: 'EditQuestion', params: { questionId } }">
         <button>Edit</button>
@@ -26,64 +13,59 @@
     </div>
 
     <div class="answers">
-      <div v-for="(answer, index) in answers" :key="answer.id">
-        <!-- <div class="ans">
-          {{ index + 1 }}. {{ answer.answer }} -
+      <div v-if="question.questionType == 'MULTIPLE_CHOICE'">
+        <div v-for="(answer, index) in answers" :key="answer.id">
+          <div class="ans2">
+            <h2>{{ index + 1 }}.</h2>
+            <span />
 
-          <span style="color: green" v-if="answer.correct">&#10004;</span>
-          <span style="color: red" v-else>&#10007;</span>
+            <input type="text" v-model="answer.answer" />
 
-          <router-link
-            :to="{
-              name: 'EditAnswer',
-              params: { questionId, answerId: answer.id },
-            }"
-          >
-            <button>Edit</button>
-          </router-link>
+            <input
+              type="checkbox"
+              id="checkbox"
+              v-model="answer.correct"
+              placeholder="tacno?"
+            />
 
-          <button @click="deleteAnswer(answer.id)">Delete</button>
-        </div> -->
-
-        <div class="ans2">
-          <h2>{{ index + 1 }}.</h2>
-          <span />
-
-          <input type="text" v-model="answer.answer" />
-
-          <!-- <label for="checkbox">Tacno?</label> -->
-
-          <input
-            type="checkbox"
-            id="checkbox"
-            v-model="answer.correct"
-            placeholder="tacno?"
-          />
-
-          <!-- <span style="color: green" v-if="answer.correct">&#10004;</span>
+            <!-- <span style="color: green" v-if="answer.correct">&#10004;</span>
           <span style="color: red" v-else>&#10007;</span> -->
 
-          <button @click.prevent="updateAnswer(answer)">Save changes</button>
+            <button @click.prevent="updateAnswer(answer)">Save changes</button>
 
-          <button @click.prevent="deleteAnswer(answer.id)">
-            Delete answer
-          </button>
+            <button @click.prevent="deleteAnswer(answer.id)">
+              Delete answer
+            </button>
+          </div>
         </div>
+
+        <button @click.prevent="addNewAnswer">New Answer</button>
       </div>
 
-      <button
-        v-if="question.questionType == 'MULTIPLE_CHOICE'"
-        @click.prevent="addNewAnswer"
-      >
-        New Answer
-      </button>
+      <!-- ako je true false odgovor -->
+      <div v-else>
+        <div v-for="(answer, index) in answers" :key="answer.id">
+          <div class="ans2">
+            <h2>{{ index + 1 }}.</h2>
+            <span />
 
-      <div v-else-if="question.questionType == 'TRUE_FALSE'">
-        <input type="text" placeholder="correct" />
-        <input type="text" placeholder="not correct" />
-        <button>Save</button>
+            <input type="text" v-model="answer.answer" />
+
+            <input
+              type="radio"
+              id="correct"
+              :value="answer.correct"
+              v-model="answer.correct"
+              :checked="answer.correct"
+              disabled
+            />
+            <label for="correct">Correct?</label>
+          </div>
+        </div>
+        <button @click.prevent="updateTrueFalseAnswer(answers)">
+          Save changes
+        </button>
       </div>
-
     </div>
   </div>
 </template>
@@ -150,6 +132,14 @@ export default {
       await editById("answers", answer.id, answer);
     };
 
+    const updateTrueFalseAnswer = async (answers) => {
+      console.log(answers);
+
+      for (let i = 0; i < answers.length; i++) {
+        updateAnswer(answers[i]);
+      }
+    };
+
     onMounted(() => {
       getQuestion();
       getAnswersForQuestion();
@@ -162,6 +152,7 @@ export default {
       deleteAnswer,
       addNewAnswer,
       updateAnswer,
+      updateTrueFalseAnswer,
     };
   },
 };
@@ -194,7 +185,8 @@ export default {
   align-items: center;
 }
 
-input[type="checkbox"] {
+input[type="checkbox"],
+input[type="radio"] {
   width: 50px;
 }
 
@@ -202,20 +194,9 @@ input[type="text"] {
   margin: 10px;
 }
 
-.ch {
-  background: saddlebrown;
-  margin: 0px;
-}
-
 .correct-div {
   display: flex;
   align-items: center;
   margin: 0px;
-}
-
-.new-ans-form-div {
-  background: aqua;
-  margin: 30px;
-  padding: 10px;
 }
 </style>
