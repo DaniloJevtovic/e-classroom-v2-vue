@@ -5,6 +5,7 @@
       <h1 v-else>Your Score: {{ result.points }} points / ?</h1> -->
 
       <h1>Score: {{ result.points }} points / ?</h1>
+      <button v-if="checkLoggedUser()">Edit points</button>
     </div>
 
     <student-res-questions :quizId="result.quiz.id" :resId="result.id">
@@ -18,10 +19,27 @@
 import StudentResQuestions from "./StudentResQuestions.vue";
 import StudentResComments from "./StudentResComments.vue";
 
+import { useStore } from "vuex";
+
 export default {
   props: ["result"],
   components: { StudentResQuestions, StudentResComments },
-  setup() {},
+  setup() {
+    const store = useStore();
+
+    const checkLoggedUser = () => {
+      let loggedUser = store.getters["getLoggedUser"];
+
+      if (loggedUser.authorities[0].authority == "ROLE_TEACHER") {
+        console.log(loggedUser);
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    return { checkLoggedUser };
+  },
 };
 </script>
 
