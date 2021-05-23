@@ -135,6 +135,22 @@ export default {
 
       let res = await save("questions", question);
 
+      //kad kreiram true/false pitanje odmah za njega kreiram i 2 odgovora
+      //jedan tacan a drugi netacan
+      if (res.questionType === "TRUE_FALSE") {
+        await save("answers", {
+          answer: "",
+          correct: true,
+          questionId: res.id,
+        });
+
+        await save("answers", {
+          answer: "",
+          correct: false,
+          questionId: res.id,
+        });
+      }
+
       //console.log("odg", res);
       questions.value.push(res);
 
