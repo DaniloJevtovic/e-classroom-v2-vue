@@ -3,11 +3,20 @@
     <div class="question">
       <h2>Question: {{ question.question }}</h2>
       <h3>Points: {{ question.points }}</h3>
-      <router-link
+      <p>Type: {{ question.questionType }}</p>
+      <!-- <router-link
         :to="{ name: 'NewAnswer', params: { questionId: questionId } }"
       >
         <button>New Answer</button>
-      </router-link>
+      </router-link> -->
+
+      <!-- u zavisnosti od tipa pitanja prikazace se jedno od ova 3 -->
+      <!-- <button
+        v-if="question.questionType == 'MULTIPLE_CHOICE'"
+        @click.prevent="addNewAnswer"
+      >
+        Newww Answer
+      </button> -->
 
       <router-link :to="{ name: 'EditQuestion', params: { questionId } }">
         <button>Edit</button>
@@ -15,24 +24,66 @@
 
       <button @click="deleteQuestion(questionId)">Delete</button>
     </div>
-    <div class="answers" v-for="(answer, index) in answers" :key="answer.id">
-      <div class="ans">
-        {{ index + 1 }}. {{ answer.answer }} -
 
-        <span style="color: green" v-if="answer.correct">&#10004;</span>
-        <span style="color: red" v-else>&#10007;</span>
+    <div class="answers">
+      <div v-for="(answer, index) in answers" :key="answer.id">
+        <!-- <div class="ans">
+          {{ index + 1 }}. {{ answer.answer }} -
 
-        <router-link
-          :to="{
-            name: 'EditAnswer',
-            params: { questionId, answerId: answer.id },
-          }"
-        >
-          <button>Edit</button>
-        </router-link>
+          <span style="color: green" v-if="answer.correct">&#10004;</span>
+          <span style="color: red" v-else>&#10007;</span>
 
-        <button @click="deleteAnswer(answer.id)">Delete</button>
+          <router-link
+            :to="{
+              name: 'EditAnswer',
+              params: { questionId, answerId: answer.id },
+            }"
+          >
+            <button>Edit</button>
+          </router-link>
+
+          <button @click="deleteAnswer(answer.id)">Delete</button>
+        </div> -->
+
+        <div class="ans2">
+          <h2>{{ index + 1 }}.</h2>
+          <span />
+
+          <input type="text" v-model="answer.answer" />
+
+          <!-- <label for="checkbox">Tacno?</label> -->
+
+          <input
+            type="checkbox"
+            id="checkbox"
+            v-model="answer.correct"
+            placeholder="tacno?"
+          />
+
+          <!-- <span style="color: green" v-if="answer.correct">&#10004;</span>
+          <span style="color: red" v-else>&#10007;</span> -->
+
+          <button @click.prevent="updateAnswer(answer)">Save changes</button>
+
+          <button @click.prevent="deleteAnswer(answer.id)">
+            Delete answer
+          </button>
+        </div>
       </div>
+
+      <button
+        v-if="question.questionType == 'MULTIPLE_CHOICE'"
+        @click.prevent="addNewAnswer"
+      >
+        New Answer
+      </button>
+
+      <div v-else-if="question.questionType == 'TRUE_FALSE'">
+        <input type="text" placeholder="correct" />
+        <input type="text" placeholder="not correct" />
+        <button>Save</button>
+      </div>
+
     </div>
   </div>
 </template>
@@ -44,7 +95,7 @@ import useCRUD from "@/composables/useCRUD.js";
 export default {
   props: ["questionId"],
   setup(props, context) {
-    const { getById, getSubItems, deleteById } = useCRUD();
+    const { getById, getSubItems, deleteById, save, editById } = useCRUD();
 
     const question = ref("");
 
@@ -84,17 +135,39 @@ export default {
       }
     };
 
+    //dodaje prazan odgovor na bekend i u listu odgovora
+    const addNewAnswer = async () => {
+      let res = await save("answers", {
+        answer: "",
+        correct: "",
+        questionId: props.questionId,
+      });
+      answers.value.push(res);
+    };
+
+    const updateAnswer = async (answer) => {
+      console.log(answer);
+      await editById("answers", answer.id, answer);
+    };
+
     onMounted(() => {
       getQuestion();
       getAnswersForQuestion();
     });
 
-    return { question, answers, deleteQuestion, deleteAnswer };
+    return {
+      question,
+      answers,
+      deleteQuestion,
+      deleteAnswer,
+      addNewAnswer,
+      updateAnswer,
+    };
   },
 };
 </script>
 
-<style>
+<style scoped>
 .question-details {
   padding: 20px;
   border: 2px solid indigo;
@@ -111,5 +184,38 @@ export default {
 .ans {
   background: rgb(255, 224, 50);
   margin: 3px;
+}
+
+.ans2 {
+  padding: 5px;
+  background: rgb(89, 133, 184);
+  margin: 3px;
+  display: flex;
+  align-items: center;
+}
+
+input[type="checkbox"] {
+  width: 50px;
+}
+
+input[type="text"] {
+  margin: 10px;
+}
+
+.ch {
+  background: saddlebrown;
+  margin: 0px;
+}
+
+.correct-div {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+}
+
+.new-ans-form-div {
+  background: aqua;
+  margin: 30px;
+  padding: 10px;
 }
 </style>
