@@ -40,7 +40,7 @@
       </div>
 
       <!-- ako je true false odgovor -->
-      <div v-else>
+      <div v-else-if="question.questionType == 'TRUE_FALSE'">
         <div v-for="(answer, index) in answers" :key="answer.id">
           <div class="ans2">
             <h2>{{ index + 1 }}.</h2>
@@ -62,6 +62,10 @@
         <button @click.prevent="updateTrueFalseAnswer(answers)">
           Save changes
         </button>
+      </div>
+
+      <div v-else>
+        
       </div>
     </div>
   </div>
