@@ -1,19 +1,29 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <h2>Edit Quiz</h2>
+    <h2>Quiz details</h2>
     <input type="text" v-model="quiz.name" placeholder="name" required />
     <textarea
       rows="3"
       v-model="quiz.instructions"
       placeholder="instructions"
     ></textarea>
-    <input
+   
+
+    <div class="status-duration">
+       <input
       type="number"
       v-model="quiz.duration"
       placeholder="duration"
       required
     />
+
+    <select>
+      <option value="Select status">Status</option>
+    </select>
+    </div>
+
     <button>Save</button>
+    <button @click.prevent="deleteQuiz(quiz.course.id)">Delete</button>
   </form>
 </template>
 
@@ -25,7 +35,7 @@ import { useRouter } from "vue-router";
 export default {
   props: ["quizId"],
   setup(props) {
-    const { getById, editById } = useCRUD();
+    const { getById, editById, deleteById } = useCRUD();
     const router = useRouter();
 
     const quiz = ref("");
@@ -42,10 +52,26 @@ export default {
 
       router.push({ name: "QuizDetails", params: { quizId: props.quizId } });
     };
-    return { quiz, handleSubmit };
+
+    const deleteQuiz = async (courseId) => {
+      await deleteById("quizzes", props.quizId);
+      router.push({ name: "MyCourseDetails", params: { id: courseId } });
+    };
+
+    return { quiz, handleSubmit, deleteQuiz };
   },
 };
 </script>
 
-<style>
+<style scoped>
+.status-duration {
+  display: flex;
+  gap: 1rem;
+}
+
+form {
+  background: red;
+  min-width: 10%;
+}
+
 </style>
