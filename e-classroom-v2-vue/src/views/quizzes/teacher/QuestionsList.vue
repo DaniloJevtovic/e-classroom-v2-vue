@@ -1,34 +1,47 @@
 <template>
-  <div class="questions">
-    <h1>Questions</h1>
+  <div class="questions-list">
+    <h2>Questions ({{ questions.length }})</h2>
 
-    <div v-for="question in questions" :key="question.id">
+    <div v-for="(question, index) in questions" :key="question.id">
       <question-details
         :questionId="question.id"
+        :questionIndex="index"
         @deleteFromList="deleteQuestion"
       ></question-details>
     </div>
-    <button @click="addNewQuestionForm">New Question 222</button>
+
+    <button @click="addNewQuestion">New Question</button>
   </div>
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
+
 import QuestionDetails from "./QuestionDetails.vue";
-import { useRouter } from "vue-router";
 
 export default {
   props: ["quizId"],
   components: { QuestionDetails },
   setup(props) {
-    const { getById, getSubItems, deleteById, save } = useCRUD();
-    const router = useRouter();
+    const {getSubItems, save } = useCRUD();
+
 
     const questions = ref([]);
 
     const getQuestionsForQuiz = async () => {
       questions.value = await getSubItems("questions", "quiz", props.quizId);
+    };
+
+    const addNewQuestion = async () => {
+      let res = await save("questions", {
+        question: "",
+        points: "0",
+        questionType: "MULTIPLE_CHOICE",
+        quizId: props.quizId,
+      });
+
+      questions.value.push(res);
     };
 
     //brisanje iz liste (prikaz) - brisanje na bekendu je u question details komponenti!
@@ -41,13 +54,14 @@ export default {
       getQuestionsForQuiz();
     });
 
-    return { questions, deleteQuestion };
+    return { questions, deleteQuestion, addNewQuestion };
   },
 };
 </script>
 
 <style scoped>
-.questions {
-  padding: 30px;
+.questions-list {
+  padding: 10px;
+  margin: 10px;
 }
 </style>
