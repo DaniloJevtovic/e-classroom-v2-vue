@@ -6,20 +6,22 @@
 
     <div class="st-qq">
       <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
-        <router-link
-          :to="{
-            name: 'StudentQuizDetails',
-            params: { id: id, quizId: quiz.id },
-          }"
-        >
-          <div class="st-quiz-det">
-            <h2>Quiz Name: {{ quiz.name }}</h2>
-            <h3>Instruction: {{ quiz.instructions }}</h3>
-            <h4>Duration: {{ quiz.duration }} minutes.</h4>
-          </div>
+        <div v-if="quiz.quizStatus != 'INACTIVE'">
+          <router-link
+            :to="{
+              name: 'StudentQuizDetails',
+              params: { id: id, quizId: quiz.id },
+            }"
+          >
+            <div class="st-quiz-det">
+              <h2>Quiz Name: {{ quiz.name }}</h2>
+              <h3>Instruction: {{ quiz.instructions }}</h3>
+              <h4>Duration: {{ quiz.duration }} minutes.</h4>
+            </div>
 
-          <student-quizzes-ress :quizId="quiz.id"></student-quizzes-ress>
-        </router-link>
+            <student-quizzes-ress :quizId="quiz.id"></student-quizzes-ress>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
