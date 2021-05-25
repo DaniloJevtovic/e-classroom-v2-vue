@@ -1,73 +1,38 @@
 <template>
   <div class="question-details">
     <div class="question">
-      <h2>Question: {{ question.question }}</h2>
-      <h3>Points: {{ question.points }}</h3>
-      <p>Type: {{ question.questionType }}</p>
+      <form @submit.prevent="handleSubmit">
+        <h2>Question {{ questionIndex + 1 }}.</h2>
+        <textarea
+          rows="2"
+          v-model="question.question"
+          placeholder="enter question"
+          required
+        >
+        </textarea>
 
-      <router-link :to="{ name: 'EditQuestion', params: { questionId } }">
-        <button>Edit</button>
-      </router-link>
+        <div class="points-type">
+          <input
+            type="number"
+            v-model="question.points"
+            placeholder="points"
+            required
+          />
 
-      <button @click="deleteQuestion(questionId)">Delete</button>
-    </div>
-
-    <div class="answers">
-      <div v-if="question.questionType == 'MULTIPLE_CHOICE'">
-        <div v-for="(answer, index) in answers" :key="answer.id">
-          <div class="ans2">
-            <h2>{{ index + 1 }}.</h2>
-            <span />
-
-            <input type="text" v-model="answer.answer" />
-
-            <input
-              type="checkbox"
-              id="checkbox"
-              v-model="answer.correct"
-              placeholder="tacno?"
-            />
-
-            <button @click.prevent="updateAnswer(answer)">Save changes</button>
-
-            <button @click.prevent="deleteAnswer(answer.id)">
-              Delete answer
-            </button>
-          </div>
+          <select>
+            <option value="type">Multiple choice</option>
+            <option value="type">True / False</option>
+            <option value="type">Fill</option>
+          </select>
         </div>
 
-        <button @click.prevent="addNewAnswer">New Answer</button>
-      </div>
-
-      <!-- ako je true false odgovor -->
-      <div v-else-if="question.questionType == 'TRUE_FALSE'">
-        <div v-for="(answer, index) in answers" :key="answer.id">
-          <div class="ans2">
-            <h2>{{ index + 1 }}.</h2>
-            <span />
-
-            <input type="text" v-model="answer.answer" />
-
-            <input
-              type="radio"
-              id="correct"
-              :value="answer.correct"
-              v-model="answer.correct"
-              :checked="answer.correct"
-              disabled
-            />
-            <label for="correct">Correct?</label>
-          </div>
-        </div>
-        <button @click.prevent="updateTrueFalseAnswer(answers)">
-          Save changes
-        </button>
-      </div>
-
-      <div v-else>
-        
-      </div>
+        <button>Save</button>
+        <button @click.prevent="deleteQuestion(questionId)">Delete</button>
+      </form>
     </div>
+
+    <!-- lista odgovora za pitanje -->
+    <answers-list :questionId="questionId"></answers-list>
   </div>
 </template>
 
@@ -75,10 +40,13 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 
+import AnswersList from "./AnswersList.vue";
+
 export default {
-  props: ["questionId"],
+  props: ["questionId", "questionIndex"],
+  components: { AnswersList },
   setup(props, context) {
-    const { getById, getSubItems, deleteById, save, editById } = useCRUD();
+    const { getById, deleteById, editById } = useCRUD();
 
     const question = ref("");
 
@@ -86,14 +54,8 @@ export default {
       question.value = await getById("questions", props.questionId);
     };
 
-    const answers = ref([]);
-
-    const getAnswersForQuestion = async () => {
-      answers.value = await getSubItems(
-        "answers",
-        "question",
-        props.questionId
-      );
+    const handleSubmit = async () => {
+      await editById("questions", props.questionId, question.value);
     };
 
     const deleteQuestion = async (id) => {
@@ -109,52 +71,11 @@ export default {
       }
     };
 
-    const deleteAnswer = async (id) => {
-      if (confirm("Da li ste sigurni da zelite obrisati odgovor?")) {
-        await deleteById("answers", id);
-
-        let index = answers.value.findIndex((answer) => answer.id === id);
-        answers.value.splice(index, 1);
-      }
-    };
-
-    //dodaje prazan odgovor na bekend i u listu odgovora
-    const addNewAnswer = async () => {
-      let res = await save("answers", {
-        answer: "",
-        correct: "",
-        questionId: props.questionId,
-      });
-      answers.value.push(res);
-    };
-
-    const updateAnswer = async (answer) => {
-      console.log(answer);
-      await editById("answers", answer.id, answer);
-    };
-
-    const updateTrueFalseAnswer = async (answers) => {
-      console.log(answers);
-
-      for (let i = 0; i < answers.length; i++) {
-        updateAnswer(answers[i]);
-      }
-    };
-
     onMounted(() => {
       getQuestion();
-      getAnswersForQuestion();
     });
 
-    return {
-      question,
-      answers,
-      deleteQuestion,
-      deleteAnswer,
-      addNewAnswer,
-      updateAnswer,
-      updateTrueFalseAnswer,
-    };
+    return { question, deleteQuestion, handleSubmit };
   },
 };
 </script>
@@ -164,34 +85,20 @@ export default {
   padding: 20px;
   border: 2px solid indigo;
   border-radius: 10px;
+  margin: 10px;
 }
 
 .question {
   background: cyan;
 }
-.answers {
-  background: rgb(157, 255, 0);
+
+form {
+  /* min-width: 90%; */
+  max-width: 100%;
 }
 
-.ans {
-  background: rgb(255, 224, 50);
-  margin: 3px;
-}
-
-.ans2 {
-  padding: 5px;
-  background: rgb(89, 133, 184);
-  margin: 3px;
+.points-type {
   display: flex;
-  align-items: center;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-  width: 50px;
-}
-
-input[type="text"] {
-  margin: 10px;
+  gap: 1rem;
 }
 </style>
