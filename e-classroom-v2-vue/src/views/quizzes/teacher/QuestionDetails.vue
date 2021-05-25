@@ -19,10 +19,10 @@
             required
           />
 
-          <select>
-            <option value="type">Multiple choice</option>
-            <option value="type">True / False</option>
-            <option value="type">Fill</option>
+          <select v-model="question.questionType" required>
+            <option value="MULTIPLE_CHOICE">Multiple choice</option>
+            <option value="TRUE_FALSE">True / False</option>
+            <option value="FILL">Fill</option>
           </select>
         </div>
 
@@ -55,6 +55,7 @@ export default {
     };
 
     const handleSubmit = async () => {
+      console.log(question.value)
       await editById("questions", props.questionId, question.value);
     };
 
