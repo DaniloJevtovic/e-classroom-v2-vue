@@ -16,9 +16,8 @@ import MaterialDetails from "../views/materials/teacher/MaterialDetails.vue";
 
 import NewQuiz from "../views/quizzes/teacher/NewQuiz.vue";
 import QuizDetails from "../views/quizzes/teacher/QuizDetails.vue";
-import QuizInfoEdit from "../views/quizzes/teacher/QuizInfoEdit.vue";
 import NewQuestion from "../views/quizzes/teacher/NewQuestion.vue";
-import QuestionInfoEdit from "../views/quizzes/teacher/QuestionInfoEdit.vue";
+// import QuestionInfoEdit from "../views/quizzes/teacher/QuestionInfoEdit.vue";
 import NewAnswer from "../views/quizzes/teacher/NewAnswer.vue";
 import EditAnswer from "../views/quizzes/teacher/EditAnswer.vue";
 
@@ -121,23 +120,17 @@ export default [
     props: true,
   },
   {
-    path: "/myCourse/:id/editQuiz/:quizId",
-    name: "EditQuiz",
-    component: QuizInfoEdit,
-    props: true,
-  },
-  {
     path: "/myCourse/:id/quizDetails/:quizId/newQuestion",
     name: "NewQuestion",
     component: NewQuestion,
     props: true,
   },
-  {
-    path: "/myCourse/:id/quizDetails/:quizId/eitQuestion/:questionId",
-    name: "EditQuestion",
-    component: QuestionInfoEdit,
-    props: true,
-  },
+  // {
+  //   path: "/myCourse/:id/quizDetails/:quizId/eitQuestion/:questionId",
+  //   name: "EditQuestion",
+  //   component: QuestionInfoEdit,
+  //   props: true,
+  // },
   {
     path: "/myCourse/:id/quizDetails/:quizId/question/:questionId/newAnswer",
     name: "NewAnswer",
