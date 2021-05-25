@@ -16,9 +16,9 @@ import MaterialDetails from "../views/materials/teacher/MaterialDetails.vue";
 
 import NewQuiz from "../views/quizzes/teacher/NewQuiz.vue";
 import QuizDetails from "../views/quizzes/teacher/QuizDetails.vue";
-import EditQuiz from "../views/quizzes/teacher/EditQuiz.vue";
+import QuizInfoEdit from "../views/quizzes/teacher/QuizInfoEdit.vue";
 import NewQuestion from "../views/quizzes/teacher/NewQuestion.vue";
-import EditQuestion from "../views/quizzes/teacher/EditQuestion.vue";
+import QuestionInfoEdit from "../views/quizzes/teacher/QuestionInfoEdit.vue";
 import NewAnswer from "../views/quizzes/teacher/NewAnswer.vue";
 import EditAnswer from "../views/quizzes/teacher/EditAnswer.vue";
 
@@ -123,7 +123,7 @@ export default [
   {
     path: "/myCourse/:id/editQuiz/:quizId",
     name: "EditQuiz",
-    component: EditQuiz,
+    component: QuizInfoEdit,
     props: true,
   },
   {
@@ -135,7 +135,7 @@ export default [
   {
     path: "/myCourse/:id/quizDetails/:quizId/eitQuestion/:questionId",
     name: "EditQuestion",
-    component: EditQuestion,
+    component: QuestionInfoEdit,
     props: true,
   },
   {
