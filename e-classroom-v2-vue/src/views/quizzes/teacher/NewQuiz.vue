@@ -3,7 +3,7 @@
     <h2>New Quiz</h2>
     <input type="text" v-model="newQuiz.name" placeholder="name" required />
     <textarea
-      rows="3"
+      rows="5"
       v-model="newQuiz.instructions"
       placeholder="instructions"
     ></textarea>
@@ -41,14 +41,18 @@ export default {
       const res = await save("quizzes", newQuiz);
 
       //preusmjerim ga na detalje kviza gdje mogu da mjenjam kviz i dodajem pitanja
-      router.push({name: 'QuizDetails', params: { id: props.id, quizId: res.id } })
+      // router.push({name: 'QuizDetails', params: { id: props.id, quizId: res.id } })
 
-      //router.go(-1);
+      router.go(-1);
     };
     return { newQuiz, handleSubmit };
   },
 };
 </script>
 
-<style>
+<style scoped>
+
+form {
+ min-width: 80%;
+}
 </style>
