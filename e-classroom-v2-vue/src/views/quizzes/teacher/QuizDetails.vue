@@ -22,8 +22,12 @@
               required
             />
 
-            <select>
-              <option value="Select status">Status</option>
+            <select v-model="quiz.quizStatus" required>
+              <option value="INACTIVE">Inactive</option>
+              <option value="ACTIVE">Active</option>
+              <option value="FINISHED">Finished</option>
+              <option value="DELETED">Deleted</option>
+              
             </select>
           </div>
 
