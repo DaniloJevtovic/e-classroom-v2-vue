@@ -62,7 +62,7 @@ export default {
       if (
         confirm(
           "Da li ste sigurni da zelite obrisati pitanje?" +
-            "Brisanjem pitanja brisu se i svi odgovori za pitanje!"
+            " Brisanjem pitanja brisu se i svi odgovori za pitanje!"
         )
       ) {
         await deleteById("questions", id);
