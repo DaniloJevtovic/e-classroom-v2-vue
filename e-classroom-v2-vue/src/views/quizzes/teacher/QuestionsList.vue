@@ -24,8 +24,7 @@ export default {
   props: ["quizId"],
   components: { QuestionDetails },
   setup(props) {
-    const {getSubItems, save } = useCRUD();
-
+    const { getSubItems, save } = useCRUD();
 
     const questions = ref([]);
 
