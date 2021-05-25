@@ -6,12 +6,12 @@ import SentMessages from "../views/messages/SentMessages.vue";
 import MessageDetails from "../views/messages/MessageDetails.vue";
 
 export default [
-  {
-    path: "/newMessage",
-    name: "NewMessageSelectUser",
-    component: NewMessageSelectUser,
-    props: true,
-  },
+  // {
+  //   path: "/newMessage",
+  //   name: "NewMessageSelectUser",
+  //   component: NewMessageSelectUser,
+  //   props: true,
+  // },
   {
     //path: "/sender/:senderId/newMessage/reciver/:reciverId",
     path: "/newMessage/reciver/:reciverId",
@@ -26,6 +26,12 @@ export default [
     redirect: { name: "RecivedMessages" },
     props: true,
     children: [
+      {
+        path: "/newMessage",
+        name: "NewMessageSelectUser",
+        component: NewMessageSelectUser,
+        props: true,
+      },
       {
         path: "recived",
         name: "RecivedMessages",

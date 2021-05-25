@@ -67,6 +67,6 @@ export default {
 
 <style scoped>
 form {
-  min-width: 800px;
+  max-width: 100%;
 }
 </style>
