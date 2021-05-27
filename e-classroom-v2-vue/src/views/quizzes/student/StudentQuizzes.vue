@@ -6,7 +6,7 @@
 
     <div class="st-qq">
       <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
-        <div v-if="quiz.quizStatus != 'INACTIVE'">
+        <div v-if="quiz.quizStatus == 'ACTIVE'">
           <router-link
             :to="{
               name: 'StudentQuizDetails',
@@ -67,7 +67,6 @@ export default {
 
 .quizzes {
   background: rgb(3, 3, 39);
-  color: springgreen;
   padding: 8px;
   margin: 10px;
 }
