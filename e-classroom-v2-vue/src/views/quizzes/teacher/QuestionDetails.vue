@@ -33,6 +33,7 @@
 
     <!-- lista odgovora za pitanje -->
     <answers-list :questionId="questionId"></answers-list>
+
   </div>
 </template>
 
@@ -49,14 +50,30 @@ export default {
     const { getById, deleteById, editById } = useCRUD();
 
     const question = ref("");
+    const oldType = ref("");
 
     const getQuestion = async () => {
       question.value = await getById("questions", props.questionId);
+      oldType.value = question.value.questionType;
     };
 
     const handleSubmit = async () => {
-      console.log(question.value)
-      await editById("questions", props.questionId, question.value);
+      let res = await editById("questions", props.questionId, question.value);
+
+      //ovdje bi trebalo kad se sacuvaju izmjene da ukoliko se promjeni tip pitanja
+      //obrisu se predhodni odgovori. npr. ako je bio multiple choice a promjeni se na true/false
+      //da se obrisu svi odgovori i kreiraju 2 nova pitanja - jedno true drugo false. ili ako je
+      //odgovor da se dopuni da se obrisu svi odgovori za to pitanje
+
+      if (oldType.value != res.questionType) {
+        //brisanje odgovora ako je promjenjen tip pitanja
+
+        //ako je tip pitanja true false kreiranje 2 nova prazna odg - jedan true drugi false
+        if (res.questionType === "TRUE_FALSE") {
+        }
+      }
+
+      oldType.value = res.questionType;
     };
 
     const deleteQuestion = async (id) => {
