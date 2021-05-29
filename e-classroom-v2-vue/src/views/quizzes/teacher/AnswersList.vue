@@ -10,15 +10,19 @@
             @delAnsFromList="deleteAnswer"
           ></answer-details>
         </div>
-
-        <button @click.prevent="addNewAnswer">New Answer</button>
       </div>
+      <button
+        v-if="question.questionType === 'MULTIPLE_CHOICE'"
+        @click.prevent="addNewAnswer"
+      >
+        New Answer
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 
 import AnswerDetails from "./AnswerDetails.vue";
@@ -27,9 +31,18 @@ export default {
   props: ["questionId"],
   components: { AnswerDetails },
   setup(props) {
-    const { getSubItems, save } = useCRUD();
+    const { getSubItems, save, getById } = useCRUD();
 
+    const question = ref("");
     const answers = ref([]);
+
+    const getQuestion = async () => {
+      question.value = await getById("questions", props.questionId);
+    };
+
+    computed(()=> {
+      getQuestion();
+    })
 
     const getAnswersForQuestion = async () => {
       answers.value = await getSubItems(
@@ -56,10 +69,12 @@ export default {
     };
 
     onMounted(() => {
+      getQuestion();
       getAnswersForQuestion();
     });
 
     return {
+      question,
       answers,
       addNewAnswer,
       deleteAnswer,

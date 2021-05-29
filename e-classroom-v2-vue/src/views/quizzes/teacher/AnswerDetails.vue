@@ -17,7 +17,7 @@
       <button @click.prevent="deleteAnswer(answer.id)">Delete answer</button>
     </div>
 
-    <div v-else-if="answer.question.questionType == 'TRUE_FALSE'" class="ans2">
+    <div v-else-if="answer.question.questionType == 'TRUE_FALSE'" class="ans2"> 
       <h2>{{ answerIndex + 1 }}.</h2>
       <span />
 
