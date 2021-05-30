@@ -20,8 +20,8 @@ import EditSchoolClass from "../views/schoolClasses/EditSchoolClass.vue";
 
 import AllStudentClasses from "../views/studentClasses/AllStudentClasses.vue";
 import StudentClassDetails from "../views/studentClasses/StudentClassDetails.vue";
-import NewStudentClass from "../views/studentClasses/NewStudentClass.vue";
-import EditStudentClass from "../views/studentClasses/EditStudentClass.vue";
+import NewStudentClass from "../views/studentClasses/admin/NewStudentClass.vue";
+import EditStudentClass from "../views/studentClasses/admin/EditStudentClass.vue";
 import CoursesForScClass from "../views/courses/admin/CoursesForScClass.vue";
 import CourseDetailsForScClass from "../views/courses/admin/CourseDetailsForScClass.vue";
 import StClassesForScClass from "../views/studentClasses/StClassesForScClass.vue";
