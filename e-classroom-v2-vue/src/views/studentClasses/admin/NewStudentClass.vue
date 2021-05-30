@@ -18,7 +18,7 @@
 <script>
 import { reactive, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import useCRUD from "../../composables/useCRUD.js";
+import useCRUD from "../../../composables/useCRUD.js";
 
 export default {
   props: ["id"],
