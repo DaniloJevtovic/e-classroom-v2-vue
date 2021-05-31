@@ -13,7 +13,7 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import useCRUD from "../../composables/useCRUD.js";
+import useCRUD from "../../../composables/useCRUD.js";
 
 export default {
   setup() {
