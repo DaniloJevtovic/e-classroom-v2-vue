@@ -18,7 +18,7 @@ import SchoolClassDetails from "../views/schoolClasses/SchoolClassDetails.vue";
 import NewSchoolClass from "../views/schoolClasses/NewSchoolClass.vue";
 import EditSchoolClass from "../views/schoolClasses/EditSchoolClass.vue";
 
-import AllStudentClasses from "../views/studentClasses/AllStudentClasses.vue";
+import AllStudentClasses from "../views/studentClasses/admin/AllStudentClasses.vue";
 import StudentClassDetails from "../views/studentClasses/StudentClassDetails.vue";
 import NewStudentClass from "../views/studentClasses/admin/NewStudentClass.vue";
 import EditStudentClass from "../views/studentClasses/admin/EditStudentClass.vue";
