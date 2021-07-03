@@ -4,6 +4,7 @@
       <h2>New Assignment</h2>
       <input type="text" placeholder="name" />
       <textarea rows="5" placeholder="instructions"></textarea>
+      <input type="number" placeholder="points" />
       <button>Save</button>
       <button @click.prevent="$router.go(-1)">Cancel</button>
     </form>
