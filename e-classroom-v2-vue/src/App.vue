@@ -10,9 +10,9 @@ export default {
   components: {
     Navbar,
   },
-  created() {
-    this.$store.dispatch("loginRefresh");
-  },
+  // created() {
+  //   this.$store.dispatch("loginRefresh");
+  // },
   setup() {},
 };
 </script>
