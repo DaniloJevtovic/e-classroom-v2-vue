@@ -10,6 +10,7 @@ import Home from "../views/Home.vue";
 
 import Login from "../views/auth/Login.vue";
 import Signup from "../views/auth/Signup.vue";
+import UserProfile from '../views/users/UserProfile.vue'
 
 const routes = [
   ...adminRoutes,
@@ -32,6 +33,11 @@ const routes = [
     name: "Signup",
     component: Signup,
   },
+  {
+    path: "/userProfile", 
+    name: "UserProfile",
+    component: UserProfile
+  }
 ];
 
 const router = createRouter({
