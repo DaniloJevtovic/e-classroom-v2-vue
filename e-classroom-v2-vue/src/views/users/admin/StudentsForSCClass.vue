@@ -13,9 +13,11 @@
           <router-link
             :to="{ name: 'StDetailsAdmin', params: { studId: student.id } }"
           >
-            <h3>
-              {{ index + 1 }}. {{ student.firstName }} {{ student.lastName }}
-            </h3>
+            <div class="student">
+              <h3>
+                {{ index + 1 }}. {{ student.firstName }} {{ student.lastName }}
+              </h3>
+            </div>
           </router-link>
         </div>
       </div>
@@ -50,4 +52,11 @@ export default {
 /* .stsForClass {
   background: oldlace;
 } */
+
+.student {
+  color: darkblue;
+  background: cyan;
+  border-radius: 10px;
+  margin: 10px;
+}
 </style>

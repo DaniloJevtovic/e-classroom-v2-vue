@@ -1,6 +1,6 @@
 <template>
   <div class="users-info">
-    <h1>All users</h1>
+    <h2>All users</h2>
     <h2>Number of users: {{ users.length }}</h2>
     <router-link :to="{ name: 'NewTeacher' }">
       <button>New teacher</button>
@@ -9,19 +9,22 @@
       <button>New student</button>
     </router-link>
   </div>
-  <div class="users" v-for="user in users" :key="user.id">
-    <div class="user">
-      <h1>Full Name: {{ user.firstName }} {{ user.lastName }}</h1>
-      <h2>Email: {{ user.email }}</h2>
-      <h3>Role: {{ user.authorities[0].authority }}</h3>
-      <router-link
-        :to="{
-          name: 'NewMessage',
-          params: { reciverId: user.id },
-        }"
-      >
-        <button>Send message</button>
-      </router-link>
+
+  <div class="users">
+    <div v-for="user in users" :key="user.id">
+      <div class="user">
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <h2>Email: {{ user.email }}</h2>
+        <h3>Role: {{ user.authorities[0].authority }}</h3>
+        <router-link
+          :to="{
+            name: 'NewMessage',
+            params: { reciverId: user.id },
+          }"
+        >
+          <button>Send message</button>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -48,15 +51,19 @@ export default {
 
 <style scoped>
 .users-info {
-  background: darkkhaki;
+  background: rgb(66, 116, 136);
   padding: 10px;
 }
 .users {
   background: blue;
-  padding: 10px;
+  padding: 3px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .user {
   background: white;
-  padding: 10px;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 10px;
 }
 </style>

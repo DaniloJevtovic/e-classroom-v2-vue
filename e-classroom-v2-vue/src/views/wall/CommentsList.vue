@@ -87,13 +87,13 @@ export default {
 }
 
 .coments-list {
-  background: red;
+  background: rgb(13, 32, 27);
   padding: 5px;
   border: 1px solid oldlace;
 }
 
 .comment {
-  background: rgb(96, 244, 207);
+  background: rgb(83, 107, 101);
   margin: 5px;
   display: flex;
   padding: 4px;

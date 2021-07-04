@@ -102,7 +102,7 @@ export default {
 <style scoped>
 .posts-list {
   padding: 5px;
-  background: wheat;
+  background: rgb(33, 28, 104);
 }
 
 /* new post */
@@ -130,7 +130,7 @@ export default {
 }
 
 .post {
-  background: yellow;
+  background: rgb(2, 14, 124);
   border: 1px solid rgb(145, 255, 0);
   margin: 8px;
   border-radius: 7px;
@@ -141,7 +141,7 @@ export default {
   border: 3px solid indigo;
   padding: 10px;
   margin: 0px 10px 4px;
-  background: rgb(17, 169, 189);
+  background: rgb(17, 77, 189);
   color: white;
   display: flex;
   align-items: center;
