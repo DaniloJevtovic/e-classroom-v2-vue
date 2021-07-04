@@ -32,12 +32,14 @@
 import { onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import useCRUD from "@/composables/useCRUD.js";
+import { useToast } from "vue-toastification";
 
 export default {
   props: ["scClassId"],
   setup(props) {
     const { getAll, save, getById } = useCRUD();
     const router = useRouter();
+    const toast = useToast();
 
     const teachers = ref([]);
     const scClass = ref("");
@@ -63,7 +65,10 @@ export default {
     });
 
     const handleSubmit = async () => {
-      await save("courses", course);
+      let res = await save("courses", course);
+      toast.info(res, {
+        timeout: 2000,
+      });
       router.go(-1);
     };
 
