@@ -55,7 +55,8 @@ export default {
 }
 
 .message {
-  background: skyblue;
+  color: hotpink;
+  background: rgb(64, 5, 71);
   border: 2px solid violet;
   margin: 5px;
   padding: 10px;

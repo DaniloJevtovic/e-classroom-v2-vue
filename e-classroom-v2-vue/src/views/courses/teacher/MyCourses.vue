@@ -45,9 +45,10 @@ export default {
 
 <style scoped>
 .st-course {
-  border: 2px solid orange;
   padding: 5px;
-  color: rgb(214, 211, 236);
+  /* color: rgb(229, 229, 231); */
+  color: springgreen;
   background: indigo;
+  border-radius: 10px;
 }
 </style>

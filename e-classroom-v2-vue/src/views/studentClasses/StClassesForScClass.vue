@@ -14,7 +14,7 @@
       <router-link
         :to="{ name: 'EditStudentClass', params: { stcId: stClass.id } }"
       >
-        <h1>StClass: {{ stClass.name }}</h1>
+        <h1 style="color: yellow">StClass: {{ stClass.name }}</h1>
       </router-link>
 
       <StudentsForSCClass :id="stClass.id" />
@@ -54,11 +54,11 @@ export default {
 }
 
 .stCForCl {
-  background: orange;
+  background: rgb(65, 112, 155);
 }
 
 .sclasses {
-  border: 3px solid rgb(28, 43, 85);
+  border: 1px solid rgb(28, 43, 85);
   border-radius: 10px;
 }
 
