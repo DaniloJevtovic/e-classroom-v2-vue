@@ -4,7 +4,7 @@
 }
 
 body {
-  background: springgreen;
+  background: rgb(64, 59, 122);
 }
 
 a {
@@ -13,7 +13,7 @@ a {
 
 /* forms */
 form {
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 30px;
   border-radius: 3px;
@@ -37,7 +37,7 @@ textarea {
 
 /* buttons */
 button {
-  background: indigo;
+  background: darkblue;
   color: white;
   border-radius: 8px;
   border: 0;
@@ -62,18 +62,20 @@ button:disabled {
 }
 
 .container {
-  margin: 50px 80px;
-  background: rgb(37, 109, 109);
+  margin: 20px 30px;
+  background: rgb(179, 188, 235);
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .container-header {
-  background: orangered;
+  background: rgb(73, 91, 126);
   align-items: center;
   display: flex;
 }
 
 .container-body {
-  background: hotpink;
+  background: rgb(130, 13, 226);
   align-items: center;
   text-align: center;
 }
@@ -83,7 +85,7 @@ button:disabled {
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   padding: 10px;
-  border: 2px solid white;
+  /* border: 2px solid white; */
 }
 
 .card {

@@ -1,19 +1,25 @@
 <template>
   <div class="navbar">
     <nav>
-      <img src="@/assets/logo.png" />
       <h2>e-classroom</h2>
 
       <div class="links">
         <div v-if="loggedUser">
-          <router-link v-for="link in links" :key="link" :to="{ name: link }">
-            {{ link }}
-          </router-link>
           <span>Hi, {{ loggedUser.firstName }}</span>
+          <router-link
+            v-for="link in links"
+            :key="link"
+            :to="{ name: link }"
+          >
+            <button>{{ link }}</button>
+          </router-link>
+
           <button @click="handleLogout">Logout</button>
         </div>
         <div v-else>
-          <router-link :to="{ name: 'Login' }">Login</router-link>
+          <router-link :to="{ name: 'Login' }">
+            <button>Login</button>
+          </router-link>
         </div>
       </div>
     </nav>
@@ -33,6 +39,7 @@ export default {
     });
 
     const links = computed(() => {
+      console.log(store.getters["getLinksForLoggedUser"]);
       return store.getters["getLinksForLoggedUser"];
     });
 
@@ -47,9 +54,8 @@ export default {
 
 <style scoped>
 .navbar {
-  /* padding: 16px 10px; */
-  margin-bottom: 20px;
-  background: white;
+  margin-bottom: 10px;
+  background: rgb(116, 138, 170);
 }
 
 nav {
@@ -68,17 +74,14 @@ nav .links {
 
 nav .links a,
 button {
-  margin-left: 10px; /*razmak izmedju dugmica */
+  margin-left: 3px; /*razmak izmedju dugmica */
   /* font-size: 20px; */
 }
 
 /* .links a.router-link-exact-active { */
-.links a.router-link-active {
+.links a.router-link-active button {
   background: cyan;
   color: indigo;
-  padding: 7px;
-  /* font-weight: bold; */
-  border-radius: 7px;
 }
 
 nav img {
@@ -88,10 +91,7 @@ nav img {
 span {
   display: inline-block;
   margin: 0 10px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border-left: 5px solid rgb(0, 253, 76); /*uspravna crtica mala*/
   color: white;
-  background: indigo;
+  font-weight: bold;
 }
 </style>
