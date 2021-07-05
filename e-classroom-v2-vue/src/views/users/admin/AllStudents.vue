@@ -1,6 +1,6 @@
 <template>
   <div class="students-info">
-    <h1>All students</h1>
+    <h2>All students</h2>
     <h2>Number of students: {{ students.length }}</h2>
     <router-link :to="{ name: 'NewStudent' }">
       <button>New student</button>
@@ -10,25 +10,27 @@
       <input type="text" placeholder="filter by stClass" />
     </div>
   </div>
-  <div class="studentss" v-for="student in students" :key="student.id">
-    <div class="studentt">
-      <h1>Full Name: {{ student.firstName }} {{ student.lastName }}</h1>
-      <h2>Email: {{ student.email }}</h2>
-      <h3>StClass: {{ student.studentClass.name }}</h3>
-      <router-link
-        :to="{
-          name: 'NewMessage',
-          params: { reciverId: student.id },
-        }"
-      >
-        <button>Send message</button>
-      </router-link>
+  <div class="studentss">
+    <div v-for="student in students" :key="student.id">
+      <div class="studentt">
+        <h2>{{ student.firstName }} {{ student.lastName }}</h2>
+        <h2>Email: {{ student.email }}</h2>
+        <h3>StClass: {{ student.studentClass.name }}</h3>
+        <router-link
+          :to="{
+            name: 'NewMessage',
+            params: { reciverId: student.id },
+          }"
+        >
+          <button>Send message</button>
+        </router-link>
 
-      <router-link
-        :to="{ name: 'StUserDetailsAdmin', params: { studId: student.id } }"
-      >
-        <button>Details</button>
-      </router-link>
+        <router-link
+          :to="{ name: 'StUserDetailsAdmin', params: { studId: student.id } }"
+        >
+          <button>Details</button>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -55,16 +57,20 @@ export default {
 
 <style scoped>
 .students-info {
-  background: darkkhaki;
+  background: rgb(57, 51, 133);
   padding: 10px;
 }
 .studentss {
   background: blue;
   padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .studentt {
   background: white;
   padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
 }
 
 .search-students {

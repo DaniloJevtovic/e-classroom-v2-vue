@@ -1,6 +1,6 @@
 <template>
   <div class="students-info">
-    <h1>All parents</h1>
+    <h2>All parents</h2>
     <h2>Number of parents: {{ parents.length }}</h2>
     <!-- <router-link :to="{ name: 'NewParent' }">
       <button>New parent</button>
@@ -10,18 +10,20 @@
       <input type="text" placeholder="filter by stClass" />
     </div>
   </div>
-  <div class="parents" v-for="parent in parents" :key="parent.id">
-    <div class="parent">
-      <h1>Full Name: {{ parent.firstName }} {{ parent.lastName }}</h1>
-      <h2>Email: {{ parent.email }}</h2>
-      <router-link
-        :to="{
-          name: 'NewMessage',
-          params: { reciverId: parent.id },
-        }"
-      >
-        <button>Send message</button>
-      </router-link>
+  <div class="parents">
+    <div v-for="parent in parents" :key="parent.id">
+      <div class="parent">
+        <h2>{{ parent.firstName }} {{ parent.lastName }}</h2>
+        <h2>Email: {{ parent.email }}</h2>
+        <router-link
+          :to="{
+            name: 'NewMessage',
+            params: { reciverId: parent.id },
+          }"
+        >
+          <button>Send message</button>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -48,16 +50,20 @@ export default {
 
 <style scoped>
 .students-info {
-  background: darkkhaki;
+  background: rgb(107, 142, 189);
   padding: 10px;
 }
 .parents {
   background: blue;
-  padding: 10px;
+  padding: 3px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .parent {
   background: white;
-  padding: 10px;
+  padding: 3px;
+  margin: 5px;
+  border-radius: 10px;
 }
 
 .search-parents {
