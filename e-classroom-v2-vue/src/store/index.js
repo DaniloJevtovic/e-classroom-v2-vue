@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
 import axios from "axios";
 import router from "../router/index.js";
 
@@ -8,15 +9,20 @@ export default createStore({
     linksForLoggedUser: [],
 
     adminLinks: [
-      // "AdminHome",
       "Users",
       "AllCourses",
       "AllScClasses",
-      "Messages"
+      "Messages",
+      "UserProfile",
     ],
-    teacherLinks: ["MyCourses", "Messages"],
-    studentLinks: ["StudentCourses", "StudentAllResults", "Messages"],
-    parentLinks: ['ParentStList', "Messages"],
+    teacherLinks: ["MyCourses", "Messages", "UserProfile"],
+    studentLinks: [
+      "StudentCourses",
+      "StudentAllResults",
+      "Messages",
+      "UserProfile",
+    ],
+    parentLinks: ["ParentStList", "Messages", "UserProfile"],
   },
   getters: {
     getLoggedUser(state) {
@@ -45,8 +51,9 @@ export default createStore({
     setLinksForLoggedUser(state) {
       if (state.loggedUser) {
         if (state.loggedUser.authorities[0].authority === "ROLE_ADMIN") {
+          console.log(state.adminLinks);
           state.linksForLoggedUser = state.adminLinks;
-          router.push({ name: "AdminHome" });
+          router.push({ name: "AllUsers" });
         } else if (
           state.loggedUser.authorities[0].authority === "ROLE_TEACHER"
         ) {
@@ -67,6 +74,11 @@ export default createStore({
           router.push({ name: "Login" });
         }
       }
+    },
+
+    setLoggedUser(state) {
+      state.loggedUser = JSON.parse(localStorage.getItem("user"));
+      console.log("ul. kor", state.loggedUser);
     },
 
     logout(state) {
@@ -111,4 +123,5 @@ export default createStore({
     },
   },
   modules: {},
+  plugins: [createPersistedState()],
 });
