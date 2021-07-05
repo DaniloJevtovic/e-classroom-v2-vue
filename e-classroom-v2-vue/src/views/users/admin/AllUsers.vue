@@ -2,12 +2,14 @@
   <div class="users-info">
     <h2>All users</h2>
     <h2>Number of users: {{ users.length }}</h2>
+
     <router-link :to="{ name: 'NewTeacher' }">
       <button>New teacher</button>
     </router-link>
     <router-link :to="{ name: 'NewStudent' }">
       <button>New student</button>
     </router-link>
+    <input type="text" placeholder="search by first and last name" />
   </div>
 
   <div class="users">

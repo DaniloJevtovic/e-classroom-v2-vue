@@ -9,7 +9,7 @@
         :to="{ name: 'EditSchoolClass', params: { id: scClassInfo.id } }"
       >
         <div class="scClass-admin">
-          <h1>ScClass: {{ scClassInfo.name }}</h1>
+          <h2>ScClass: {{ scClassInfo.name }}</h2>
           <p>Description: {{ scClassInfo.description }}</p>
         </div>
       </router-link>
