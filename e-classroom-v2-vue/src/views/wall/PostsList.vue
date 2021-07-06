@@ -1,4 +1,5 @@
 <template>
+
   <div class="posts-list">
     <div class="new-post">
       <textarea
@@ -11,31 +12,33 @@
       <button @click.prevent="newPost">post</button>
     </div>
 
-    <div class="post-list">
-      <div v-for="(post, index) in posts" :key="post.id">
-        <div class="post">
-          <div class="post-info">
-            <div class="post-text">
-              <p>{{ post.author.firstName }} {{ post.author.lastName }}</p>
-              <h2>{{ post.post }}</h2>
+    <div v-if="posts.length">
+      <div class="post-list">
+        <div v-for="(post, index) in posts" :key="post.id">
+          <div class="post">
+            <div class="post-info">
+              <div class="post-text">
+                <p>{{ post.author.firstName }} {{ post.author.lastName }}</p>
+                <h2>{{ post.post }}</h2>
+              </div>
+
+              <div
+                class="post-buttons"
+                v-if="
+                  author.id == post.author.id ||
+                  author.authorities[0].authority == 'ROLE_TEACHER'
+                "
+              >
+                <button @click.prevent="deletePost(index, post.id)">
+                  Delete post
+                </button>
+
+                <button>Edit post</button>
+              </div>
             </div>
 
-            <div
-              class="post-buttons"
-              v-if="
-                author.id == post.author.id ||
-                author.authorities[0].authority == 'ROLE_TEACHER'
-              "
-            >
-              <button @click.prevent="deletePost(index, post.id)">
-                Delete post
-              </button>
-
-              <button>Edit post</button>
-            </div>
+            <comments-list :postId="post.id"></comments-list>
           </div>
-
-          <comments-list :postId="post.id"></comments-list>
         </div>
       </div>
     </div>
@@ -109,7 +112,7 @@ export default {
 .new-post {
   background: springgreen;
   display: flex;
-  border: 2px solid black;
+  border: 2px solid silver;
 }
 .new-post button {
   color: aqua;
@@ -130,21 +133,22 @@ export default {
 }
 
 .post {
-  background: rgb(2, 14, 124);
+  background: rgb(110, 120, 216);
   border: 1px solid rgb(145, 255, 0);
   margin: 8px;
-  border-radius: 7px;
+  /* border-radius: 7px; */
   padding-top: 20px;
 }
 
 .post-info {
-  border: 3px solid indigo;
+  border: 1px solid rgb(27, 4, 43);
   padding: 10px;
   margin: 0px 10px 4px;
-  background: rgb(17, 77, 189);
+  background: rgb(36, 8, 102);
   color: white;
   display: flex;
   align-items: center;
+  border-radius: 10px;
 }
 
 .post-text {

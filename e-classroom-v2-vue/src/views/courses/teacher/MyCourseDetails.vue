@@ -12,6 +12,7 @@
       </div>
 
       <!-- ovako valjda prosljedjume parametar do child komponente -->
+      <!-- komponente unutar child navbara -->
       <router-view :id="id" />
     </div>
   </div>
@@ -51,5 +52,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.course-info {
+  color: yellow;
+}
 </style>
