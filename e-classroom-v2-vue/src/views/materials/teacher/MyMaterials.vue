@@ -74,7 +74,7 @@ export default {
 <style scoped>
 .materials-info {
   padding: 10px;
-  background: wheat;
+  background: rgb(5, 141, 231);
 }
 
 .materials {
@@ -82,6 +82,7 @@ export default {
   background: deepskyblue;
   padding: 8px;
   margin: 10px;
+  border-radius: 10px;
 }
 
 /* .te-materials {

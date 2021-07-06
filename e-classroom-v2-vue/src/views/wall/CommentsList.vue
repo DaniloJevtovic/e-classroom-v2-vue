@@ -87,16 +87,17 @@ export default {
 }
 
 .coments-list {
-  background: rgb(13, 32, 27);
+  background: rgb(170, 230, 245);
   padding: 5px;
   border: 1px solid oldlace;
 }
 
 .comment {
-  background: rgb(83, 107, 101);
+  background: rgb(83, 83, 148);
+  color: aqua;
   margin: 5px;
   display: flex;
-  padding: 4px;
+  padding: 10px;
   align-items: center;
   border-radius: 3px;
 }
@@ -110,8 +111,7 @@ export default {
 }
 
 .new-comment {
-  margin: 8px;
-  background: rgb(105, 20, 64);
+  background: rgb(6, 202, 209);
   display: flex;
   padding: 8px;
 }

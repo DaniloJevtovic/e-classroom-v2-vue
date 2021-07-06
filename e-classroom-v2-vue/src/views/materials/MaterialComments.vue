@@ -87,23 +87,25 @@ export default {
 }
 
 .mat-com {
-  background: springgreen;
+  background: rgb(167, 238, 202);
   padding: 8px;
   margin: 8px;
   display: flex;
   align-items: center;
+  border-radius: 10px;
 }
 
 .new-mat-com {
   padding: 8px;
   margin: 8px;
   display: flex;
-  background: plum;
+  background: rgb(16, 226, 241);
   display: flex;
+  border-radius: 10px;
 }
 
 button:hover {
-  background: coral;
+  background: rgb(58, 121, 121);
 }
 
 .mat-com-button {
