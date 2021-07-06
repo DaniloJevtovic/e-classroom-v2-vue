@@ -47,8 +47,8 @@ export default {
 .st-course {
   padding: 5px;
   /* color: rgb(229, 229, 231); */
-  color: springgreen;
-  background: indigo;
+  color: cyan;
+  background: rgb(29, 4, 48);
   border-radius: 10px;
 }
 </style>

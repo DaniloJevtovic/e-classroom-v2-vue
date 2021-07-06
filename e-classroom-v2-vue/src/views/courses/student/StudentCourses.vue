@@ -60,8 +60,8 @@ export default {
 }
 
 .st-course {
-  background: rgb(188, 226, 188);
-  color: rgb(82, 10, 46);
+  background: rgb(3, 15, 54);
+  color: rgb(240, 76, 158);
   border: 2px solid indigo;
   border-radius: 7px;
   padding: 7px;

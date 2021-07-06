@@ -50,6 +50,7 @@ export default {
 
 .files-list {
   /* background: rgb(255, 160, 207); */
-  display: flex;
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr;   */
 }
 </style>

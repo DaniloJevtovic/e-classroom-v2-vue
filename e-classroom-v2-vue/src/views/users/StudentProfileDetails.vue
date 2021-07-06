@@ -103,6 +103,7 @@ export default {
 .student-info {
   background: deepskyblue;
   padding: 15px;
+  border-radius: 10px;
 }
 
 .parent-details {

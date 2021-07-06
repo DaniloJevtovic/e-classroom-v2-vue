@@ -65,13 +65,16 @@ export default {
 <style scoped>
 .my-students-info {
   padding: 10px;
-  background: rgb(27, 27, 184);
+  background: rgb(85, 85, 119);
+  margin: 5px;
+  border-radius: 10px;
 }
 
 .my-students {
   color: yellow;
-  border: 2px solid pink;
-  background: blueviolet;
+  border: 2px solid cyan;
+  background: rgb(74, 57, 90);
   padding: 8px;
+  border-radius: 10px;
 }
 </style>
