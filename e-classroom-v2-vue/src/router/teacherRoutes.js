@@ -5,7 +5,6 @@ import MyStudentClasses from "../views/studentClasses/teacher/MyStudentClasses.v
 import MyStudents from "../views/users/teacher/MyStudents.vue";
 import StudentProfileDetails from "../views/users/StudentProfileDetails.vue";
 import MyMaterials from "../views/materials/teacher/MyMaterials.vue";
-import MyCourseInfo from "../views/courses/teacher/MyCourseInfo.vue";
 
 import MyCourseDetails from "../views/courses/teacher/MyCourseDetails.vue";
 import TeacherCourses from "../views/courses/TeacherCourses.vue";
