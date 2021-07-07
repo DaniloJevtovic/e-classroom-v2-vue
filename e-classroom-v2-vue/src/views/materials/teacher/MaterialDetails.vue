@@ -4,11 +4,18 @@
       <button @click="$router.go(-1)">Back to materials</button>
     </div>
     <div class="container-body">
-      <h3>Name: {{ materialInfo.name }}</h3>
+      <h2>Name: {{ materialInfo.name }}</h2>
       <h3>Descriptions: {{ materialInfo.description }}</h3>
+      <router-link :to="{ name: 'EditMaterial', params: { id: matId } }">
+        <button>Edit</button>
+      </router-link>
 
+      <button @click.prevent="deleteMaterial">Delete</button>
+
+      <!-- fajlovi za materijal -->
       <material-files :matId="matId"></material-files>
 
+      <!-- komentari za material -->
       <material-comments :matId="matId"></material-comments>
     </div>
   </div>
@@ -17,6 +24,7 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
+import { useRouter } from "vue-router";
 
 import MaterialFiles from "../MaterialFiles.vue";
 import MaterialComments from "./../MaterialComments.vue";
@@ -25,12 +33,18 @@ export default {
   props: ["matId"],
   components: { MaterialFiles, MaterialComments },
   setup(props) {
-    const { getById } = useCRUD();
+    const { getById, deleteById } = useCRUD();
+    const router = useRouter();
 
     const materialInfo = ref("");
 
     const getMaterial = async () => {
       materialInfo.value = await getById("materials", props.matId);
+    };
+
+    const deleteMaterial = async () => {
+      await deleteById("materials", props.matId);
+      router.go(-1);
     };
 
     onMounted(() => {
@@ -39,6 +53,7 @@ export default {
 
     return {
       materialInfo,
+      deleteMaterial,
     };
   },
 };
