@@ -46,7 +46,9 @@ export default {
 
 <style scoped>
 .parent-stList {
-  background: rgb(245, 210, 144);
+  color: cyan;
+  padding: 10px;
+  background: rgb(43, 78, 102);
 }
 
 .par-student {

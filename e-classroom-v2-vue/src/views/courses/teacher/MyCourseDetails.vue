@@ -54,6 +54,6 @@ export default {
 
 <style scoped>
 .course-info {
-  color: yellow;
+  color: rgb(4, 13, 53);
 }
 </style>

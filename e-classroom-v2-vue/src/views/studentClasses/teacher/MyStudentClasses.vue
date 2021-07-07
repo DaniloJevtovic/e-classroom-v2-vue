@@ -41,7 +41,7 @@ export default {
   padding: 10px;
 }
 .my-stClasses {
-  background: orangered;
+  background: rgb(0, 26, 255);
   padding: 20px;
 }
 .my-stClass {
