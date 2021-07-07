@@ -13,7 +13,7 @@ const getAll = async (items) => {
     return response.data;
   } catch (err) {
     console.log(err);
-    return err;
+    return err.response.data;
   }
 };
 
@@ -28,7 +28,7 @@ const getById = async (items, id) => {
     return response.data;
   } catch (err) {
     console.log(err);
-    return err;
+    return err.response.data;
   }
 };
 
@@ -49,7 +49,7 @@ const getSubItems = async (items, subItems, itemId) => {
     return response.data;
   } catch (err) {
     console.log(err);
-    return err;
+    return err.response.data;
   }
 };
 
@@ -84,7 +84,7 @@ const getSubSubItems = async (
     return response.data;
   } catch (err) {
     console.log(err);
-    return err;
+    return err.response.data;
   }
 };
 
@@ -101,6 +101,7 @@ const save = async (items, data) => {
     return response.data;
   } catch (err) {
     console.log(err);
+    return err.response.data;
   }
 };
 
@@ -121,6 +122,7 @@ const editById = async (items, id, data) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    return error.response.data;
   }
 };
 
@@ -134,6 +136,7 @@ const deleteById = async (items, id) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    return error.response.data;
   }
 };
 
@@ -150,6 +153,7 @@ const deleteByMultipleIds = async (items, first, firstId, second, secondId) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    return error.response.data;
   }
 };
 
