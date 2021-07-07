@@ -19,11 +19,13 @@
 import { reactive, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import useCRUD from "../../../composables/useCRUD.js";
+import { useToast } from "vue-toastification";
 
 export default {
   props: ["id"],
   setup(props) {
     const { getById, save } = useCRUD();
+    const toast = useToast();
 
     const scClass = ref("");
 
@@ -44,8 +46,13 @@ export default {
     const router = useRouter();
 
     const handleSubmit = async () => {
-      await save("stClasses", newStClass);
+      let res = await save("stClasses", newStClass);
       //router.push({ name: "ScClassDetails", params: { id: props.id } });
+
+      toast.info(res, {
+        timeout: 2000,
+      });
+
       router.go(-1);
     };
 

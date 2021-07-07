@@ -19,12 +19,14 @@
 import { reactive, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import useCRUD from "../../../composables/useCRUD.js";
+import { useToast } from "vue-toastification";
 
 export default {
   props: ["id", "stcId"],
   setup(props) {
     const { getById, editById } = useCRUD();
     const router = useRouter();
+    const toast = useToast();
 
     const scClass = ref("");
     const stClass = reactive({});
@@ -47,7 +49,12 @@ export default {
     });
 
     const handleSubmit = async () => {
-      await editById("stClasses", props.stcId, stClass);
+      let res = await editById("stClasses", props.stcId, stClass);
+
+      toast.info(res, {
+        timeout: 2000,
+      });
+
       router.go(-1);
     };
 

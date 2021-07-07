@@ -27,6 +27,7 @@ import { ref, onMounted, reactive } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import { useRouter, useRoute } from "vue-router";
 import { useStore } from "vuex";
+import { useToast } from "vue-toastification";
 
 export default {
   props: [],
@@ -35,6 +36,7 @@ export default {
     const store = useStore();
     const router = useRouter();
     const route = useRoute();
+    const toast = useToast();
 
     const loggedUser = store.getters["getLoggedUser"];
 
@@ -52,7 +54,12 @@ export default {
     };
 
     const sendMessage = async () => {
-      await save("messages", message);
+      let res = await save("messages", message);
+
+      toast.info(res, {
+        timeout: 2000,
+      });
+
       router.go(-1);
     };
 
