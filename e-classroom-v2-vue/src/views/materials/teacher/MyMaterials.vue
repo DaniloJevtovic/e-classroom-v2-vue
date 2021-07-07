@@ -8,20 +8,18 @@
 
     <input type="text" placeholder="search" />
 
-    <div class="te-materials">
-      <div
-        class="materials"
-        v-for="(material, index) in materials"
-        :key="material.id"
-      >
-        <!-- <router-link
-          :to="{ name: 'MaterialDetails', params: { matId: material.id } }"
-        >
-          <h2>Name: {{ material.name }}</h2>
-          <h3>Description: {{ material.description }}</h3>
-        </router-link> -->
+    <div class="materials">
+      <div v-for="material in materials" :key="material.id">
+        <!-- <div v-for="(material, index) in materials" :key="material.id"> -->
+        <div class="material">
+          <router-link
+            :to="{ name: 'MaterialDetails', params: { matId: material.id } }"
+          >
+            <h2>Name: {{ material.name }}</h2>
+            <h3>Description: {{ material.description }}</h3>
+          </router-link>
 
-        <h2>Name: {{ material.name }}</h2>
+          <!-- <h2>Name: {{ material.name }}</h2>
         <h3>Description: {{ material.description }}</h3>
         <router-link
           :to="{ name: 'EditMaterial', params: { id: material.id } }"
@@ -35,7 +33,8 @@
         </router-link>
         <button @click.prevent="deleteMaterial(material.id, index)">
           Delete
-        </button>
+        </button> -->
+        </div>
       </div>
     </div>
   </div>
@@ -83,9 +82,15 @@ export default {
   padding: 8px;
   margin: 10px;
   border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid white;
 }
 
-/* .te-materials {
-  margin: 10px;
-} */
+.material {
+  background: white;
+  border-radius: 10px;
+  margin: 4px;
+  padding: 3px;
+}
 </style>
