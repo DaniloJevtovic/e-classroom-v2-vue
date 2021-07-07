@@ -6,6 +6,7 @@ import NewTeacher from "../views/users/admin/NewTeacher.vue";
 import AllStudents from "../views/users/admin/AllStudents.vue";
 import AllParents from "../views/users/admin/AllParents.vue";
 import NewStudent from "../views/users/admin/NewStudent.vue";
+import NewParent from "../views/users/admin/NewParent.vue";
 import NewStudentForStClass from "../views/users/admin/NewStudentForStClass.vue";
 import StudentProfileDetails from "../views/users/StudentProfileDetails.vue";
 
@@ -80,6 +81,12 @@ export default [
     path: "/newStudent",
     name: "NewStudent",
     component: NewStudent,
+  },
+  {
+    path: "/newParent",
+    name: "NewParent",
+    component: NewParent,
+    props: true,
   },
 
   {
