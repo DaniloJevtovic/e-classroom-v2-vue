@@ -2,20 +2,28 @@
   <div class="materials-info">
     <h1>Materials</h1>
 
-    <input type="text" placeholder="search" />
+    <div v-if="materials.length">
+      <input type="text" placeholder="search" />
 
-    <div>
-      <div class="materials" v-for="material in materials" :key="material.id">
-        <router-link
-          :to="{
-            name: 'StudentMaterialDetails',
-            params: { matId: material.id },
-          }"
-        >
-          <h2>Name: {{ material.name }}</h2>
-          <h3>Description: {{ material.description }}</h3>
-        </router-link>
+      <div class="materials">
+        <div v-for="material in materials" :key="material.id">
+          <div class="material">
+            <router-link
+              :to="{
+                name: 'StudentMaterialDetails',
+                params: { matId: material.id },
+              }"
+            >
+              <h2>Name: {{ material.name }}</h2>
+              <h3>Description: {{ material.description }}</h3>
+            </router-link>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div v-else class="no-materials">
+      <h3>No materials yet</h3>
     </div>
   </div>
 </template>
@@ -55,5 +63,20 @@ export default {
   background: deepskyblue;
   padding: 8px;
   margin: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.material {
+  padding: 10px;
+  border-radius: 10px;
+  background: white;
+  margin: 10px
+}
+
+.no-materials {
+  margin: 20px;
+  padding: 20px;
+  background: red;
 }
 </style>
