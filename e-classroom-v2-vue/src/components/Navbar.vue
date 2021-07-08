@@ -6,11 +6,7 @@
       <div class="links">
         <div v-if="loggedUser">
           <span>Hi, {{ loggedUser.firstName }}</span>
-          <router-link
-            v-for="link in links"
-            :key="link"
-            :to="{ name: link }"
-          >
+          <router-link v-for="link in links" :key="link" :to="{ name: link }">
             <button>{{ link }}</button>
           </router-link>
 
@@ -55,7 +51,8 @@ export default {
 <style scoped>
 .navbar {
   margin-bottom: 10px;
-  background: rgb(116, 138, 170);
+  /* background: rgb(116, 138, 170); */
+  background: rgb(124, 140, 197);
 }
 
 nav {
@@ -81,7 +78,7 @@ button {
 /* .links a.router-link-exact-active { */
 .links a.router-link-active button {
   background: cyan;
-  color: indigo;
+  color: darkblue;
 }
 
 nav img {

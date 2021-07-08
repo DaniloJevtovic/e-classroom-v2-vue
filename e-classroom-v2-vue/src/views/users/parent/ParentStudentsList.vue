@@ -1,15 +1,15 @@
 <template>
   <div class="container">
     <div class="parent-stList">
-      <h1>My students</h1>
+      <h2>My students</h2>
       <div class="basic-grid">
         <div v-for="student in students" :key="student.id">
           <router-link
             :to="{ name: 'ParentStDetails', params: { studId: student.id } }"
           >
             <div class="par-student">
-              <h1>{{ student.firstName }} {{ student.lastName }}</h1>
-              <h2>Class: {{ student.studentClass.name }}</h2>
+              <h2>{{ student.firstName }} {{ student.lastName }}</h2>
+              <h3>Class: {{ student.studentClass.name }}</h3>
             </div>
           </router-link>
         </div>
@@ -48,13 +48,14 @@ export default {
 .parent-stList {
   color: cyan;
   padding: 10px;
-  background: rgb(43, 78, 102);
+  background: darkblue;
 }
 
 .par-student {
-  background: white;
+  background: cyan;
   border-radius: 10px;
   color: indigo;
   padding: 8px;
+  text-align: center;
 }
 </style>

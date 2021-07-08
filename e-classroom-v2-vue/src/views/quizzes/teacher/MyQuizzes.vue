@@ -20,7 +20,9 @@
             <h2>Name: {{ quiz.name }}</h2>
             <h3>Instruction: {{ quiz.instructions }}</h3>
             <h4>Duration: {{ quiz.duration }} minutes.</h4>
-            <h4 style="color: indigo; background: cyan">Status: {{ quiz.quizStatus }}</h4>
+            <h4 style="color: indigo; background: cyan">
+              Status: {{ quiz.quizStatus }}
+            </h4>
 
             <router-link
               :to="{ name: 'ProfResForQuiz', params: { quizId: quiz.id } }"
@@ -61,9 +63,15 @@ export default {
 </script>
 
 <style scoped>
+.te-quizzes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .quizzes-info {
   padding: 10px;
-  background: rgb(48, 43, 48);
+  background: rgb(199, 3, 199);
+  /* opacity: 0.7; */
 }
 
 .quizzes {
@@ -73,8 +81,9 @@ export default {
 }
 
 .singlee-quiz {
-  background: coral;
+  background: rgb(24, 46, 168);
   color: white;
   padding: 5px;
+  border-radius: 10px;
 }
 </style>

@@ -34,6 +34,7 @@ import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import StudentSolveQuizQuestions from "./StudentSolveQuizQuestions.vue";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 
 export default {
   props: ["id", "quizId", "stRes"],
@@ -41,6 +42,7 @@ export default {
   setup(props) {
     const { getById, getSubItems, deleteById } = useCRUD();
     const router = useRouter();
+    const toast = useToast();
 
     const quizInfo = ref("");
     const questions = ref([]);
@@ -69,6 +71,8 @@ export default {
 
           startTimer();
         }, 1000);
+
+        
       } else {
         router.push({
           name: "StudentQuizDetails",

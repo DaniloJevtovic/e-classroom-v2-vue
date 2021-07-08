@@ -1,5 +1,4 @@
 <template>
-
   <div class="posts-list">
     <div class="new-post">
       <textarea
@@ -19,7 +18,7 @@
             <div class="post-info">
               <div class="post-text">
                 <p>{{ post.author.firstName }} {{ post.author.lastName }}</p>
-                <h2>{{ post.post }}</h2>
+                <h3 style="color: cyan">{{ post.post }}</h3>
               </div>
 
               <div

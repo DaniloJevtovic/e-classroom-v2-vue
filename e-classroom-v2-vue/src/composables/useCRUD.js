@@ -100,8 +100,7 @@ const save = async (items, data) => {
 
     return response.data;
   } catch (err) {
-    console.log(err);
-    return err.response.data;
+    return err;
   }
 };
 

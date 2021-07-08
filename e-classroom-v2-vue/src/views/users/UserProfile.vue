@@ -28,6 +28,7 @@ import { onMounted, ref, reactive } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import { useStore } from "vuex";
 import { useToast } from "vue-toastification";
+
 export default {
   setup() {
     const { getById, editById } = useCRUD();

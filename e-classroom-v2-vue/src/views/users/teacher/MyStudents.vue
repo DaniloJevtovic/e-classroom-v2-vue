@@ -27,7 +27,7 @@
         <router-link
           :to="{ name: 'StDetailsProf', params: { studId: student.id } }"
         >
-          <button>View Profile</button>
+          <button>Details</button>
         </router-link>
       </div>
     </div>
@@ -65,15 +65,15 @@ export default {
 <style scoped>
 .my-students-info {
   padding: 10px;
-  background: rgb(85, 85, 119);
+  background: rgb(33, 33, 161);
   margin: 5px;
   border-radius: 10px;
 }
 
 .my-students {
-  color: yellow;
+  color: hotpink;
   border: 2px solid cyan;
-  background: rgb(74, 57, 90);
+  background: rgb(11, 1, 20);
   padding: 8px;
   border-radius: 10px;
 }

@@ -31,6 +31,7 @@
     </select>
 
     <button>Save</button>
+    <button @click.prevent="$router.go(-1)">Cancel</button>
   </form>
 </template>
 
