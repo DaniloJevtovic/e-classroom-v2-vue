@@ -2,27 +2,33 @@
   <div class="quizzes-info">
     <h1>Quizzes</h1>
 
-    <input type="text" placeholder="search" />
+    <div v-if="quizzes.length">
+      <input type="text" placeholder="search" />
 
-    <div class="st-qq">
-      <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
-        <div v-if="quiz.quizStatus == 'ACTIVE'">
-          <router-link
-            :to="{
-              name: 'StudentQuizDetails',
-              params: { id: id, quizId: quiz.id },
-            }"
-          >
-            <div class="st-quiz-det">
-              <h2>Quiz Name: {{ quiz.name }}</h2>
-              <h3>Instruction: {{ quiz.instructions }}</h3>
-              <h4>Duration: {{ quiz.duration }} minutes.</h4>
-            </div>
+      <div class="st-qq">
+        <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
+          <div v-if="quiz.quizStatus == 'ACTIVE'">
+            <router-link
+              :to="{
+                name: 'StudentQuizDetails',
+                params: { id: id, quizId: quiz.id },
+              }"
+            >
+              <div class="st-quiz-det">
+                <h2>Quiz Name: {{ quiz.name }}</h2>
+                <h3>Instruction: {{ quiz.instructions }}</h3>
+                <h4>Duration: {{ quiz.duration }} minutes.</h4>
+              </div>
 
-            <student-quizzes-ress :quizId="quiz.id"></student-quizzes-ress>
-          </router-link>
+              <student-quizzes-ress :quizId="quiz.id"></student-quizzes-ress>
+            </router-link>
+          </div>
         </div>
       </div>
+    </div>
+
+    <div v-else class="no-quizzes">
+      <h2>No quizzes</h2>
     </div>
   </div>
 </template>
@@ -69,5 +75,11 @@ export default {
   background: rgb(3, 3, 39);
   padding: 8px;
   margin: 10px;
+}
+
+.no-quizzes {
+  margin: 20px;
+  padding: 20px;
+  background: red;
 }
 </style>
