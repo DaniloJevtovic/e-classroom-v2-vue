@@ -43,15 +43,15 @@ export default {
 
 <style scoped>
 .sent-messages {
-  margin: 10px;
-  padding: 4px;
+  margin: 5px;
+  padding: 5px;
+  background: white;
 }
 
 .message {
-  background: rgb(241, 199, 121);
-  border: 2px solid violet;
+  background: rgb(226, 218, 203);
   margin: 5px;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 </style>

@@ -50,16 +50,16 @@ export default {
 
 <style scoped>
 .recived-messages {
-  margin: 10px;
-  padding: 4px;
+  margin: 5px;
+  padding: 5px;
+  background: white;
 }
 
 .message {
-  color: hotpink;
-  background: rgb(64, 5, 71);
-  border: 2px solid violet;
+  color: darkblue;
+  background: rgb(164, 243, 204);
   margin: 5px;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 </style>
