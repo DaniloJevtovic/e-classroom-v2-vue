@@ -12,24 +12,6 @@
     </router-link>
   </div>
 
-  <!-- <div class="teachers">
-    <div v-for="teacher in teachers" :key="teacher.id">
-      <div class="teacher">
-        <h3>{{ teacher.firstName }} {{ teacher.lastName }}</h3>
-        <h3>Email: {{ teacher.email }}</h3>
-        <h3>Subjects: {{ teacher.subjects }}</h3>
-        <router-link
-          :to="{
-            name: 'NewMessage',
-            params: { reciverId: teacher.id },
-          }"
-        >
-          <button>Send message</button>
-        </router-link>
-      </div>
-    </div>
-  </div> -->
-
   <div>
     <table>
       <thead>
@@ -84,18 +66,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-}
-.teachers {
-  background: blue;
-  padding: 3px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-.teacher {
-  background: white;
-  padding: 5px;
-  margin: 5px;
-  border-radius: 10px;
 }
 
 input {

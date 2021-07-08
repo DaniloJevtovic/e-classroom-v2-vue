@@ -14,23 +14,6 @@
     <div></div>
   </div>
 
-  <!-- <div class="parents">
-    <div v-for="parent in parents" :key="parent.id">
-      <div class="parent">
-        <h3>{{ parent.firstName }} {{ parent.lastName }}</h3>
-        <h3>Email: {{ parent.email }}</h3>
-        <router-link
-          :to="{
-            name: 'NewMessage',
-            params: { reciverId: parent.id },
-          }"
-        >
-          <button>Send message</button>
-        </router-link>
-      </div>
-    </div>
-  </div> -->
-
   <div>
     <table>
       <thead>
@@ -88,16 +71,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-}
-.parents {
-  background: blue;
-  padding: 3px;
-}
-.parent {
-  background: white;
-  padding: 3px;
-  margin: 5px;
-  border-radius: 10px;
 }
 
 input {

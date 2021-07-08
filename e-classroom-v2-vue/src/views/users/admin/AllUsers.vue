@@ -16,24 +16,6 @@
     <div></div>
   </div>
 
-  <!-- <div class="users">
-    <div v-for="user in users" :key="user.id">
-      <div class="user">
-        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
-        <h3>Email: {{ user.email }}</h3>
-        <h3>Role: {{ user.authorities[0].authority }}</h3>
-        <router-link
-          :to="{
-            name: 'NewMessage',
-            params: { reciverId: user.id },
-          }"
-        >
-          <button>Send message</button>
-        </router-link>
-      </div>
-    </div>
-  </div> -->
-
   <div>
     <table>
       <thead>
@@ -88,18 +70,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-}
-.users {
-  background: blue;
-  padding: 3px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-.user {
-  background: white;
-  padding: 5px;
-  margin: 5px;
-  border-radius: 10px;
 }
 
 input {

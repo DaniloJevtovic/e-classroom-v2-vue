@@ -14,30 +14,6 @@
     </div>
   </div>
 
-  <!-- <div class="studentss">
-    <div v-for="student in students" :key="student.id">
-      <div class="studentt">
-        <h3>{{ student.firstName }} {{ student.lastName }}</h3>
-        <h3>Email: {{ student.email }}</h3>
-        <h3>StClass: {{ student.studentClass.name }}</h3>
-        <router-link
-          :to="{
-            name: 'NewMessage',
-            params: { reciverId: student.id },
-          }"
-        >
-          <button>Send message</button>
-        </router-link>
-
-        <router-link
-          :to="{ name: 'StUserDetailsAdmin', params: { studId: student.id } }"
-        >
-          <button>Details</button>
-        </router-link>
-      </div>
-    </div>
-  </div> -->
-
   <div>
     <table>
       <thead>
@@ -100,18 +76,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-}
-.studentss {
-  background: blue;
-  padding: 10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-.studentt {
-  background: white;
-  padding: 10px;
-  margin: 5px;
-  border-radius: 10px;
 }
 
 input {
