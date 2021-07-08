@@ -10,12 +10,10 @@
         <p>{{ message.message }}</p>
       </div>
       <div class="replay-message">
-        <textarea
-          rows="10"
-          v-model="reply.message"
-          placeholder="replay"
-        ></textarea>
+        <textarea rows="5" v-model="reply.message" placeholder="replay">
+        </textarea>
         <button @click.prevent="sendReply">Send</button>
+        <button @click.prevent="$router.go(-1)">Cancel</button>
       </div>
     </div>
   </div>
@@ -61,5 +59,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.replay-message {
+  padding: 10px;
+}
+
+textarea {
+  border-radius: 5px;
+  margin: 0px;
+}
 </style>
