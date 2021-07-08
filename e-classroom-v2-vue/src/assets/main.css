@@ -4,7 +4,8 @@
 }
 
 body {
-  background: rgb(64, 59, 122);
+  background: #fafafa; 
+  /* background: rgb(64, 59, 122); */
 }
 
 a {
@@ -14,7 +15,7 @@ a {
 /* forms */
 form {
   max-width: 500px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 30px;
   border-radius: 3px;
   box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.05);
@@ -62,8 +63,8 @@ button:disabled {
 }
 
 .container {
-  margin: 20px 30px;
-  background: rgb(179, 188, 235);
+  margin: 20px 20px;
+  background: rgb(26, 42, 107);
   padding: 10px;
   border-radius: 5px;
 }
@@ -112,4 +113,39 @@ button:disabled {
   box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em,
     rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
   transform: translateY(-3px) scale(1.1);
+}
+
+/* table */
+table {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+thead {
+  font-weight: bold;
+  background: rgb(38, 110, 218);
+  color: white;
+}
+
+tr {
+  background: skyblue;
+}
+
+tr:hover {
+  background: white;
+}
+
+td {
+  padding: 2px;
+  outline: 1px solid darkblue;
+}
+
+td button {
+  margin: 1px;
+}
+
+/* .table-header */
+.table-header {
+  display: flex;
 }
