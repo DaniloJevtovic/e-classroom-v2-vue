@@ -1,7 +1,13 @@
 <template>
   <div>
-    <div>
-      <h1>Courses</h1>
+    <div class="courses-info">
+      <div>
+        <h2>Courses</h2>
+        <h3>Num of courses: {{ courses.length }}</h3>
+      </div>
+
+      <input type="text" placeholder="search course" />
+
       <router-link
         :to="{ name: 'NewCourseForScClass', params: { scClassId: id } }"
       >
@@ -18,16 +24,26 @@
             <h3>
               Teacher: {{ course.teacher.firstName }}
               {{ course.teacher.lastName }}
+
+              <router-link
+                :to="{
+                  name: 'NewMessage',
+                  params: { reciverId: course.teacher.id },
+                }"
+              >
+                <button>Send message</button>
+              </router-link>
             </h3>
             <h3>description: {{ course.description }}</h3>
-            <router-link
+
+            <!-- <router-link
               :to="{
                 name: 'NewMessage',
-                params: { reciverId:  course.teacher.id },
+                params: { reciverId: course.teacher.id },
               }"
             >
               <button>Send message</button>
-            </router-link>
+            </router-link> -->
           </div>
         </router-link>
       </div>
@@ -59,10 +75,21 @@ export default {
 </script>
 
 <style scoped>
+.courses-info {
+  background: rgb(67, 67, 163);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+}
+
 .sc-courses {
-  background: indigo;
+  background: rgb(45, 45, 216);
   color: aqua;
   padding: 10px;
   border-radius: 7px;
+}
+
+input {
+  margin: 0px;
 }
 </style>
