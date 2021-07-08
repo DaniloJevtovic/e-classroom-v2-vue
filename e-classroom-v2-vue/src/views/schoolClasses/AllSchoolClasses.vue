@@ -7,14 +7,15 @@
     </div>
 
     <div class="container-body">
-      <h2>All School Classes</h2>
+      <!-- <h2>All School Classes</h2>   -->
 
       <div class="basic-grid">
         <div class="sc-card" v-for="scClass in scClasses" :key="scClass.id">
           <router-link
+          style="color: cyan"
             :to="{ name: 'ScClassDetails', params: { id: scClass.id } }"
           >
-            <h1 style="color: red">Name: {{ scClass.name }}</h1>
+            <h2>Name: {{ scClass.name }}</h2>
             <h2>Description: {{ scClass.description }}</h2>
           </router-link>
         </div>
@@ -44,13 +45,10 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  background: cyan;
-}
 
 .sc-card {
   background: rgb(30, 2, 49);
-  border-radius: 10px;
+  border-radius: 5px;
   /* margin: 10px; */
   padding: 10px;
 }
