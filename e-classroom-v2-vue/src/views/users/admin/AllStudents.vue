@@ -1,20 +1,24 @@
 <template>
   <div class="students-info">
-    <h2>All students</h2>
-    <h2>Number of students: {{ students.length }}</h2>
-    <router-link :to="{ name: 'NewStudent' }">
-      <button>New student</button>
-    </router-link>
-    <div class="search-students">
-      <input type="text" placeholder="filter by name" />
-      <input type="text" placeholder="filter by stClass" />
+    <div>
+      <h3>All students</h3>
+      <h3>Number of students: {{ students.length }}</h3>
+    </div>
+
+    <input type="text" placeholder="filter by first and last name" />
+
+    <div>
+      <router-link :to="{ name: 'NewStudent' }">
+        <button>New student</button>
+      </router-link>
     </div>
   </div>
-  <div class="studentss">
+
+  <!-- <div class="studentss">
     <div v-for="student in students" :key="student.id">
       <div class="studentt">
-        <h2>{{ student.firstName }} {{ student.lastName }}</h2>
-        <h2>Email: {{ student.email }}</h2>
+        <h3>{{ student.firstName }} {{ student.lastName }}</h3>
+        <h3>Email: {{ student.email }}</h3>
         <h3>StClass: {{ student.studentClass.name }}</h3>
         <router-link
           :to="{
@@ -32,6 +36,40 @@
         </router-link>
       </div>
     </div>
+  </div> -->
+
+  <div>
+    <table>
+      <thead>
+        <td>Full Name</td>
+        <td>Email</td>
+        <td>St Class</td>
+        <td>Message</td>
+        <td>Details</td>
+      </thead>
+      <tr v-for="student in students" :key="student.id">
+        <td>{{ student.firstName }} {{ student.lastName }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.studentClass.name }}</td>
+        <td>
+          <router-link
+            :to="{
+              name: 'NewMessage',
+              params: { reciverId: student.id },
+            }"
+          >
+            <button>Send message</button>
+          </router-link>
+        </td>
+        <td>
+          <router-link
+            :to="{ name: 'StUserDetailsAdmin', params: { studId: student.id } }"
+          >
+            <button>Details</button>
+          </router-link>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -59,6 +97,9 @@ export default {
 .students-info {
   background: rgb(57, 51, 133);
   padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
 }
 .studentss {
   background: blue;
@@ -73,11 +114,7 @@ export default {
   border-radius: 10px;
 }
 
-.search-students {
-  display: flex;
-}
-
 input {
-  margin: 10px;
+  margin: 0px;
 }
 </style>

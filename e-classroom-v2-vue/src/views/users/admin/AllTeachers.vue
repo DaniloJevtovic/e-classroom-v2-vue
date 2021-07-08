@@ -1,16 +1,22 @@
 <template>
   <div class="teachers-info">
-    <h2>All teachers</h2>
-    <h2>Number of teachers: {{ teachers.length }}</h2>
+    <div>
+      <h3>All teachers</h3>
+      <h3>Number of teachers: {{ teachers.length }}</h3>
+    </div>
+
+    <input type="text" placeholder="filter by first and last name" />
+
     <router-link :to="{ name: 'NewTeacher' }">
       <button>New teacher</button>
     </router-link>
   </div>
-  <div class="teachers">
+
+  <!-- <div class="teachers">
     <div v-for="teacher in teachers" :key="teacher.id">
       <div class="teacher">
-        <h2>{{ teacher.firstName }} {{ teacher.lastName }}</h2>
-        <h2>Email: {{ teacher.email }}</h2>
+        <h3>{{ teacher.firstName }} {{ teacher.lastName }}</h3>
+        <h3>Email: {{ teacher.email }}</h3>
         <h3>Subjects: {{ teacher.subjects }}</h3>
         <router-link
           :to="{
@@ -22,6 +28,32 @@
         </router-link>
       </div>
     </div>
+  </div> -->
+
+  <div>
+    <table>
+      <thead>
+        <td>Full Name</td>
+        <td>Email</td>
+        <td>Subjects</td>
+        <td>Message</td>
+      </thead>
+      <tr v-for="teacher in teachers" :key="teacher.id">
+        <td>{{ teacher.firstName }} {{ teacher.lastName }}</td>
+        <td>{{ teacher.email }}</td>
+        <td>{{ teacher.subjects }}</td>
+        <td>
+          <router-link
+            :to="{
+              name: 'NewMessage',
+              params: { reciverId: teacher.id },
+            }"
+          >
+            <button>Send message</button>
+          </router-link>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -47,8 +79,11 @@ export default {
 
 <style scoped>
 .teachers-info {
-  background: rgb(169, 198, 211);
+  background: rgb(5, 181, 250);
   padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
 }
 .teachers {
   background: blue;
@@ -61,5 +96,9 @@ export default {
   padding: 5px;
   margin: 5px;
   border-radius: 10px;
+}
+
+input {
+  margin: 0px;
 }
 </style>

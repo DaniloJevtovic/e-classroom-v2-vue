@@ -1,20 +1,24 @@
 <template>
-  <div class="students-info">
-    <h2>All parents</h2>
-    <h2>Number of parents: {{ parents.length }}</h2>
+  <div class="parents-info">
+    <div>
+      <h3>All parents</h3>
+      <h3>Number of parents: {{ parents.length }}</h3>
+    </div>
+
     <!-- <router-link :to="{ name: 'NewParent' }">
       <button>New parent</button>
     </router-link> -->
-    <div class="search-parents">
-      <input type="text" placeholder="filter by name" />
-      <input type="text" placeholder="filter by stClass" />
-    </div>
+
+    <input type="text" placeholder="filter by first and last name" />
+
+    <div></div>
   </div>
-  <div class="parents">
+
+  <!-- <div class="parents">
     <div v-for="parent in parents" :key="parent.id">
       <div class="parent">
-        <h2>{{ parent.firstName }} {{ parent.lastName }}</h2>
-        <h2>Email: {{ parent.email }}</h2>
+        <h3>{{ parent.firstName }} {{ parent.lastName }}</h3>
+        <h3>Email: {{ parent.email }}</h3>
         <router-link
           :to="{
             name: 'NewMessage',
@@ -25,6 +29,32 @@
         </router-link>
       </div>
     </div>
+  </div> -->
+
+  <div>
+    <table>
+      <thead>
+        <td>Full Name</td>
+        <td>Email</td>
+        <td>Childrens</td>
+        <td>Message</td>
+      </thead>
+      <tr v-for="parent in parents" :key="parent.id">
+        <td>{{ parent.firstName }} {{ parent.lastName }}</td>
+        <td>{{ parent.email }}</td>
+        <td>*</td>
+        <td>
+          <router-link
+            :to="{
+              name: 'NewMessage',
+              params: { reciverId: parent.id },
+            }"
+          >
+            <button>Send message</button>
+          </router-link>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -38,10 +68,13 @@ export default {
 
     const parents = ref([]);
 
-    const getStudents = async () => {
+    const getParents = async () => {
       parents.value = await getAll("stParents");
     };
-    onMounted(getStudents);
+
+    onMounted(() => {
+      getParents();
+    });
 
     return { parents };
   },
@@ -49,15 +82,16 @@ export default {
 </script>
 
 <style scoped>
-.students-info {
+.parents-info {
   background: rgb(107, 142, 189);
   padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
 }
 .parents {
   background: blue;
   padding: 3px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
 }
 .parent {
   background: white;
@@ -66,11 +100,7 @@ export default {
   border-radius: 10px;
 }
 
-.search-parents {
-  display: flex;
-}
-
 input {
-  margin: 10px;
+  margin: 0px;
 }
 </style>
