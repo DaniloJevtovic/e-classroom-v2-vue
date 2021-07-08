@@ -1,16 +1,16 @@
 <template>
   <div class="container">
-    <div class="container-header">
-      <button @click="$router.go(-1)">Back</button>
-    </div>
+    <button @click="$router.go(-1)">Back</button>
+
+    <!-- detalji o uceniku -->
     <div v-if="studentDetails" class="studentDetails">
       <div class="student-info">
-        <h1>
+        <h3>
           Full Name: {{ studentDetails.firstName }}
           {{ studentDetails.lastName }}
-        </h1>
-        <h2>Class: {{ studentDetails.studentClass.name }}</h2>
-        <h2>Email: {{ studentDetails.email }}</h2>
+        </h3>
+        <h3>Class: {{ studentDetails.studentClass.name }}</h3>
+        <h3>Email: {{ studentDetails.email }}</h3>
         <router-link
           :to="{
             name: 'NewMessage',
@@ -21,6 +21,7 @@
         </router-link>
       </div>
 
+      <!-- detalji o roditelju -->
       <div v-if="studentDetails.stParent" class="parent-details">
         <h3>
           Parent: {{ studentDetails.stParent.firstName }}
@@ -42,7 +43,25 @@
           </button>
         </router-link>
       </div>
+
+      <div v-else>
+        <router-link
+          v-if="loggedUser"
+          :to="{
+            name: 'NewParent',
+            params: {
+              studId: studentDetails.id,
+              studName: studentDetails.firstName,
+            },
+          }"
+        >
+          <button v-if="loggedUser.authorities[0].authority === 'ROLE_ADMIN'">
+            Add parent
+          </button>
+        </router-link>
+      </div>
     </div>
+
     <div class="studentResults">
       <h2>Results</h2>
       <div v-for="result in results" :key="result.id">
@@ -54,6 +73,7 @@
             {{ result.quiz.course.teacher.lastName }}
           </h3>
           <h3 class="points">Points: {{ result.points }} / ?</h3>
+          <p>Date:</p>
         </div>
       </div>
     </div>
@@ -95,25 +115,35 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  background: rgb(6, 33, 92);
+  margin-top: 10px;
+  padding: 10px;
+}
+
 .studentDetails {
-  background: orange;
+  background: rgb(0, 132, 255);
   padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
 }
 
 .student-info {
   background: deepskyblue;
-  padding: 15px;
-  border-radius: 10px;
+  color: rgb(10, 10, 70);
+  padding: 10px;
 }
 
 .parent-details {
-  background: yellowgreen;
+  color: cyan;
+  background: rgb(22, 52, 184);
   padding: 15px;
 }
 
 .studentResults {
-  background: indigo;
-  padding: 15px;
+  background: rgb(139, 10, 231);
+  padding: 10px;
 }
 
 .st-result {
