@@ -1,22 +1,26 @@
 <template>
   <div class="stCForCl">
-    <h2>StClasses</h2>
+    <div>
+      <h2>Studnet Classes</h2>
+      <h3>total: {{ stClasses.length }}</h3>
+    </div>
+
+    <input type="text" placeholder="search by name" />
+
     <router-link :to="{ name: 'NewStudentClass' }">
       <button>New Student Class</button>
     </router-link>
-    <div class="search-studnets">
-      <input type="text" placeholder="search by name" />
-      <input type="text" placeholder="search by stClass" />
-    </div>
   </div>
+
   <div class="basic-grid">
     <div class="sclasses" v-for="stClass in stClasses" :key="stClass.id">
       <router-link
         :to="{ name: 'EditStudentClass', params: { stcId: stClass.id } }"
       >
-        <h1 style="color: yellow">StClass: {{ stClass.name }}</h1>
+        <h2>StClass: {{ stClass.name }}</h2>
       </router-link>
 
+      <!-- ucitavanje ucenika u odjeljenju -->
       <StudentsForSCClass :id="stClass.id" />
       <br />
     </div>
@@ -54,10 +58,15 @@ export default {
 }
 
 .stCForCl {
-  background: rgb(65, 112, 155);
+  background: rgb(45, 145, 238);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
 }
 
 .sclasses {
+  background: white;
+  padding: 5px;
   border: 1px solid rgb(28, 43, 85);
   border-radius: 10px;
 }
@@ -66,6 +75,6 @@ export default {
   display: flex;
 }
 input {
-  margin: 10px;
+  margin: 0px;
 }
 </style>

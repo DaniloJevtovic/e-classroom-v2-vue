@@ -1,12 +1,11 @@
 <template>
   <div class="stsForClass">
-    <router-link :to="{ name: 'NewStudentForStClass', params: { id } }">
-      <button>Add new Student</button>
-    </router-link>
-
-    <router-link :to="{ name: 'EditStudentClass', params: { stcId: id } }">
+    <!-- <router-link :to="{ name: 'EditStudentClass', params: { stcId: id } }">
       <button>Edit StClass</button>
-    </router-link>
+    </router-link> -->
+
+    <!-- <input type="text" placeholder="search"> -->
+
     <div>
       <div v-for="(student, index) in students" :key="student.id">
         <div>
@@ -22,6 +21,10 @@
         </div>
       </div>
     </div>
+
+    <router-link :to="{ name: 'NewStudentForStClass', params: { id } }">
+      <button style="border-radius: 100px">+</button>
+    </router-link>
   </div>
 </template>
 
@@ -55,7 +58,7 @@ export default {
 
 .student {
   color: darkblue;
-  background: cyan;
+  background: rgb(147, 241, 241);
   border-radius: 10px;
   margin: 10px;
 }
