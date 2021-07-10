@@ -20,17 +20,32 @@
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import useCRUD from "../../composables/useCRUD.js";
+import { useToast } from "vue-toastification";
 
 export default {
   setup() {
     const { save } = useCRUD();
     const router = useRouter();
+    const toast = useToast();
 
     const newScClass = reactive({ name: "", description: "" });
 
     const handleSubmit = async () => {
-      await save("scClasses", newScClass);
-      router.push({ name: "AllScClasses" });
+      let res = await save("scClasses", newScClass);
+
+      console.log("respon", res);
+
+      // if (res.response.status != 400) {
+      //   toast.info(res.response.data, {
+      //     timeout: 2000,
+      //   });
+
+      //   router.push({ name: "AllScClasses" });
+      // } else {
+      //   toast.error(res.response.data, {
+      //     timeout: 2000,
+      //   });
+      // }
     };
 
     return { newScClass, handleSubmit };

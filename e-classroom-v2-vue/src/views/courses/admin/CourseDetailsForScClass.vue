@@ -39,12 +39,14 @@
 import { ref, onMounted, reactive } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
 
 export default {
   props: ["id"],
   setup(props) {
     const { getById, getAll, editById } = useCRUD();
     const router = useRouter();
+    const toast = useToast();
 
     const courseToEdit = reactive({});
     const teachers = ref([]);
@@ -75,7 +77,12 @@ export default {
     });
 
     const handleUpdate = async () => {
-      await editById("courses", props.id, courseToEdit);
+      let res = await editById("courses", props.id, courseToEdit);
+      
+      toast.info(res, {
+        timeout: 2000,
+      });
+      
       router.go(-1);
     };
 
