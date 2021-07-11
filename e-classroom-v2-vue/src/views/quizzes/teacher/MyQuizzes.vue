@@ -2,39 +2,61 @@
   <div class="quizzes-info">
     <h2>Quizzes</h2>
 
+    <input type="text" placeholder="search" />
+
     <router-link :to="{ name: 'NewQuiz', params: { id } }">
       <button>New Quiz</button>
     </router-link>
+  </div>
 
-    <input type="text" placeholder="search" />
+  <!-- <div class="te-quizzes">
+    <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
+      <router-link
+        :to="{ name: 'QuizDetails', params: { id: id, quizId: quiz.id } }"
+      >
+        <div class="singlee-quiz">
+          <h2>Name: {{ quiz.name }}</h2>
+          <h3>Instruction: {{ quiz.instructions }}</h3>
+          <h4>Duration: {{ quiz.duration }} minutes.</h4>
+          <h4 style="color: indigo; background: cyan">
+            Status: {{ quiz.quizStatus }}
+          </h4>
 
-    <div class="te-quizzes">
-      <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
-        <!-- samo kvizovi koji nisu obrisani -->
-        <!-- <div v-if="quiz.status !== 'DELETED'"> -->
-
-        <router-link
-          :to="{ name: 'QuizDetails', params: { id: id, quizId: quiz.id } }"
-        >
-          <div class="singlee-quiz">
-            <h2>Name: {{ quiz.name }}</h2>
-            <h3>Instruction: {{ quiz.instructions }}</h3>
-            <h4>Duration: {{ quiz.duration }} minutes.</h4>
-            <h4 style="color: indigo; background: cyan">
-              Status: {{ quiz.quizStatus }}
-            </h4>
-
-            <router-link
-              :to="{ name: 'ProfResForQuiz', params: { quizId: quiz.id } }"
-            >
-              <button>See Results</button>
-            </router-link>
-          </div>
-        </router-link>
-
-        <!-- </div> -->
-      </div>
+          <router-link
+            :to="{ name: 'ProfResForQuiz', params: { quizId: quiz.id } }"
+          >
+            <button>See Results</button>
+          </router-link>
+        </div>
+      </router-link>
     </div>
+  </div> -->
+
+  <div>
+    <table>
+      <thead>
+        <td>Num</td>
+        <td>Name</td>
+        <td>Instructions</td>
+        <td>Duration</td>
+        <td>Status</td>
+        <td>Details</td>
+      </thead>
+      <tr v-for="(quiz, index) in quizzes" :key="quiz.id">
+        <td>{{ index + 1 }}.</td>
+        <td>{{ quiz.name }}</td>
+        <td>{{ quiz.instructions }}</td>
+        <td>{{ quiz.duration }} min</td>
+        <td>{{ quiz.quizStatus }}</td>
+        <td>
+          <router-link
+            :to="{ name: 'QuizDetails', params: { id: id, quizId: quiz.id } }"
+          >
+            <button>details</button>
+          </router-link>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -69,9 +91,11 @@ export default {
 }
 
 .quizzes-info {
-  padding: 10px;
+  padding: 5px;
   background: rgb(199, 3, 199);
-  /* opacity: 0.7; */
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
 }
 
 .quizzes {
@@ -85,5 +109,9 @@ export default {
   color: white;
   padding: 5px;
   border-radius: 10px;
+}
+
+input {
+  margin: 0px;
 }
 </style>
