@@ -7,6 +7,7 @@
           Reciver: {{ message.reciver.firstName }}
           {{ message.reciver.lastName }}
         </p>
+        <p>Date: {{ message.date }}</p>
         <p>Subject: {{ message.subject }}</p>
         <p>Message: {{ message.message }}</p>
       </div>
