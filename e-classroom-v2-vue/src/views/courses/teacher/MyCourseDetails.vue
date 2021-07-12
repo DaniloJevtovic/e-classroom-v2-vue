@@ -6,9 +6,9 @@
 
     <div class="container-body">
       <div class="course-info">
-        <h2>Course: {{ courseInfo.name }}</h2>
-        <h2>Description: {{ courseInfo.description }}</h2>
-        <h2>SchoolClass: {{ courseInfo.schoolClass.name }}</h2>
+        <h3>Course: {{ courseInfo.name }}</h3>
+        <h3>Description: {{ courseInfo.description }}</h3>
+        <h3>SchoolClass: {{ courseInfo.schoolClass.name }}</h3>
       </div>
 
       <!-- ovako valjda prosljedjume parametar do child komponente -->
@@ -55,5 +55,10 @@ export default {
 <style scoped>
 .course-info {
   color: rgb(4, 13, 53);
+  background: rgb(248, 152, 117);
+  /* display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 10px; */
 }
 </style>

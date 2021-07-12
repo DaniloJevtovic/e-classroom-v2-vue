@@ -4,9 +4,9 @@
       <child-navbar :links="linksForNavbar"></child-navbar>
     </div>
     <div class="container-body">
-      <h2>Course: {{ courseInfo.name }}</h2>
-      <h2>Description: {{ courseInfo.description }}</h2>
-      <h2>Teacher: {{ courseInfo.teacher.firstName }}</h2>
+      <h3>Course: {{ courseInfo.name }}</h3>
+      <h3>Description: {{ courseInfo.description }}</h3>
+      <h3>Teacher: {{ courseInfo.teacher.firstName }}</h3>
       <router-link
         :to="{
           name: 'NewMessage',
@@ -15,6 +15,7 @@
       >
         <button>Send message</button>
       </router-link>
+
       <router-view :id="id" />
     </div>
   </div>

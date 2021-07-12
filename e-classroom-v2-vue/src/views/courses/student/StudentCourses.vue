@@ -11,7 +11,7 @@
             :to="{ name: 'StudentCourseDetails', params: { id: course.id } }"
           >
             <div class="st-course">
-              <h1>Name: {{ course.name }}</h1>
+              <h2>Name: {{ course.name }}</h2>
               <h2>
                 Teacher: {{ course.teacher.firstName }}
                 {{ course.teacher.lastName }}
