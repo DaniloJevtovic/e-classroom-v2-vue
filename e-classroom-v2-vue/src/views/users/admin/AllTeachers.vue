@@ -9,6 +9,7 @@
 
     <router-link :to="{ name: 'NewTeacher' }">
       <button>New teacher</button>
+      <!-- <button style="border-radius: 100px">+</button> -->
     </router-link>
   </div>
 

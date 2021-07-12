@@ -17,7 +17,7 @@
           <div class="post">
             <div class="post-info">
               <div class="post-text">
-                <p>{{ post.author.firstName }} {{ post.author.lastName }}</p>
+                <p>{{ post.author.firstName }} {{ post.author.lastName }} / Date: {{post.date}}</p>
                 <h3 style="color: cyan">{{ post.post }}</h3>
               </div>
 
