@@ -1,11 +1,11 @@
 <template>
   <div class="materials-info">
-    <h1>Materials</h1>
+    <h2>Materials</h2>
 
     <div v-if="materials.length">
-      <input type="text" placeholder="search" />
+      <input type="text" placeholder="search materials by name" />
 
-      <div class="materials">
+      <!-- <div class="materials">
         <div v-for="material in materials" :key="material.id">
           <div class="material">
             <router-link
@@ -19,6 +19,39 @@
             </router-link>
           </div>
         </div>
+      </div> -->
+
+      <div>
+        <table>
+          <thead>
+            <td>Num</td>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Date</td>
+            <td>Author</td>
+            <td>Details</td>
+          </thead>
+          <tr v-for="(material, index) in materials" :key="material.id">
+            <td>{{ index + 1 }}.</td>
+            <td>{{ material.name }}</td>
+            <td>{{ material.description }}</td>
+            <td>{{ material.creationDate }}</td>
+            <td>
+              {{ material.course.teacher.firstName }}
+              {{ material.course.teacher.lastName }}
+            </td>
+            <td>
+              <router-link
+                :to="{
+                  name: 'StudentMaterialDetails',
+                  params: { matId: material.id },
+                }"
+              >
+                <button>Details</button>
+              </router-link>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
 
@@ -71,12 +104,16 @@ export default {
   padding: 10px;
   border-radius: 10px;
   background: white;
-  margin: 10px
+  margin: 10px;
 }
 
 .no-materials {
   margin: 20px;
   padding: 20px;
   background: red;
+}
+
+input {
+  margin: 0px;
 }
 </style>
