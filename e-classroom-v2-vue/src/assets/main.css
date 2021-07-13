@@ -28,7 +28,7 @@ select,
 textarea {
   border: 0;
   border-bottom: 1px solid indigo;
-  padding: 10px;
+  padding: 5px;
   outline: none;
   display: block;
   width: 100%;
@@ -42,8 +42,9 @@ button {
   color: white;
   border-radius: 5px;
   border: 0;
-  padding: 8px 12px;
-  font-weight: 600;
+  padding: 6px 12px;
+  /* font-weight: 600; */
+  font-weight: 300; 
   cursor: pointer;
   display: inline-block;
   outline: none;
@@ -77,6 +78,7 @@ button:disabled {
 
 .container-body {
   background: rgb(130, 13, 226);
+  /* background: #fafafa; */
   align-items: center;
   text-align: center;
 }

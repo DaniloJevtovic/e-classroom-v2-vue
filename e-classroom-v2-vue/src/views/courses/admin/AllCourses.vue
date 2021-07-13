@@ -5,6 +5,7 @@
       <router-link :to="{ name: 'NewCourse' }">
         <button>New Course</button>
       </router-link>
+      <input type="text" placeholder="search" />
     </div>
 
     <div class="container-body">
@@ -50,5 +51,14 @@ export default {
 <style scoped>
 .courses {
   display: inline;
+}
+
+button {
+  padding: 5px
+}
+
+input {
+  margin: 0;
+  width: 92%;
 }
 </style>

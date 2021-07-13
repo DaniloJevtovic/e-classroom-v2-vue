@@ -53,7 +53,7 @@ export default {
 
 .par-student {
   background: cyan;
-  border-radius: 10px;
+  border-radius: 5px;
   color: indigo;
   padding: 8px;
   text-align: center;

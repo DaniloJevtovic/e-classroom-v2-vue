@@ -30,6 +30,6 @@ nav {
 .links a.router-link-exact-active button {
   background: gold;
   color: indigo;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 </style>
