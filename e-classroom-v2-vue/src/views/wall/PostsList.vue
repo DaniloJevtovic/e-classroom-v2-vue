@@ -74,7 +74,7 @@ export default {
 
     const newPost = async () => {
       let res = await save("posts", post);
-      posts.value.push(res);
+      posts.value.unshift(res);
       post.post = "";
     };
 
@@ -147,7 +147,7 @@ export default {
   color: white;
   display: flex;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .post-text {
