@@ -23,7 +23,7 @@
     </div>
 
     <router-link :to="{ name: 'NewStudentForStClass', params: { id } }">
-      <button style="border-radius: 100px">++</button>
+      <button style="border-radius: 100px">+</button>
     </router-link>
   </div>
 </template>

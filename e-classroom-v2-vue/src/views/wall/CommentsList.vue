@@ -4,7 +4,10 @@
       <div v-for="(comment, index) in comments" :key="comment.id">
         <div class="comment">
           <div class="comment-text">
-            <p>{{ comment.author.firstName }}</p>
+            <p>
+              {{ comment.author.firstName }} {{ comment.author.lastName }} -
+              {{ comment.date }}
+            </p>
             <h3>{{ comment.comment }}</h3>
           </div>
 

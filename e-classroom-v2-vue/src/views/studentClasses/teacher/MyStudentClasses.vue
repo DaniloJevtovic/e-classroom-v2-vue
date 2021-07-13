@@ -1,10 +1,13 @@
 <template>
   <div class="my-stClass-info">
-    <div class="my-stClasses" v-for="stClass in stClasses" :key="stClass.id">
-      <div class="my-stClass">
-        <h2>Student class: {{ stClass.name }}</h2>
+    <div class="my-stClasses">
+      <div v-for="stClass in stClasses" :key="stClass.id">
+        <div class="my-stClass">
+          <h3>Student class: {{ stClass.name }}</h3>
 
-        <my-students :stClassId="stClass.id"></my-students>
+          <!-- ucitavanje svih ucenika za odjeljenje -->
+          <my-students :stClassId="stClass.id"></my-students>
+        </div>
       </div>
     </div>
   </div>
@@ -37,15 +40,19 @@ export default {
 
 <style scoped>
 .my-stClass-info {
-  background: chartreuse;
-  padding: 10px;
+  background: rgb(197, 210, 235);
+  padding: 5px;
 }
 .my-stClasses {
   background: rgb(0, 26, 255);
-  padding: 20px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .my-stClass {
-  border: 3px solid yellow;
+  border: 2px solid cyan;
+  border-radius: 2px;
+  margin: 5px
 }
 .my-stClass h2 {
   padding: 10px;
