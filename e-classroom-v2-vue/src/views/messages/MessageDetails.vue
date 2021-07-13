@@ -38,9 +38,11 @@ export default {
       let mess = await getById("messages", props.messId);
 
       message.value = mess;
+      
       reply.subject = "RE: " + mess.subject;
-      reply.senderId = mess.sender.id;
-      reply.reciverId = mess.reciver.id;
+      //obrnuto je u odnosu na originalnu poruku
+      reply.senderId = mess.reciver.id;   
+      reply.reciverId = mess.sender.id;
     };
 
     const sendReply = async () => {
