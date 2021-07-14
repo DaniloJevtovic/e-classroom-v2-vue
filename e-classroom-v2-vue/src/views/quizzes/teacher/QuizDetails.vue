@@ -9,7 +9,7 @@
           <h2>Quiz details</h2>
           <input type="text" v-model="quiz.name" placeholder="name" required />
           <textarea
-            rows="3"
+            rows="7"
             v-model="quiz.instructions"
             placeholder="instructions"
           ></textarea>
@@ -22,12 +22,15 @@
               required
             />
 
+            <div style="color: darkblue">
+              points: {{ quiz.totalPoints }}
+            </div>
+
             <select v-model="quiz.quizStatus" required>
               <option value="INACTIVE">Inactive</option>
               <option value="ACTIVE">Active</option>
               <option value="FINISHED">Finished</option>
               <option value="DELETED">Deleted</option>
-              
             </select>
           </div>
 
@@ -37,7 +40,10 @@
       </div>
 
       <!-- lista pitanja za kviz -->
-      <questions-list :quizId="quizId"></questions-list>
+
+      <div class="questions-scroll">
+        <questions-list :quizId="quizId"></questions-list>
+      </div>
     </div>
   </div>
 </template>
@@ -90,13 +96,36 @@ export default {
 }
 
 .status-duration {
-  display: flex;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  align-items: center;
 }
 
 form {
-  background: indigo;
+  background: white;
   max-width: 100%;
-  color: cyan;
+}
+
+.container-body {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  align-items: start;
+}
+
+.questions-scroll {
+  max-height: 500px;
+  overflow: auto;
+}
+/* scrollbar style */
+::-webkit-scrollbar {
+  width: 14px;
+}
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+  border-radius: 9px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #183588;
+  border-radius: 9px;
 }
 </style>
