@@ -39,6 +39,7 @@
         <td>Name</td>
         <td>Instructions</td>
         <td>Duration</td>
+        <td>Total points</td>
         <td>Status</td>
         <td>Details</td>
       </thead>
@@ -47,6 +48,7 @@
         <td>{{ quiz.name }}</td>
         <td>{{ quiz.instructions }}</td>
         <td>{{ quiz.duration }} min</td>
+        <td>{{ quiz.totalPoints }}</td>
         <td>{{ quiz.quizStatus }}</td>
         <td>
           <router-link
