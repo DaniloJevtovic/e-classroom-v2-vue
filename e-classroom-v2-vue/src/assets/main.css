@@ -64,10 +64,10 @@ button:disabled {
 }
 
 .container {
-  margin: 20px 20px;
-  background: rgb(26, 42, 107);
+  margin: 10px 10px;
+  /* background: rgb(26, 42, 107); */
   padding: 5px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 .container-header {
@@ -77,10 +77,11 @@ button:disabled {
 }
 
 .container-body {
-  background: rgb(130, 13, 226);
-  /* background: #fafafa; */
+  /* background: rgb(130, 13, 226); */
+  /* background: gray; */
   align-items: center;
   text-align: center;
+  border: 1px solid indigo;
 }
 
 .basic-grid {
