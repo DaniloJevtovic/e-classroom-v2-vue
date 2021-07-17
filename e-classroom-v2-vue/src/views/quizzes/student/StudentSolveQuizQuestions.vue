@@ -85,9 +85,10 @@ export default {
 
 <style>
 .question-details {
-  padding: 20px;
+  padding: 10px;
   border: 2px solid indigo;
-  border-radius: 10px;
+  border-radius: 5px;
+  margin: 10px
 }
 
 .question {

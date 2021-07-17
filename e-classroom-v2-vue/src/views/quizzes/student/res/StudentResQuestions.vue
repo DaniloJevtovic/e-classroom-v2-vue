@@ -10,7 +10,6 @@
 
           <student-quiz-answers :questionId="question.id" :resId="resId">
           </student-quiz-answers>
-        
         </div>
       </div>
     </div>
@@ -47,15 +46,15 @@ export default {
 <style scoped>
 .res-quest {
   background: yellow;
-  margin: 20px;
-  padding: 8px;
-  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 1px;
 }
 
 .quest-answers {
   background: plum;
   border: 1px solid indigo;
-  margin: 20px;
-  padding: 20px;
+  margin: 5px;
+  padding: 10px;
 }
 </style>

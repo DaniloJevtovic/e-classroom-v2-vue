@@ -81,6 +81,6 @@ export default {
 <style scoped>
 .st-quiz-info {
   background: rgb(136, 132, 163);
-  padding: 15px;
+  padding: 5px;
 }
 </style>
