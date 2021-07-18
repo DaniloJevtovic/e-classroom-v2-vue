@@ -4,7 +4,7 @@
       <!-- <h1 v-if="result.points < 0">Your Score: 0 points / ?</h1>
       <h1 v-else>Your Score: {{ result.points }} points / ?</h1> -->
 
-      <h1>Score: {{ result.points }} points / ?</h1>
+      <h2>Score: {{ result.points }} points / ?</h2>
       <button v-if="checkLoggedUser()">Edit points</button>
     </div>
 
@@ -46,12 +46,12 @@ export default {
 <style scoped>
 .student-res {
   background: rgb(0, 217, 255);
-  margin: 10px;
-  border: 3px solid rebeccapurple;
+  margin: 1px;
+  border: 1px solid rebeccapurple;
 }
 
 .res-score {
   background: rgb(0, 255, 106);
-  padding: 8px;
+  padding: 3px;
 }
 </style>

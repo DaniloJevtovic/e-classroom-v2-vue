@@ -9,7 +9,7 @@
     </div>
 
     <div class="container-body">
-      <h2>Courses</h2>
+      <h2>All Courses</h2>
       <div class="courses" v-for="course in courses" :key="course.id">
         <router-link :to="{ name: 'CourseDetails', params: { id: course.id } }">
           <button>

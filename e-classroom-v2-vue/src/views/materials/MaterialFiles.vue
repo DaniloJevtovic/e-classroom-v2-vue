@@ -1,6 +1,6 @@
 <template>
   <div class="files-container">
-    <h2>Files</h2>
+    <h3>Files</h3>
     <div class="files-list">
       <div v-for="file in files" :key="file.id">
         <button @click.prevent="downFile(file)">
@@ -46,6 +46,7 @@ export default {
   background: rgb(0, 255, 221);
   margin: 10px;
   padding: 10px;
+  border: 1px solid darkblue;
 }
 
 .files-list {

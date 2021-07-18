@@ -20,30 +20,30 @@
           :to="{ name: 'CourseDetailsForScClass', params: { id: course.id } }"
         >
           <div class="sc-courses">
-            <h1>Name: {{ course.name }}</h1>
+            <h2>Name: {{ course.name }}</h2>
+            <h3>description: {{ course.description }}</h3>
             <h3>
               Teacher: {{ course.teacher.firstName }}
               {{ course.teacher.lastName }}
 
-              <router-link
+              <!-- <router-link
                 :to="{
                   name: 'NewMessage',
                   params: { reciverId: course.teacher.id },
                 }"
               >
                 <button>Send message</button>
-              </router-link>
+              </router-link> -->
             </h3>
-            <h3>description: {{ course.description }}</h3>
 
-            <!-- <router-link
+            <router-link
               :to="{
                 name: 'NewMessage',
                 params: { reciverId: course.teacher.id },
               }"
             >
               <button>Send message</button>
-            </router-link> -->
+            </router-link>
           </div>
         </router-link>
       </div>
@@ -83,10 +83,11 @@ export default {
 }
 
 .sc-courses {
-  background: rgb(45, 45, 216);
-  color: aqua;
+  /* background: rgb(45, 45, 216); */
+  color: darkblue;
   padding: 10px;
-  border-radius: 7px;
+  border-radius: 5px;
+  border: 1px solid darkblue;
 }
 
 input {

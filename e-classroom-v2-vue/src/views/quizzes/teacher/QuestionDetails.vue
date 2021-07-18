@@ -2,9 +2,9 @@
   <div class="question-details">
     <div class="question">
       <form @submit.prevent="handleSubmit">
-        <h2>Question {{ questionIndex + 1 }}.</h2>
+        <h3>Question {{ questionIndex + 1 }}.</h3>
         <textarea
-          rows="2"
+          rows="1"
           v-model="question.question"
           placeholder="enter question"
           required
@@ -100,9 +100,9 @@ export default {
 
 <style scoped>
 .question-details {
-  padding: 20px;
+  padding: 5px;
   border: 2px solid indigo;
-  border-radius: 10px;
+  border-radius: 4px;
   margin: 10px;
 }
 
@@ -119,4 +119,5 @@ form {
   display: flex;
   gap: 1rem;
 }
+
 </style>

@@ -3,10 +3,10 @@
     <div class="res-quest">
       <div v-for="(question, index) in questions" :key="question.id">
         <div class="quest-answers">
-          <h1>
+          <h2>
             {{ index + 1 }}. {{ question.question }} - points:
             {{ question.points }}
-          </h1>
+          </h2>
 
           <student-quiz-answers :questionId="question.id" :resId="resId">
           </student-quiz-answers>
@@ -52,7 +52,7 @@ export default {
 }
 
 .quest-answers {
-  background: plum;
+  background: rgb(250, 105, 27);
   border: 1px solid indigo;
   margin: 5px;
   padding: 10px;
