@@ -66,7 +66,7 @@ export default {
 
 <style scoped>
 .parents-info {
-  background: rgb(107, 142, 189);
+  background: rgb(5, 181, 250);
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;

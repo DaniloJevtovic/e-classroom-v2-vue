@@ -132,11 +132,11 @@ thead {
 }
 
 tr {
-  background: skyblue;
+  background: white;
 }
 
 tr:hover {
-  background: white;
+  background: rgb(7, 172, 238);
 }
 
 td {

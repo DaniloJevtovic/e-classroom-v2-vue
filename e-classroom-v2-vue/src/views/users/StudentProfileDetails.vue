@@ -116,33 +116,35 @@ export default {
 
 <style scoped>
 .container {
-  background: rgb(6, 33, 92);
-  margin-top: 10px;
+  /* background: rgb(6, 33, 92); */
+  /* margin-top: 5px; */
   padding: 10px;
 }
 
 .studentDetails {
-  background: rgb(0, 132, 255);
+  /* background: rgb(0, 132, 255); */
   padding: 15px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   text-align: center;
+  border: 1px solid darkblue;
 }
 
 .student-info {
-  background: deepskyblue;
+  background: rgba(0, 191, 255, 0.295);
   color: rgb(10, 10, 70);
   padding: 10px;
 }
 
 .parent-details {
-  color: cyan;
-  background: rgb(22, 52, 184);
+  /* color: cyan; */
+  background: rgba(81, 118, 255, 0.671);
   padding: 15px;
 }
 
 .studentResults {
-  background: rgb(139, 10, 231);
+  /* background: rgb(139, 10, 231); */
+  border: 1px solid darkblue;
   padding: 10px;
 }
 

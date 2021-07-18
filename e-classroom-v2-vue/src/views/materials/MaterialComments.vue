@@ -1,6 +1,6 @@
 <template>
   <div class="mat-com-list">
-    <h2>Comments</h2>
+    <h3>Material comments</h3>
     <div v-for="(comment, index) in comments" :key="comment.id">
       <div class="mat-com">
         <p>{{ comment.author.firstName }}: {{ comment.comment }}</p>
@@ -88,20 +88,20 @@ export default {
 
 .mat-com {
   background: rgb(167, 238, 202);
-  padding: 8px;
-  margin: 8px;
+  padding-left: 10px;
+  margin: 4px;
   display: flex;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .new-mat-com {
-  padding: 8px;
-  margin: 8px;
+  padding: 4px;
+  margin: 4px;
   display: flex;
   background: rgb(16, 226, 241);
   display: flex;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 button:hover {

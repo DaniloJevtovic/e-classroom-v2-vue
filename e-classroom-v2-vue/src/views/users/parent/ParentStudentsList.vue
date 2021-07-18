@@ -46,16 +46,18 @@ export default {
 
 <style scoped>
 .parent-stList {
-  color: cyan;
+  /* color: cyan; */
   padding: 10px;
-  background: darkblue;
+  border: 1px solid darkblue;
+  /* background: darkblue; */
 }
 
 .par-student {
-  background: cyan;
+  /* background: cyan; */
   border-radius: 5px;
-  color: indigo;
+  color: darkblue;
   padding: 8px;
+  border: 1px solid darkblue;
   text-align: center;
 }
 </style>

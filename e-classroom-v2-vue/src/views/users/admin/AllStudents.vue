@@ -71,7 +71,7 @@ export default {
 
 <style scoped>
 .students-info {
-  background: rgb(57, 51, 133);
+  background: rgb(5, 181, 250);
   padding: 10px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;

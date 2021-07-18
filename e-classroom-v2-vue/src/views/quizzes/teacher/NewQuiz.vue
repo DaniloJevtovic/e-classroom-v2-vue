@@ -52,7 +52,7 @@ export default {
 
 <style scoped>
 
-form {
+/* form {
  min-width: 80%;
-}
+} */
 </style>

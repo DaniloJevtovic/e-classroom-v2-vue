@@ -51,14 +51,14 @@ export default {
 
 <style scoped>
 .recived-messages {
-  margin: 5px;
+  border: 1px solid darkblue;
   padding: 5px;
   background: white;
 }
 
 .message {
   color: darkblue;
-  background: rgb(164, 243, 204);
+  background: rgb(202, 250, 226);
   margin: 5px;
   padding: 10px;
   border-radius: 5px;

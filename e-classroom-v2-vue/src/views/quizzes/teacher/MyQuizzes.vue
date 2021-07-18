@@ -94,7 +94,7 @@ export default {
 
 .quizzes-info {
   padding: 5px;
-  background: rgb(199, 3, 199);
+  background: rgb(240, 231, 240); 
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;

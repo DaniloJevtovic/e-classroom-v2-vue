@@ -44,13 +44,13 @@ export default {
 
 <style scoped>
 .sent-messages {
-  margin: 5px;
+  border: 1px solid darkblue;
   padding: 5px;
   background: white;
 }
 
 .message {
-  background: rgb(226, 218, 203);
+  background: rgb(238, 237, 236);
   margin: 5px;
   padding: 10px;
   border-radius: 5px;

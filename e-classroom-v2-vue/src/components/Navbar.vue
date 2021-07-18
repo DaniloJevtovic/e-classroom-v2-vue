@@ -51,8 +51,8 @@ export default {
 <style scoped>
 .navbar {
   margin-bottom: 10px;
-  /* background: rgb(116, 138, 170); */
-  background: rgb(124, 140, 197);
+  background: rgb(116, 138, 170);
+  /* background: rgb(124, 140, 197); */
 }
 
 nav {

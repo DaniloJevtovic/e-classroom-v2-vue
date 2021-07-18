@@ -81,20 +81,20 @@ export default {
 }
 
 .res-answers {
-  background: rgb(4, 206, 108);
+  background: rgb(235, 231, 12);
   padding: 8px;
   margin: 10px;
 }
 
 .res-ans {
-  color: rgb(216, 241, 229);
-  background: rgb(32, 1, 36);
+  color: rgb(0, 12, 6);
+  background: rgb(15, 167, 238);
   margin: 10px;
 }
 
 .res-st-answers {
-  background: rgb(31, 3, 51);
-  color: rgb(68, 159, 238);
+  background: rgb(10, 240, 182);
+  color: rgb(255, 4, 4);
   padding: 8px;
   margin: 10px;
 }

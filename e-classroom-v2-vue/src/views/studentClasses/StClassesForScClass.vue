@@ -68,7 +68,7 @@ export default {
   background: white;
   padding: 5px;
   border: 1px solid rgb(28, 43, 85);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .search-studnets {
