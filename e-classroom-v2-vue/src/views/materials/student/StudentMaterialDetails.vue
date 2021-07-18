@@ -7,9 +7,11 @@
       <h3>Name: {{ materialInfo.name }}</h3>
       <h3>Description: {{ materialInfo.description }}</h3>
 
-      <material-files :matId="matId"></material-files>
+      <div class="mats-coms">
+        <material-files :matId="matId"></material-files>
 
-      <material-comments :matId="matId"></material-comments>
+        <material-comments :matId="matId"></material-comments>
+      </div>
     </div>
   </div>
 </template>
@@ -42,5 +44,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.mats-coms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 </style>

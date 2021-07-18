@@ -9,14 +9,15 @@
       <router-link :to="{ name: 'EditMaterial', params: { id: matId } }">
         <button>Edit</button>
       </router-link>
-
       <button @click.prevent="deleteMaterial">Delete</button>
 
-      <!-- fajlovi za materijal -->
-      <material-files :matId="matId"></material-files>
+      <div class="mats-coms">
+        <!-- fajlovi za materijal -->
+        <material-files :matId="matId"></material-files>
 
-      <!-- komentari za material -->
-      <material-comments :matId="matId"></material-comments>
+        <!-- komentari za material -->
+        <material-comments :matId="matId"></material-comments>
+      </div>
     </div>
   </div>
 </template>
@@ -59,5 +60,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.mats-coms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 </style>
