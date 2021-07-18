@@ -5,14 +5,31 @@
     </div>
 
     <div class="container-body">
-      <div class="student-results">
-        <div v-for="result in results" :key="result.id">
-          <div class="st-result">
-            <h2>Quiz: {{ result.quiz.name }}</h2>
-            <h3>Subject: {{ result.quiz.course.name }}</h3>
-            <h3>Points: {{ result.points }} / ?</h3>
-          </div>
-        </div>
+      <div v-if="results.length">
+        <table>
+          <thead>
+            <td>Num</td>
+            <td>Quiz</td>
+            <td>Date</td>
+            <td>Subject</td>
+            <td>Teacher</td>
+            <td>Points</td>
+          </thead>
+          <tr v-for="(result, index) in results" :key="result.id">
+            <td>{{ index + 1 }}.</td>
+            <td>{{ result.quiz.name }}</td>
+            <td>{{ result.date }}</td>
+            <td>{{ result.quiz.course.name }}</td>
+            <td>
+              {{ result.quiz.course.teacher.firstName }}
+              {{ result.quiz.course.teacher.lastName }}
+            </td>
+            <td style="background: springgreen">{{ result.points }}</td>
+          </tr>
+        </table>
+      </div>
+      <div v-else>
+        <h2>No results</h2>
       </div>
     </div>
   </div>
