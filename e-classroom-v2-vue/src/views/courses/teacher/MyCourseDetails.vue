@@ -56,9 +56,10 @@ export default {
 .course-info {
   color: rgb(4, 13, 53);
   background: rgb(248, 152, 117);
-  /* display: grid;
+  display: grid;
+
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  padding: 10px; */
+  padding: 10px; 
 }
 </style>
