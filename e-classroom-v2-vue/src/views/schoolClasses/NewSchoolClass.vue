@@ -46,6 +46,8 @@ export default {
       //     timeout: 2000,
       //   });
       // }
+
+      router.go(-1);
     };
 
     return { newScClass, handleSubmit };

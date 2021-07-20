@@ -118,7 +118,7 @@ export default {
 
       newStudent.parentId = res.id; // dodjela roditelja uceniku!
 
-      await save("students", newStudent);
+      let resSt = await save("students", newStudent);
       router.go(-1);
     };
 
