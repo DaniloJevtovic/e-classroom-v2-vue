@@ -71,7 +71,7 @@ button:disabled {
 }
 
 .container-header {
-  background: rgb(73, 91, 126);
+  background: rgb(152, 178, 240);
   align-items: center;
   display: flex;
 }
@@ -137,6 +137,7 @@ tr {
 
 tr:hover {
   background: rgb(7, 172, 238);
+  cursor: pointer;
 }
 
 td {

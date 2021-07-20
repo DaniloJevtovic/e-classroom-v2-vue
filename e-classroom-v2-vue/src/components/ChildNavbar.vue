@@ -23,9 +23,9 @@ export default {
 </script>
 
 <style scoped>
-nav {
+/* nav {
   background: orchid;
-}
+} */
 
 .links a.router-link-exact-active button {
   background: gold;

@@ -93,6 +93,7 @@ export default {
   border: 2px solid darkblue;
   background: blue;
   border-radius: 3px;
+  width: 99%;
 }
 
 .status-duration {
