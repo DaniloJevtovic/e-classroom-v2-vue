@@ -1,26 +1,13 @@
 <template>
   <div class="materials-info">
-    <h2>Materials</h2>
-
     <div v-if="materials.length">
-      <input type="text" placeholder="search materials by name" />
+      <div class="materials-header">
+        <!-- <h3>Materials</h3> -->
+        <div></div>
+        <input type="text" placeholder="search by name" />
 
-      <!-- <div class="materials">
-        <div v-for="material in materials" :key="material.id">
-          <div class="material">
-            <router-link
-              :to="{
-                name: 'StudentMaterialDetails',
-                params: { matId: material.id },
-              }"
-            >
-              <h2>Name: {{ material.name }}</h2>
-              <h3>Description: {{ material.description }}</h3>
-            </router-link>
-          </div>
-        </div>
-      </div> -->
-
+        <div></div>
+      </div>
       <div>
         <table>
           <thead>
@@ -86,9 +73,12 @@ export default {
 </script>
 
 <style scoped>
-.materials-info {
-  padding: 10px;
-  background: rgb(27, 27, 184);
+.materials-header {
+  padding: 5px;
+  background: rgb(5, 141, 231);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
 }
 
 .materials {
