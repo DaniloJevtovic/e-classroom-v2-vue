@@ -1,6 +1,7 @@
 <template>
   <div class="questions-list">
-    <h2>Questions ({{ questions.length }})</h2>
+    <h3>Questions ({{ questions.length }})</h3>
+    <h3>Total points: {{ totalPoints }}</h3>
 
     <div v-for="(question, index) in questions" :key="question.id">
       <question-details
@@ -15,7 +16,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 
 import QuestionDetails from "./QuestionDetails.vue";
@@ -49,18 +50,27 @@ export default {
       questions.value.splice(index, 1);
     };
 
+    const totalPoints = computed(() => {
+      let points = 0;
+      questions.value.forEach((question) => {
+        points += question.points;
+      });
+
+      return points;
+    });
+
     onMounted(() => {
       getQuestionsForQuiz();
     });
 
-    return { questions, deleteQuestion, addNewQuestion };
+    return { questions, deleteQuestion, addNewQuestion, totalPoints };
   },
 };
 </script>
 
 <style scoped>
 .questions-list {
-  padding: 10px;
-  margin: 10px;
+  padding: 1px;
+  margin: 1px;
 }
 </style>
