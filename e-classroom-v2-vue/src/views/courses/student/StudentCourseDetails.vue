@@ -4,17 +4,30 @@
       <child-navbar :links="linksForNavbar"></child-navbar>
     </div>
     <div class="container-body">
-      <h3>Course: {{ courseInfo.name }}</h3>
-      <h3>Description: {{ courseInfo.description }}</h3>
-      <h3>Teacher: {{ courseInfo.teacher.firstName }}</h3>
-      <router-link
-        :to="{
-          name: 'NewMessage',
-          params: { senderId: loggedUser.id, reciverId: courseInfo.teacher.id },
-        }"
-      >
-        <button>Send message</button>
-      </router-link>
+      <div class="course-info">
+        <div>
+          <h3>Course: {{ courseInfo.name }}</h3>
+          <h3>Description: {{ courseInfo.description }}</h3>
+        </div>
+
+        <div>
+          <h3>
+            Teacher: {{ courseInfo.teacher.firstName }}
+            {{ courseInfo.teacher.lastName }}
+          </h3>
+          <router-link
+            :to="{
+              name: 'NewMessage',
+              params: {
+                senderId: loggedUser.id,
+                reciverId: courseInfo.teacher.id,
+              },
+            }"
+          >
+            <button style="padding: 5px; margin: 0px">Send message</button>
+          </router-link>
+        </div>
+      </div>
 
       <router-view :id="id" />
     </div>
@@ -70,5 +83,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.course-info {
+  padding: 10px;
+  background: cyan;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 </style>
