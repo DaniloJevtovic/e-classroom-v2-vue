@@ -1,5 +1,7 @@
 import TeacherHome from "../views/homePages/TeacherHome.vue";
 import MyCourses from "../views/courses/teacher/MyCourses.vue";
+import MyCourses2 from "../views/courses/teacher/MyCourses2.vue";
+
 import MyQuizzes from "../views/quizzes/teacher/MyQuizzes.vue";
 import MyStudentClasses from "../views/studentClasses/teacher/MyStudentClasses.vue";
 import MyStudents from "../views/users/teacher/MyStudents.vue";
@@ -36,7 +38,29 @@ export default [
     component: MyCourses,
   },
   {
-    path: "/myCourse/:id",
+    path: "/myCourses2",
+    name: "MyCourses2",
+    component: MyCourses2,
+    props: true,
+    children: [
+      {
+        path: "/myCourses2/:id",
+        name: "MyCourseDetails2",
+        component: MyCourseDetails2,
+        props: true,
+        children: [
+          {
+            path: "teacherWall",
+            name: "TeacherWall",
+            component: Wall,
+            props: true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "/myCourses/:id",
     name: "MyCourseDetails",
     component: MyCourseDetails,
     props: true,
