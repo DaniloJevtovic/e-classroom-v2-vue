@@ -1,8 +1,11 @@
 <template>
-  <div class="container">
+  <div v-if="result">
+    <student-quiz-results :result="result"></student-quiz-results>
+  </div>
+  <div v-else>
     <div class="container-body">
       <div class="quiz-info">
-        <h1>Name: {{ quizInfo.name }}</h1>
+        <h2>Name: {{ quizInfo.name }}</h2>
         <h2>Instructions: {{ quizInfo.instructions }}</h2>
         <h2>Duration: {{ quizInfo.duration }}</h2>
         <h3>Total questions: {{ questions.length }}</h3>
@@ -11,7 +14,7 @@
       </div>
 
       <div class="questions">
-        <h1>Questions</h1>
+        <h2>Questions</h2>
 
         <div v-for="question in questions" :key="question.id">
           <student-solve-quiz-questions
@@ -35,14 +38,20 @@ import useCRUD from "@/composables/useCRUD.js";
 import StudentSolveQuizQuestions from "./StudentSolveQuizQuestions.vue";
 import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
+import { useStore } from "vuex";
+import StudentQuizResults from "./res/StudentQuizResults.vue";
 
 export default {
   props: ["id", "quizId", "stRes"],
-  components: { StudentSolveQuizQuestions },
+  components: { StudentSolveQuizQuestions, StudentQuizResults },
   setup(props) {
-    const { getById, getSubItems, deleteById } = useCRUD();
+    const { getById, getSubItems, getSubSubItems, deleteById } = useCRUD();
     const router = useRouter();
     const toast = useToast();
+    const result = ref("");
+    const store = useStore();
+
+    const student = store.getters["getLoggedUser"];
 
     const quizInfo = ref("");
     const questions = ref([]);
@@ -58,6 +67,16 @@ export default {
       startTimer();
     };
 
+    const getResults = async () => {
+      result.value = await getSubSubItems(
+        "results",
+        "student",
+        "quiz",
+        student.id,
+        props.quizId
+      );
+    };
+
     const getQuestionsForQuiz = async () => {
       questions.value = await getSubItems("questions", "quiz", props.quizId);
     };
@@ -71,8 +90,6 @@ export default {
 
           startTimer();
         }, 1000);
-
-        
       } else {
         router.push({
           name: "StudentQuizDetails",
@@ -99,11 +116,12 @@ export default {
     };
 
     onMounted(() => {
+      //getResults();
       getQuiz();
       getQuestionsForQuiz();
     });
 
-    return { quizInfo, questions, timer, timer2 };
+    return { quizInfo, questions, timer, timer2, result };
   },
 };
 </script>
@@ -111,12 +129,15 @@ export default {
 <style>
 .quiz-info {
   padding: 14px;
-  border: 7px solid darkblue;
+  border: 1px solid darkblue;
   background: blue;
-  border-radius: 20px;
+  border-radius: 5px;
+  width: 70%;
+  margin: 1px auto;
 }
 
 .questions {
-  padding: 10px;
+  width: 70%;
+  margin: 0px auto;
 }
 </style>
