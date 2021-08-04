@@ -1,6 +1,10 @@
 import axios from "axios";
 
 const url = "http://localhost:5555/api/";
+import { useToast } from "vue-toastification";
+import router from "../router/index.js";
+
+const toast = useToast();
 
 const getAll = async (items) => {
   try {
@@ -98,8 +102,18 @@ const save = async (items, data) => {
       },
     });
 
-    return response.data;
+    toast.info(response.data.message, {
+      timeout: 2000,
+    });
+
+    router.go(-1);
+
+    return response.data.body;
   } catch (err) {
+    toast.error(err.response.data, {
+      timeout: 2000,
+    });
+
     return err;
   }
 };
@@ -118,10 +132,19 @@ const editById = async (items, id, data) => {
       }
     );
 
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    return error.response.data;
+    toast.info(response.data.message, {
+      timeout: 2000,
+    });
+
+    router.go(-1);
+
+    return response.data.body;
+  } catch (err) {
+    toast.error(err.response.data, {
+      timeout: 2000,
+    });
+
+    return err.response.data;
   }
 };
 
