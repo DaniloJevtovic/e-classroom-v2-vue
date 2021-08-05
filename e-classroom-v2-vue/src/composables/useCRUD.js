@@ -92,7 +92,7 @@ const getSubSubItems = async (
   }
 };
 
-const save = async (items, data) => {
+const save = async (items, data, redirect, toastDialog) => {
   try {
     const response = await axios.post(url + items, JSON.stringify(data), {
       headers: {
@@ -102,14 +102,21 @@ const save = async (items, data) => {
       },
     });
 
-    toast.info(response.data.message, {
-      timeout: 2000,
-    });
+    if (toastDialog) {
+      toast.info(response.data.message, {
+        timeout: 2000,
+      });
+    }
 
-    router.go(-1);
+    console.log(response.data.message)
+
+    if (redirect) {
+      router.go(-1);
+    }
 
     return response.data.body;
   } catch (err) {
+    
     toast.error(err.response.data, {
       timeout: 2000,
     });
@@ -148,17 +155,35 @@ const editById = async (items, id, data) => {
   }
 };
 
-const deleteById = async (items, id) => {
+//redirect - parametar koji ce redirektovati jednu stranicu nazad - true/false
+//toast - da li ce biti dijalog - true/false
+const deleteById = async (items, id, redirect, toastDialog) => {
   try {
     const response = await axios.delete(url + items + "/" + id, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
-    return response.data;
+
+    console.log("redirect", redirect);
+    console.log("toast", toast);
+
+    if (redirect) {
+      router.go(-1);
+    }
+
+    if (toastDialog) {
+      const toast = useToast();
+
+      toast.info(response.data, {
+        timeout: 2000,
+      });
+    }
+
+    console.log(response);
   } catch (error) {
     console.log(error);
-    return error.response.data;
+    return error;
   }
 };
 
