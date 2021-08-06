@@ -53,12 +53,14 @@ export default {
   margin-bottom: 10px;
   background: rgb(116, 138, 170);
   /* background: rgb(124, 140, 197); */
+  margin: auto;
 }
 
 nav {
   display: flex;
   align-items: center;
   margin: 0 auto;
+  max-width: 1250px;
 }
 
 nav h2 {

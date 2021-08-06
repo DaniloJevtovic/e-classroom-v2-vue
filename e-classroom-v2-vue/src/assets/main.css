@@ -64,10 +64,11 @@ button:disabled {
 }
 
 .container {
-  margin: 10px 10px;
+  margin: auto;
   /* background: rgb(26, 42, 107); */
   padding: 5px;
   /* border-radius: 5px; */
+  max-width: 1200px;
 }
 
 .container-header {
