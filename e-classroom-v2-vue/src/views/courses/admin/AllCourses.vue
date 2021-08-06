@@ -9,8 +9,8 @@
     </div>
 
     <div class="container-body">
-      <h2>All Courses</h2>
-      <div class="courses" v-for="course in courses" :key="course.id">
+      <!-- <h3>All Courses</h3> -->
+      <!-- <div class="courses" v-for="course in courses" :key="course.id">
         <router-link :to="{ name: 'CourseDetails', params: { id: course.id } }">
           <button>
             Name: {{ course.name }}
@@ -23,7 +23,29 @@
             Description: {{ course.description }}
           </button>
         </router-link>
-        <!-- <hr /> -->
+      </div> -->
+
+      <div>
+        <table>
+          <thead>
+            <td>Name</td>
+            <td>Description</td>
+            <td>School Class</td>
+            <td>Teacher</td>
+          </thead>
+          <tr
+            v-for="course in courses"
+            :key="course.id"
+            @click="editCourse(course.id)"
+          >
+            <td>{{ course.name }}</td>
+            <td>{{ course.description }}</td>
+            <td>{{ course.schoolClass.name }}</td>
+            <td>
+              {{ course.teacher.firstName }} {{ course.teacher.lastName }}
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
@@ -32,18 +54,26 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    const router = useRouter();
     const { getAll } = useCRUD();
 
     const courses = ref([]);
     const getCourses = async () => {
       courses.value = await getAll("courses");
     };
+
     onMounted(getCourses);
 
-    return { courses };
+    const editCourse = (id) => {
+      console.log(id);
+      router.push({ name: "CourseDetails", params: { id: id } });
+    };
+
+    return { courses, editCourse };
   },
 };
 </script>
@@ -54,7 +84,7 @@ export default {
 }
 
 button {
-  padding: 5px
+  padding: 5px;
 }
 
 input {
