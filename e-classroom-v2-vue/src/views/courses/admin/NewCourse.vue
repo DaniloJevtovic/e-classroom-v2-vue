@@ -74,8 +74,8 @@ export default {
 
     const handleSubmit = async () => {
       //console.log(course);
-      await save("courses", course);
-      router.push({ name: "AllCourses" });
+      await save("courses", course, true, true);
+      //router.push({ name: "AllCourses" });
     };
 
     return { course, teachers, scClasses, handleSubmit };

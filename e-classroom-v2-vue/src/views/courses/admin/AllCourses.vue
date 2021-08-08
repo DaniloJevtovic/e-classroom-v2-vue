@@ -28,16 +28,18 @@
       <div>
         <table>
           <thead>
+            <td>#</td>
             <td>Name</td>
             <td>Description</td>
             <td>School Class</td>
             <td>Teacher</td>
           </thead>
           <tr
-            v-for="course in courses"
+            v-for="(course, index) in courses"
             :key="course.id"
             @click="editCourse(course.id)"
           >
+            <td>{{ index + 1 }}.</td>
             <td>{{ course.name }}</td>
             <td>{{ course.description }}</td>
             <td>{{ course.schoolClass.name }}</td>
