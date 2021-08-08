@@ -55,13 +55,13 @@ export default {
 
     const sendReply = async () => {
       console.log(reply);
-      let res = await save("messages", reply);
+      let res = await save("messages", reply, true, true);
 
-      toast.info(res, {
-        timeout: 2000,
-      });
+      // toast.info(res, {
+      //   timeout: 2000,
+      // });
 
-      router.go(-1);
+      // router.go(-1);
     };
 
     onMounted(() => {
