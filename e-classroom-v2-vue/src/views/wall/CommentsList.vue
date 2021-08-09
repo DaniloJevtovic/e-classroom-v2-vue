@@ -67,14 +67,14 @@ export default {
     });
 
     const newComment = async () => {
-      let res = await save("postComents", comment);
+      let res = await save("postComents", comment, false, true);
       comments.value.push(res);
       comment.comment = "";
     };
 
     const deleteComment = async (index, id) => {
       comments.value.splice(index, 1); //brisanje iz liste
-      await deleteById("postComents", id); //brisanje na bekendu
+      await deleteById("postComents", id, false, true); //brisanje na bekendu
     };
 
     return { author, comment, comments, newComment, deleteComment };

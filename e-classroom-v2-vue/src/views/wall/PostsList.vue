@@ -17,7 +17,10 @@
           <div class="post">
             <div class="post-info">
               <div class="post-text">
-                <p>{{ post.author.firstName }} {{ post.author.lastName }} / Date: {{post.date}}</p>
+                <p>
+                  {{ post.author.firstName }} {{ post.author.lastName }} / Date:
+                  {{ post.date }}
+                </p>
                 <h3 style="color: cyan">{{ post.post }}</h3>
               </div>
 
@@ -73,7 +76,7 @@ export default {
     };
 
     const newPost = async () => {
-      let res = await save("posts", post);
+      let res = await save("posts", post, false, true);
       posts.value.unshift(res);
       post.post = "";
     };
@@ -82,7 +85,7 @@ export default {
 
     const deletePost = async (index, id) => {
       posts.value.splice(index, 1); //brisanje iz liste
-      await deleteById("posts", id); //brisanje na bekendu
+      await deleteById("posts", id, false, true); //brisanje na bekendu
     };
 
     onMounted(() => {
