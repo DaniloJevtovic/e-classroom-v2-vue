@@ -65,11 +65,9 @@ export default {
     });
 
     const handleSubmit = async () => {
-      let res = await save("courses", course);
-      toast.info(res, {
-        timeout: 2000,
-      });
-      router.go(-1);
+      let res = await save("courses", course, true, true);
+
+      //router.go(-1);
     };
 
     return { course, teachers, scClass, handleSubmit };

@@ -77,13 +77,13 @@ export default {
     });
 
     const handleUpdate = async () => {
-      let res = await editById("courses", props.id, courseToEdit);
-      
-      toast.info(res, {
-        timeout: 2000,
-      });
-      
-      router.go(-1);
+      let res = await editById("courses", props.id, courseToEdit, true, true);
+
+      // toast.info(res, {
+      //   timeout: 2000,
+      // });
+
+      // router.go(-1);
     };
 
     return { courseToEdit, teachers, scClasses, handleUpdate };
