@@ -60,7 +60,7 @@ nav {
   display: flex;
   align-items: center;
   margin: 0 auto;
-  max-width: 1250px;
+  max-width: 1200px;
 }
 
 nav h2 {
