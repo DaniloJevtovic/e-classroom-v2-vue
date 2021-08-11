@@ -43,8 +43,8 @@ export default {
 
     const handleSubmit = async () => {
       console.log(answer);
-      await save("answers", answer);
-      router.go(-1);
+      await save("answers", answer, false, true);
+    
     };
 
     return { question, answer, handleSubmit };
