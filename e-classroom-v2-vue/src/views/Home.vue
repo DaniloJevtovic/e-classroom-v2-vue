@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="container-header">
+    <div class="welcome">
       <h2>Welcome to e-classroom</h2>
     </div>
   </div>
@@ -12,3 +12,13 @@ export default {
   components: {},
 };
 </script>
+<style scoped>
+.welcome {
+  align-items: center;
+  text-align: center;
+  margin: 50px;
+  padding: 30px;
+  border: 1px solid indigo;
+  border-radius: 4px;
+}
+</style>
