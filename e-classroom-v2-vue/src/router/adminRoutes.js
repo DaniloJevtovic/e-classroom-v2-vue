@@ -15,7 +15,6 @@ import NewCourse from "../views/courses/admin/NewCourse.vue";
 import CourseDetails from "../views/courses/admin/CourseDetails.vue";
 import EditCourse from "../views/courses/admin/EditCourse.vue";
 
-
 import AllSchoolClasses from "../views/schoolClasses/AllSchoolClasses.vue";
 import SchoolClassDetails from "../views/schoolClasses/SchoolClassDetails.vue";
 import NewSchoolClass from "../views/schoolClasses/NewSchoolClass.vue";
@@ -26,7 +25,6 @@ import StudentClassDetails from "../views/studentClasses/StudentClassDetails.vue
 import NewStudentClass from "../views/studentClasses/admin/NewStudentClass.vue";
 import EditStudentClass from "../views/studentClasses/admin/EditStudentClass.vue";
 import CoursesForScClass from "../views/courses/admin/CoursesForScClass.vue";
-import CourseDetailsForScClass from "../views/courses/admin/CourseDetailsForScClass.vue";
 import StClassesForScClass from "../views/studentClasses/StClassesForScClass.vue";
 import NewCourseForScClass from "../views/courses/admin/NewCourseForScClass.vue";
 
@@ -167,12 +165,6 @@ export default [
   //   component: StudentProfileDetails,
   //   props: true,
   // },
-  {
-    path: "/courseDetails/:id",
-    name: "CourseDetailsForScClass",
-    component: CourseDetailsForScClass,
-    props: true,
-  },
   {
     path: "/stClass/:id/newStudent",
     name: "NewStudentForStClass",
