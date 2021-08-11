@@ -3,16 +3,20 @@
     <h3>Comments</h3>
 
     <!-- lista komentara za rezultat -->
-    <div class="res-com-list" v-if="comments.length">
-      <div v-for="(comment, index) in comments" :key="comment.di">
-        <div class="comment">
-          <div class="comment-text">
-            <h4>{{ comment.author.firstName }}</h4>
-            <h3>{{ comment.comment }}</h3>
-          </div>
+    <div class="res-com-list">
+      <div v-if="comments.length">
+        <div v-for="(comment, index) in comments" :key="comment.di">
+          <div class="comment">
+            <div class="comment-text">
+              <p>{{ comment.author.firstName }} - {{ comment.date }}</p>
+              <h3>{{ comment.comment }}</h3>
+            </div>
 
-          <div v-if="author.id == comment.author.id" class="comment-button">
-            <button @click="deleteComment(index, comment.id)">Delete &#10007;</button>
+            <div v-if="author.id == comment.author.id" class="comment-button">
+              <button @click="deleteComment(index, comment.id)">
+                Delete &#10007;
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -55,7 +59,7 @@ export default {
     };
 
     const addComment = async () => {
-      let res = await save("stResComms", newComment);
+      let res = await save("stResComms", newComment, false, false);
 
       //ubacujem komentar u listu komentara
       comments.value.push(res);
@@ -78,19 +82,20 @@ export default {
 
 <style scoped>
 .res-comms {
-  background: purple;
-  border-radius: 10px;
-  margin: 20px;
-  padding: 20px;
+  background: rgb(38, 108, 189);
+  border-radius: 3px;
+  margin: 5px;
+  padding: 5px;
 }
 
 .res-com-list {
-  background: thistle;
+  background: rgb(180, 21, 180);
   padding: 3px;
+  margin: 5px;
 }
 
 .comment {
-  background: indianred;
+  background: rgb(23, 231, 203);
   margin: 3px;
   padding: 3px;
   display: flex;
@@ -100,7 +105,8 @@ export default {
 .res-new-comment {
   display: flex;
   background: cyan;
-  padding: 8px;
+  padding: 5px;
+  margin: 5px;
 }
 
 .res-new-comment textarea {
