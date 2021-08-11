@@ -13,6 +13,8 @@ import StudentProfileDetails from "../views/users/StudentProfileDetails.vue";
 import AllCourses from "../views/courses/admin/AllCourses.vue";
 import NewCourse from "../views/courses/admin/NewCourse.vue";
 import CourseDetails from "../views/courses/admin/CourseDetails.vue";
+import EditCourse from "../views/courses/admin/EditCourse.vue";
+
 
 import AllSchoolClasses from "../views/schoolClasses/AllSchoolClasses.vue";
 import SchoolClassDetails from "../views/schoolClasses/SchoolClassDetails.vue";
@@ -103,6 +105,12 @@ export default [
     path: "/courseDetails/:id",
     name: "CourseDetails",
     component: CourseDetails,
+    props: true,
+  },
+  {
+    path: "/editCourse/:id",
+    name: "EditCourse",
+    component: EditCourse,
     props: true,
   },
   {
