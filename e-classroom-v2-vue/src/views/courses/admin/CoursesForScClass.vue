@@ -14,10 +14,11 @@
         <button>New Course For this sc</button>
       </router-link>
     </div>
-    <div class="basic-grid">
+
+    <!-- <div class="basic-grid">
       <div v-for="course in courses" :key="course.id">
         <router-link
-          :to="{ name: 'CourseDetailsForScClass', params: { id: course.id } }"
+          :to="{ name: 'EditCourse', params: { id: course.id } }"
         >
           <div class="sc-courses">
             <h2>Name: {{ course.name }}</h2>
@@ -25,15 +26,6 @@
             <h3>
               Teacher: {{ course.teacher.firstName }}
               {{ course.teacher.lastName }}
-
-              <!-- <router-link
-                :to="{
-                  name: 'NewMessage',
-                  params: { reciverId: course.teacher.id },
-                }"
-              >
-                <button>Send message</button>
-              </router-link> -->
             </h3>
 
             <router-link
@@ -47,6 +39,45 @@
           </div>
         </router-link>
       </div>
+    </div> -->
+
+    <div>
+      <table>
+        <thead>
+          <td>#</td>
+          <td>Name</td>
+          <td>Description</td>
+          <td>School Class</td>
+          <td>Teacher</td>
+          <td>Action</td>
+        </thead>
+        <tr v-for="(course, index) in courses" :key="course.id">
+          <td>{{ index + 1 }}.</td>
+          <td>{{ course.name }}</td>
+          <td>{{ course.description }}</td>
+          <td>{{ course.schoolClass.name }}</td>
+          <td>{{ course.teacher.firstName }} {{ course.teacher.lastName }}</td>
+          <td>
+            <router-link
+              :to="{
+                name: 'NewMessage',
+                params: { reciverId: course.teacher.id },
+              }"
+            >
+              <button>Contact teacher</button>
+            </router-link>
+
+            <router-link
+              :to="{
+                name: 'EditCourse',
+                params: { id: course.id },
+              }"
+            >
+              <button>Edit</button>
+            </router-link>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -54,10 +85,12 @@
 <script>
 import { onMounted, ref } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
+import { useRouter } from "vue-router";
 
 export default {
   props: ["id"],
   setup(props) {
+    const router = useRouter();
     const { getSubItems } = useCRUD();
     const courses = ref([]);
 
