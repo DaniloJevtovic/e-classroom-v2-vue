@@ -31,23 +31,8 @@ export default {
     const newScClass = reactive({ name: "", description: "" });
 
     const handleSubmit = async () => {
-      let res = await save("scClasses", newScClass);
-
-      console.log("respon", res);
-
-      // if (res.response.status != 400) {
-      //   toast.info(res.response.data, {
-      //     timeout: 2000,
-      //   });
-
-      //   router.push({ name: "AllScClasses" });
-      // } else {
-      //   toast.error(res.response.data, {
-      //     timeout: 2000,
-      //   });
-      // }
-
-      router.go(-1);
+      let res = await save("scClasses", newScClass, true, true);
+      //router.go(-1);
     };
 
     return { newScClass, handleSubmit };
