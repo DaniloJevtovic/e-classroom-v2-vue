@@ -4,19 +4,22 @@
 
     <input type="text" placeholder="search" />
 
-    <router-link :to="{ name: 'NewQuiz', params: { id } }">
-      <button>New Quiz</button>
-    </router-link>
+    <div>
+      <router-link :to="{ name: 'NewQuiz', params: { id } }">
+        <button>New Quiz</button>
+      </router-link>
+      <button @click="view = !view">view</button>
+    </div>
   </div>
 
-  <!-- <div class="te-quizzes">
+  <div class="te-quizzes" v-if="view">
     <div class="quizzes" v-for="quiz in quizzes" :key="quiz.id">
       <router-link
         :to="{ name: 'QuizDetails', params: { id: id, quizId: quiz.id } }"
       >
         <div class="singlee-quiz">
           <h2>Name: {{ quiz.name }}</h2>
-          <h3>Instruction: {{ quiz.instructions }}</h3>
+          <p>Instruction: {{ quiz.instructions }}</p>
           <h4>Duration: {{ quiz.duration }} minutes.</h4>
           <h4 style="color: indigo; background: cyan">
             Status: {{ quiz.quizStatus }}
@@ -30,23 +33,23 @@
         </div>
       </router-link>
     </div>
-  </div> -->
+  </div>
 
-  <div>
+  <div v-else>
     <table>
       <thead>
-        <td>Num</td>
+        <td>#</td>
         <td>Name</td>
-        <td>Instructions</td>
+        <!-- <td>Instructions</td> -->
         <td>Duration</td>
         <td>Total points</td>
         <td>Status</td>
-        <td>Details</td>
+        <td>Actions</td>
       </thead>
       <tr v-for="(quiz, index) in quizzes" :key="quiz.id">
         <td>{{ index + 1 }}.</td>
         <td>{{ quiz.name }}</td>
-        <td>{{ quiz.instructions }}</td>
+        <!-- <td>{{ quiz.instructions }}</td> -->
         <td>{{ quiz.duration }} min</td>
         <td>{{ quiz.totalPoints }}</td>
         <td>{{ quiz.quizStatus }}</td>
@@ -55,6 +58,11 @@
             :to="{ name: 'QuizDetails', params: { id: id, quizId: quiz.id } }"
           >
             <button>details</button>
+          </router-link>
+          <router-link
+            :to="{ name: 'ProfResForQuiz', params: { quizId: quiz.id } }"
+          >
+            <button>results</button>
           </router-link>
         </td>
       </tr>
@@ -81,7 +89,9 @@ export default {
       getQuizzesForCourse();
     });
 
-    return { quizzes };
+    const view = ref(false);
+
+    return { quizzes, view };
   },
 };
 </script>
@@ -94,7 +104,7 @@ export default {
 
 .quizzes-info {
   padding: 5px;
-  background: rgb(240, 231, 240); 
+  background: rgb(240, 231, 240);
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
@@ -110,7 +120,7 @@ export default {
   background: rgb(24, 46, 168);
   color: white;
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 input {
