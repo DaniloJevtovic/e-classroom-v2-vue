@@ -1,11 +1,13 @@
 <template>
   <div class="container">
     <div class="container-header">
-      <h2>My Courses</h2>
+      <h3>My Courses</h3>
+      <button @click="view = !view">view</button>
     </div>
 
     <div class="container-body">
-      <div class="basic-grid">
+      <div class="basic-grid" v-if="view">
+        <!-- grid prikaz predmeta -->
         <div class="coursess" v-for="course in courses" :key="course.id">
           <router-link
             :to="{ name: 'StudentCourseDetails', params: { id: course.id } }"
@@ -20,6 +22,37 @@
             </div>
           </router-link>
         </div>
+      </div>
+
+      <!-- tabelarni prikaz predmeta -->
+      <div v-else>
+        <table>
+          <thead>
+            <td>#</td>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Teacher</td>
+            <td>Action</td>
+          </thead>
+          <tr v-for="(course, index) in courses" :key="course.id">
+            <td>{{ index + 1 }}.</td>
+            <td>{{ course.name }}</td>
+            <td>{{ course.description }}</td>
+            <td>
+              {{ course.teacher.firstName }} {{ course.teacher.lastName }}
+            </td>
+            <td>
+              <router-link
+                :to="{
+                  name: 'StudentCourseDetails',
+                  params: { id: course.id },
+                }"
+              >
+                <button>Details</button>
+              </router-link>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
@@ -47,8 +80,10 @@ export default {
       ); //id razreda kojem ucenik pripada
     };
 
+    const view = ref(false);
+
     onMounted(getCourses);
-    return { courses };
+    return { courses, view };
   },
 };
 </script>

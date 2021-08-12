@@ -1,10 +1,11 @@
 <template>
   <div class="container">
     <div class="container-header">
-      <h2>My Courses</h2>
+      <h3>My Courses</h3>
+      <button @click="view = !view">view</button>
     </div>
     <div class="container-body">
-      <div class="basic-grid">
+      <div class="basic-grid" v-if="view">
         <div class="courses" v-for="course in courses" :key="course.id">
           <router-link
             :to="{ name: 'MyCourseDetails', params: { id: course.id } }"
@@ -16,6 +17,31 @@
             </div>
           </router-link>
         </div>
+      </div>
+
+      <div v-else>
+        <table>
+          <thead>
+            <td>#</td>
+            <td>Name</td>
+            <td>Description</td>
+            <td>School Class</td>
+            <td>Action</td>
+          </thead>
+          <tr v-for="(course, index) in courses" :key="course.id">
+            <td>{{ index + 1 }}.</td>
+            <td>{{ course.name }}</td>
+            <td>{{ course.description }}</td>
+            <td>{{ course.schoolClass.name }}</td>
+            <td>
+              <router-link
+                :to="{ name: 'MyCourseDetails', params: { id: course.id } }"
+              >
+                <button>Details</button>
+              </router-link>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
@@ -37,8 +63,10 @@ export default {
       courses.value = await getSubItems("courses", "teacher", teacher.id);
     };
 
+    const view = ref(false);
+
     onMounted(getCourses);
-    return { courses };
+    return { courses, view };
   },
 };
 </script>
