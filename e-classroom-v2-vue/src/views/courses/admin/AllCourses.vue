@@ -5,27 +5,33 @@
       <router-link :to="{ name: 'NewCourse' }">
         <button>New Course</button>
       </router-link>
+      <button @click="view = !view">view</button>
       <input type="text" placeholder="search" />
     </div>
 
     <div class="container-body">
       <!-- <h3>All Courses</h3> -->
-      <!-- <div class="courses" v-for="course in courses" :key="course.id">
-        <router-link :to="{ name: 'CourseDetails', params: { id: course.id } }">
-          <button>
-            Name: {{ course.name }}
-            <hr />
-            Teacher: {{ course.teacher.firstName }}
-            {{ course.teacher.lastName }}
-            <hr />
-            School Class: {{ course.schoolClass.name }}
-            <hr />
-            Description: {{ course.description }}
-          </button>
-        </router-link>
-      </div> -->
+      <div v-if="view">
+        <!-- <div class="courses" v-for="course in courses" :key="course.id">
+          <router-link :to="{ name: 'EditCourse', params: { id: course.id } }">
+            <button>
+              Name: {{ course.name }}
+              <br />
+              Teacher: {{ course.teacher.firstName }}
+              {{ course.teacher.lastName }}
+              <br />
+              School Class: {{ course.schoolClass.name }}
+              <br />
+              Description: {{ course.description }}
+            </button>
+          </router-link>
+        </div> -->
 
-      <div>
+        <!-- predmeti razvrstani po razredima -->
+        <sc-classes></sc-classes>
+      </div>
+
+      <div v-else>
         <table>
           <thead>
             <td>#</td>
@@ -33,18 +39,34 @@
             <td>Description</td>
             <td>School Class</td>
             <td>Teacher</td>
+            <td>Action</td>
           </thead>
-          <tr
-            v-for="(course, index) in courses"
-            :key="course.id"
-            @click="editCourse(course.id)"
-          >
+          <tr v-for="(course, index) in courses" :key="course.id">
             <td>{{ index + 1 }}.</td>
             <td>{{ course.name }}</td>
             <td>{{ course.description }}</td>
             <td>{{ course.schoolClass.name }}</td>
             <td>
               {{ course.teacher.firstName }} {{ course.teacher.lastName }}
+            </td>
+            <td>
+              <router-link
+                :to="{
+                  name: 'NewMessage',
+                  params: { reciverId: course.teacher.id },
+                }"
+              >
+                <button>Contact teacher</button>
+              </router-link>
+
+              <router-link
+                :to="{
+                  name: 'EditCourse',
+                  params: { id: course.id },
+                }"
+              >
+                <button>Edit</button>
+              </router-link>
             </td>
           </tr>
         </table>
@@ -57,8 +79,10 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import { useRouter } from "vue-router";
+import ScClasses from "./ScClasses.vue";
 
 export default {
+  components: { ScClasses },
   setup() {
     const router = useRouter();
     const { getAll } = useCRUD();
@@ -70,12 +94,7 @@ export default {
 
     onMounted(getCourses);
 
-    const editCourse = (id) => {
-      console.log(id);
-      router.push({ name: "CourseDetails", params: { id: id } });
-    };
-
-    return { courses, editCourse };
+    return { courses, view: ref(true) };
   },
 };
 </script>
@@ -91,6 +110,6 @@ button {
 
 input {
   margin: 0;
-  width: 92%;
+  width: 80%;
 }
 </style>
