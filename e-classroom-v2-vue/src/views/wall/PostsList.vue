@@ -14,7 +14,8 @@
     <div v-if="posts.length">
       <div class="post-list">
         <div v-for="(post, index) in posts" :key="post.id">
-          <div class="post">
+          <!-- kada se objava ne mjenja -->
+          <div class="post" v-if="!post.edit">
             <div class="post-info">
               <div class="post-text">
                 <p>
@@ -22,8 +23,10 @@
                   {{ post.date }}
                 </p>
                 <h3 style="color: cyan">{{ post.post }}</h3>
+                <!-- <p>{{ post.edit }}</p> -->
               </div>
 
+              <!-- samo autor i profesor modgu da brisu postove -->
               <div
                 class="post-buttons"
                 v-if="
@@ -35,10 +38,52 @@
                   Delete post
                 </button>
 
-                <button>Edit post</button>
+                <!-- samo autor posta moze da mjenja svoj post -->
+                <button
+                  v-if="author.id == post.author.id"
+                  @click="post.edit = !post.edit"
+                >
+                  Edit post
+                </button>
               </div>
             </div>
 
+            <!-- lista komentara za post -->
+            <comments-list :postId="post.id"></comments-list>
+          </div>
+
+          <!-- kada se objava edituje -->
+          <div class="post" v-else>
+            <div class="post-edit">
+              <div class="post-text">
+                <p>
+                  {{ post.author.firstName }} {{ post.author.lastName }} / Date:
+                  {{ post.date }}
+                </p>
+                <textarea rows="5" v-model="post.post"></textarea>
+                <!-- <p>{{ post.edit }}</p> -->
+              </div>
+
+              <div
+                class="post-buttons"
+                v-if="
+                  author.id == post.author.id ||
+                  author.authorities[0].authority == 'ROLE_TEACHER'
+                "
+              >
+                <button
+                  @click.prevent="
+                    updatePost(index, post), (post.edit = !post.edit)
+                  "
+                >
+                  Save changes
+                </button>
+
+                <!-- <button @click.prevent="post.edit = !post.edit">Cancel</button> -->
+              </div>
+            </div>
+
+            <!-- lista komentara za post -->
             <comments-list :postId="post.id"></comments-list>
           </div>
         </div>
@@ -58,7 +103,7 @@ export default {
   props: ["courseId"],
   components: { CommentsList },
   setup(props) {
-    const { getSubItems, save, deleteById } = useCRUD();
+    const { getSubItems, save, deleteById, editById } = useCRUD();
     const store = useStore();
 
     const author = store.getters["getLoggedUser"];
@@ -73,6 +118,10 @@ export default {
 
     const getPosts = async () => {
       posts.value = await getSubItems("posts", "course", props.courseId);
+
+      posts.value.forEach((post) => {
+        post.edit = false;
+      });
     };
 
     const newPost = async () => {
@@ -81,7 +130,21 @@ export default {
       post.post = "";
     };
 
-    const updatePost = async () => {};
+    const updatePost = async (index, post) => {
+      console.log("prije izmjene", post);
+
+      //konvertujem objavu (iz niza) u odgovarajuci format za bekend (dto)
+      let postToEdit = {
+        post: post.post,
+        courseId: post.course.id,
+        authorId: post.author.id,
+      };
+
+      let res = await editById("posts", post.id, postToEdit, false, true);
+      res.edit = false; //dodajem edit atribut i stavljam mu vrijednost false (isto ono sto sam radio kad sam ucitao sve objave u foreach petlji)
+      posts.value[index] = res; //azuriram vrjednost posta u listi (nakon sto dobijem odgovor sa bekenda)
+      //zbog datuma
+    };
 
     const deletePost = async (index, id) => {
       posts.value.splice(index, 1); //brisanje iz liste
@@ -149,6 +212,16 @@ export default {
   background: rgb(36, 8, 102);
   color: white;
   display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.post-edit {
+  border: 1px solid rgb(27, 4, 43);
+  padding: 10px;
+  margin: 0px 10px 4px;
+  background: rgb(36, 8, 102);
+  color: white;
   align-items: center;
   border-radius: 5px;
 }
