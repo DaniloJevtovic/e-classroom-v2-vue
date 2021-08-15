@@ -38,12 +38,12 @@ export default {
 
     const handleSubmit = async () => {
       console.log(newQuiz);
-      const res = await save("quizzes", newQuiz);
+      const res = await save("quizzes", newQuiz, true, true);
 
       //preusmjerim ga na detalje kviza gdje mogu da mjenjam kviz i dodajem pitanja
       // router.push({name: 'QuizDetails', params: { id: props.id, quizId: res.id } })
 
-      router.go(-1);
+      //router.go(-1);
     };
     return { newQuiz, handleSubmit };
   },
@@ -51,7 +51,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* form {
  min-width: 80%;
 } */

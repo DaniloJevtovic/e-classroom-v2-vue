@@ -4,6 +4,7 @@
       <h2>Question: {{ question.question }}</h2>
       <h3>Points: {{ question.points }}</h3>
     </div>
+    <!-- svi odgovori za pitanje -->
     <div class="answers" v-for="(answer, index) in answers" :key="answer.id">
       <label class="answer">
         <!-- {{ index + 1 }}. {{ answer.answer }} -->

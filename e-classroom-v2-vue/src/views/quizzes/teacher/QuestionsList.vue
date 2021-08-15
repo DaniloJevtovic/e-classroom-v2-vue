@@ -34,12 +34,17 @@ export default {
     };
 
     const addNewQuestion = async () => {
-      let res = await save("questions", {
-        question: "",
-        points: "0",
-        questionType: "MULTIPLE_CHOICE",
-        quizId: props.quizId,
-      });
+      let res = await save(
+        "questions",
+        {
+          question: "",
+          points: "0",
+          questionType: "MULTIPLE_CHOICE",
+          quizId: props.quizId,
+        },
+        false,
+        true
+      );
 
       questions.value.push(res);
     };

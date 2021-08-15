@@ -10,12 +10,16 @@
           <thead>
             <td>Num</td>
             <td>Quiz</td>
-            <td>Date</td>
+            <td>Date / Time</td>
             <td>Subject</td>
             <td>Teacher</td>
             <td>Points</td>
           </thead>
-          <tr v-for="(result, index) in results" :key="result.id">
+          <tr
+            v-for="(result, index) in results"
+            :key="result.id"
+            @click="goToResult(result)"
+          >
             <td>{{ index + 1 }}.</td>
             <td>{{ result.quiz.name }}</td>
             <td>{{ result.date }}</td>
@@ -38,11 +42,13 @@
 <script>
 import { onMounted, ref } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 import useCRUD from "@/composables/useCRUD.js";
 
 export default {
   setup() {
     const store = useStore();
+    const router = useRouter();
     const { getSubItems } = useCRUD();
 
     const results = ref([]);
@@ -56,7 +62,20 @@ export default {
       getResults();
     });
 
-    return { results };
+    const goToResult = (res) => {
+      console.log(JSON.parse(JSON.stringify(res)));
+
+      let result = JSON.parse(JSON.stringify(res));
+
+      console.log('reeeees', result)
+
+      // router.push({
+      //   name: "StudentQuizResults",
+      //   params: { id: res.id },
+      // });
+    };
+
+    return { results, goToResult };
   },
 };
 </script>

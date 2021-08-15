@@ -4,7 +4,7 @@
       <router-link :to="{ name: 'EditCourse', params: { id: course.id } }">
         <div class="course">
           <h3>{{ course.name }}</h3>
-          <p>description: {{ course.description }}</p>
+          <p>{{ course.description }}</p>
           <!-- <p>
             Teacher: {{ course.teacher.firstName }}
             {{ course.teacher.lastName }}
@@ -16,7 +16,7 @@
               params: { reciverId: course.teacher.id },
             }"
           >
-            <button style="background: orange">
+            <button style="background: orange; padding: 2px 10px; border-radius: 20px">
               {{ course.teacher.firstName }} {{ course.teacher.lastName }}
               <span>&#9993;</span>
             </button>

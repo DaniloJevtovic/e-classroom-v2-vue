@@ -5,10 +5,12 @@
       <h3>Instruction: {{ quizInfo.instructions }}</h3>
       <h4>Duration: {{ quizInfo.duration }}</h4>
 
+      <!-- ako je ucenik rjesavao kviz - prikazi mu rezultat -->
       <div v-if="result">
         <student-quiz-results :result="result"></student-quiz-results>
       </div>
 
+      <!-- ako ucenik nije rjesavao kviz prikazi mu dugme da zapocne rjesavanje -->
       <div v-else>
         <button @click.prevent="startQuiz">Start</button>
       </div>
@@ -41,6 +43,7 @@ export default {
       quizInfo.value = await getById("quizzes", props.quizId);
     };
 
+    //provjeravam da li je taj ucenik (ulogovani) rjesavao taj kviz
     const getResults = async () => {
       result.value = await getSubSubItems(
         "results",
@@ -63,9 +66,11 @@ export default {
         points: 0,
       };
 
-      const res = await save("results", newResult);
+      //cuvam novi rezultat
+      const res = await save("results", newResult, false, true);
       console.log("kreirao: ", res.id);
 
+      //preusmjeravam na rjesavanje kviza
       router.push({
         name: "StudentSolveQuiz",
         params: { quizId: props.quizId, stRes: res.id },

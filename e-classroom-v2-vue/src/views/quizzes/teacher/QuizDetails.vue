@@ -22,10 +22,6 @@
               required
             />
 
-            <div style="color: darkblue">
-              points: {{ quiz.totalPoints }}
-            </div>
-
             <select v-model="quiz.quizStatus" required>
               <option value="INACTIVE">Inactive</option>
               <option value="ACTIVE">Active</option>
@@ -72,7 +68,7 @@ export default {
 
     const handleSubmit = async () => {
       console.log(quiz.value);
-      await editById("quizzes", props.quizId, quiz.value);
+      await editById("quizzes", props.quizId, quiz.value, false, true);
 
       router.push({ name: "QuizDetails", params: { quizId: props.quizId } });
     };
@@ -98,7 +94,7 @@ export default {
 
 .status-duration {
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
 }
 

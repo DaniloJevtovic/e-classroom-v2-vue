@@ -108,7 +108,7 @@ const save = async (items, data, redirect, toastDialog) => {
       });
     }
 
-    console.log(response.data.message)
+    console.log(response.data.message);
 
     if (redirect) {
       router.go(-1);
@@ -116,7 +116,6 @@ const save = async (items, data, redirect, toastDialog) => {
 
     return response.data.body;
   } catch (err) {
-    
     toast.error(err.response.data, {
       timeout: 2000,
     });
@@ -125,7 +124,7 @@ const save = async (items, data, redirect, toastDialog) => {
   }
 };
 
-const editById = async (items, id, data) => {
+const editById = async (items, id, data, redirect, toastDialog) => {
   try {
     const response = await axios.put(
       url + items + "/" + id,
@@ -139,11 +138,15 @@ const editById = async (items, id, data) => {
       }
     );
 
-    toast.info(response.data.message, {
-      timeout: 2000,
-    });
+    if (toastDialog) {
+      toast.info(response.data.message, {
+        timeout: 2000,
+      });
+    }
 
-    router.go(-1);
+    if (redirect) {
+      router.go(-1);
+    }
 
     return response.data.body;
   } catch (err) {

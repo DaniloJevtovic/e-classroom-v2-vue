@@ -1,5 +1,6 @@
 <template>
   <div class="st-quest-answers">
+    <!-- tacni - neatacni odgovori kviza -->
     <div class="res-answers">
       <h3>Correct/incorect answers</h3>
       <div v-for="answer in quizAnswers" :key="answer.id">
@@ -13,6 +14,7 @@
       </div>
     </div>
 
+    <!-- odgovori koje je ucenik oznacio -->
     <div class="res-st-answers">
       <h3>Student answers</h3>
       <div v-for="stAnswer in studentAnswers" :key="stAnswer.id">

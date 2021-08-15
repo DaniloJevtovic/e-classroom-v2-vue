@@ -45,13 +45,13 @@ export default {
 
     const handleSubmit = async () => {
       //cuvam materijal
-      let res = await save("materials", newMaterial);
+      let res = await save("materials", newMaterial, true, true);
 
       //upload fajlova za taj materjal
       await uploadFiles(res.id);
 
-      console.log(newMaterial);
-      router.go(-1);
+      // console.log(newMaterial);
+      // router.go(-1);
     };
 
     const addToList = (event) => {

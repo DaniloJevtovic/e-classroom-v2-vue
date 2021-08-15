@@ -4,6 +4,7 @@
   </div>
   <div v-else>
     <div class="container-body">
+      <!-- prikaz informacija o kvizu -->
       <div class="quiz-info">
         <h2>Name: {{ quizInfo.name }}</h2>
         <h2>Instructions: {{ quizInfo.instructions }}</h2>
@@ -13,10 +14,12 @@
         <h1>TIME: {{ timer2 }}</h1>
       </div>
 
+      <!-- ucitavanje svih pitanja za kviz -->
       <div class="questions">
         <h2>Questions</h2>
 
         <div v-for="question in questions" :key="question.id">
+          <!-- pitanja za kviz -->
           <student-solve-quiz-questions
             :questionId="question.id"
             :stRes="stRes"
@@ -126,7 +129,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .quiz-info {
   padding: 14px;
   border: 1px solid darkblue;

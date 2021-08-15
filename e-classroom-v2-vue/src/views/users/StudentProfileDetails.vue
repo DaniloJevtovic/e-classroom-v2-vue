@@ -42,6 +42,13 @@
             Send message
           </button>
         </router-link>
+
+        <!-- ulogovani rodelj moze sebi da mjenja podatke -->
+        <router-link :to="{ name: 'UserProfile' }">
+          <button v-if="studentDetails.stParent.id == loggedUser.id">
+            Update My Data
+          </button>
+        </router-link>
       </div>
 
       <div v-else>
@@ -62,6 +69,7 @@
       </div>
     </div>
 
+    <!-- rezultati -->
     <div class="studentResults">
       <h2>Results</h2>
       <div v-for="result in results" :key="result.id">
@@ -73,7 +81,7 @@
             {{ result.quiz.course.teacher.lastName }}
           </h3>
           <h3 class="points">Points: {{ result.points }} / ?</h3>
-          <p>Date:</p>
+          <p>Date: {{ result.date }}</p>
         </div>
       </div>
     </div>

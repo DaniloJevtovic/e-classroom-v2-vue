@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="handleSubmit">
     <h2>New Student Class</h2>
-    <h2>SchoolClass: {{ scClass.name }}</h2>
+    <h3>SchoolClass: {{ scClass.name }}</h3>
     <input type="text" v-model="newStClass.name" placeholder="name" required />
     <textarea
       rows="3"
@@ -46,14 +46,7 @@ export default {
     const router = useRouter();
 
     const handleSubmit = async () => {
-      let res = await save("stClasses", newStClass);
-      //router.push({ name: "ScClassDetails", params: { id: props.id } });
-
-      toast.info(res, {
-        timeout: 2000,
-      });
-
-      router.go(-1);
+      let res = await save("stClasses", newStClass, true, true);
     };
 
     return { scClass, newStClass, handleSubmit };

@@ -40,13 +40,7 @@ export default {
     });
 
     const handleSubmit = async () => {
-      let res = await editById("scClasses", props.id, scClass);
-
-      toast.info(res, {
-        timeout: 2000,
-      });
-
-      router.go(-1);
+      let res = await editById("scClasses", props.id, scClass, true, true);
     };
 
     return { scClass, handleSubmit };

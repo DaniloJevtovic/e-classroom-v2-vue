@@ -54,10 +54,11 @@ export default {
     });
 
     const handleSubmit = async () => {
-      await editById("materials", props.id, material);
       uploadNewFiles(props.id);
       deleteFilesFromBe();
-      router.go(-1);
+      await editById("materials", props.id, material, true, true);
+
+      //router.go(-1);
     };
 
     const addToList = (event) => {
@@ -79,7 +80,7 @@ export default {
         //indeki files i listToAdd NISU ISTI!
 
         let indOfListToAdd = listToAdd.value.indexOf(file);
-        console.log('ssss:', indOfListToAdd)
+        console.log("ssss:", indOfListToAdd);
         if (indOfListToAdd !== -1) {
           listToAdd.value.splice(indOfListToAdd, 1); //obrisati ga iz liste za dodavanje
         }

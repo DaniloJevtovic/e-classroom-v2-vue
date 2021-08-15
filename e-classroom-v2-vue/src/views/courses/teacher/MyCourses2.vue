@@ -5,35 +5,28 @@
     </div>
     <div class="container-body">
       <div class="courses-details">
+        <!-- svi predmeti - lijeva strana -->
         <div class="courses">
           <div v-for="course in courses" :key="course.id">
-            <!-- <button @click.prevent="getCourse(course.id)">
-              {{ course.name }}
-            </button> -->
-
             <router-link
               :to="{ name: 'MyCourseDetails2', params: { id: course.id } }"
             >
-              <button>{{ course.name }}</button>
+              <button>
+                {{ course.name }}
+              </button>
             </router-link>
           </div>
         </div>
-        <div class="course-details" v-if="course">
-          <h2>{{ course.name }}</h2>
-          <h3>{{ course.description }}</h3>
 
-          <router-view :id="course.id"></router-view>
-        </div>
-        <div v-else>
-          <h2>Please select course</h2>
-        </div>
+        <!-- prikaz odabranog predmeta - desna strana -->
+        <router-view />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, reactive } from "vue";
 import { useStore } from "vuex";
 import useCRUD from "../../../composables/useCRUD.js";
 
@@ -49,14 +42,8 @@ export default {
       courses.value = await getSubItems("courses", "teacher", teacher.id);
     };
 
-    const course = ref();
-
-    const getCourse = async (id) => {
-      course.value = await getById("courses", id);
-    };
-
     onMounted(getCourses);
-    return { courses, getCourse, course };
+    return { courses };
   },
 };
 </script>

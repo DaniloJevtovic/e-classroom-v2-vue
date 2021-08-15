@@ -11,6 +11,8 @@ import NewStudentForStClass from "../views/users/admin/NewStudentForStClass.vue"
 import StudentProfileDetails from "../views/users/StudentProfileDetails.vue";
 
 import AllCourses from "../views/courses/admin/AllCourses.vue";
+// import ScClasses from "../views/courses/admin/ScClasses.vue";
+
 import NewCourse from "../views/courses/admin/NewCourse.vue";
 import CourseDetails from "../views/courses/admin/CourseDetails.vue";
 import EditCourse from "../views/courses/admin/EditCourse.vue";
@@ -94,6 +96,11 @@ export default [
     name: "AllCourses",
     component: AllCourses,
   },
+  // {
+  //   path: "/allScCourses",
+  //   name: "AllScCourses",
+  //   component: ScClasses,
+  // },
   {
     path: "/newCourse",
     name: "NewCourse",

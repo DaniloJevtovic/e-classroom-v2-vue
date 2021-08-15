@@ -1,8 +1,9 @@
 <template>
   <form @submit.prevent="handleSubmit">
+    <h3 style="text-align: center">Student Class: {{ stClass.name }}</h3>
     <div class="st-par">
       <div class="student-form">
-        <h2>New Student</h2>
+        <h2>Student</h2>
         <h3>Student Class: {{ stClass.name }}</h3>
         <input
           type="email"
@@ -114,12 +115,15 @@ export default {
 
     const handleSubmit = async () => {
       //console.log(newStudent);
-      let res = await save("stParents", newParent);
+      let res = await save("stParents", newParent, false, false);
+
+      console.log("EOOOOOO", res);
 
       newStudent.parentId = res.id; // dodjela roditelja uceniku!
 
-      let resSt = await save("students", newStudent);
-      router.go(-1);
+      let resSt = await save("students", newStudent, true, true);
+
+      // router.go(-1);
     };
 
     return { stClass, newStudent, newParent, handleSubmit };

@@ -37,7 +37,6 @@
 
 <script>
 import { onMounted, reactive, ref } from "vue";
-import { useRouter } from "vue-router";
 import useCRUD from "@/composables/useCRUD.js";
 
 export default {

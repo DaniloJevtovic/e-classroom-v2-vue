@@ -10,9 +10,7 @@
     >
     </textarea>
     <button>Save</button>
-    <router-link :to="{ name: 'AllScClasses' }">
-      <button>Cancel</button>
-    </router-link>
+    <button @click.prevent="$router.go(-1)">Cancel</button>
   </form>
 </template>
 

@@ -5,6 +5,9 @@
       <router-link :to="{ name: 'NewCourse' }">
         <button>New Course</button>
       </router-link>
+      <router-link :to="{ name: 'NewSchoolClass' }">
+        <button>New ScClass</button>
+      </router-link>
       <button @click="view = !view">view</button>
       <input type="text" placeholder="search" />
     </div>
@@ -110,6 +113,6 @@ button {
 
 input {
   margin: 0;
-  width: 80%;
+  width: 75%;
 }
 </style>

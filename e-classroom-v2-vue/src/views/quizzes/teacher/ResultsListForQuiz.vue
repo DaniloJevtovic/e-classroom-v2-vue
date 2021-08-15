@@ -4,15 +4,6 @@
       <div class="container-header">
         <button @click.prevent="$router.go(-1)">Back to quizzes</button>
         <button @click="view = !view">view</button>
-        <!-- <div v-if="showModal">
-          <Modal
-            :propsPodaci="results.length"
-            :props2="results.length"
-            theme="sale"
-            @zatvoriModal="toggleModal"
-          />
-        </div>
-        <button @click="toggleModal">Show modal</button> -->
       </div>
 
       <div class="container-body">
@@ -118,10 +109,8 @@ import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
 
 import StudentQuizResults from "../student/res/StudentQuizResults.vue";
-import Modal from "../../../components/Modal.vue";
 
 export default {
-  components: { Modal },
   props: ["quizId"],
   components: { StudentQuizResults },
   setup(props) {
@@ -152,13 +141,7 @@ export default {
 
     const view = ref(true);
 
-    const showModal = ref(false);
-
-    const toggleModal = () => {
-      showModal.value = !showModal.value;
-    };
-
-    return { quizDetails, results, view, showModal, toggleModal };
+    return { quizDetails, results, view };
   },
 };
 </script>

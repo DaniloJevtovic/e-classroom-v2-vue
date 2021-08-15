@@ -36,7 +36,7 @@ export default {
     });
 
     const handleSubmit = async () => {
-      await save("questions", question);
+      await save("questions", question, false, true);
       console.log(question);
       router.push({ name: "QuizDetails", params: { quizId: props.quizId } });
     };

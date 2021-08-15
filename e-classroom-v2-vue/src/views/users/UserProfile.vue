@@ -48,13 +48,13 @@ export default {
 
     const updateUser = async () => {
       console.log(user);
-      const res = await editById("users", loggedUser.username, user);
+      const res = await editById("users", loggedUser.username, user, false, true);
 
-      toast.info(res.message, {
-        timeout: 2000,
-      });
+      // toast.info(res.message, {
+      //   timeout: 2000,
+      // });
 
-      localStorage.setItem("user", JSON.stringify(res.user));
+      localStorage.setItem("user", JSON.stringify(res));
       store.commit("setLoggedUser");
     };
     onMounted(() => getUser());

@@ -60,8 +60,8 @@ export default {
 
     const handleSubmit = async () => {
       //console.log(newTeacher);
-      await save("teachers", newTeacher);
-      router.push({ name: "AllTeachers" });
+      await save("teachers", newTeacher, true, true);
+      //router.push({ name: "AllTeachers" });
     };
 
     return { newTeacher, handleSubmit };

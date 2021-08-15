@@ -1,7 +1,7 @@
 <template>
   <div class="answer-details">
     <div v-if="answer.question.questionType == 'MULTIPLE_CHOICE'" class="ans2">
-      <h2>{{ answerIndex + 1 }}.</h2>
+      <h3>{{ answerIndex + 1 }}.</h3>
       <span />
 
       <input type="text" v-model="answer.answer" />
@@ -13,8 +13,8 @@
         placeholder="tacno?"
       />
 
-      <button @click.prevent="updateAnswer(answer)">Save changes</button>
-      <button @click.prevent="deleteAnswer(answer.id)">Delete answer</button>
+      <button @click.prevent="updateAnswer(answer)">Save</button>
+      <button @click.prevent="deleteAnswer(answer.id)">Delete</button>
     </div>
 
     <div v-else-if="answer.question.questionType == 'TRUE_FALSE'" class="ans2"> 
@@ -70,8 +70,8 @@ export default {
 
 <style scoped>
 .ans2 {
-  padding: 5px;
-  background: rgb(4, 40, 82);
+  padding: 3px;
+  background: rgb(4, 96, 201);
   color: cyan;
   margin: 3px;
   display: flex;
