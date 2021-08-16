@@ -9,6 +9,7 @@ import StudentQuizDetails from "../views/quizzes/student/StudentQuizDetails.vue"
 import StudentSolveQuiz from "../views/quizzes/student/StudentSolveQuiz.vue";
 
 import StudentAllResults from "../views/quizzes/student/res/StudentAllResults.vue";
+import StudentQuizResults from "../views/quizzes/student/res/StudentQuizResults.vue";
 
 import Wall from "../views/wall/Wall.vue";
 
@@ -67,5 +68,11 @@ export default [
     path: "/allMyResults",
     name: "StudentAllResults",
     component: StudentAllResults,
+  },
+  {
+    path: "/resultDetails/:id",
+    name: "StudentQuizResults",
+    component: StudentQuizResults,
+    props: true,
   },
 ];
