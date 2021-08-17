@@ -8,25 +8,27 @@
 
       <input type="text" placeholder="search course" />
 
-      <router-link
-        :to="{ name: 'NewCourseForScClass', params: { scClassId: id } }"
-      >
-        <button>New Course For this sc</button>
-      </router-link>
+      <div>
+        <router-link
+          :to="{ name: 'NewCourseForScClass', params: { scClassId: id } }"
+        >
+          <button>New Course For this sc</button>
+        </router-link>
+
+        <button @click="view = !view">view</button>
+      </div>
     </div>
 
-    <!-- <div class="basic-grid">
+    <div class="basic-grid" v-if="view">
       <div v-for="course in courses" :key="course.id">
-        <router-link
-          :to="{ name: 'EditCourse', params: { id: course.id } }"
-        >
+        <router-link :to="{ name: 'EditCourse', params: { id: course.id } }">
           <div class="sc-courses">
             <h2>Name: {{ course.name }}</h2>
-            <h3>description: {{ course.description }}</h3>
-            <h3>
+            <p>description: {{ course.description }}</p>
+            <!-- <h3>
               Teacher: {{ course.teacher.firstName }}
               {{ course.teacher.lastName }}
-            </h3>
+            </h3> -->
 
             <router-link
               :to="{
@@ -34,14 +36,17 @@
                 params: { reciverId: course.teacher.id },
               }"
             >
-              <button>Send message</button>
+              <button style="padding: 4px 20px;">
+                Teacher: {{ course.teacher.firstName }}
+                {{ course.teacher.lastName }}
+              </button>
             </router-link>
           </div>
         </router-link>
       </div>
-    </div> -->
+    </div>
 
-    <div>
+    <div v-else>
       <table>
         <thead>
           <td>#</td>
@@ -102,7 +107,9 @@ export default {
       getCoursesForScClass();
     });
 
-    return { courses };
+    const view = ref(false);
+
+    return { courses, view };
   },
 };
 </script>
