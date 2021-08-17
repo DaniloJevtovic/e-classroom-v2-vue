@@ -16,7 +16,9 @@
               params: { reciverId: course.teacher.id },
             }"
           >
-            <button style="background: orange; padding: 2px 10px; border-radius: 20px">
+            <button
+              style="background: orange; padding: 2px 10px; border-radius: 20px"
+            >
               {{ course.teacher.firstName }} {{ course.teacher.lastName }}
               <span>&#9993;</span>
             </button>
@@ -29,6 +31,16 @@
     >
       <button>+</button>
     </router-link>
+    <!-- dodavanje predmeta preko modala -->
+    <button @click="toggleModal">mod</button>
+    <div v-if="showNewCourseModal">
+      <NewCourseModal
+        :scClassId="id"
+        @zatvoriModal="toggleModal"
+        @dodajUListu="addToList"
+      >
+      </NewCourseModal>
+    </div>
   </div>
 </template>
 
@@ -36,8 +48,10 @@
 import { onMounted, ref } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import { useRouter } from "vue-router";
+import NewCourseModal from "./NewCourseModal.vue";
 
 export default {
+  components: { NewCourseModal },
   props: ["id"],
   setup(props) {
     const router = useRouter();
@@ -52,9 +66,19 @@ export default {
       getCoursesForScClass();
     });
 
+    const showNewCourseModal = ref(false);
+
+    const toggleModal = () => {
+      showNewCourseModal.value = !showNewCourseModal.value;
+    };
+
+    const addToList = (res) => {
+      courses.value.push(res);
+    };
+
     const view = ref(true);
 
-    return { courses, view };
+    return { courses, view, showNewCourseModal, toggleModal, addToList };
   },
 };
 </script>
