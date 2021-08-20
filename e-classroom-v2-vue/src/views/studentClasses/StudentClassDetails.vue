@@ -12,6 +12,9 @@
         @zatvoriModal="toggleModal"
       ></EditStClassModal>
     </div>
+
+    <!-- ucitavanje ucenika u odjeljenju -->
+    <StudentsForStClass :id="stClass.id" />
   </div>
 </template>
 
@@ -19,10 +22,11 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import EditStClassModal from "./admin/EditStClassModal.vue";
+import StudentsForStClass from "../users/admin/StudentsForStClass.vue";
 
 export default {
   props: ["stClass"],
-  components: { EditStClassModal },
+  components: { StudentsForStClass, EditStClassModal },
   setup(props) {
     const { getById, getSubItems } = useCRUD();
 

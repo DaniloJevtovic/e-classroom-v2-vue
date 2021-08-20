@@ -36,7 +36,7 @@
       </router-link> -->
 
       <!-- ucitavanje ucenika u odjeljenju -->
-      <StudentsForSCClass :id="stClass.id" />
+      <!-- <StudentsForStClass :id="stClass.id" /> -->
       <br />
     </div>
   </div>
@@ -45,7 +45,7 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "../../composables/useCRUD.js";
-import StudentsForSCClass from "../users/admin/StudentsForSCClass.vue";
+// import StudentsForStClass from "../users/admin/StudentsForStClass.vue";
 import StudentClassDetails from "./StudentClassDetails.vue";
 import NewStClassModal from "./admin/NewStClassModal.vue";
 
@@ -53,7 +53,7 @@ export default {
   props: ["id"],
   components: {
     StudentClassDetails,
-    StudentsForSCClass,
+    //StudentsForStClass,
     NewStClassModal,
   },
   setup(props) {
