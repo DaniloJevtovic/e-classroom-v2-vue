@@ -1,24 +1,39 @@
 <template>
   <div class="stCForCl">
     <div>
-      <h2>Studnet Classes</h2>
-      <h3>total: {{ stClasses.length }}</h3>
+      <h3>St Classes</h3>
+      <!-- <h3>total: {{ stClasses.length }}</h3> -->
     </div>
 
     <input type="text" placeholder="search by name" />
 
-    <router-link :to="{ name: 'NewStudentClass' }">
+    <!-- dodavanje novog odjeljenja - komponenta -->
+    <!-- <router-link :to="{ name: 'NewStudentClass' }">
       <button>New Student Class</button>
-    </router-link>
+    </router-link> -->
+
+    <!-- dodavanje novog odjeljenja - -->
+    <button @click="toggleModal">New St Class</button>
+    <div v-if="showNewStModal">
+      <NewStClassModal
+        :sc="id"
+        @zatvoriModal="toggleModal"
+        @dodajUListu="addToList"
+      ></NewStClassModal>
+    </div>
   </div>
 
   <div class="basic-grid">
     <div class="sclasses" v-for="stClass in stClasses" :key="stClass.id">
-      <router-link
+      <!-- ucitavanje detalja za razred -->
+      <StudentClassDetails :stClass="stClass"></StudentClassDetails>
+
+      <!-- izmjena odjljenja preko komponente -->
+      <!-- <router-link
         :to="{ name: 'EditStudentClass', params: { stcId: stClass.id } }"
       >
         <h2>StClass: {{ stClass.name }}</h2>
-      </router-link>
+      </router-link> -->
 
       <!-- ucitavanje ucenika u odjeljenju -->
       <StudentsForSCClass :id="stClass.id" />
@@ -31,10 +46,16 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "../../composables/useCRUD.js";
 import StudentsForSCClass from "../users/admin/StudentsForSCClass.vue";
+import StudentClassDetails from "./StudentClassDetails.vue";
+import NewStClassModal from "./admin/NewStClassModal.vue";
 
 export default {
   props: ["id"],
-  components: { StudentsForSCClass },
+  components: {
+    StudentClassDetails,
+    StudentsForSCClass,
+    NewStClassModal,
+  },
   setup(props) {
     const { getSubItems } = useCRUD();
     const stClasses = ref([]);
@@ -47,7 +68,17 @@ export default {
       getAllStClasses();
     });
 
-    return { stClasses };
+    const showNewStModal = ref(false);
+
+    const toggleModal = () => {
+      showNewStModal.value = !showNewStModal.value;
+    };
+
+    const addToList = (res) => {
+      stClasses.value.push(res);
+    };
+
+    return { stClasses, showNewStModal, toggleModal, addToList };
   },
 };
 </script>
