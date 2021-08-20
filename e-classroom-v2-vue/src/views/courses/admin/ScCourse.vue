@@ -1,12 +1,24 @@
 <template>
   <div class="coursee">
-    <router-link
+    <!-- izmjena predmeta - nova komponenta -->
+    <!-- <router-link
       :to="{ name: 'EditCourse', params: { id: course.id } }"
       style="color: cyan"
     >
-      <h3>{{ course.name }}</h3>
+      <h2>{{ course.name }}</h2>
       <p>{{ course.description }}</p>
-    </router-link>
+    </router-link> -->
+
+    <div @click.prevent="toggleEditCourseModal">
+      <h2>{{ course.name }}</h2>
+      <p>{{ course.description }}</p>
+    </div>
+
+    <!-- modal za izmjenu predmeta -->
+    <div v-if="showEditCourseModal">
+      <EditCourseModal :course="course" @zatvoriModal="toggleEditCourseModal">
+      </EditCourseModal>
+    </div>
 
     <button
       @click.prevent="toggleMessageModal(course.teacher.id)"
@@ -27,27 +39,40 @@
 
 <script>
 import { ref } from "vue";
+import EditCourseModal from "./EditCourseModal.vue";
 import NewMessageModal from "../../messages/NewMessageModal.vue";
 
 export default {
-  components: { NewMessageModal },
+  components: { EditCourseModal, NewMessageModal },
   props: ["course"],
   setup() {
+    const showEditCourseModal = ref(false);
+
+    const toggleEditCourseModal = () => {
+      showEditCourseModal.value = !showEditCourseModal.value;
+    };
+
     const showNewMessageModal = ref(false);
 
     const toggleMessageModal = () => {
       showNewMessageModal.value = !showNewMessageModal.value;
     };
 
-    return { showNewMessageModal, toggleMessageModal };
+    return {
+      showEditCourseModal,
+      toggleEditCourseModal,
+      showNewMessageModal,
+      toggleMessageModal,
+    };
   },
 };
 </script>
 
 <style scoped>
 .coursee {
-  color: aliceblue;
-  background: darkblue;
+  color: darkblue;
+  background: skyblue;
   border-radius: 4px;
+  cursor: pointer;
 }
 </style>
