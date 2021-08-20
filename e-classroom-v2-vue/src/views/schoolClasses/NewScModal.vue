@@ -2,7 +2,7 @@
   <div class="backdrop" @click.self="closeModal">
     <div class="modal">
       <form @submit.prevent="handleSubmit">
-        <h2>New School Class</h2>
+        <h3>New School Class</h3>
         <input
           type="text"
           v-model="newScClass.name"
@@ -58,26 +58,4 @@ export default {
 </script>
 
 <style scoped>
-.modal {
-  width: 500px;
-  margin: 100px auto;
-  /* padding: 3px; */
-  background: white;
-  border-radius: 5px;
-}
-.backdrop {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: fixed;
-  background: rgba(5, 20, 105, 0.7);
-  width: 100%;
-  height: 100%;
-}
-.modal h1 {
-  color: aqua;
-  border: none;
-  padding: 0;
-}
 </style>
