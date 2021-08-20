@@ -1,24 +1,16 @@
 <template>
   <div class="container">
-    <div class="container-header">
-      <h2>
-        Name: {{ stClassInfo.name }}
-        <br />
-        Description: {{ stClassInfo.description }}
-        <br />
-        School Class: {{ stClassId }}
-        <br />
-        Number of Students: {{ students.length }}
-      </h2>
+    <div class="stClassInfo" @click="toggleModal">
+      <h3>{{ stClass.name }}</h3>
+      <p>
+        <small>{{ stClass.description }}</small>
+      </p>
     </div>
-    <div class="container-body">
-      <h1>Students</h1>
-      <div class="students" v-for="student in students" :key="student.id">
-        <button>
-          Name{{ student.firstName }} {{ student.lastName }} <hr>
-          Email: {{ student.email }}
-        </button>
-      </div>
+    <div v-if="showEditStModal">
+      <EditStClassModal
+        :stClass="stClass"
+        @zatvoriModal="toggleModal"
+      ></EditStClassModal>
     </div>
   </div>
 </template>
@@ -26,39 +18,29 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
+import EditStClassModal from "./admin/EditStClassModal.vue";
 
 export default {
-  props: ["stClassId"],
+  props: ["stClass"],
+  components: { EditStClassModal },
   setup(props) {
     const { getById, getSubItems } = useCRUD();
 
-    const stClassInfo = ref("");
-    const students = ref([]);
+    const showEditStModal = ref(false);
 
-    const getStClassDetails = async () => {
-      stClassInfo.value = await getById("stClasses", props.stClassId);
+    const toggleModal = () => {
+      showEditStModal.value = !showEditStModal.value;
     };
 
-    const getStudents = async () => {
-      students.value = await getSubItems(
-        "students",
-        "stClass",
-        props.stClassId
-      );
-    };
-
-    onMounted(() => {
-      getStClassDetails();
-      getStudents();
-    });
-
-    return { stClassInfo, students };
+    return { showEditStModal, toggleModal };
   },
 };
 </script>
 
-<style>
-.students {
-  display: inline;
+<style scoped>
+.stClassInfo {
+  padding: 3px;
+  cursor: pointer;
+  background: rgb(175, 232, 255);
 }
 </style>
