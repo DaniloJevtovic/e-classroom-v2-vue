@@ -77,7 +77,26 @@
                 {{ result.points }}
               </td>
               <td>
-                <button>details</button>
+                <ModalSlot v-show="isModalVisible" @close="closeModal">
+                  <template v-slot:header> Result </template>
+
+                  <!-- prikaz rezultata u modalu -->
+                  <template v-slot:body>
+                    <student-quiz-results
+                      :result="result"
+                    ></student-quiz-results>
+                  </template>
+
+                  <template v-slot:footer>
+                    Date: {{ result.date }}
+                    <span>Solve duration: {{ result.solveDuration }} min</span>
+                  </template>
+                </ModalSlot>
+
+                <button type="button" class="btn" @click="showModal">
+                  Show result!
+                </button>
+
                 <button>Contact parent</button>
                 <button>Contact student</button>
               </td>
@@ -108,11 +127,12 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
 
+import ModalSlot from "../../../components/ModalSlot.vue";
 import StudentQuizResults from "../student/res/StudentQuizResults.vue";
 
 export default {
   props: ["quizId"],
-  components: { StudentQuizResults },
+  components: { StudentQuizResults, ModalSlot },
   setup(props) {
     const { getSubItems, getById } = useCRUD();
 
@@ -139,9 +159,25 @@ export default {
       getResults();
     });
 
+    const isModalVisible = ref(false);
+
+    const showModal = () => {
+      isModalVisible.value = true;
+    };
+    const closeModal = () => {
+      isModalVisible.value = false;
+    };
+
     const view = ref(true);
 
-    return { quizDetails, results, view };
+    return {
+      quizDetails,
+      results,
+      view,
+      isModalVisible,
+      showModal,
+      closeModal,
+    };
   },
 };
 </script>
