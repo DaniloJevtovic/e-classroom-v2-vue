@@ -22,17 +22,31 @@
       </div>
     </div>
 
-    <router-link :to="{ name: 'NewStudentForStClass', params: { id } }">
+    <!-- dodavanje novog ucenika i roditelja - nova komponenta -->
+    <!-- <router-link :to="{ name: 'NewStudentForStClass', params: { id } }">
       <button style="border-radius: 100px">+</button>
-    </router-link>
+    </router-link> -->
+
+    <!-- dodavanje novog ucenika - modal -->
+    <button @click="toggleModal" style="border-radius: 100px">+</button>
+    <div v-if="showNewStModal">
+      <NewStudentModal
+        :id="id"
+        @zatvoriModal="toggleModal"
+        @dodajUListu="addToList"
+      >
+      </NewStudentModal>
+    </div>
   </div>
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
+import NewStudentModal from "./NewStudentModal.vue";
 
 export default {
+  components: { NewStudentModal },
   props: ["id"],
   setup(props) {
     const { getSubItems } = useCRUD();
@@ -46,7 +60,17 @@ export default {
       getStudentsForStClass();
     });
 
-    return { students };
+    const showNewStModal = ref(false);
+
+    const toggleModal = () => {
+      showNewStModal.value = !showNewStModal.value;
+    };
+
+    const addToList = (res) => {
+      students.value.push(res);
+    };
+
+    return { students, showNewStModal, toggleModal, addToList };
   },
 };
 </script>
