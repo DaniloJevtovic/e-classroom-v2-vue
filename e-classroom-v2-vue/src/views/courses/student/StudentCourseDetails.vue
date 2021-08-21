@@ -15,7 +15,8 @@
             Teacher: {{ courseInfo.teacher.firstName }}
             {{ courseInfo.teacher.lastName }}
           </h3>
-          <router-link
+          <!-- slanje poruke - nova komponenta -->
+          <!-- <router-link
             :to="{
               name: 'NewMessage',
               params: {
@@ -25,7 +26,22 @@
             }"
           >
             <button style="padding: 5px; margin: 0px">Send message</button>
-          </router-link>
+          </router-link> -->
+
+          <!-- slanje poruke modal -->
+          <button
+            @click.prevent="toggleMessageModal"
+            style="padding: 3px 40px; margin: 0px; border-radius: 40px"
+          >
+            Send message
+          </button>
+          <div v-if="showNewMessageModal">
+            <NewMessageModal
+              :reciverId="courseInfo.teacher.id"
+              @zatvoriModal="toggleMessageModal"
+            >
+            </NewMessageModal>
+          </div>
         </div>
       </div>
 
@@ -39,10 +55,11 @@ import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
 import ChildNavbar from "../../../components/ChildNavbar.vue";
 import { useStore } from "vuex";
+import NewMessageModal from "../../messages/NewMessageModal.vue";
 
 export default {
   props: ["id"],
-  components: { ChildNavbar },
+  components: { ChildNavbar, NewMessageModal },
   setup(props) {
     const { getById, getSubItems } = useCRUD();
     const store = useStore();
@@ -78,7 +95,21 @@ export default {
       getCourseQuizzes();
     });
 
-    return { linksForNavbar, courseInfo, materials, quizzes, loggedUser };
+    const showNewMessageModal = ref(false);
+
+    const toggleMessageModal = () => {
+      showNewMessageModal.value = !showNewMessageModal.value;
+    };
+
+    return {
+      linksForNavbar,
+      courseInfo,
+      materials,
+      quizzes,
+      loggedUser,
+      showNewMessageModal,
+      toggleMessageModal,
+    };
   },
 };
 </script>
