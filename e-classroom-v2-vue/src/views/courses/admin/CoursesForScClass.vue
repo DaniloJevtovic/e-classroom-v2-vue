@@ -2,18 +2,28 @@
   <div>
     <div class="courses-info">
       <div>
-        <h2>Courses</h2>
+        <h3>Courses</h3>
         <h3>Num of courses: {{ courses.length }}</h3>
       </div>
 
       <input type="text" placeholder="search course" />
 
       <div>
-        <router-link
+        <!-- <router-link
           :to="{ name: 'NewCourseForScClass', params: { scClassId: id } }"
         >
           <button>New Course For this sc</button>
-        </router-link>
+        </router-link> -->
+
+        <button @click="toggleModal">New Course For this sc</button>
+        <div v-if="showNewCourseModal">
+          <NewCourseModal
+            :scClassId="id"
+            @zatvoriModal="toggleModal"
+            @dodajUListu="addToList"
+          >
+          </NewCourseModal>
+        </div>
 
         <button @click="view = !view">view</button>
       </div>
@@ -21,14 +31,12 @@
 
     <div class="basic-grid" v-if="view">
       <div v-for="course in courses" :key="course.id">
-        <router-link :to="{ name: 'EditCourse', params: { id: course.id } }">
+        <sc-course :course="course"></sc-course>
+
+        <!-- <router-link :to="{ name: 'EditCourse', params: { id: course.id } }">
           <div class="sc-courses">
             <h2>Name: {{ course.name }}</h2>
             <p>description: {{ course.description }}</p>
-            <!-- <h3>
-              Teacher: {{ course.teacher.firstName }}
-              {{ course.teacher.lastName }}
-            </h3> -->
 
             <router-link
               :to="{
@@ -36,13 +44,13 @@
                 params: { reciverId: course.teacher.id },
               }"
             >
-              <button style="padding: 4px 20px;">
+              <button style="padding: 4px 20px">
                 Teacher: {{ course.teacher.firstName }}
                 {{ course.teacher.lastName }}
               </button>
             </router-link>
           </div>
-        </router-link>
+        </router-link> -->
       </div>
     </div>
 
@@ -92,7 +100,11 @@ import { onMounted, ref } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import { useRouter } from "vue-router";
 
+import ScCourse from "./ScCourse.vue";
+import NewCourseModal from "./NewCourseModal.vue";
+
 export default {
+  components: { ScCourse, NewCourseModal },
   props: ["id"],
   setup(props) {
     const router = useRouter();
@@ -107,9 +119,19 @@ export default {
       getCoursesForScClass();
     });
 
+    const showNewCourseModal = ref(false);
+
+    const toggleModal = () => {
+      showNewCourseModal.value = !showNewCourseModal.value;
+    };
+
+    const addToList = (res) => {
+      courses.value.push(res);
+    };
+
     const view = ref(false);
 
-    return { courses, view };
+    return { courses, view, showNewCourseModal, toggleModal, addToList };
   },
 };
 </script>
