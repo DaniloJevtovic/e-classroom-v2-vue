@@ -19,6 +19,17 @@
         >
           <button>Send message</button>
         </router-link>
+
+        <button @click="toggleMessageModal">Send message</button>
+
+        <!-- modal za slanje poruke uceniku -->
+        <div v-if="showNewMessageModal">
+          <NewMessageModal
+            :reciverId="studentDetails.id"
+            @zatvoriModal="toggleMessageModal"
+          >
+          </NewMessageModal>
+        </div>
       </div>
 
       <!-- detalji o roditelju -->
@@ -92,9 +103,11 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import { useStore } from "vuex";
+import NewMessageModal from "../messages/NewMessageModal.vue";
 
 export default {
   props: ["studId"],
+  components: { NewMessageModal },
   setup(props) {
     const { getById, getSubItems } = useCRUD();
     const store = useStore();
@@ -117,7 +130,19 @@ export default {
       getResults();
     });
 
-    return { studentDetails, results, loggedUser };
+    const showNewMessageModal = ref(false);
+
+    const toggleMessageModal = () => {
+      showNewMessageModal.value = !showNewMessageModal.value;
+    };
+
+    return {
+      studentDetails,
+      results,
+      loggedUser,
+      showNewMessageModal,
+      toggleMessageModal,
+    };
   },
 };
 </script>
