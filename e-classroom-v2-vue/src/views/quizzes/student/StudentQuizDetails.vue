@@ -67,7 +67,7 @@ export default {
       };
 
       //cuvam novi rezultat
-      const res = await save("results", newResult, false, true);
+      const res = await save("results", newResult, false, false);
       console.log("kreirao: ", res.id);
 
       //preusmjeravam na rjesavanje kviza

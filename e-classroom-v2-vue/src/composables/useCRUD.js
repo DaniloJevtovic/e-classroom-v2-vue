@@ -120,7 +120,7 @@ const save = async (items, data, redirect, toastDialog) => {
       timeout: 2000,
     });
 
-    return err;
+    return err.response;
   }
 };
 

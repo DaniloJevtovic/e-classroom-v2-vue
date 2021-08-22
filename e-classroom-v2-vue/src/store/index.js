@@ -9,9 +9,9 @@ export default createStore({
     linksForLoggedUser: [],
 
     adminLinks: [
+      "AllScClasses",
       "Users",
       "AllCourses",
-      "AllScClasses",
       "Messages",
       "UserProfile",
     ],
@@ -53,7 +53,7 @@ export default createStore({
         if (state.loggedUser.authorities[0].authority === "ROLE_ADMIN") {
           console.log(state.adminLinks);
           state.linksForLoggedUser = state.adminLinks;
-          router.push({ name: "AllUsers" });
+          router.push({ name: "AllScClasses" });
         } else if (
           state.loggedUser.authorities[0].authority === "ROLE_TEACHER"
         ) {

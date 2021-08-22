@@ -15,6 +15,7 @@
     <div class="container-body">
       <!-- <h3>All Courses</h3> -->
       <div v-if="view">
+        <!-- svi predmeti - nerasporedjeni -->
         <!-- <div class="courses" v-for="course in courses" :key="course.id">
           <router-link :to="{ name: 'EditCourse', params: { id: course.id } }">
             <button>
@@ -35,6 +36,7 @@
       </div>
 
       <div v-else>
+        <!-- tabelarni prikaz predmeta -->
         <table>
           <thead>
             <td>#</td>

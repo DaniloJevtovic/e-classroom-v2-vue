@@ -11,6 +11,8 @@
       <button>New teacher</button>
       <!-- <button style="border-radius: 100px">+</button> -->
     </router-link>
+
+    <NewTeacherModal></NewTeacherModal>
   </div>
 
   <div>
@@ -43,8 +45,10 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
+import NewTeacherModal from "./NewTeacherModal.vue";
 
 export default {
+  components: { NewTeacherModal },
   setup() {
     const { getAll } = useCRUD();
 

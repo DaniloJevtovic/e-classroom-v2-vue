@@ -44,18 +44,19 @@ export default [
     props: true,
     children: [
       {
-        path: "/myCourses2/:id",
+        path: "/myCourses2/details/:id",
         name: "MyCourseDetails2",
-        component: MyCourseDetails2,
+        //component: MyCourseDetails2,
+        component: () => import("../views/courses/teacher/MyCourseDetails2.vue"),
         props: true,
-        children: [
-          {
-            path: "teacherWall",
-            name: "TeacherWall",
-            component: Wall,
-            props: true,
-          },
-        ],
+        // children: [
+        //   {
+        //     path: "teacherWall2",
+        //     name: "TeacherWall2",
+        //     component: Wall,
+        //     props: true,
+        //   },
+        // ],
       },
     ],
   },

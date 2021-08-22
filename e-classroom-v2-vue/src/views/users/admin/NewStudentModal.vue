@@ -148,7 +148,11 @@ form {
   width: 50%;
   margin: 20px;
   color: rgb(40, 55, 190);
+  border: 1px dotted indigo;
+  padding: 20px;
+  border-radius: 5px;
 }
+
 .st-par {
   display: flex;
 }
@@ -158,6 +162,6 @@ form {
 }
 
 .backdrop {
-  background: rgba(33, 235, 134, 0.5);
+  background: rgba(105, 37, 122, 0.5);
 }
 </style>

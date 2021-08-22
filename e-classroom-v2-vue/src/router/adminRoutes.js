@@ -23,7 +23,7 @@ import NewSchoolClass from "../views/schoolClasses/NewSchoolClass.vue";
 import EditSchoolClass from "../views/schoolClasses/EditSchoolClass.vue";
 
 import AllStudentClasses from "../views/studentClasses/admin/AllStudentClasses.vue";
-import StudentClassDetails from "../views/studentClasses/StudentClassDetails.vue";
+//import StudentClassDetails from "../views/studentClasses/StudentClassDetails.vue";
 import NewStudentClass from "../views/studentClasses/admin/NewStudentClass.vue";
 import EditStudentClass from "../views/studentClasses/admin/EditStudentClass.vue";
 import CoursesForScClass from "../views/courses/admin/CoursesForScClass.vue";
@@ -183,12 +183,12 @@ export default [
     name: "AllStClasses",
     component: AllStudentClasses,
   },
-  {
-    path: "/scoolClass/:scId/stClass/:stClassId",
-    name: "StudentClassDetails",
-    component: StudentClassDetails,
-    props: true,
-  },
+  // {
+  //   path: "/scoolClass/:scId/stClass/:stClassId",
+  //   name: "StudentClassDetails",
+  //   component: StudentClassDetails,
+  //   props: true,
+  // },
   {
     path: "/sc/:id/newStudentClass",
     name: "NewStudentClass",

@@ -10,7 +10,7 @@
     </router-link> -->
 
     <div @click.prevent="toggleEditCourseModal">
-      <h2>{{ course.name }}</h2>
+      <h3>{{ course.name }}</h3>
       <p>{{ course.description }}</p>
     </div>
 
@@ -22,7 +22,7 @@
 
     <button
       @click.prevent="toggleMessageModal(course.teacher.id)"
-      style="background: orange; padding: 2px 10px; border-radius: 20px"
+      style="background: hotpink; padding: 2px 10px; border-radius: 20px"
     >
       {{ course.teacher.firstName }} {{ course.teacher.lastName }}
       <span>&#9993;</span>
@@ -71,7 +71,7 @@ export default {
 <style scoped>
 .coursee {
   color: darkblue;
-  background: skyblue;
+  background: rgb(0, 252, 176);
   border-radius: 4px;
   cursor: pointer;
 }

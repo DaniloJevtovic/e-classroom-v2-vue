@@ -65,4 +65,7 @@ export default {
 </script>
 
 <style scoped>
+.backdrop {
+  background: rgba(33, 235, 134, 0.5);
+}
 </style>

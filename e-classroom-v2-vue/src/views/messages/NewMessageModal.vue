@@ -2,10 +2,10 @@
   <div class="backdrop" @click.self="closeModal">
     <div class="modal">
       <form @submit.prevent="sendMessage">
-        <h2>New Message</h2>
-        <h2 v-if="reciver">
+        <h3>New Message</h3>
+        <h3 v-if="reciver">
           Reciver: {{ reciver.firstName }} {{ reciver.lastName }}
-        </h2>
+        </h3>
 
         <input
           type="text"
@@ -73,4 +73,7 @@ export default {
 </script>
 
 <style scoped>
+h3 {
+  color: darkblue;
+}
 </style>

@@ -3,8 +3,8 @@
     <div class="modal">
       <form @submit.prevent="handleSubmit" v-if="teachers.length">
         <!-- ako nema profesora ili razreda u sistemu nece moci da se kreira predmet -->
-        <h2>New Course</h2>
-        <h2>ScClass: {{ scClass.name }}</h2>
+        <h3>New Course</h3>
+        <h3>ScClass: {{ scClass.name }}</h3>
         <input type="text" v-model="course.name" placeholder="name" required />
         <textarea
           v-model="course.description"

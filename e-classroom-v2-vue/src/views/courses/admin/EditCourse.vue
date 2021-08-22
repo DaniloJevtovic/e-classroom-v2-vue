@@ -1,5 +1,5 @@
 <template>
-    <form v-if="courseToEdit" @submit.prevent="handleUpdate">
+  <form v-if="courseToEdit" @submit.prevent="handleUpdate">
     <h2>Edit course</h2>
 
     <input
@@ -40,7 +40,7 @@ import { onMounted, reactive, ref } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 
 export default {
-   props: ["id"],
+  props: ["id"],
   setup(props) {
     const { getById, getAll, editById } = useCRUD();
 

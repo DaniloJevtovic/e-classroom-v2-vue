@@ -57,7 +57,7 @@ export default {
   /* margin: 10px; */
   padding: 5px;
   border: 1px solid indigo;
-  background: cyan;
+  background: rgb(255, 255, 255);
   margin: 5px;
 }
 </style>

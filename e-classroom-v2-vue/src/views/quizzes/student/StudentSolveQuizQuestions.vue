@@ -84,7 +84,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .question-details {
   padding: 10px;
   border: 2px solid indigo;
