@@ -2,28 +2,36 @@
   <div class="teachers-info">
     <div>
       <h3>All teachers</h3>
-      <h3>Number of teachers: {{ teachers.length }}</h3>
+      <!-- <h3>Number of teachers: {{ teachers.length }}</h3> -->
     </div>
 
     <input type="text" placeholder="filter by first and last name" />
 
-    <router-link :to="{ name: 'NewTeacher' }">
+    <!-- <router-link :to="{ name: 'NewTeacher' }">
       <button>New teacher</button>
-      <!-- <button style="border-radius: 100px">+</button> -->
-    </router-link>
+    </router-link> -->
 
-    <NewTeacherModal></NewTeacherModal>
+    <button @click="toggleModal">New Teacher</button>
+  </div>
+
+  <div v-if="showNewTeacherModal">
+    <NewTeacherModal
+      @zatvoriModal="toggleModal"
+      @dodajUListu="addToList"
+    ></NewTeacherModal>
   </div>
 
   <div>
     <table>
       <thead>
+        <td>#</td>
         <td>Full Name</td>
         <td>Email</td>
         <td>Subjects</td>
         <td>Message</td>
       </thead>
-      <tr v-for="teacher in teachers" :key="teacher.id">
+      <tr v-for="(teacher, index) in teachers" :key="teacher.id">
+        <td>{{ index + 1 }}.</td>
         <td>{{ teacher.firstName }} {{ teacher.lastName }}</td>
         <td>{{ teacher.email }}</td>
         <td>{{ teacher.subjects }}</td>
@@ -59,7 +67,17 @@ export default {
     };
     onMounted(getTeachers);
 
-    return { teachers };
+    const showNewTeacherModal = ref(false);
+
+    const toggleModal = () => {
+      showNewTeacherModal.value = !showNewTeacherModal.value;
+    };
+
+    const addToList = (res) => {
+      teachers.value.push(res);
+    };
+
+    return { teachers, showNewTeacherModal, toggleModal, addToList };
   },
 };
 </script>
