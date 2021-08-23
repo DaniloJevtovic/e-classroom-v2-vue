@@ -4,39 +4,21 @@
       <button @click="$router.go(-1)">Back to quizzes</button>
     </div>
     <div class="container-body">
-      <div class="quiz-info">
-        <form @submit.prevent="handleSubmit">
-          <h2>Quiz details</h2>
-          <input type="text" v-model="quiz.name" placeholder="name" required />
-          <textarea
-            rows="7"
-            v-model="quiz.instructions"
-            placeholder="instructions"
-          ></textarea>
+      <!-- informacije o kvizu -->
+      <div class="quiz-info" @click="toggleEditQModal">
+        <h3>{{ quiz.name }}</h3>
+        <p>Instructions: {{ quiz.instructions }}</p>
+        <div>duration: {{ quiz.duration }} / status: {{ quiz.quizStatus }}</div>
+      </div>
 
-          <div class="status-duration">
-            <input
-              type="number"
-              v-model="quiz.duration"
-              placeholder="duration"
-              required
-            />
-
-            <select v-model="quiz.quizStatus" required>
-              <option value="INACTIVE">Inactive</option>
-              <option value="ACTIVE">Active</option>
-              <option value="FINISHED">Finished</option>
-              <option value="DELETED">Deleted</option>
-            </select>
-          </div>
-
-          <button>Save</button>
-          <!-- <button @click.prevent="deleteQuiz(quiz.course.id)">Delete</button> -->
-        </form>
+      <div v-if="showEditQuizModal">
+        <EditQuizModal
+          :quiz="quiz"
+          @zatvoriModal="toggleEditQModal"
+        ></EditQuizModal>
       </div>
 
       <!-- lista pitanja za kviz -->
-
       <div class="questions-scroll">
         <questions-list :quizId="quizId"></questions-list>
       </div>
@@ -49,11 +31,12 @@ import { onMounted, ref } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import { useRouter } from "vue-router";
 
+import EditQuizModal from "./EditQuizModal.vue";
 import QuestionsList from "./QuestionsList.vue";
 
 export default {
   props: ["quizId"],
-  components: { QuestionsList },
+  components: { EditQuizModal, QuestionsList },
   setup(props) {
     const { getById, editById, deleteById } = useCRUD();
     const router = useRouter();
@@ -66,19 +49,23 @@ export default {
 
     onMounted(getQuiz);
 
-    const handleSubmit = async () => {
-      console.log(quiz.value);
-      await editById("quizzes", props.quizId, quiz.value, false, true);
-
-      router.push({ name: "QuizDetails", params: { quizId: props.quizId } });
-    };
-
     const deleteQuiz = async (courseId) => {
       await deleteById("quizzes", props.quizId);
       router.push({ name: "MyCourseDetails", params: { id: courseId } });
     };
 
-    return { quiz, handleSubmit, deleteQuiz };
+    const showEditQuizModal = ref(false);
+
+    const toggleEditQModal = () => {
+      showEditQuizModal.value = !showEditQuizModal.value;
+    };
+
+    return {
+      quiz,
+      deleteQuiz,
+      showEditQuizModal,
+      toggleEditQModal,
+    };
   },
 };
 </script>
@@ -86,10 +73,14 @@ export default {
 <style scoped>
 .quiz-info {
   padding: 5px;
-  border: 2px solid darkblue;
-  background: blue;
+  background: rgb(77, 240, 185);
   border-radius: 3px;
-  width: 99%;
+  cursor: pointer;
+}
+
+form {
+  background: white;
+  max-width: 40%;
 }
 
 .status-duration {
@@ -98,31 +89,10 @@ export default {
   align-items: center;
 }
 
-form {
-  background: white;
-  max-width: 100%;
-}
-
-.container-body {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  align-items: start;
-}
-
 .questions-scroll {
-  max-height: 500px;
+  /* max-height: 450px; */
   overflow: auto;
-}
-/* scrollbar style */
-::-webkit-scrollbar {
-  width: 14px;
-}
-::-webkit-scrollbar-track {
-  background-color: #ffffff;
-  border-radius: 9px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #183588;
-  border-radius: 9px;
+  max-width: 70%;
+  margin: 0px auto;
 }
 </style>
