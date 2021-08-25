@@ -12,18 +12,29 @@
     </div>
 
     <button @click="addNewQuestion">New Question</button>
+
+    <button @click="toggleModal">New Question Modal</button>
+
+    <div v-if="showNewQuestionModal">
+      <NewQuestionModal
+        :quizId="quizId"
+        @dodajUListu="addToList"
+        @zatvoriModal="toggleModal"
+      >
+      </NewQuestionModal>
+    </div>
   </div>
 </template>
 
 <script>
 import { ref, onMounted, computed } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
-
+import NewQuestionModal from "./NewQuestionModal.vue";
 import QuestionDetails from "./QuestionDetails.vue";
 
 export default {
   props: ["quizId"],
-  components: { QuestionDetails },
+  components: { NewQuestionModal, QuestionDetails },
   setup(props) {
     const { getSubItems, save } = useCRUD();
 
@@ -68,7 +79,25 @@ export default {
       getQuestionsForQuiz();
     });
 
-    return { questions, deleteQuestion, addNewQuestion, totalPoints };
+    const showNewQuestionModal = ref(false);
+
+    const toggleModal = () => {
+      showNewQuestionModal.value = !showNewQuestionModal.value;
+    };
+
+    const addToList = (question) => {
+      questions.value.push(question);
+    };
+
+    return {
+      questions,
+      deleteQuestion,
+      addNewQuestion,
+      totalPoints,
+      showNewQuestionModal,
+      toggleModal,
+      addToList,
+    };
   },
 };
 </script>
