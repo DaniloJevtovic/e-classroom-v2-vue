@@ -4,20 +4,37 @@
       <h3>{{ answerIndex + 1 }}.</h3>
       <span />
 
-      <input type="text" v-model="answer.answer" />
-
       <input
-        type="checkbox"
-        id="checkbox"
-        v-model="answer.correct"
-        placeholder="tacno?"
+        type="text"
+        v-model="answer.answer"
+        placeholder="please enter answer"
+        @keydown="toggleSave"
       />
 
-      <button @click.prevent="updateAnswer(answer)">Save</button>
-      <button @click.prevent="deleteAnswer(answer.id)">Delete</button>
+      <div>
+        <span style="margin: 0px; padding: 0px"><small>correct?</small> </span>
+        <input
+          type="checkbox"
+          id="checkbox"
+          v-model="answer.correct"
+          placeholder="tacno?"
+          style="margin: 0px; padding: 0px"
+          @change="toggleSave"
+        />
+      </div>
+
+      <button @click.prevent="updateAnswer(answer)" :disabled="answer.disabled">
+        Save
+      </button>
+      <button
+        @click.prevent="deleteAnswer(answer.id)"
+        style="background: crimson"
+      >
+        Delete
+      </button>
     </div>
 
-    <div v-else-if="answer.question.questionType == 'TRUE_FALSE'" class="ans2"> 
+    <div v-else-if="answer.question.questionType == 'TRUE_FALSE'" class="ans2">
       <h2>{{ answerIndex + 1 }}.</h2>
       <span />
 
@@ -25,6 +42,7 @@
 
       <span style="color: cyan" v-if="answer.correct">&#10004;</span>
       <span style="color: red" v-else>&#10007;</span>
+
       <button @click.prevent="updateTrueFalseAnswer(answers)">
         Save changes
       </button>
@@ -45,7 +63,9 @@ export default {
 
     const updateAnswer = async (answer) => {
       console.log(answer);
-      await editById("answers", answer.id, answer);
+      await editById("answers", answer.id, answer, false, true);
+
+      props.answer.disabled = true;
     };
 
     const updateTrueFalseAnswer = async (answers) => {
@@ -63,15 +83,20 @@ export default {
         context.emit("delAnsFromList", id); //brisanje iz liste u roditeljskoj komponenti
       }
     };
-    return { updateAnswer, updateTrueFalseAnswer, deleteAnswer };
+
+    const toggleSave = () => {
+      props.answer.disabled = false;
+    };
+
+    return { updateAnswer, updateTrueFalseAnswer, deleteAnswer, toggleSave };
   },
 };
 </script>
 
 <style scoped>
 .ans2 {
-  padding: 3px;
-  background: rgb(4, 96, 201);
+  padding: 2px;
+  background: rgb(42, 102, 172);
   color: cyan;
   margin: 3px;
   display: flex;
