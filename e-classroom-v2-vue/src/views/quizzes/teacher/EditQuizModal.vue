@@ -2,7 +2,7 @@
   <div class="backdrop" @click.self="closeModal">
     <div class="modal">
       <form @submit.prevent="handleSubmit">
-        <h3>Quiz details</h3>
+        <h3>Edit quiz</h3>
         <input
           type="text"
           v-model="quizToEdit.name"
@@ -21,6 +21,7 @@
             v-model="quizToEdit.duration"
             placeholder="duration"
             required
+            min="1"
           />
 
           <select v-model="quizToEdit.quizStatus" required>
@@ -85,5 +86,11 @@ export default {
 <style scoped>
 .backdrop {
   background: rgba(77, 240, 186, 0.7);
+}
+
+.status-duration {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
 }
 </style>

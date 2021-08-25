@@ -201,3 +201,21 @@ td button {
 ::-webkit-scrollbar-thumb {
   background-color: #262d41;
 }
+
+fieldset {
+  border: 1px dotted #2e85f0;
+  border-radius: 5px;
+  width: 95%;
+  padding: 3px;
+}
+
+fieldset legend {
+  color: #2e85f0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+fieldset input,
+select {
+  background: white;
+}

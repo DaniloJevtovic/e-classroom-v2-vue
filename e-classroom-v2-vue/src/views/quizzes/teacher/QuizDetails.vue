@@ -73,7 +73,7 @@ export default {
 <style scoped>
 .quiz-info {
   padding: 5px;
-  background: rgb(77, 240, 185);
+  background: rgb(77, 229, 240);
   border-radius: 3px;
   cursor: pointer;
 }
@@ -83,16 +83,10 @@ form {
   max-width: 40%;
 }
 
-.status-duration {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-}
-
 .questions-scroll {
   /* max-height: 450px; */
   overflow: auto;
-  max-width: 70%;
+  max-width: 80%;
   margin: 0px auto;
 }
 </style>

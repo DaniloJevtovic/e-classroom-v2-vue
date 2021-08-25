@@ -60,4 +60,8 @@ export default {
 /* form {
  min-width: 80%;
 } */
+
+.backdrop {
+  background: rgba(81, 6, 202, 0.479);
+}
 </style>
