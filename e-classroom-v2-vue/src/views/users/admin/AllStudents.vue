@@ -2,7 +2,7 @@
   <div class="students-info">
     <div>
       <h3>All students</h3>
-      <h3>Number of students: {{ students.length }}</h3>
+      <!-- <h3>Number of students: {{ students.length }}</h3> -->
     </div>
 
     <input type="text" placeholder="filter by first and last name" />
@@ -17,13 +17,15 @@
   <div>
     <table>
       <thead>
+        <td>#</td>
         <td>Full Name</td>
         <td>Email</td>
         <td>St Class</td>
         <td>Message</td>
         <td>Details</td>
       </thead>
-      <tr v-for="student in students" :key="student.id">
+      <tr v-for="(student, index) in students" :key="student.id">
+        <td>{{ index + 1 }}.</td>
         <td>{{ student.firstName }} {{ student.lastName }}</td>
         <td>{{ student.email }}</td>
         <td>{{ student.studentClass.name }}</td>

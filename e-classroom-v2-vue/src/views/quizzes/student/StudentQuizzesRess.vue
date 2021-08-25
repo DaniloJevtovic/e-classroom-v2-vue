@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2 v-if="result">Your score: {{ result.points }} points</h2>
-    <h2 v-else>not working</h2>
+    <h3 v-if="result">Your score: {{ result.points }} points</h3>
+    <h3 v-else>not working</h3>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style scoped>
-h2 {
+h3 {
   background: yellow;
 }
 </style>

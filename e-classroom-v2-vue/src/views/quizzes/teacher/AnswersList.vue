@@ -17,6 +17,7 @@
       >
         New Answer
       </button>
+      <button>Save All Answers</button>
     </div>
   </div>
 </template>
@@ -40,9 +41,9 @@ export default {
       question.value = await getById("questions", props.questionId);
     };
 
-    computed(()=> {
+    computed(() => {
       getQuestion();
-    })
+    });
 
     const getAnswersForQuestion = async () => {
       answers.value = await getSubItems(
@@ -50,6 +51,11 @@ export default {
         "question",
         props.questionId
       );
+
+      // da budu disablovani dugmici - da ne cuva svaki put - smisli pametnije malo
+      answers.value.forEach((answer) => {
+        answer.disabled = true;
+      });
     };
 
     //dodaje prazan odgovor na bekend i u listu odgovora
@@ -59,6 +65,9 @@ export default {
         correct: "",
         questionId: props.questionId,
       });
+
+      res.disabled = true;
+
       answers.value.push(res);
     };
 
@@ -85,6 +94,6 @@ export default {
 
 <style scoped>
 .answers {
-  background: rgb(157, 255, 0);
+  background: rgb(21, 192, 214);
 }
 </style>

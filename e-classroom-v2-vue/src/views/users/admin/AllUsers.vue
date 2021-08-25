@@ -2,7 +2,7 @@
   <div class="users-info">
     <div>
       <h3>All users</h3>
-      <h3>Number of users: {{ users.length }}</h3>
+      <!-- <h3>Number of users: {{ users.length }}</h3> -->
     </div>
 
     <!-- <router-link :to="{ name: 'NewTeacher' }">
@@ -19,12 +19,14 @@
   <div>
     <table>
       <thead>
+        <td>#</td>
         <td>Full Name</td>
         <td>Email</td>
         <td>ROLE</td>
         <td>Message</td>
       </thead>
-      <tr v-for="user in users" :key="user.id">
+      <tr v-for="(user, index) in users" :key="user.id">
+        <td>{{ index + 1 }}.</td>
         <td>{{ user.firstName }} {{ user.lastName }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.authorities[0].authority }}</td>

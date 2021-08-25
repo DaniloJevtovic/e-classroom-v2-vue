@@ -20,7 +20,7 @@
             >
               <div class="st-quiz-det">
                 <h3>Quiz Name: {{ quiz.name }}</h3>
-                <h3>Instruction: {{ quiz.instructions }}</h3>
+                <p>Instruction: {{ quiz.instructions }}</p>
                 <h4>Duration: {{ quiz.duration }} minutes.</h4>
 
                 <br />

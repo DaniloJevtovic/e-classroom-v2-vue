@@ -1,6 +1,4 @@
 <template>
-  <!--@click.self - event click modifiers-->
-  <!-- @click.self -- da ne bi zatvarao modal kad kliknes i na njega vec samo izvan modala-->
   <div class="backdrop" @click.self="closeModal">
     <div class="modal" :class="{ sale: theme === 'sale' }">
       <h1>{{ propsPodaci }}</h1>
@@ -21,7 +19,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .modal {
   width: 400px;
   padding: 20px;
@@ -32,7 +30,7 @@ export default {
 .backdrop {
   top: 0;
   position: fixed;
-  background: rgba(245, 10, 10, 0.3); 
+  background: rgba(245, 10, 10, 0.3);
   width: 100%;
   height: 100%;
 }

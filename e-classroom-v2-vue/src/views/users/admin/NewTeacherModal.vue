@@ -43,13 +43,11 @@
 
 <script>
 import { reactive, ref } from "vue";
-import { useRouter } from "vue-router";
 import useCRUD from "../../../composables/useCRUD.js";
 
 export default {
   setup(props, context) {
     const { save } = useCRUD();
-    const router = useRouter();
 
     const newTeacher = reactive({
       email: "",

@@ -47,7 +47,8 @@ export default [
         path: "/myCourses2/details/:id",
         name: "MyCourseDetails2",
         //component: MyCourseDetails2,
-        component: () => import("../views/courses/teacher/MyCourseDetails2.vue"),
+        component: () =>
+          import("../views/courses/teacher/MyCourseDetails2.vue"),
         props: true,
         // children: [
         //   {

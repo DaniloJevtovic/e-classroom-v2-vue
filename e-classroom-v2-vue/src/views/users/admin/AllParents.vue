@@ -2,7 +2,7 @@
   <div class="parents-info">
     <div>
       <h3>All parents</h3>
-      <h3>Number of parents: {{ parents.length }}</h3>
+      <!-- <h3>Number of parents: {{ parents.length }}</h3> -->
     </div>
 
     <!-- <router-link :to="{ name: 'NewParent' }">
@@ -17,12 +17,14 @@
   <div>
     <table>
       <thead>
+        <td>#</td>
         <td>Full Name</td>
         <td>Email</td>
         <td>Childrens</td>
         <td>Message</td>
       </thead>
-      <tr v-for="parent in parents" :key="parent.id">
+      <tr v-for="(parent, index) in parents" :key="parent.id">
+        <td>{{ index + 1 }}.</td>
         <td>{{ parent.firstName }} {{ parent.lastName }}</td>
         <td>{{ parent.email }}</td>
         <td>*</td>

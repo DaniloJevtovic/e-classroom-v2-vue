@@ -3,7 +3,7 @@
     <div class="courses-info">
       <div>
         <h3>Courses</h3>
-        <h3>Num of courses: {{ courses.length }}</h3>
+        <!-- <h3>Num of courses: {{ courses.length }}</h3> -->
       </div>
 
       <input type="text" placeholder="search course" />
