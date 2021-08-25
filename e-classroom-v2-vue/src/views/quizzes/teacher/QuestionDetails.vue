@@ -33,11 +33,6 @@
           </div>
         </div>
 
-        <!-- <fieldset>
-          <legend>Question</legend>
-          <input style="margin: 1px" type="text" />
-        </fieldset> -->
-
         <textarea
           rows="1"
           v-model="question.question"
@@ -47,25 +42,19 @@
         </textarea>
 
         <div class="points-type">
-          <fieldset>
-            <legend>Points</legend>
-            <input
-              type="number"
-              v-model="question.points"
-              placeholder="points"
-              min="0"
-              required
-            />
-          </fieldset>
+          <input
+            type="number"
+            v-model="question.points"
+            placeholder="points"
+            min="0"
+            required
+          />
 
-          <fieldset>
-            <legend>question-type</legend>
-            <select v-model="question.questionType" required>
-              <option value="MULTIPLE_CHOICE">Multiple choice</option>
-              <option value="TRUE_FALSE">True / False</option>
-              <option value="FILL">Fill</option>
-            </select>
-          </fieldset>
+          <select v-model="question.questionType" required>
+            <option value="MULTIPLE_CHOICE">Multiple choice</option>
+            <option value="TRUE_FALSE">True / False</option>
+            <option value="FILL">Fill</option>
+          </select>
         </div>
 
         <!-- <button>Save</button>
