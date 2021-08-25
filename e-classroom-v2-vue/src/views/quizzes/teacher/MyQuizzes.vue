@@ -1,15 +1,28 @@
 <template>
   <div class="quizzes-info">
-    <h2>Quizzes</h2>
+    <h3>Quizzes</h3>
 
     <input type="text" placeholder="search" />
 
     <div>
-      <router-link :to="{ name: 'NewQuiz', params: { id } }">
+      <!-- novi kviz - nova kompoenta -->
+      <!-- <router-link :to="{ name: 'NewQuiz', params: { id } }">
         <button>New Quiz</button>
-      </router-link>
+      </router-link> -->
+
+      <!-- novi kviz - modal -->
+      <button @click="toggleModal">NewQuiz</button>
+
       <button @click="view = !view">view</button>
     </div>
+  </div>
+
+  <div v-if="showNewQuizModal">
+    <NewQuizModal
+      :id="id"
+      @zatvoriModal="toggleModal"
+      @dodajUListu="addToList"
+    ></NewQuizModal>
   </div>
 
   <div class="te-quizzes" v-if="view">
@@ -28,7 +41,7 @@
           <router-link
             :to="{ name: 'ProfResForQuiz', params: { quizId: quiz.id } }"
           >
-            <button>See Results</button>
+            <button style="background: hotpink">See Results</button>
           </router-link>
         </div>
       </router-link>
@@ -73,8 +86,10 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
+import NewQuizModal from "./NewQuizModal.vue";
 
 export default {
+  components: { NewQuizModal },
   props: ["id"],
   setup(props) {
     const quizzes = ref([]);
@@ -91,7 +106,17 @@ export default {
 
     const view = ref(false);
 
-    return { quizzes, view };
+    const showNewQuizModal = ref(false);
+
+    const toggleModal = () => {
+      showNewQuizModal.value = !showNewQuizModal.value;
+    };
+
+    const addToList = (quiz) => {
+      quizzes.value.push(quiz);
+    };
+
+    return { quizzes, view, showNewQuizModal, toggleModal, addToList };
   },
 };
 </script>
