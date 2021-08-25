@@ -33,42 +33,27 @@
     </div>
   </div> -->
 
-  <!-- <div>
-    <table>
+  <div>
+    <table v-if="students.length">
       <thead>
-        <td>Num</td>
+        <td>#</td>
         <td>Full Name</td>
-        <td>Email</td>
-        <td>Message</td>
-        <td>Details</td>
       </thead>
-      <tr v-for="(student, index) in students" :key="student.id">
+      <tr
+        v-for="(student, index) in students"
+        :key="student.id"
+        @click="stDetails(student.id)"
+      >
         <td>{{ index + 1 }}.</td>
         <td>{{ student.firstName }} {{ student.lastName }}</td>
-        <td>{{ student.email }}</td>
-
-        <td>
-          <router-link
-            :to="{
-              name: 'NewMessage',
-              params: { reciverId: student.id },
-            }"
-          >
-            <button>Send message</button>
-          </router-link>
-        </td>
-        <td>
-          <router-link
-            :to="{ name: 'StDetailsProf', params: { studId: student.id } }"
-          >
-            <button>Details</button>
-          </router-link>
-        </td>
       </tr>
     </table>
-  </div> -->
+    <div v-else>
+      <h3 style="color: red">No students</h3>
+    </div>
+  </div>
 
-  <div class="st-list">
+  <!-- <div class="st-list">
     <div v-for="(student, index) in students" :key="student.id">
       <router-link
         :to="{ name: 'StDetailsProf', params: { studId: student.id } }"
@@ -76,16 +61,19 @@
         <h2>{{ index + 1 }}. {{ student.firstName }} {{ student.lastName }}</h2>
       </router-link>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
 
+import { useRouter } from "vue-router";
+
 export default {
   props: ["stClassId"],
   setup(props) {
+    const router = useRouter();
     const { getSubItems } = useCRUD();
 
     const students = ref([]);
@@ -102,7 +90,11 @@ export default {
       getStudentsFromStClass();
     });
 
-    return { students };
+    function stDetails(id) {
+      router.push({ name: "StDetailsProf", params: { studId: id } });
+    }
+
+    return { students, stDetails };
   },
 };
 </script>
