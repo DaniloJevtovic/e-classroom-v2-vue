@@ -44,17 +44,17 @@ export default {
   padding: 5px;
 }
 .my-stClasses {
-  background: rgb(0, 26, 255);
-  padding: 10px;
+  background: white;
+  padding: 5px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
 .my-stClass {
-  border: 2px solid cyan;
+  border: 1px solid rgb(0, 68, 255);
   border-radius: 2px;
-  margin: 5px
+  margin: 4px
 }
-.my-stClass h2 {
-  padding: 10px;
+.my-stClass h3 {
+  padding: 4px;
 }
 </style>

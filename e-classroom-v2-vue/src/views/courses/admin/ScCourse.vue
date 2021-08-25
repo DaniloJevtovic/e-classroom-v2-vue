@@ -70,8 +70,8 @@ export default {
 
 <style scoped>
 .coursee {
-  color: darkblue;
-  background: rgb(0, 252, 176);
+  color: cyan;
+  background: rgb(17, 8, 43);
   border-radius: 4px;
   cursor: pointer;
 }
