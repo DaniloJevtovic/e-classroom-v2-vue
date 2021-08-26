@@ -5,6 +5,7 @@
 
     <div v-for="(question, index) in questions" :key="question.id">
       <question-details
+        :pitanje="question"
         :questionId="question.id"
         :questionIndex="index"
         @deleteFromList="deleteQuestion"
@@ -42,6 +43,11 @@ export default {
 
     const getQuestionsForQuiz = async () => {
       questions.value = await getSubItems("questions", "quiz", props.quizId);
+
+      //pitanjima dodjeljuem edit atribut
+      questions.value.forEach((question) => {
+        question.isEdit = false;
+      });
     };
 
     const addNewQuestion = async () => {
@@ -56,6 +62,8 @@ export default {
         false,
         true
       );
+
+      res.isEdit = true;
 
       questions.value.push(res);
     };

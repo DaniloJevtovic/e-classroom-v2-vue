@@ -2,8 +2,8 @@
   <div class="question-details">
     <div
       class="ques-display-old"
-      v-if="!questionEdit"
-      @click="questionEdit = !questionEdit"
+      v-if="!pitanje.isEdit"
+      @click="pitanje.isEdit = !pitanje.isEdit"
     >
       <h3>
         {{ questionIndex + 1 }}. {{ question.question }} / Points:
@@ -13,8 +13,8 @@
     <!-- 
     <div
       class="ques-display"
-      v-if="!questionEdit"
-      @click="questionEdit = !questionEdit"
+      v-if="!pitanje.isEdit"
+      @click="pitanje.isEdit = !pitanje.isEdit"
     >
       <h3 style="text-align: left">
         {{ questionIndex + 1 }}. {{ question.question }}
@@ -74,7 +74,7 @@ import useCRUD from "@/composables/useCRUD.js";
 import AnswersList from "./AnswersList.vue";
 
 export default {
-  props: ["questionId", "questionIndex"],
+  props: ["questionId", "questionIndex", "pitanje"],
   components: { AnswersList },
   setup(props, context) {
     const { getById, deleteById, editById } = useCRUD();
@@ -111,7 +111,7 @@ export default {
 
       oldType.value = res.questionType;
 
-      questionEdit.value = !questionEdit.value;
+      props.pitanje.isEdit = !props.pitanje.isEdit;
     };
 
     const deleteQuestion = async (id) => {
@@ -131,9 +131,7 @@ export default {
       getQuestion();
     });
 
-    const questionEdit = ref(false);
-
-    return { question, deleteQuestion, handleSubmit, questionEdit };
+    return { question, deleteQuestion, handleSubmit };
   },
 };
 </script>
