@@ -2,7 +2,7 @@
   <div class="container">
     <div class="container-header">
       <h3>My Courses</h3>
-      <button @click="view = !view">view</button>
+      <button @click="view = !view" class="pill-button">view</button>
     </div>
 
     <div class="container-body">

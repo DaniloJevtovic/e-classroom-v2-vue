@@ -1,9 +1,9 @@
 <template>
-  <div class="student-quiz-details">
-    <div class="st-quiz-info">
-      <h3>Name: {{ quizInfo.name }}</h3>
+  <div class="container">
+    <div class="container-body">
+      <h2>Name: {{ quizInfo.name }}</h2>
       <h3>Instruction: {{ quizInfo.instructions }}</h3>
-      <h4>Duration: {{ quizInfo.duration }}</h4>
+      <h4>Duration: {{ quizInfo.duration }} min</h4>
 
       <!-- ako je ucenik rjesavao kviz - prikazi mu rezultat -->
       <div v-if="result">
@@ -12,7 +12,15 @@
 
       <!-- ako ucenik nije rjesavao kviz prikazi mu dugme da zapocne rjesavanje -->
       <div v-else>
-        <button @click.prevent="startQuiz">Start</button>
+        <button
+          style="padding: 10px 40px; font-size: 15px"
+          @click.prevent="startQuiz"
+        >
+          Start quiz
+        </button>
+        <p style="color: red; margin: 5px">
+          *note: kad pokrente kviz rezultat se automatski cuva
+        </p>
       </div>
     </div>
   </div>
@@ -85,7 +93,8 @@ export default {
 
 <style scoped>
 .st-quiz-info {
-  background: rgb(136, 132, 163);
+  color: aqua;
+  background: rgb(14, 3, 85);
   padding: 5px;
 }
 </style>

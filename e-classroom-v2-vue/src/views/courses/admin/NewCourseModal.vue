@@ -5,6 +5,7 @@
         <!-- ako nema profesora ili razreda u sistemu nece moci da se kreira predmet -->
         <h3>New Course</h3>
         <h3>ScClass: {{ scClass.name }}</h3>
+        
         <input type="text" v-model="course.name" placeholder="name" required />
         <textarea
           v-model="course.description"

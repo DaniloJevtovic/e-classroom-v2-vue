@@ -11,7 +11,7 @@
       <div>
         <table>
           <thead>
-            <td>Num</td>
+            <td>#</td>
             <td>Name</td>
             <td>Description</td>
             <td>Date</td>
