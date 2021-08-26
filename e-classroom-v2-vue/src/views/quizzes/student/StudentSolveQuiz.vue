@@ -7,30 +7,29 @@
       <!-- prikaz informacija o kvizu -->
       <div class="quiz-info">
         <h2>Name: {{ quizInfo.name }}</h2>
-        <h2>Instructions: {{ quizInfo.instructions }}</h2>
-        <h2>Duration: {{ quizInfo.duration }}</h2>
+        <h3>Instructions: {{ quizInfo.instructions }}</h3>
+        <h2>Duration: {{ quizInfo.duration }} min</h2>
         <h3>Total questions: {{ questions.length }}</h3>
         <!-- <h1>TIME: {{ timer }} s</h1> -->
-        <h1>TIME: {{ timer2 }}</h1>
+        <h1 style="color: yellow">TIME: {{ timer2 }}</h1>
       </div>
 
       <!-- ucitavanje svih pitanja za kviz -->
       <div class="questions">
         <h2>Questions</h2>
 
-        <div v-for="question in questions" :key="question.id">
+        <div v-for="(question, index) in questions" :key="question.id">
           <!-- pitanja za kviz -->
           <student-solve-quiz-questions
             :questionId="question.id"
+            :questionIndex="index"
             :stRes="stRes"
           >
           </student-solve-quiz-questions>
         </div>
       </div>
 
-      <router-link :to="{ name: 'StudentQuizDetails', params: { quizId } }">
-        <button>FINISH</button>
-      </router-link>
+      <button @click="finishQuiz">FINISH</button>
     </div>
   </div>
 </template>
@@ -124,16 +123,28 @@ export default {
       getQuestionsForQuiz();
     });
 
-    return { quizInfo, questions, timer, timer2, result };
+    const finishQuiz = () => {
+      //resetovanje tajmera
+      timer.value = 0;
+      timer2.value = 0;
+
+      //preusmjeravam na rezultate
+      router.push({
+        name: "StudentQuizDetails",
+        params: { quizId: props.quizId },
+      });
+    };
+
+    return { quizInfo, questions, timer, timer2, result, finishQuiz };
   },
 };
 </script>
 
 <style scoped>
 .quiz-info {
-  padding: 14px;
+  padding: 4px;
   border: 1px solid darkblue;
-  background: blue;
+  background: #014141;
   border-radius: 5px;
   width: 70%;
   margin: 1px auto;

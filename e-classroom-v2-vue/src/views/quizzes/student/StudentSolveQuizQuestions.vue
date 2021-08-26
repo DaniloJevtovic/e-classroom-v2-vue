@@ -1,8 +1,8 @@
 <template>
   <div class="question-details">
     <div class="question">
-      <h2>Question: {{ question.question }}</h2>
-      <h3>Points: {{ question.points }}</h3>
+      <h2>{{ questionIndex + 1 }}. {{ question.question }}</h2>
+      <!-- <p>Points: {{ question.points }}</p> -->
     </div>
     <!-- svi odgovori za pitanje -->
     <div class="answers" v-for="(answer, index) in answers" :key="answer.id">
@@ -21,7 +21,7 @@ import useCRUD from "@/composables/useCRUD.js";
 import { useRoute } from "vue-router";
 
 export default {
-  props: ["questionId", "stRes"],
+  props: ["questionId", "stRes", "questionIndex"],
   setup(props, context) {
     const { getById, getSubItems, save, deleteByMultipleIds } = useCRUD();
     const route = useRoute();
@@ -61,7 +61,8 @@ export default {
           stQuizResId: props.stRes,
           answerId: answer.id,
         };
-        const res = await save("stAnswers", newAnswer);
+        
+        const res = await save("stAnswers", newAnswer, false, false);
         console.log("dodao odgovor", res);
       } else {
         //pozovi na bekendu brisanje odgovora
@@ -87,13 +88,14 @@ export default {
 <style scoped>
 .question-details {
   padding: 10px;
-  border: 2px solid indigo;
+  border: 1px solid indigo;
   border-radius: 5px;
-  margin: 10px
+  margin: 10px;
 }
 
 .question {
-  background: cyan;
+  color: white;
+  background: rgb(3, 37, 37);
 }
 .answers {
   background: yellow;
@@ -102,7 +104,7 @@ export default {
 .answer {
   display: block;
   position: relative;
-  padding-left: 35px;
+  padding-left: auto;
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
@@ -128,18 +130,19 @@ export default {
   left: 0;
   height: 25px;
   width: 25px;
-  background-color: #eee;
+  background-color: rgb(255, 0, 0);
 }
 
 /* On mouse-over, add a grey background color */
 .answer:hover input ~ .checkmark {
-  background-color: #ccc;
+  background-color: rgb(255, 238, 0);
 }
 
 /* When the checkbox is checked, add a blue background */
 .answer input:checked ~ .checkmark,
 .answer {
-  background-color: #2196f3;
+  /* color: white; */
+  background-color: rgb(0, 253, 190);
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -160,7 +163,7 @@ export default {
   top: 5px;
   width: 5px;
   height: 10px;
-  border: solid white;
+  border: solid rgb(10, 16, 66);
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
