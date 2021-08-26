@@ -16,6 +16,11 @@
           placeholder="duration"
           required
         />
+
+        <p style="color: red; margin: 15px">
+          *Note: The status of the quiz will be inactive
+        </p>
+
         <button>Create</button>
         <button @click.prevent="closeModal">Cancel</button>
       </form>

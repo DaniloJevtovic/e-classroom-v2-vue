@@ -17,6 +17,6 @@ export default {
 <style scoped>
 .wall {
   margin: 4px auto;
-  max-width: 80%;
+  /* max-width: 70%; */
 }
 </style>
