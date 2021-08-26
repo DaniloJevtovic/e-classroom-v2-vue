@@ -3,15 +3,22 @@
     <div class="res-score">
       <!-- <h1 v-if="result.points < 0">Your Score: 0 points / ?</h1>
       <h1 v-else>Your Score: {{ result.points }} points / ?</h1> -->
+      <h2>Score: {{ result.points }} points / ?</h2>
 
       <div v-if="checkLoggedUser() && !edit">
-        <h2>Score: {{ result.points }} points / ?</h2>
         <button @click="edit = !edit">Edit points</button>
       </div>
 
       <div class="edit-points" v-else-if="checkLoggedUser() && edit">
-        <input type="number" v-model="pointsToEdit" />
+        <h3>New Score</h3>
+
+        <input
+          type="number"
+          v-model="pointsToEdit"
+          style="width: 30%; text-align: center"
+        />
         <button @click="updatePoints">Save</button>
+        <button @click="cancelUpdate">Cabcel</button>
       </div>
     </div>
 
@@ -72,7 +79,12 @@ export default {
       edit.value = !edit.value;
     };
 
-    return { checkLoggedUser, edit, updatePoints, pointsToEdit };
+    const cancelUpdate = () => {
+      pointsToEdit.value = props.result.points;
+      edit.value = !edit.value;
+    };
+
+    return { checkLoggedUser, edit, updatePoints, pointsToEdit, cancelUpdate };
   },
 };
 </script>
@@ -87,5 +99,9 @@ export default {
 .res-score {
   background: rgb(0, 255, 106);
   padding: 3px;
+}
+
+.edit-points {
+  padding: 4px;
 }
 </style>
