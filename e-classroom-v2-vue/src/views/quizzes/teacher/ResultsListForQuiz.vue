@@ -6,7 +6,7 @@
         <button @click="view = !view">view</button>
       </div>
 
-      <div class="container-body">
+      <div class="container-body" v-if="results.length">
         <div class="quiz-info">
           <h2>Quiz: {{ quizDetails.name }}</h2>
           <p>Instructions: {{ quizDetails.instructions }}</p>
@@ -118,6 +118,9 @@
             </tr>
           </table>
         </div>
+      </div>
+      <div v-else>
+        <h2>No results</h2>
       </div>
     </div>
   </div>

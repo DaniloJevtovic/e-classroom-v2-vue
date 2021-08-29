@@ -67,13 +67,14 @@ export default {
 
       let result = JSON.parse(JSON.stringify(res));
 
-      console.log('reeeees', result)
+      console.log("reeeees", result);
 
       // router.push({
       //   name: "StudentQuizResults",
-      //   params: { id: res.id },
+      //   params: { id: res.id, result: result },
       // });
     };
+    
 
     return { results, goToResult };
   },

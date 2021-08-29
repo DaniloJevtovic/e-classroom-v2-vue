@@ -2,7 +2,7 @@
   <div class="container">
     <div class="container-header">
       <h3>My Courses</h3>
-      <button @click="view = !view">view</button>
+      <button class="pill-button" @click="view = !view">view</button>
     </div>
     <div class="container-body">
       <div class="basic-grid" v-if="view">
