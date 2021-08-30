@@ -20,14 +20,12 @@
         <td>#</td>
         <td>Full Name</td>
         <td>Email</td>
-        <td>Childrens</td>
         <td>Message</td>
       </thead>
       <tr v-for="(parent, index) in parents" :key="parent.id">
         <td>{{ index + 1 }}.</td>
         <td>{{ parent.firstName }} {{ parent.lastName }}</td>
         <td>{{ parent.email }}</td>
-        <td>*</td>
         <td>
           <router-link
             :to="{

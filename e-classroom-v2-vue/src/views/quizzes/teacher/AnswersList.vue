@@ -17,7 +17,7 @@
       >
         New Answer
       </button>
-      <button>Save All Answers</button>
+      <!-- <button>Save All Answers</button> -->
     </div>
   </div>
 </template>

@@ -64,7 +64,6 @@ export default {
 
 <style scoped>
 form {
-  background: rgba(11, 248, 248, 0.644);
   max-width: 500px;
 }
 </style>
