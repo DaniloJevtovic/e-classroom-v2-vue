@@ -65,7 +65,10 @@
           <td>Action</td>
         </thead>
         <tr v-for="(course, index) in courses" :key="course.id">
-          <td>{{ index + 1 }}.</td>
+          <!-- td-ovi u posebnoj komponenti -->
+          <CourseForScTable :course="course" :index="index" />
+
+          <!-- <td>{{ index + 1 }}.</td>
           <td>{{ course.name }}</td>
           <td>{{ course.description }}</td>
           <td>{{ course.schoolClass.name }}</td>
@@ -88,7 +91,7 @@
             >
               <button>Edit</button>
             </router-link>
-          </td>
+          </td> -->
         </tr>
       </table>
     </div>
@@ -102,9 +105,10 @@ import { useRouter } from "vue-router";
 
 import ScCourse from "./ScCourse.vue";
 import NewCourseModal from "./NewCourseModal.vue";
+import CourseForScTable from "./CourseForScTable.vue";
 
 export default {
-  components: { ScCourse, NewCourseModal },
+  components: { ScCourse, NewCourseModal, CourseForScTable },
   props: ["id"],
   setup(props) {
     const router = useRouter();

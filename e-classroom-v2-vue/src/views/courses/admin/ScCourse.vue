@@ -21,7 +21,7 @@
     </div>
 
     <button
-      @click.prevent="toggleMessageModal(course.teacher.id)"
+      @click.prevent="toggleMessageModal"
       style="background: hotpink; padding: 2px 10px; border-radius: 20px"
     >
       {{ course.teacher.firstName }} {{ course.teacher.lastName }}
