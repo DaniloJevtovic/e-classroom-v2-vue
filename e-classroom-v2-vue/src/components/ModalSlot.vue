@@ -26,12 +26,13 @@
         <footer class="modal-footer">
           <slot name="footer"> This is the default footer! </slot>
           <button
+            style="width: 300px; margin: 10px auto"
             type="button"
             class="btn-green"
             @click="close"
             aria-label="Close modal"
           >
-            Close me!
+            Close modal!
           </button>
         </footer>
       </div>
@@ -114,7 +115,7 @@ export default {
   color: white;
   background: #4aae9b;
   border: 1px solid #4aae9b;
-  border-radius: 2px;
+  border-radius: 20px;
 }
 
 .modal-fade-enter,
