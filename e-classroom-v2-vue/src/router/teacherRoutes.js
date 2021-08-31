@@ -22,7 +22,7 @@ import NewQuestion from "../views/quizzes/teacher/NewQuestion.vue";
 import NewAnswer from "../views/quizzes/teacher/NewAnswer.vue";
 import EditAnswer from "../views/quizzes/teacher/EditAnswer.vue";
 
-import ResultsListForQuiz from "../views/quizzes/teacher/ResultsListForQuiz.vue";
+import ResultsListForQuiz from "../views/quizzes/teacher/results/ResultsListForQuiz.vue";
 
 import Wall from "../views/wall/Wall.vue";
 
