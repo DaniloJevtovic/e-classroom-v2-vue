@@ -47,7 +47,10 @@
             <td>Action</td>
           </thead>
           <tr v-for="(course, index) in courses" :key="course.id">
-            <td>{{ index + 1 }}.</td>
+            <!-- td-ovi u posebnoj komponenti -->
+            <CourseForScTable :course="course" :index="index" />
+
+            <!-- <td>{{ index + 1 }}.</td>
             <td>{{ course.name }}</td>
             <td>{{ course.description }}</td>
             <td>{{ course.schoolClass.name }}</td>
@@ -72,7 +75,7 @@
               >
                 <button>Edit</button>
               </router-link>
-            </td>
+            </td> -->
           </tr>
         </table>
       </div>
@@ -85,9 +88,10 @@ import { ref, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
 import { useRouter } from "vue-router";
 import ScClasses from "./ScClasses.vue";
+import CourseForScTable from "./CourseForScTable.vue";
 
 export default {
-  components: { ScClasses },
+  components: { ScClasses, CourseForScTable },
   setup() {
     const router = useRouter();
     const { getAll } = useCRUD();
