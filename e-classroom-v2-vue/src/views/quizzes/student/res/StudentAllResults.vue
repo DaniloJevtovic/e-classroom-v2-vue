@@ -14,13 +14,15 @@
             <td>Subject</td>
             <td>Teacher</td>
             <td>Points</td>
+            <td>Details</td>
           </thead>
           <tr
             v-for="(result, index) in results"
             :key="result.id"
             @click="goToResult(result)"
           >
-            <td>{{ index + 1 }}.</td>
+            <StudentAllResultTable :result="result" :index="index" />
+            <!-- <td>{{ index + 1 }}.</td>
             <td>{{ result.quiz.name }}</td>
             <td>{{ result.date }}</td>
             <td>{{ result.quiz.course.name }}</td>
@@ -28,7 +30,7 @@
               {{ result.quiz.course.teacher.firstName }}
               {{ result.quiz.course.teacher.lastName }}
             </td>
-            <td style="background: springgreen">{{ result.points }}</td>
+            <td style="background: springgreen">{{ result.points }}</td> -->
           </tr>
         </table>
       </div>
@@ -45,7 +47,10 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import useCRUD from "@/composables/useCRUD.js";
 
+import StudentAllResultTable from "./StudentAllResultTable.vue";
+
 export default {
+  components: { StudentAllResultTable },
   setup() {
     const store = useStore();
     const router = useRouter();
@@ -74,7 +79,6 @@ export default {
       //   params: { id: res.id, result: result },
       // });
     };
-    
 
     return { results, goToResult };
   },
