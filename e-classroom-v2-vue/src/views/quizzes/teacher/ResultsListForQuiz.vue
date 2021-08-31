@@ -15,47 +15,7 @@
 
         <div v-if="view">
           <div v-for="result in results" :key="result.id">
-            <div class="st-res">
-              <h2>
-                {{ result.student.firstName }} {{ result.student.lastName }}
-              </h2>
-              <h3>Points: {{ result.points }} / ?</h3>
-
-              <!-- prikaz detalja rezultata -->
-              <div v-if="result.collapsed">
-                <student-quiz-results :result="result"></student-quiz-results>
-              </div>
-
-              <button
-                v-if="!result.collapsed"
-                @click="result.collapsed = !result.collapsed"
-              >
-                View details
-              </button>
-
-              <button v-else @click="result.collapsed = !result.collapsed">
-                Hide details
-              </button>
-
-              <router-link
-                :to="{
-                  name: 'NewMessage',
-                  params: { reciverId: result.student.id },
-                }"
-              >
-                <button>Contact Student</button>
-              </router-link>
-
-              <router-link
-                v-if="result.student.stParent"
-                :to="{
-                  name: 'NewMessage',
-                  params: { reciverId: result.student.stParent.id },
-                }"
-              >
-                <button>Contact parent</button>
-              </router-link>
-            </div>
+            <ResultForQuiz :result="result" />
           </div>
         </div>
 
@@ -69,52 +29,8 @@
               <td>Actions</td>
             </thead>
             <tr v-for="(result, index) in results" :key="result.id">
-              <td>{{ index + 1 }}.</td>
-              <td>
-                {{ result.student.firstName }} {{ result.student.lastName }}
-              </td>
-              <td>
-                {{ result.points }}
-              </td>
-              <td>
-                <ModalSlot v-show="isModalVisible" @close="closeModal">
-                  <template v-slot:header> Result </template>
-
-                  <!-- prikaz rezultata u modalu -->
-                  <template v-slot:body>
-                    <student-quiz-results
-                      :result="result"
-                    ></student-quiz-results>
-                  </template>
-
-                  <template v-slot:footer>
-                    Date: {{ result.date }}
-                    <span>Solve duration: {{ result.solveDuration }} min</span>
-                  </template>
-                </ModalSlot>
-
-                <button type="button" class="btn" @click="showModal">
-                  Show result!
-                </button>
-
-                <button>Contact parent</button>
-                <button>Contact student</button>
-              </td>
-
-              <!-- <div v-if="result.collapsed">
-                <student-quiz-results :result="result"></student-quiz-results>
-              </div>
-
-              <button
-                v-if="!result.collapsed"
-                @click="result.collapsed = !result.collapsed"
-              >
-                View details
-              </button>
-
-              <button v-else @click="result.collapsed = !result.collapsed">
-                Hide details
-              </button> -->
+              <!-- u posebnoj komponenti -->
+              <ResultForQuizTable :result="result" :index="index" />
             </tr>
           </table>
         </div>
@@ -130,12 +46,17 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
 
-import ModalSlot from "../../../components/ModalSlot.vue";
 import StudentQuizResults from "../student/res/StudentQuizResults.vue";
+import ResultForQuiz from "./ResultForQuiz.vue";
+import ResultForQuizTable from "./ResultForQuizTable.vue";
 
 export default {
   props: ["quizId"],
-  components: { StudentQuizResults, ModalSlot },
+  components: {
+    StudentQuizResults,
+    ResultForQuiz,
+    ResultForQuizTable,
+  },
   setup(props) {
     const { getSubItems, getById } = useCRUD();
 
@@ -162,24 +83,12 @@ export default {
       getResults();
     });
 
-    const isModalVisible = ref(false);
-
-    const showModal = () => {
-      isModalVisible.value = true;
-    };
-    const closeModal = () => {
-      isModalVisible.value = false;
-    };
-
     const view = ref(true);
 
     return {
       quizDetails,
       results,
       view,
-      isModalVisible,
-      showModal,
-      closeModal,
     };
   },
 };
@@ -188,11 +97,5 @@ export default {
 <style scoped>
 .quizDetails {
   background: rgb(80, 152, 211);
-}
-
-.st-res {
-  background: rgb(250, 250, 250);
-  margin: 10px;
-  padding: 10px;
 }
 </style>
