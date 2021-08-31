@@ -28,9 +28,9 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import useCRUD from "../../../composables/useCRUD.js";
-import ModalSlot from "../../../components/ModalSlot.vue";
-import StudentQuizResults from "../student/res/StudentQuizResults.vue";
+import useCRUD from "../../../../composables/useCRUD.js";
+import ModalSlot from "../../../../components/ModalSlot.vue";
+import StudentQuizResults from "../../student/res/StudentQuizResults.vue";
 
 export default {
   props: ["result", "index"],

@@ -42,8 +42,8 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import useCRUD from "../../../composables/useCRUD.js";
-import StudentQuizResults from "../student/res/StudentQuizResults.vue";
+import useCRUD from "../../../../composables/useCRUD.js";
+import StudentQuizResults from "../../student/res/StudentQuizResults.vue";
 
 export default {
   components: { StudentQuizResults },

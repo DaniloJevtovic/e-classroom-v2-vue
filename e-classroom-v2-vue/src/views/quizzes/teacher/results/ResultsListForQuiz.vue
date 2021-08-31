@@ -44,11 +44,11 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import useCRUD from "../../../composables/useCRUD.js";
+import useCRUD from "../../../../composables/useCRUD.js";
 
-import StudentQuizResults from "../student/res/StudentQuizResults.vue";
-import ResultForQuiz from "./ResultForQuiz.vue";
-import ResultForQuizTable from "./ResultForQuizTable.vue";
+import StudentQuizResults from "../../student/res/StudentQuizResults.vue";
+import ResultForQuiz from "../results/ResultForQuiz.vue";
+import ResultForQuizTable from "../results/ResultForQuizTable.vue";
 
 export default {
   props: ["quizId"],
