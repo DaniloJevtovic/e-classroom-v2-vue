@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="post-info">
+    <div class="post-info" v-if="!post.edit">
       <div class="post-text">
         <p>
           {{ post.author.firstName }} {{ post.author.lastName }} / Date:
@@ -18,7 +18,7 @@
           author.authorities[0].authority == 'ROLE_TEACHER'
         "
       >
-        <button @click.prevent="deletePost(index, post.id)">Delete post</button>
+        <button @click.prevent="deletePost">Delete post</button>
 
         <!-- samo autor posta moze da mjenja svoj post -->
         <button
@@ -29,31 +29,39 @@
         </button>
       </div>
     </div>
-    
+
+    <!-- ako se objava mjenja -->
+    <!-- <div v-else>
+      <PostEdit :post="post" />
+    </div> -->
+
     <!-- lista komentara za post -->
     <comments-list :postId="post.id"></comments-list>
   </div>
 </template>
 
 <script>
-import { ref, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive, co } from "vue";
 import useCRUD from "../../composables/useCRUD.js";
 import { useStore } from "vuex";
 
+import PostEdit from "./PostEdit.vue";
 import CommentsList from "./CommentsList.vue";
 
 export default {
-  props: ["post"],
-  components: { CommentsList },
-  setup(props) {
+  props: ["post", "index"],
+  components: { PostEdit, CommentsList },
+  setup(props, context) {
     const { deleteById } = useCRUD();
     const store = useStore();
 
     const author = store.getters["getLoggedUser"];
 
-    const deletePost = async (index, id) => {
-      posts.value.splice(index, 1); //brisanje iz liste
-      await deleteById("posts", id, false, true); //brisanje na bekendu
+    const deletePost = async () => {
+      await deleteById("posts", props.post.id, false, true); //brisanje na bekendu
+
+      //brisanje u roditeljskoj komponenti - gdje su sve objave
+      context.emit("obrisiPost", props.index);
     };
 
     return {
