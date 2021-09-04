@@ -8,7 +8,7 @@
       <div v-if="results.length">
         <table>
           <thead>
-            <td>Num</td>
+            <td>#</td>
             <td>Quiz</td>
             <td>Date / Time</td>
             <td>Subject</td>

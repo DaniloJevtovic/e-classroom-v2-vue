@@ -95,7 +95,7 @@ export default {
 }
 
 .res-st-answers {
-  background: rgb(10, 240, 182);
+  background: rgb(20, 21, 37);
   color: rgb(255, 4, 4);
   padding: 8px;
   margin: 10px;

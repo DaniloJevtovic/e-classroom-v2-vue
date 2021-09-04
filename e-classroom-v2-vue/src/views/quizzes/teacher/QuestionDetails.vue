@@ -5,9 +5,12 @@
       v-if="!pitanje.isEdit"
       @click="pitanje.isEdit = !pitanje.isEdit"
     >
-      <h3>
-        {{ questionIndex + 1 }}. {{ question.question }} / Points:
-        {{ question.points }}
+      <h3 style="color: cyan">
+        {{ questionIndex + 1 }}. {{ question.question }}
+        <span style="color: yellow">
+          | Points:
+          {{ question.points }}
+        </span>
       </h3>
     </div>
     <!-- 

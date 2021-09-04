@@ -12,11 +12,14 @@
         <h3>Total questions: {{ questions.length }}</h3>
         <!-- <h1>TIME: {{ timer }} s</h1> -->
         <h1 style="color: yellow">TIME: {{ timer2 }}</h1>
+        <p style="color: orange">
+          *Ako prekinete kviz svi dodat oznaceni odgovori ce biti sacuvani!
+        </p>
       </div>
 
       <!-- ucitavanje svih pitanja za kviz -->
       <div class="questions">
-        <h2>Questions</h2>
+        <!-- <h2>Questions</h2> -->
 
         <div v-for="(question, index) in questions" :key="question.id">
           <!-- pitanja za kviz -->
@@ -144,6 +147,7 @@ export default {
 .quiz-info {
   padding: 4px;
   border: 1px solid darkblue;
+  color: cyan;
   background: #014141;
   border-radius: 5px;
   width: 70%;

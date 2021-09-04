@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <button @click="$router.go(-1)">Back</button>
+    <div class="container-header">
+      <button @click="$router.go(-1)">Back</button>
+    </div>
 
     <!-- detalji o uceniku -->
     <div v-if="studentDetails" class="studentDetails">
@@ -189,6 +191,7 @@ export default {
 
 .points {
   /* width: 200px; */
-  background: red;
+  color: white;
+  background: rgb(28, 31, 61);
 }
 </style>

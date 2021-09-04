@@ -18,7 +18,7 @@
         />
 
         <select v-model="question.questionType" required>
-          <option disabled value="">Select question type</option>
+          <option value="" disabled>Select question type</option>
           <option value="MULTIPLE_CHOICE">Multiple choice</option>
           <option value="TRUE_FALSE">True / False</option>
           <option value="FILL">Fill</option>

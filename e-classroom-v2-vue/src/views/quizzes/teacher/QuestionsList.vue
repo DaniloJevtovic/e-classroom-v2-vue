@@ -1,7 +1,8 @@
 <template>
   <div class="questions-list">
-    <h3>Questions ({{ questions.length }})</h3>
-    <h3>Total points: {{ totalPoints }}</h3>
+    <h3 style="color: darkblue">
+      Questions: {{ questions.length }} | Total points: {{ totalPoints }}
+    </h3>
 
     <div v-for="(question, index) in questions" :key="question.id">
       <question-details

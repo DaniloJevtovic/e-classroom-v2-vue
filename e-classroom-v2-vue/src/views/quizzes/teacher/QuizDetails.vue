@@ -8,7 +8,7 @@
       <div class="quiz-info" @click="toggleEditQModal">
         <h3>{{ quiz.name }}</h3>
         <p>Instructions: {{ quiz.instructions }}</p>
-        <div>duration: {{ quiz.duration }} / status: {{ quiz.quizStatus }}</div>
+        <div>duration: {{ quiz.duration }} | status: {{ quiz.quizStatus }}</div>
       </div>
 
       <div v-if="showEditQuizModal">
