@@ -1,7 +1,10 @@
 <template>
   <div class="container">
+    <div class="container-header">
+      <h3>My childrens</h3>
+      <button class="pill-button">view</button>
+    </div>
     <div class="parent-stList">
-      <h2>My students</h2>
       <div class="basic-grid">
         <div v-for="student in students" :key="student.id">
           <router-link
@@ -46,15 +49,13 @@ export default {
 
 <style scoped>
 .parent-stList {
-  /* color: cyan; */
-  padding: 10px;
+  padding: 3px;
   border: 1px solid darkblue;
-  /* background: darkblue; */
 }
 
 .par-student {
   /* background: cyan; */
-  border-radius: 5px;
+  border-radius: 4px;
   color: darkblue;
   padding: 8px;
   border: 1px solid darkblue;
