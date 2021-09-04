@@ -9,13 +9,13 @@
       Contact teacher
       <span>&#9993;</span>
     </button>
-    <div v-if="showNewMessageModal">
-      <NewMessageModal
-        :reciverId="course.teacher.id"
-        @zatvoriModal="toggleMessageModal"
-      >
-      </NewMessageModal>
-    </div>
+
+    <NewMessageModal
+      v-if="showNewMessageModal"
+      :reciverId="course.teacher.id"
+      @zatvoriModal="toggleMessageModal"
+    >
+    </NewMessageModal>
 
     <!-- izmjena predmeta - nova komponenta (moze i izmjena razreda) -->
     <!-- <router-link
@@ -30,10 +30,12 @@
     <!-- izmjena predmeta - modal (ne moze promjena razreda) -->
     <button @click.prevent="toggleEditCourseModal">Edit course</button>
     <!-- modal za izmjenu predmeta -->
-    <div v-if="showEditCourseModal">
-      <EditCourseModal :course="course" @zatvoriModal="toggleEditCourseModal">
-      </EditCourseModal>
-    </div>
+    <EditCourseModal
+      v-if="showEditCourseModal"
+      :course="course"
+      @zatvoriModal="toggleEditCourseModal"
+    >
+    </EditCourseModal>
   </td>
 </template>
 
