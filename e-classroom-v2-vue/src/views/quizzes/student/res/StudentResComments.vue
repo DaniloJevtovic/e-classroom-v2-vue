@@ -3,20 +3,18 @@
     <h3>Comments</h3>
 
     <!-- lista komentara za rezultat -->
-    <div class="res-com-list">
-      <div v-if="comments.length">
-        <div v-for="(comment, index) in comments" :key="comment.di">
-          <div class="comment">
-            <div class="comment-text">
-              <p>{{ comment.author.firstName }} - {{ comment.date }}</p>
-              <h3>{{ comment.comment }}</h3>
-            </div>
+    <div class="res-com-list" v-if="comments.length">
+      <div v-for="(comment, index) in comments" :key="comment.di">
+        <div class="comment">
+          <div class="comment-text">
+            <p>{{ comment.author.firstName }} - {{ comment.date }}</p>
+            <h3>{{ comment.comment }}</h3>
+          </div>
 
-            <div v-if="author.id == comment.author.id" class="comment-button">
-              <button @click="deleteComment(index, comment.id)">
-                Delete &#10007;
-              </button>
-            </div>
+          <div v-if="author.id == comment.author.id" class="comment-button">
+            <button @click="deleteComment(index, comment.id)">
+              Delete &#10007;
+            </button>
           </div>
         </div>
       </div>
@@ -89,13 +87,14 @@ export default {
 }
 
 .res-com-list {
-  background: rgb(180, 21, 180);
+  background: rgb(34, 211, 235);
   padding: 3px;
   margin: 5px;
 }
 
 .comment {
-  background: rgb(23, 231, 203);
+  color: white;
+  background: rgb(38, 99, 128);
   margin: 3px;
   padding: 3px;
   display: flex;
