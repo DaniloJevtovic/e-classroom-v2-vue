@@ -10,8 +10,9 @@
     <!-- <router-link :to="{ name: 'NewTeacher' }">
       <button>New teacher</button>
     </router-link> -->
-
-    <button @click="toggleModal">New Teacher</button>
+    <div>
+      <button @click="toggleModal">New Teacher</button>
+    </div>
   </div>
 
   <div v-if="showNewTeacherModal">

@@ -21,8 +21,8 @@
 
     <button type="button" class="btn" @click="showModal">Show result!</button>
 
-    <button>Contact parent</button>
-    <button>Contact student</button>
+    <!-- <button>Contact parent</button>
+    <button>Contact student</button> -->
   </td>
 </template>
 
