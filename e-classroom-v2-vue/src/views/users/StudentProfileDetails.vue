@@ -84,18 +84,54 @@
 
     <!-- rezultati -->
     <div class="studentResults">
-      <h2>Results</h2>
-      <div v-for="result in results" :key="result.id">
-        <div class="st-result">
-          <h2>Quiz: {{ result.quiz.name }}</h2>
-          <h3>Subject: {{ result.quiz.course.name }}</h3>
-          <h3>
-            Teacher: {{ result.quiz.course.teacher.firstName }}
-            {{ result.quiz.course.teacher.lastName }}
-          </h3>
-          <h3 class="points">Points: {{ result.points }} / ?</h3>
-          <p>Date: {{ result.date }}</p>
+      <h2>
+        Results
+        <span>
+          <button class="pill-button" @click="view = !view">view</button>
+        </span>
+      </h2>
+      <div v-if="view">
+        <div v-for="result in results" :key="result.id">
+          <div class="st-result">
+            <h2>Quiz: {{ result.quiz.name }}</h2>
+            <h3>Subject: {{ result.quiz.course.name }}</h3>
+            <h3>
+              Teacher: {{ result.quiz.course.teacher.firstName }}
+              {{ result.quiz.course.teacher.lastName }}
+            </h3>
+            <h3 class="points">Points: {{ result.points }} / ?</h3>
+            <p>Date: {{ result.date }}</p>
+          </div>
         </div>
+      </div>
+
+      <div v-else>
+        <table>
+          <thead>
+            <td>#</td>
+            <td>Quiz</td>
+            <td>Subject</td>
+            <td>Teacher</td>
+            <td>Date / Time</td>
+            <td>Points</td>
+          </thead>
+          <tr
+            v-for="(result, index) in results"
+            :key="result.id"
+            @click="goToResult(result)"
+          >
+            <td>{{ index + 1 }}.</td>
+            <td>{{ result.quiz.name }}</td>
+
+            <td>{{ result.quiz.course.name }}</td>
+            <td>
+              {{ result.quiz.course.teacher.firstName }}
+              {{ result.quiz.course.teacher.lastName }}
+            </td>
+            <td>{{ result.date }}</td>
+            <td style="background: springgreen">{{ result.points }}</td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
@@ -144,6 +180,7 @@ export default {
       loggedUser,
       showNewMessageModal,
       toggleMessageModal,
+      view: ref(false),
     };
   },
 };
