@@ -6,10 +6,12 @@
       <div class="quiz-header">
         <div></div>
         <input type="text" placeholder="search by name" />
-        <div></div>
+        <div>
+          <button @click="view = !view">view</button>
+        </div>
       </div>
 
-      <div class="quizzes">
+      <div class="quizzes" v-if="view">
         <div v-for="quiz in quizzes" :key="quiz.id">
           <div v-if="quiz.quizStatus == 'ACTIVE'">
             <router-link
@@ -30,6 +32,35 @@
             </router-link>
           </div>
         </div>
+      </div>
+
+      <!-- tabelarni prikaz -->
+      <div v-else>
+        <table>
+          <thead>
+            <td>#</td>
+            <td>Name</td>
+            <td>Duration</td>
+            <td>Total points</td>
+            <td>Details</td>
+          </thead>
+          <tr v-for="(quiz, index) in quizzes" :key="quiz.id">
+            <td>{{ index + 1 }}.</td>
+            <td>{{ quiz.name }}</td>
+            <td>{{ quiz.duration }} min</td>
+            <td>{{ quiz.totalPoints }}</td>
+            <td>
+              <router-link
+                :to="{
+                  name: 'StudentQuizDetails',
+                  params: { id: id, quizId: quiz.id },
+                }"
+              >
+                <button>details</button>
+              </router-link>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
 
@@ -61,7 +92,7 @@ export default {
       getQuizzesForCourse();
     });
 
-    return { quizzes };
+    return { quizzes, view: ref(true) };
   },
 };
 </script>
