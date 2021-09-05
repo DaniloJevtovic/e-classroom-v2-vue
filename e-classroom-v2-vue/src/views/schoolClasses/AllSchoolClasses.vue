@@ -10,12 +10,14 @@
         </NewScModal>
       </div>
       <button @click="toggleModal">New SC Modal</button>
+
+      <button @click="view = !view">view</button>
     </div>
 
     <div class="container-body">
       <!-- <h2>All School Classes</h2>   -->
 
-      <div class="sclasses">
+      <div class="sclasses" v-if="view">
         <div v-for="scClass in scClasses" :key="scClass.id">
           <div class="sc-card">
             <router-link
@@ -30,6 +32,31 @@
             </router-link>
           </div>
         </div>
+      </div>
+      <div v-else>
+        <table>
+          <thead>
+            <td>#</td>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Details</td>
+          </thead>
+          <tr v-for="(scClass, index) in scClasses" :key="scClass.id">
+            <td>{{ index + 1 }}.</td>
+            <td>{{ scClass.name }}</td>
+            <td>{{ scClass.description }}</td>
+            <td>
+              <router-link
+                :to="{
+                  name: 'ScClassDetails',
+                  params: { id: scClass.id },
+                }"
+              >
+                <button>details</button>
+              </router-link>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
@@ -68,6 +95,7 @@ export default {
       addToList,
       showNewScModal,
       toggleModal,
+      view: ref(false),
     };
   },
 };
