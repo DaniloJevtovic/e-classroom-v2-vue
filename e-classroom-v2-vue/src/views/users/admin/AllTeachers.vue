@@ -28,11 +28,14 @@
         <td>#</td>
         <td>Full Name</td>
         <td>Email</td>
-        <td>Subjects</td>
+        <!-- <td>Subjects</td> -->
+        <td>ROLE</td>
         <td>Message</td>
+        <td>Details</td>
       </thead>
       <tr v-for="(teacher, index) in teachers" :key="teacher.id">
-        <td>{{ index + 1 }}.</td>
+        <UserTable :user="teacher" :index="index + 1" />
+        <!-- <td>{{ index + 1 }}.</td>
         <td>{{ teacher.firstName }} {{ teacher.lastName }}</td>
         <td>{{ teacher.email }}</td>
         <td>{{ teacher.subjects }}</td>
@@ -45,7 +48,7 @@
           >
             <button>Send message</button>
           </router-link>
-        </td>
+        </td> -->
       </tr>
     </table>
   </div>
@@ -55,9 +58,10 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
 import NewTeacherModal from "./NewTeacherModal.vue";
+import UserTable from "./UserTable.vue";
 
 export default {
-  components: { NewTeacherModal },
+  components: { NewTeacherModal, UserTable },
   setup() {
     const { getAll } = useCRUD();
 

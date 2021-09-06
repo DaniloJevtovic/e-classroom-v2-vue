@@ -25,9 +25,12 @@
         <td>Email</td>
         <td>ROLE</td>
         <td>Message</td>
+        <td>Details</td>
       </thead>
       <tr v-for="(user, index) in users" :key="user.id">
-        <td>{{ index + 1 }}.</td>
+        <UserTable :user="user" :index="index + 1" />
+
+        <!-- <td>{{ index + 1 }}.</td>
         <td>{{ user.firstName }} {{ user.lastName }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.authorities[0].authority }}</td>
@@ -40,7 +43,7 @@
           >
             <button>Send message</button>
           </router-link>
-        </td>
+        </td> -->
       </tr>
     </table>
   </div>
@@ -49,8 +52,10 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
+import UserTable from "./UserTable.vue";
 
 export default {
+  components: { UserTable },
   setup() {
     const { getAll } = useCRUD();
 

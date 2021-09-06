@@ -20,12 +20,15 @@
         <td>#</td>
         <td>Full Name</td>
         <td>Email</td>
-        <td>St Class</td>
+        <!-- <td>St Class</td> -->
+        <td>ROLE</td>
         <td>Message</td>
         <td>Details</td>
       </thead>
       <tr v-for="(student, index) in students" :key="student.id">
-        <td>{{ index + 1 }}.</td>
+        <UserTable :user="student" :index="index + 1" />
+
+        <!-- <td>{{ index + 1 }}.</td>
         <td>{{ student.firstName }} {{ student.lastName }}</td>
         <td>{{ student.email }}</td>
         <td>{{ student.studentClass.name }}</td>
@@ -45,7 +48,7 @@
           >
             <button>Details</button>
           </router-link>
-        </td>
+        </td> -->
       </tr>
     </table>
   </div>
@@ -54,8 +57,10 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
+import UserTable from "./UserTable.vue";
 
 export default {
+  components: { UserTable },
   setup() {
     const { getAll } = useCRUD();
 

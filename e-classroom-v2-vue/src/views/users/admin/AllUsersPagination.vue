@@ -18,6 +18,7 @@
         <td>Email</td>
         <td>ROLE</td>
         <td>Message</td>
+        <td>Details</td>
       </thead>
       <tr v-for="(user, index) in users.content" :key="user.id">
         <UserTable
