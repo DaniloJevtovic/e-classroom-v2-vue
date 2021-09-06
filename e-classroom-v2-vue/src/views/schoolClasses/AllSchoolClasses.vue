@@ -95,7 +95,7 @@ export default {
       addToList,
       showNewScModal,
       toggleModal,
-      view: ref(false),
+      view: ref(true),
     };
   },
 };

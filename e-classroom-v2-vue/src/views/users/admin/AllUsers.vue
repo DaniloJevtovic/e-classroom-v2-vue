@@ -5,15 +5,16 @@
       <!-- <h3>Number of users: {{ users.length }}</h3> -->
     </div>
 
-    <!-- <router-link :to="{ name: 'NewTeacher' }">
-      <button>New teacher</button>
-    </router-link>
-    <router-link :to="{ name: 'NewStudent' }">
-      <button>New student</button>
-    </router-link> -->
     <input type="text" placeholder="filter by first and last name" />
 
-    <div></div>
+    <div>
+      <!-- <router-link :to="{ name: 'NewTeacher' }">
+        <button>New teacher</button>
+      </router-link>
+      <router-link :to="{ name: 'NewStudent' }">
+        <button>New student</button>
+      </router-link> -->
+    </div>
   </div>
 
   <div>

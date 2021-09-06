@@ -8,7 +8,7 @@
 
     <div>
       <div v-for="(student, index) in students" :key="student.id">
-        <div>
+        <div draggable="true">
           <router-link
             :to="{ name: 'StDetailsAdmin', params: { studId: student.id } }"
           >
@@ -77,13 +77,13 @@ export default {
 
 <style scoped>
 /* .stsForClass {
-  background: oldlace;
+  background: rgb(0, 206, 196);
 } */
 
 .student {
   color: darkblue;
   background: rgb(147, 241, 241);
-  border-radius: 10px;
+  border-radius: 4px;
   margin: 10px;
 }
 </style>

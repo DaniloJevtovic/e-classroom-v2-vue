@@ -83,7 +83,7 @@
     </div>
 
     <!-- rezultati -->
-    <div class="studentResults">
+    <div class="studentResults" v-if="results.length">
       <h2>
         Results
         <span>
