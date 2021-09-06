@@ -18,6 +18,7 @@ export default {
   setup() {
     const usersLinks = ref([
       { name: "All Users", path: "AllUsers" },
+      { name: "All Users Pagination", path: "AllUsersPagination" },
       { name: "All Teachers", path: "AllTeachers" },
       { name: "All Students", path: "AllStudents" },
       { name: "All Parents", path: "AllParents" },
