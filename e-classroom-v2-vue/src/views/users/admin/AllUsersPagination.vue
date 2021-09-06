@@ -20,7 +20,7 @@
         <td>Message</td>
       </thead>
       <tr v-for="(user, index) in users.content" :key="user.id">
-        <UserPaginationTable
+        <UserTable
           :user="user"
           :index="index + 1 + users.number * users.size"
         />
@@ -58,11 +58,11 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import useCRUD from "../../../../composables/useCRUD.js";
-import UserPaginationTable from "./UserPaginationTable.vue";
+import useCRUD from "../../../composables/useCRUD.js";
+import UserTable from "./UserTable.vue";
 
 export default {
-  components: { UserPaginationTable },
+  components: { UserTable },
   setup() {
     const { getAll } = useCRUD();
 
