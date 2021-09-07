@@ -1,5 +1,5 @@
 <template>
-  <td>{{ index + 1 }}.</td>
+  <td>{{ index }}.</td>
   <td>{{ course.name }}</td>
   <td>{{ course.description }}</td>
   <td>{{ course.schoolClass.name }}</td>
