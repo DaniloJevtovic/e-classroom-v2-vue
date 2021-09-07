@@ -24,8 +24,11 @@
         <td>Message</td>
         <td>Details</td>
       </thead>
-      <tr v-for="(parent, index) in parents" :key="parent.id">
-        <UserTable :user="parent" :index="index + 1" />
+      <tr v-for="(parent, index) in parents.content" :key="parent.id">
+        <UserTable
+          :user="parent"
+          :index="index + 1 + parents.number * parents.size"
+        />
 
         <!-- <td>{{ index + 1 }}.</td>
         <td>{{ parent.firstName }} {{ parent.lastName }}</td>
@@ -42,6 +45,18 @@
         </td> -->
       </tr>
     </table>
+
+    <!-- dugmici za paginaciju -->
+    <div class="page-buttons">
+      <div v-for="(but, index) in parents.totalPages" :key="but.id">
+        <button
+          @click="switchPage(index), (selectedButton = index)"
+          :class="{ highlight: index == selectedButton }"
+        >
+          {{ but }}
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -58,14 +73,19 @@ export default {
     const parents = ref([]);
 
     const getParents = async () => {
-      parents.value = await getAll("stParents");
+      // parents.value = await getAll("stParents");
+      parents.value = await getAll("stParents/page");
     };
 
     onMounted(() => {
       getParents();
     });
 
-    return { parents };
+    const switchPage = async (page) => {
+      parents.value = await getAll("stParents/page" + "?page=" + page);
+    };
+
+    return { parents, switchPage, selectedButton: ref("") };
   },
 };
 </script>
@@ -81,5 +101,14 @@ export default {
 
 input {
   margin: 0px;
+}
+
+.page-buttons {
+  padding: 5px;
+  display: flex;
+}
+
+.highlight {
+  background: hotpink;
 }
 </style>

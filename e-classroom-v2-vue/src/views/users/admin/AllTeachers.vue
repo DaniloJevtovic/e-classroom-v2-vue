@@ -33,8 +33,11 @@
         <td>Message</td>
         <td>Details</td>
       </thead>
-      <tr v-for="(teacher, index) in teachers" :key="teacher.id">
-        <UserTable :user="teacher" :index="index + 1" />
+      <tr v-for="(teacher, index) in teachers.content" :key="teacher.id">
+        <UserTable
+          :user="teacher"
+          :index="index + 1 + teachers.number * teachers.size"
+        />
         <!-- <td>{{ index + 1 }}.</td>
         <td>{{ teacher.firstName }} {{ teacher.lastName }}</td>
         <td>{{ teacher.email }}</td>
@@ -51,6 +54,18 @@
         </td> -->
       </tr>
     </table>
+
+    <!-- dugmici za paginaciju -->
+    <div class="page-buttons">
+      <div v-for="(but, index) in teachers.totalPages" :key="but.id">
+        <button
+          @click="switchPage(index)"
+          :class="{ highlight: index == selectedButton }"
+        >
+          {{ but }}
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -68,7 +83,7 @@ export default {
     const teachers = ref([]);
 
     const getTeachers = async () => {
-      teachers.value = await getAll("teachers");
+      teachers.value = await getAll("teachers/page");
     };
     onMounted(getTeachers);
 
@@ -79,10 +94,25 @@ export default {
     };
 
     const addToList = (res) => {
-      teachers.value.push(res);
+      switchPage(teachers.value.totalPages - 1);
+      teachers.value.content.push(res);
     };
 
-    return { teachers, showNewTeacherModal, toggleModal, addToList };
+    const selectedButton = ref("");
+
+    const switchPage = async (page) => {
+      teachers.value = await getAll("teachers/page" + "?page=" + page);
+      selectedButton.value = page;
+    };
+
+    return {
+      teachers,
+      showNewTeacherModal,
+      toggleModal,
+      addToList,
+      switchPage,
+      selectedButton,
+    };
   },
 };
 </script>
@@ -98,5 +128,14 @@ export default {
 
 input {
   margin: 0px;
+}
+
+.page-buttons {
+  padding: 5px;
+  display: flex;
+}
+
+.highlight {
+  background: hotpink;
 }
 </style>

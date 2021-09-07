@@ -25,8 +25,11 @@
         <td>Message</td>
         <td>Details</td>
       </thead>
-      <tr v-for="(student, index) in students" :key="student.id">
-        <UserTable :user="student" :index="index + 1" />
+      <tr v-for="(student, index) in students.content" :key="student.id">
+        <UserTable
+          :user="student"
+          :index="index + 1 + students.number * students.size"
+        />
 
         <!-- <td>{{ index + 1 }}.</td>
         <td>{{ student.firstName }} {{ student.lastName }}</td>
@@ -51,6 +54,18 @@
         </td> -->
       </tr>
     </table>
+
+    <!-- dugmici za paginaciju -->
+    <div class="page-buttons">
+      <div v-for="(but, index) in students.totalPages" :key="but.id">
+        <button
+          @click="switchPage(index), (selectedButton = index)"
+          :class="{ highlight: index == selectedButton }"
+        >
+          {{ but }}
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -67,11 +82,15 @@ export default {
     const students = ref([]);
 
     const getStudents = async () => {
-      students.value = await getAll("students");
+      students.value = await getAll("students/page");
     };
     onMounted(getStudents);
 
-    return { students };
+    const switchPage = async (page) => {
+      students.value = await getAll("students/page" + "?page=" + page);
+    };
+
+    return { students, switchPage, selectedButton: ref("") };
   },
 };
 </script>
@@ -87,5 +106,14 @@ export default {
 
 input {
   margin: 0px;
+}
+
+.page-buttons {
+  padding: 5px;
+  display: flex;
+}
+
+.highlight {
+  background: hotpink;
 }
 </style>
