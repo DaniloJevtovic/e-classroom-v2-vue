@@ -2,19 +2,11 @@
   <div class="users-info">
     <div>
       <h3>All users</h3>
-      <!-- <h3>Number of users: {{ users.length }}</h3> -->
     </div>
 
     <input type="text" placeholder="filter by first and last name" />
 
-    <div>
-      <!-- <router-link :to="{ name: 'NewTeacher' }">
-        <button>New teacher</button>
-      </router-link>
-      <router-link :to="{ name: 'NewStudent' }">
-        <button>New student</button>
-      </router-link> -->
-    </div>
+    <div></div>
   </div>
 
   <div>
@@ -27,25 +19,25 @@
         <td>Message</td>
         <td>Details</td>
       </thead>
-      <tr v-for="(user, index) in users" :key="user.id">
-        <UserTable :user="user" :index="index + 1" />
-
-        <!-- <td>{{ index + 1 }}.</td>
-        <td>{{ user.firstName }} {{ user.lastName }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.authorities[0].authority }}</td>
-        <td>
-          <router-link
-            :to="{
-              name: 'NewMessage',
-              params: { reciverId: user.id },
-            }"
-          >
-            <button>Send message</button>
-          </router-link>
-        </td> -->
+      <tr v-for="(user, index) in users.content" :key="user.id">
+        <UserTable
+          :user="user"
+          :index="index + 1 + users.number * users.size"
+        />
       </tr>
     </table>
+
+    <!-- dugmici za paginaciju -->
+    <div class="page-buttons">
+      <div v-for="(but, index) in users.totalPages" :key="but.id">
+        <button
+          @click="switchPage(index), (selectedButton = index)"
+          :class="{ highlight: index == selectedButton }"
+        >
+          {{ but }}
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -62,11 +54,19 @@ export default {
     const users = ref([]);
 
     const getUsers = async () => {
-      users.value = await getAll("users");
+      users.value = await getAll("users/page");
+      console.log(users.value);
     };
+
     onMounted(getUsers);
 
-    return { users };
+    const switchPage = async (page) => {
+      console.log(page);
+      users.value = await getAll("users/page" + "?page=" + page);
+      console.log(users.value);
+    };
+
+    return { users, switchPage, selectedButton: ref("") };
   },
 };
 </script>
@@ -82,5 +82,14 @@ export default {
 
 input {
   margin: 0px;
+}
+
+.page-buttons {
+  padding: 5px;
+  display: flex;
+}
+
+.highlight {
+  background: hotpink;
 }
 </style>
