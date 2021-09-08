@@ -66,7 +66,7 @@
         </thead>
         <tr v-for="(course, index) in courses" :key="course.id">
           <!-- td-ovi u posebnoj komponenti -->
-          <CourseForScTable :course="course" :index="index" />
+          <CourseForScTable :course="course" :index="index + 1" />
 
           <!-- <td>{{ index + 1 }}.</td>
           <td>{{ course.name }}</td>
