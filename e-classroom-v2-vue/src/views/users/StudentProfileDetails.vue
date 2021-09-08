@@ -3,6 +3,7 @@
     <div class="container-header">
       <button @click="$router.go(-1)">Back</button>
     </div>
+    <h3 style="text-align: center">Student details</h3>
 
     <!-- detalji o uceniku -->
     <div v-if="studentDetails" class="studentDetails">

@@ -22,7 +22,7 @@
 
     <button
       @click.prevent="toggleMessageModal"
-      style="background: hotpink; padding: 2px 10px; border-radius: 20px"
+      style="background: burlywood ; padding: 2px 10px; border-radius: 20px"
     >
       {{ course.teacher.firstName }} {{ course.teacher.lastName }}
       <span>&#9993;</span>
@@ -70,9 +70,10 @@ export default {
 
 <style scoped>
 .coursee {
-  color: cyan;
-  background: rgb(17, 8, 43);
-  border-radius: 4px;
+  color: yellow;
+  background: rgb(14, 85, 85);
+  /* border: 1px solid; */
+  border-radius: 2px;
   cursor: pointer;
 }
 </style>

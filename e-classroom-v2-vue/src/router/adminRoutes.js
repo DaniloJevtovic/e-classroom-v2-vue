@@ -1,7 +1,6 @@
 import AdminHome from "../views/homePages/AdminHome.vue";
 import Users from "../views/users/admin/Users.vue";
 import AllUsers from "../views/users/admin/AllUsers.vue";
-import AllUsersPagination from "../views/users/admin/AllUsersPagination.vue";
 import AllTeachers from "../views/users/admin/AllTeachers.vue";
 import NewTeacher from "../views/users/admin/NewTeacher.vue";
 import AllStudents from "../views/users/admin/AllStudents.vue";
@@ -50,11 +49,6 @@ export default [
         path: "allUsers",
         name: "AllUsers",
         component: AllUsers,
-      },
-      {
-        path: "allUsersPagination",
-        name: "AllUsersPagination",
-        component: AllUsersPagination,
       },
       {
         path: "allTeachers",

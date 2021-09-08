@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div class="container-header">
+    <!-- <div class="container-header">
       <button @click="$router.go(-1)">Back</button>
-    </div>
+    </div> -->
 
     <div class="container-body">
       <h2>Name: {{ quizInfo.name }}</h2>
