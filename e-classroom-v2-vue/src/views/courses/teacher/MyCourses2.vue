@@ -7,19 +7,25 @@
       <div class="courses-details">
         <!-- svi predmeti - lijeva strana -->
         <div class="courses">
-          <div v-for="course in courses" :key="course.id">
-            <router-link
-              :to="{ name: 'MyCourseDetails2', params: { id: course.id } }"
+          <div v-for="(course, index) in courses" :key="course.id">
+            <button
+              :class="{ highlight: index == selectedButton }"
+              @click="switchCourse(course), (selectedButton = index)"
             >
-              <button>
-                {{ course.name }}
-              </button>
-            </router-link>
+              {{ course.name }}
+            </button>
           </div>
         </div>
 
-        <!-- prikaz odabranog predmeta - desna strana -->
-        <router-view />
+        <!-- desna strana -->
+        <div class="course-details" v-if="selectedCourse">
+          <!-- {{ selectedCourse }} -->
+
+          <MyCourse2 :course="selectedCourse" />
+        </div>
+        <div v-else>
+          <h3>Please select Course</h3>
+        </div>
       </div>
     </div>
   </div>
@@ -30,7 +36,10 @@ import { ref, onMounted, reactive } from "vue";
 import { useStore } from "vuex";
 import useCRUD from "../../../composables/useCRUD.js";
 
+import MyCourse2 from "./MyCourse2.vue";
+
 export default {
+  components: { MyCourse2 },
   setup() {
     const store = useStore();
     const { getSubItems, getById } = useCRUD();
@@ -43,7 +52,15 @@ export default {
     };
 
     onMounted(getCourses);
-    return { courses };
+
+    const selectedCourse = ref();
+
+    const switchCourse = (course) => {
+      console.log(course);
+      selectedCourse.value = course;
+    };
+
+    return { courses, switchCourse, selectedCourse, selectedButton: ref("") };
   },
 };
 </script>
@@ -73,5 +90,9 @@ export default {
 
 button {
   width: 90%;
+}
+
+.highlight {
+  background: deeppink;
 }
 </style>
