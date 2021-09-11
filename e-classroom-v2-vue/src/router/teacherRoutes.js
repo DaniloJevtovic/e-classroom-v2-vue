@@ -169,4 +169,10 @@ export default [
     component: EditAnswer,
     props: true,
   },
+
+  {
+    path: "/myCourse2",
+    component: () => import("../views/courses/teacher/MyCourse2.vue"),
+    props: true,
+  },
 ];
