@@ -39,8 +39,8 @@ export default {
 
 <style scoped>
 .course-info {
-  color: rgb(4, 13, 53);
-  background: rgb(248, 152, 117);
+  color: white;
+  background: rgb(223, 79, 27);
   display: grid;
 
   grid-template-columns: 1fr 1fr 1fr;
