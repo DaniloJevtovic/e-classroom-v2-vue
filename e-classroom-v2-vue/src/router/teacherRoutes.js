@@ -37,30 +37,7 @@ export default [
     name: "MyCourses",
     component: MyCourses,
   },
-  {
-    path: "/myCourses2",
-    name: "MyCourses2",
-    component: MyCourses2,
-    props: true,
-    children: [
-      {
-        path: "/myCourses2/details/:id",
-        name: "MyCourseDetails2",
-        //component: MyCourseDetails2,
-        component: () =>
-          import("../views/courses/teacher/MyCourseDetails2.vue"),
-        props: true,
-        // children: [
-        //   {
-        //     path: "teacherWall2",
-        //     name: "TeacherWall2",
-        //     component: Wall,
-        //     props: true,
-        //   },
-        // ],
-      },
-    ],
-  },
+
   {
     path: "/myCourses/:id",
     name: "MyCourseDetails",
@@ -171,8 +148,42 @@ export default [
   },
 
   {
-    path: "/myCourse2",
+    path: "/myCourses2/",
+    name: "MyCourses2",
+    component: MyCourses2,
+    props: true,
+    // children: [
+    //   {
+    //     path: "details/:id",
+    //     name: "MyCourseDetails2",
+    //     component: () =>
+    //       import("../views/courses/teacher/MyCourseDetails2.vue"),
+    //     props: true,
+    //     redirect: { name: "TeacherWall2" },
+    //     children: [
+    //       {
+    //         path: "teacherWall2aaa",
+    //         name: "TeacherWall2",
+    //         component: Wall,
+    //         props: true,
+    //       },
+    //     ],
+    //   },
+    // ],
+  },
+
+  {
+    path: "/myCourse2/:id",
     component: () => import("../views/courses/teacher/MyCourse2.vue"),
     props: true,
+    name: "MyCourse2",
+    children: [
+      {
+        path: "teacherWall",
+        name: "TeacherWall",
+        component: Wall,
+        props: true,
+      },
+    ],
   },
 ];
