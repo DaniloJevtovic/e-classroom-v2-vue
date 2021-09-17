@@ -24,7 +24,7 @@
 
         <!-- https://stackoverflow.com/questions/40884023/vue-js-rerender-the-same-component-when-changing-route -->
 
-        <div>
+        <div class="right-side">
           <router-view :key="$route.path" />
         </div>
       </div>
@@ -74,6 +74,13 @@ export default {
 
 .courses {
   background: rgba(2, 2, 88, 0.822);
+}
+
+.right-side {
+  position: relative;
+  max-height: 550px;
+  min-height: 550px;
+  overflow: auto;
 }
 
 button {

@@ -58,8 +58,8 @@ export default {
   background: rgb(248, 152, 117);
   display: grid;
 
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-  padding: 10px; 
+  padding: 10px;
 }
 </style>

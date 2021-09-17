@@ -77,6 +77,9 @@ export default {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  border: 1px solid indigo;
+  background: rgb(68, 66, 204);
+  margin: 4px;
 }
 
 .sclasses button {

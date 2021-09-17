@@ -24,7 +24,7 @@
           </div>
         </div>
 
-        <div>
+        <div class="right-side">
           <router-view :key="$route.path" />
         </div>
       </div>
@@ -65,6 +65,13 @@ export default {
   display: grid;
   grid-template-columns: 1fr 3fr;
   margin: 2px;
+}
+
+.right-side {
+  position: relative;
+  max-height: 550px;
+  min-height: 550px;
+  overflow: auto;
 }
 
 .st-course {
