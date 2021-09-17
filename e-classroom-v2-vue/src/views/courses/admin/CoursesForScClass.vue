@@ -16,17 +16,18 @@
         </router-link> -->
 
         <button @click="toggleModal">New Course For this sc</button>
-        <div v-if="showNewCourseModal">
-          <NewCourseModal
-            :scClassId="id"
-            @zatvoriModal="toggleModal"
-            @dodajUListu="addToList"
-          >
-          </NewCourseModal>
-        </div>
 
         <button @click="view = !view">view</button>
       </div>
+    </div>
+
+    <div v-if="showNewCourseModal">
+      <NewCourseModal
+        :scClassId="id"
+        @zatvoriModal="toggleModal"
+        @dodajUListu="addToList"
+      >
+      </NewCourseModal>
     </div>
 
     <div class="basic-grid" v-if="view">
