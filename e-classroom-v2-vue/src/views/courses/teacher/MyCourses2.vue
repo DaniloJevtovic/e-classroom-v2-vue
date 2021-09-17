@@ -23,7 +23,10 @@
         </div>
 
         <!-- https://stackoverflow.com/questions/40884023/vue-js-rerender-the-same-component-when-changing-route -->
-        <router-view :key="$route.path" />
+
+        <div>
+          <router-view :key="$route.path" />
+        </div>
       </div>
     </div>
   </div>

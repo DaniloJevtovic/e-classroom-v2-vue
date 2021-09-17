@@ -153,7 +153,7 @@ export default [
     props: true,
     children: [
       {
-        path: "/myCourses2/:id",
+        path: "/myCourses2/course/:id",
         name: "MyCourseDetails",
         component: MyCourseDetails,
         props: true,
