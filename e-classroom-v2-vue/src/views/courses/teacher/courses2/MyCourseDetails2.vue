@@ -6,22 +6,18 @@
         <h3>Description: {{ courseInfo.description }}</h3>
         <h3>SchoolClass: {{ courseInfo.schoolClass.name }}</h3>
       </div>
-
-      <!-- ovako valjda prosljedjume parametar do child komponente -->
-      <!-- komponente unutar child navbara -->
-      <router-view :id="id" />
     </div>
   </div>
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
-import useCRUD from "../../../composables/useCRUD.js";
+import useCRUD from "../../../../composables/useCRUD.js";
 
 export default {
   props: ["id"],
   setup(props) {
-    const { getById, getSubItems } = useCRUD();
+    const { getById } = useCRUD();
     const courseInfo = ref("");
 
     const getCourseDetails = async () => {
@@ -29,6 +25,7 @@ export default {
     };
 
     onMounted(() => {
+      console.log(props.id);
       getCourseDetails();
     });
 
