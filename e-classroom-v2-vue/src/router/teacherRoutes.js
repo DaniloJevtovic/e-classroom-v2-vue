@@ -1,6 +1,5 @@
 import TeacherHome from "../views/homePages/TeacherHome.vue";
 import MyCourses from "../views/courses/teacher/MyCourses.vue";
-import MyCourses2 from "../views/courses/teacher/MyCourses2.vue";
 
 import MyQuizzes from "../views/quizzes/teacher/MyQuizzes.vue";
 import MyStudentClasses from "../views/studentClasses/teacher/MyStudentClasses.vue";
@@ -148,41 +147,58 @@ export default [
   },
 
   {
-    path: "/myCourses2/",
+    path: "/myCourses2",
     name: "MyCourses2",
-    component: MyCourses2,
+    component: () => import("../views/courses/teacher/MyCourses2.vue"),
     props: true,
-    // children: [
-    //   {
-    //     path: "details/:id",
-    //     name: "MyCourseDetails2",
-    //     component: () =>
-    //       import("../views/courses/teacher/MyCourseDetails2.vue"),
-    //     props: true,
-    //     redirect: { name: "TeacherWall2" },
-    //     children: [
-    //       {
-    //         path: "teacherWall2aaa",
-    //         name: "TeacherWall2",
-    //         component: Wall,
-    //         props: true,
-    //       },
-    //     ],
-    //   },
-    // ],
-  },
-
-  {
-    path: "/myCourse2/:id",
-    component: () => import("../views/courses/teacher/MyCourse2.vue"),
-    props: true,
-    name: "MyCourse2",
     children: [
       {
-        path: "teacherWall",
-        name: "TeacherWall",
-        component: Wall,
+        path: "/myCourses2/:id",
+        name: "MyCourseDetails",
+        component: MyCourseDetails,
         props: true,
+        redirect: { name: "TeacherWall" },
+        children: [
+          {
+            path: "teacherWall",
+            name: "TeacherWall",
+            component: Wall,
+            props: true,
+          },
+          {
+            path: "materials",
+            name: "MyMaterials",
+            component: MyMaterials,
+          },
+          {
+            path: "newMaterial",
+            name: "NewMaterial",
+            component: NewMaterial,
+            props: true,
+          },
+          {
+            path: "quizzes",
+            name: "MyQuizzes",
+            component: MyQuizzes,
+          },
+          {
+            path: "students",
+            name: "MyStudents",
+            component: MyStudentClasses,
+          },
+          {
+            path: "students/:studId",
+            name: "StDetailsProf",
+            component: StudentProfileDetails,
+            props: true,
+          },
+          {
+            path: "results/quiz/:quizId",
+            name: "ProfResForQuiz",
+            component: ResultsListForQuiz,
+            props: true,
+          },
+        ],
       },
     ],
   },
