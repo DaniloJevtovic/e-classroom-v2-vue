@@ -207,4 +207,43 @@ export default [
     component: NewCourseForScClass,
     props: true,
   },
+  {
+    path: "/allSchoolClases2",
+    name: "AllScClasses2",
+    component: () => import("../views/schoolClasses/AllSchoolClasses2.vue"),
+    props: true,
+    children: [
+      {
+        path: "/scClassDetails/:id",
+        name: "ScClassDetails",
+        component: SchoolClassDetails,
+        //https://stackoverflow.com/questions/55484090/vue-router-default-child-route-not-loading-initially
+        redirect: {
+          name: "CoursesForScClass",
+        },
+        props: true,
+        children: [
+          {
+            path: "courses",
+            name: "CoursesForScClass",
+            component: CoursesForScClass,
+            props: true,
+          },
+
+          {
+            path: "students",
+            name: "StClassesForScClass",
+            component: StClassesForScClass,
+            props: true,
+          },
+          {
+            path: "studentDetails/:studId",
+            name: "StDetailsAdmin",
+            component: StudentProfileDetails,
+            props: true,
+          },
+        ],
+      },
+    ],
+  },
 ];
