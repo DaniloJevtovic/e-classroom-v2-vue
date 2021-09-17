@@ -10,14 +10,16 @@ export default createStore({
 
     adminLinks: [
       "AllScClasses",
+      "AllScClasses2",
       "Users",
       "AllCourses",
       "Messages",
       "UserProfile",
     ],
-    teacherLinks: ["MyCourses", "Messages", "UserProfile"],
+    teacherLinks: ["MyCourses", "MyCourses2", "Messages", "UserProfile"],
     studentLinks: [
       "StudentCourses",
+      "StudentCourses2",
       "StudentAllResults",
       "Messages",
       "UserProfile",
