@@ -13,9 +13,13 @@
       ></question-details>
     </div>
 
-    <button @click="addNewQuestion">New Question</button>
+    <button style="background: orangered" @click="addNewQuestion">
+      New Question
+    </button>
 
-    <button @click="toggleModal">New Question Modal</button>
+    <button style="background: orangered" @click="toggleModal">
+      New Question Modal
+    </button>
 
     <div v-if="showNewQuestionModal">
       <NewQuestionModal
