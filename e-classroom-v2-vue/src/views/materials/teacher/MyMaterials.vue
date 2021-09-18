@@ -4,10 +4,25 @@
 
     <input type="text" placeholder="search by name" />
 
-    <router-link :to="{ name: 'NewMaterial', params: { id: id } }">
+    <!-- dodavanje materijala nova komponenta -->
+    <!-- <router-link :to="{ name: 'NewMaterial', params: { id: id } }">
       <button>New Material</button>
-    </router-link>
+    </router-link> -->
+
+    <div>
+      <button @click="toggleModal">New Material</button>
+    </div>
   </div>
+
+  <div v-if="showNewMatModal">
+    <NewMaterialModal
+      :id="id"
+      @zatvoriModal="toggleModal"
+      @dodajUListu="addToList"
+    >
+    </NewMaterialModal>
+  </div>
+
   <div>
     <table>
       <thead>
@@ -37,13 +52,15 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
+import NewMaterialModal from "./NewMaterialModal.vue";
 
 export default {
+  components: { NewMaterialModal },
   props: ["id"],
   setup(props) {
     const materials = ref([]);
 
-    const { getById, getSubItems, deleteById } = useCRUD();
+    const { getSubItems, deleteById } = useCRUD();
 
     const getMaterialsForCourse = async () => {
       materials.value = await getSubItems("materials", "course", props.id);
@@ -59,7 +76,23 @@ export default {
       materials.value.splice(index, 1);
     };
 
-    return { materials, deleteMaterial };
+    const showNewMatModal = ref(false);
+
+    const toggleModal = () => {
+      showNewMatModal.value = !showNewMatModal.value;
+    };
+
+    const addToList = (res) => {
+      materials.value.push(res);
+    };
+
+    return {
+      materials,
+      deleteMaterial,
+      showNewMatModal,
+      toggleModal,
+      addToList,
+    };
   },
 };
 </script>
