@@ -100,7 +100,9 @@
               Teacher: {{ result.quiz.course.teacher.firstName }}
               {{ result.quiz.course.teacher.lastName }}
             </h3>
-            <h3 class="points">Points: {{ result.points }} / ?</h3>
+            <h3 class="points">
+              Points: {{ result.points }} / {{ result.quiz.totalPoints }}
+            </h3>
             <p>Date: {{ result.date }}</p>
           </div>
         </div>
@@ -130,7 +132,9 @@
               {{ result.quiz.course.teacher.lastName }}
             </td>
             <td>{{ result.date }}</td>
-            <td style="background: springgreen">{{ result.points }}</td>
+            <td style="background: springgreen">
+              {{ result.points }} / {{ result.quiz.totalPoints }}
+            </td>
           </tr>
         </table>
       </div>

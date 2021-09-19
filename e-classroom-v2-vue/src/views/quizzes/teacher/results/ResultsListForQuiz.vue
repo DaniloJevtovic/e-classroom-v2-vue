@@ -8,9 +8,12 @@
 
       <div class="container-body" v-if="results.length">
         <div class="quiz-info">
-          <h2>Quiz: {{ quizDetails.name }}</h2>
+          <h3>Quiz: {{ quizDetails.name }}</h3>
           <p>Instructions: {{ quizDetails.instructions }}</p>
-          <h4>Duration: {{ quizDetails.duration }} min</h4>
+          <h4 style="color: yellow">
+            Duration: {{ quizDetails.duration }} mins | Total ponts:
+            {{ quizDetails.totalPoints }}
+          </h4>
         </div>
 
         <div v-if="view">

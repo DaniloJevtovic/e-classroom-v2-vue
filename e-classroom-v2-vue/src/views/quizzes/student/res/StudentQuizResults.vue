@@ -3,7 +3,7 @@
     <div class="res-score">
       <!-- <h1 v-if="result.points < 0">Your Score: 0 points / ?</h1>
       <h1 v-else>Your Score: {{ result.points }} points / ?</h1> -->
-      <h2>Score: {{ result.points }} points / ?</h2>
+      <h2>Score: {{ result.points }} / {{ result.quiz.totalPoints }} points</h2>
 
       <div v-if="checkLoggedUser() && !edit">
         <button @click="edit = !edit">Edit points</button>

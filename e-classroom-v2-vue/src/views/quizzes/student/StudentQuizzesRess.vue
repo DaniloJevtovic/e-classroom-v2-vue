@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h3 v-if="result">Your score: {{ result.points }} points</h3>
+    <h3 v-if="result">
+      Your score: {{ result.points }} / {{ result.quiz.totalPoints }} points
+    </h3>
     <h3 v-else>not working</h3>
   </div>
 </template>

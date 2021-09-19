@@ -7,7 +7,9 @@
     {{ result.quiz.course.teacher.firstName }}
     {{ result.quiz.course.teacher.lastName }}
   </td>
-  <td style="background: springgreen">{{ result.points }}</td>
+  <td style="background: springgreen">
+    {{ result.points }} / {{ result.quiz.totalPoints }}
+  </td>
   <td>
     <ModalSlot v-show="isModalVisible" @close="closeModal">
       <template v-slot:header>
@@ -28,7 +30,7 @@
     <button
       type="button"
       class="pill-button"
-      style="background: purple"
+      style="background: orange"
       @click="showModal"
     >
       Show result!

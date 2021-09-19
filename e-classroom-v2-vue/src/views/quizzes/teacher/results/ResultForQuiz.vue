@@ -1,7 +1,7 @@
 <template>
   <div class="st-res">
     <h2>{{ result.student.firstName }} {{ result.student.lastName }}</h2>
-    <h3>Points: {{ result.points }} / ?</h3>
+    <h3>Points: {{ result.points }} / {{ result.quiz.totalPoints }}</h3>
 
     <!-- prikaz detalja rezultata -->
     <div v-if="result.collapsed">
