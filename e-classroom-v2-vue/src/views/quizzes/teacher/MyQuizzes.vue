@@ -53,20 +53,26 @@
       <thead>
         <td>#</td>
         <td>Name</td>
-        <!-- <td>Instructions</td> -->
         <td>Duration</td>
         <td>Total points</td>
         <td>Status</td>
         <td>Actions</td>
       </thead>
       <tr v-for="(quiz, index) in quizzes" :key="quiz.id">
-        <td>{{ index + 1 }}.</td>
+        <MyQuizzesTable :index="index + 1" :quiz="quiz" :id="id"/>
+
+        <!-- <td>{{ index + 1 }}.</td>
         <td>{{ quiz.name }}</td>
-        <!-- <td>{{ quiz.instructions }}</td> -->
         <td>{{ quiz.duration }} min</td>
         <td>{{ quiz.totalPoints }}</td>
         <td>{{ quiz.quizStatus }}</td>
         <td>
+          <button @click="toggleEditQModal">Edit</button>
+          <div v-if="showEditQuizModal">
+            <EditQuizModal :quiz="quiz" @zatvoriModal="toggleEditQModal">
+            </EditQuizModal>
+          </div>
+
           <router-link
             :to="{ name: 'QuizDetails', params: { id: id, quizId: quiz.id } }"
           >
@@ -77,7 +83,7 @@
           >
             <button>results</button>
           </router-link>
-        </td>
+        </td> -->
       </tr>
     </table>
   </div>
@@ -87,9 +93,10 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
 import NewQuizModal from "./NewQuizModal.vue";
+import MyQuizzesTable from "./MyQuizzesTable.vue";
 
 export default {
-  components: { NewQuizModal },
+  components: { NewQuizModal, MyQuizzesTable },
   props: ["id"],
   setup(props) {
     const quizzes = ref([]);
@@ -116,7 +123,13 @@ export default {
       quizzes.value.push(quiz);
     };
 
-    return { quizzes, view, showNewQuizModal, toggleModal, addToList };
+    return {
+      quizzes,
+      view,
+      showNewQuizModal,
+      toggleModal,
+      addToList,
+    };
   },
 };
 </script>
