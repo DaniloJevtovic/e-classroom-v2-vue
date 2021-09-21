@@ -71,6 +71,7 @@ export default {
       { name: "Wall", path: "StudentWall" },
       { name: "Materials", path: "StudentMaterials" },
       { name: "Quizzes", path: "StudentQuizzes" },
+      { name: "Results", path: "StudentResCourse" },
     ]);
 
     const courseInfo = ref("");
@@ -81,18 +82,18 @@ export default {
       courseInfo.value = await getById("courses", props.id);
     };
 
-    const getCourseMaterials = async () => {
-      materials.value = await getSubItems("materials", "course", props.id);
-    };
+    // const getCourseMaterials = async () => {
+    //   materials.value = await getSubItems("materials", "course", props.id);
+    // };
 
-    const getCourseQuizzes = async () => {
-      quizzes.value = await getSubItems("quizzes", "course", props.id);
-    };
+    // const getCourseQuizzes = async () => {
+    //   quizzes.value = await getSubItems("quizzes", "course", props.id);
+    // };
 
     onMounted(() => {
       getCourseDetails();
-      getCourseMaterials();
-      getCourseQuizzes();
+      //getCourseMaterials();
+      //getCourseQuizzes();
     });
 
     const showNewMessageModal = ref(false);
