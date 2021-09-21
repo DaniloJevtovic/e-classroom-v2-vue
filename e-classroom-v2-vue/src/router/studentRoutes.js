@@ -56,12 +56,17 @@ export default [
         component: StudentSolveQuiz,
         props: true,
       },
+      //komponenta koja prikazuje sve rezultate za predmet za ulogovanog ucenika
+      {
+        path: "results",
+        name: "StudentResCourse",
+        component: () =>
+          import("../views/quizzes/student/res/StudentCourseQuizResult.vue"),
+        props: true,
+      },
     ],
   },
 
-
-
-  
   {
     path: "/studentCourse/:id/materialDetails/:matId",
     name: "StudentMaterialDetails",
@@ -121,6 +126,16 @@ export default [
             path: "quizzes/quiz/:quizId/solve",
             name: "StudentSolveQuiz",
             component: StudentSolveQuiz,
+            props: true,
+          },
+          //komponenta koja prikazuje sve rezultate za predmet za ulogovanog ucenika
+          {
+            path: "results",
+            name: "StudentResCourse",
+            component: () =>
+              import(
+                "../views/quizzes/student/res/StudentCourseQuizResult.vue"
+              ),
             props: true,
           },
         ],
