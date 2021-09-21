@@ -58,6 +58,10 @@ export default [
       },
     ],
   },
+
+
+
+  
   {
     path: "/studentCourse/:id/materialDetails/:matId",
     name: "StudentMaterialDetails",

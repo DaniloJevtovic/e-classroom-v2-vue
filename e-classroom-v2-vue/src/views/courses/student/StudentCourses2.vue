@@ -1,13 +1,14 @@
 <template>
   <div class="container">
-    <div class="container-header">
+    <!-- <div class="container-header">
       <h3>My Courses</h3>
-    </div>
+    </div> -->
 
     <div class="container-body">
       <div class="coursess">
         <!-- grid prikaz predmeta -->
-        <div>
+        <div class="left-side">
+          <h3>Courses</h3>
           <div v-for="course in courses" :key="course.id">
             <router-link
               active-class="activeCourse"
@@ -65,6 +66,11 @@ export default {
   display: grid;
   grid-template-columns: 1fr 3fr;
   margin: 2px;
+}
+
+.left-side {
+  background: rgb(188, 240, 240);
+  border: 1px solid darkslateblue;
 }
 
 .right-side {

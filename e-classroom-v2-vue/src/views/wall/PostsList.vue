@@ -120,6 +120,6 @@ export default {
   border: 1px solid rgb(145, 255, 0);
   margin: 8px;
   /* border-radius: 7px; */
-  padding-top: 20px;
+  padding-top: 10px;
 }
 </style>
