@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="container-header">
-      <h3>My Results</h3>
+      <h3>Results for course</h3>
     </div>
 
     <div class="container-body">
@@ -26,7 +26,7 @@
         </table>
       </div>
       <div v-else>
-        <h2>No results</h2>
+        <h3>No results</h3>
       </div>
     </div>
   </div>

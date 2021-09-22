@@ -24,10 +24,13 @@
                 <h3>Quiz Name: {{ quiz.name }}</h3>
                 <p>Instruction: {{ quiz.instructions }}</p>
                 <h4>Duration: {{ quiz.duration }} minutes.</h4>
+                <h4 style="color: orange">Points: {{ quiz.totalPoints }}</h4>
 
-                <br />
                 <!-- ucitavanje rezultata za kviz -->
-                <student-quizzes-ress :quizId="quiz.id"></student-quizzes-ress>
+                <div class="res">
+                  <student-quizzes-ress :quizId="quiz.id">
+                  </student-quizzes-ress>
+                </div>
               </div>
             </router-link>
           </div>
@@ -65,7 +68,7 @@
     </div>
 
     <div v-else class="no-quizzes">
-      <h2>No quizzes</h2>
+      <h3>No quizzes</h3>
     </div>
   </div>
 </template>
@@ -73,6 +76,7 @@
 <script>
 import { ref, onMounted } from "vue";
 import useCRUD from "../../../composables/useCRUD.js";
+import { useStore } from "vuex";
 
 import StudentQuizzesRess from "./StudentQuizzesRess.vue";
 
@@ -81,11 +85,19 @@ export default {
   components: { StudentQuizzesRess },
   setup(props) {
     const quizzes = ref([]);
+    const store = useStore();
 
-    const { getSubItems } = useCRUD();
+    const { getAll, getSubItems } = useCRUD();
 
     const getQuizzesForCourse = async () => {
-      quizzes.value = await getSubItems("quizzes", "course", props.id);
+      //svi aktivni kvizovi
+      //quizzes.value = await getSubItems("quizzes", "course", props.id);
+
+      let student = store.getters["getLoggedUser"];
+      // kvizovi koje ucenik nije rjesavao !
+      quizzes.value = await getAll(
+        "quizzes/course/" + props.id + "/studNotSolved/" + student.id
+      );
     };
 
     onMounted(() => {
@@ -129,12 +141,17 @@ export default {
 }
 
 .no-quizzes {
-  margin: 20px;
-  padding: 20px;
-  background: red;
+  margin: 10px;
+  padding: 10px;
+  background: orangered;
 }
 
 input {
   margin: 0px;
+}
+
+.res {
+  margin: 4px auto;
+  width: 40%;
 }
 </style>

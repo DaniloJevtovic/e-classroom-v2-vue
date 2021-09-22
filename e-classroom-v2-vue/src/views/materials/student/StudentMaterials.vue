@@ -98,9 +98,9 @@ export default {
 }
 
 .no-materials {
-  margin: 20px;
-  padding: 20px;
-  background: red;
+  margin: 10px;
+  padding: 10px;
+  background: orangered;
 }
 
 input {
