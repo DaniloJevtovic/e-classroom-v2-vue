@@ -13,22 +13,34 @@
     </div>
 
     <div class="container-body">
-      <div class="sclasses">
-        <div v-for="scClass in scClasses" :key="scClass.id">
-          <router-link
-            active-class="activeSC"
-            style="color: darkblue"
-            :to="{
-              name: 'ScClassDetails',
-              params: { id: scClass.id },
-            }"
+      <div class="left-right">
+        <div class="left-side">
+          <h3>School Classes</h3>
+
+          <button
+            @click="toggleModal"
+            style="background: cyan; color: darkblue"
           >
-            <button>{{ scClass.name }}</button>
-          </router-link>
+            new SC
+          </button>
+          <div v-for="scClass in scClasses" :key="scClass.id">
+            <router-link
+              active-class="activeSC"
+              style="color: darkblue"
+              :to="{
+                name: 'ScClassDetails',
+                params: { id: scClass.id },
+              }"
+            >
+              <button>{{ scClass.name }}</button>
+            </router-link>
+          </div>
+        </div>
+
+        <div class="right-side">
+          <router-view :key="$route.path" />
         </div>
       </div>
-
-      <router-view :key="$route.path" />
     </div>
   </div>
 </template>
@@ -72,20 +84,21 @@ export default {
 </script>
 
 <style scoped>
-.sclasses {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+.left-right {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.left-side {
   border: 1px solid indigo;
   background: rgb(68, 66, 204);
   margin: 4px;
 }
 
-.sclasses button {
+.left-side button {
   color: rgb(228, 219, 235);
   background: rgb(4, 33, 70);
-  padding: 5px 20px;
+  width: 70%;
   border-radius: 0px;
 }
 
@@ -99,7 +112,7 @@ export default {
 
 .activeSC button {
   color: darkblue;
-  background: rgb(156, 175, 236);
+  background: gold;
 }
 
 .scrolling-wrapper {
