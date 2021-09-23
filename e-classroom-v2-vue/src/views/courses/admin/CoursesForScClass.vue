@@ -30,7 +30,7 @@
       </NewCourseModal>
     </div>
 
-    <div class="basic-grid" v-if="view">
+    <div class="courses-grid" v-if="view">
       <div v-for="course in courses" :key="course.id">
         <sc-course :course="course"></sc-course>
 
@@ -142,6 +142,12 @@ export default {
 </script>
 
 <style scoped>
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .courses-info {
   background: rgb(67, 67, 163);
   display: grid;

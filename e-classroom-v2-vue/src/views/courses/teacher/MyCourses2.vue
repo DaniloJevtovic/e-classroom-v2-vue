@@ -17,7 +17,13 @@
                 key: course.id,
               }"
             >
-              <button>{{ course.name }}</button>
+              <button>
+                {{ course.name }}
+                <br />
+                <span>
+                  <small>{{ course.description }}</small>
+                </span>
+              </button>
             </router-link>
           </div>
         </div>
@@ -78,8 +84,8 @@ export default {
 
 .right-side {
   position: relative;
-  max-height: 550px;
-  min-height: 550px;
+  max-height: 580px;
+  min-height: 580px;
   overflow: auto;
 }
 
