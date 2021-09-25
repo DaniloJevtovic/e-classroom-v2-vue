@@ -1,28 +1,30 @@
 <template>
   <div class="container">
-    <div class="container-header">
+    <!-- <div class="container-header">
       <router-link :to="{ name: 'NewSchoolClass' }">
         <button>New School Class</button>
       </router-link>
 
-      <div v-if="showNewScModal">
-        <NewScModal @zatvoriModal="toggleModal" @dodajUListu="addToList">
-        </NewScModal>
-      </div>
       <button @click="toggleModal">New SC Modal</button>
+    </div> -->
+
+    <div v-if="showNewScModal">
+      <NewScModal @zatvoriModal="toggleModal" @dodajUListu="addToList">
+      </NewScModal>
     </div>
 
     <div class="container-body">
       <div class="left-right">
         <div class="left-side">
-          <h3>School Classes</h3>
+          <h3 style="color: white; margin: 4px">School Classes</h3>
 
           <button
             @click="toggleModal"
-            style="background: cyan; color: darkblue"
+            style="background: cyan; color: indigo; border-radius: 20px"
           >
-            new SC
+            New SC
           </button>
+
           <div v-for="scClass in scClasses" :key="scClass.id">
             <router-link
               active-class="activeSC"
@@ -32,7 +34,14 @@
                 params: { id: scClass.id },
               }"
             >
-              <button>{{ scClass.name }}</button>
+              <button>
+                {{ scClass.name }}
+
+                <br />
+                <span>
+                  <small> {{ scClass.description }}</small></span
+                >
+              </button>
             </router-link>
           </div>
         </div>
@@ -86,13 +95,22 @@ export default {
 <style scoped>
 .left-right {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 4fr;
+  height: 580px;
 }
 
 .left-side {
   border: 1px solid indigo;
-  background: rgb(68, 66, 204);
+  background: rgb(6, 138, 179);
   margin: 4px;
+  overflow: auto;
+}
+
+.right-side {
+  background: rgb(242, 247, 247);
+  max-height: 580px;
+  min-height: 580px;
+  overflow: auto;
 }
 
 .left-side button {
