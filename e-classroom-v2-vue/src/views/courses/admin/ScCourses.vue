@@ -1,8 +1,10 @@
 <template>
   <div class="courses-list">
-    <div v-for="course in courses" :key="course.id">
-      <div class="course">
-        <sc-course :course="course"></sc-course>
+    <div>
+      <div v-for="course in courses" :key="course.id">
+        <div class="course">
+          <sc-course :course="course"></sc-course>
+        </div>
       </div>
     </div>
 
