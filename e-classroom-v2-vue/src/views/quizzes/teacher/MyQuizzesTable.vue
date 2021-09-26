@@ -3,24 +3,33 @@
   <td>{{ quiz.name }}</td>
   <!-- <td>{{ quiz.instructions }}</td> -->
   <td>{{ quiz.duration }} min</td>
+  <td>{{ quiz.numbOfQuestions }}</td>
   <td>{{ quiz.totalPoints }}</td>
-  <td>{{ quiz.quizStatus }}</td>
-  <td>
-    <button @click="toggleEditQModal">Edit</button>
-    <div v-if="showEditQuizModal">
-      <EditQuizModal :quiz="quiz" @zatvoriModal="toggleEditQModal">
-      </EditQuizModal>
-    </div>
-
-    <router-link
-      :to="{ name: 'QuizDetails', params: { id: id, quizId: quiz.id } }"
-    >
-      <button>details</button>
-    </router-link>
-    <router-link :to="{ name: 'ProfResForQuiz', params: { quizId: quiz.id } }">
-      <button>results</button>
-    </router-link>
+  <td v-if="quiz.quizStatus === 'ACTIVE'" style="background: springgreen">
+    {{ quiz.quizStatus }}
   </td>
+  <td v-else style="background: orangered">{{ quiz.quizStatus }}</td>
+  <td>
+    <div>
+      <button @click="toggleEditQModal">Edit</button>
+
+      <router-link
+        :to="{ name: 'QuizDetails', params: { id: id, quizId: quiz.id } }"
+      >
+        <button>details</button>
+      </router-link>
+      <router-link
+        :to="{ name: 'ProfResForQuiz', params: { quizId: quiz.id } }"
+      >
+        <button>results</button>
+      </router-link>
+    </div>
+  </td>
+
+  <div v-if="showEditQuizModal">
+    <EditQuizModal :quiz="quiz" @zatvoriModal="toggleEditQModal">
+    </EditQuizModal>
+  </div>
 </template>
 
 <script>
