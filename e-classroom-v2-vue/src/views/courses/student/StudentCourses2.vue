@@ -69,14 +69,17 @@ export default {
 }
 
 .left-side {
-  background: rgb(188, 240, 240);
+  background: rgb(91, 255, 255);
   border: 1px solid darkslateblue;
+  max-height: 580px;
+  min-height: 580px;
+  overflow: auto;
 }
 
 .right-side {
   position: relative;
-  max-height: 550px;
-  min-height: 550px;
+  max-height: 580px;
+  min-height: 580px;
   overflow: auto;
 }
 

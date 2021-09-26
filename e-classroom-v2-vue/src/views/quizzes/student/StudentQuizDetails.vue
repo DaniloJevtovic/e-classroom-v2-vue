@@ -8,6 +8,11 @@
       <h2>Name: {{ quizInfo.name }}</h2>
       <h3>Instruction: {{ quizInfo.instructions }}</h3>
       <h4>Duration: {{ quizInfo.duration }} min</h4>
+      <h3 style="color: darkblue; background: orange">
+        Total points: {{ quizInfo.totalPoints }}
+        |
+        <span>Num Of Questions: {{ quizInfo.numbOfQuestions }}</span>
+      </h3>
 
       <!-- ako je ucenik rjesavao kviz - prikazi mu rezultat -->
       <div v-if="result">
@@ -23,7 +28,7 @@
           Start quiz
         </button>
         <p style="color: red; margin: 5px">
-          *note: kad pokrente kviz rezultat se automatski cuva
+          **VAZNO: Kad pokrente kviz rezultat se automatski cuva!
         </p>
       </div>
     </div>

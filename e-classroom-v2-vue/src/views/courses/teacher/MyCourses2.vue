@@ -80,6 +80,9 @@ export default {
 
 .courses {
   background: rgba(2, 2, 88, 0.822);
+  max-height: 580px;
+  min-height: 580px;
+  overflow: auto;
 }
 
 .right-side {

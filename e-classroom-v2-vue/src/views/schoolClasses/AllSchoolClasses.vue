@@ -115,4 +115,8 @@ export default {
   border: 1px solid darkblue;
   margin: 5px;
 }
+
+.sc-card:hover {
+  background: cyan;
+}
 </style>

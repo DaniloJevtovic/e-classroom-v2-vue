@@ -91,4 +91,8 @@ export default {
   border-radius: 5px;
   border: 1px solid indigo;
 }
+
+.st-course:hover {
+  background: cyan;
+}
 </style>
