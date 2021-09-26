@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="container-header">
-      <h2>Welcome admin</h2>
+      <h3>Welcome admin</h3>
     </div>
     <div class="container-body">
       <router-link :to="{ name: 'Users' }">

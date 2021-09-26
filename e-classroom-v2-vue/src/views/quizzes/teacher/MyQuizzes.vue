@@ -54,12 +54,13 @@
         <td>#</td>
         <td>Name</td>
         <td>Duration</td>
+        <td>Num of questions</td>
         <td>Total points</td>
         <td>Status</td>
         <td>Actions</td>
       </thead>
       <tr v-for="(quiz, index) in quizzes" :key="quiz.id">
-        <MyQuizzesTable :index="index + 1" :quiz="quiz" :id="id"/>
+        <MyQuizzesTable :index="index + 1" :quiz="quiz" :id="id" />
 
         <!-- <td>{{ index + 1 }}.</td>
         <td>{{ quiz.name }}</td>

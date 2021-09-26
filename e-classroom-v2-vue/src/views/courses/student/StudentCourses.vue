@@ -91,15 +91,19 @@ export default {
 <style scoped>
 .coursess {
   display: inline;
-  margin: 2px;
+  /* margin: 2px; */
 }
 
 .st-course {
   /* background: rgb(3, 15, 54); */
   color: darkblue;
   border-radius: 5px;
-  padding: 7px;
-  margin: 5px;
+  padding: 5px;
+  /* margin: 5px; */
   border: 1px solid indigo;
+}
+
+.st-course:hover {
+  background: cyan;
 }
 </style>

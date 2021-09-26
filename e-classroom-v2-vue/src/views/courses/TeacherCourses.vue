@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="container-header">
-      <h2>My Courses</h2>
+      <h3>My Courses</h3>
     </div>
     <div class="container-body">
       <div class="courses" v-for="course in courses" :key="course.id">
