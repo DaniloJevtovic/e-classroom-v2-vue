@@ -1,5 +1,6 @@
 import ParentHome from "../views/homePages/ParentHome.vue";
 import ParentStudentsList from "../views/users/parent/ParentStudentsList.vue";
+import ParentStudentsList2 from "../views/users/parent/ParentStudentsList2.vue";
 import StudentProfileDetails from "../views/users/StudentProfileDetails.vue";
 
 export default [
@@ -12,6 +13,11 @@ export default [
     path: "/parentStudents",
     name: "ParentStList",
     component: ParentStudentsList,
+  },
+  {
+    path: "/parentStudents2",
+    name: "ParentStList2",
+    component: ParentStudentsList2,
   },
   {
     path: "/parentStudents/student/:studId",
