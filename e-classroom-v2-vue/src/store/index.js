@@ -24,7 +24,7 @@ export default createStore({
       "Messages",
       "UserProfile",
     ],
-    parentLinks: ["ParentStList", "Messages", "UserProfile"],
+    parentLinks: ["ParentStList", "ParentStList2", "Messages", "UserProfile"],
   },
   getters: {
     getLoggedUser(state) {
