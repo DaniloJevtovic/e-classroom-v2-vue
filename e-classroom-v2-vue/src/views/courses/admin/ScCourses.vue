@@ -2,7 +2,7 @@
   <div class="courses-list">
     <div>
       <div v-for="course in courses" :key="course.id">
-        <div class="course">
+        <div class="coursess">
           <sc-course :course="course"></sc-course>
         </div>
       </div>
@@ -79,13 +79,9 @@ export default {
   margin: 3px;
 }
 
-.course {
+.coursess {
   color: rgb(255, 117, 4);
-  background: rgb(36, 4, 49);
-  /* padding: 3px; */
-  margin: 3px;
   border-radius: 5px;
-  /* border: 1px solid darkblue; */
 }
 
 input {

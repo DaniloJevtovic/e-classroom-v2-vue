@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 /* nav {
-  background: orchid;
+  background: rgb(255, 145, 0);
 } */
 
 .links a.router-link-exact-active button {

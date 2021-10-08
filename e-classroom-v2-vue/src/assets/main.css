@@ -81,7 +81,6 @@ button:disabled {
   background: rgb(152, 178, 240);
   align-items: center;
   display: flex;
-  padding: 4px;
 }
 
 .container-body {
