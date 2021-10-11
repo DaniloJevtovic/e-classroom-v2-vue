@@ -27,8 +27,8 @@
                 params: { id: scClass.id },
               }"
             >
-              <h2>Name: {{ scClass.name }}</h2>
-              <h2>Description: {{ scClass.description }}</h2>
+              <h2>{{ scClass.name }}</h2>
+              <h3>Description: {{ scClass.description }}</h3>
             </router-link>
           </div>
         </div>
