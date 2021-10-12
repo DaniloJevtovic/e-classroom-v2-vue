@@ -6,7 +6,7 @@
 
     <!-- <input type="text" placeholder="search"> -->
 
-    <div>
+    <div class="students">
       <div v-for="(student, index) in students" :key="student.id">
         <div draggable="true">
           <router-link
@@ -28,7 +28,7 @@
     </router-link> -->
 
     <!-- dodavanje novog ucenika - modal -->
-    <button @click="toggleModal" style="border-radius: 100px">+</button>
+    <button @click="toggleModal">+</button>
     <div v-if="showNewStModal">
       <NewStudentModal
         :id="id"
@@ -76,14 +76,17 @@ export default {
 </script>
 
 <style scoped>
-/* .stsForClass {
-  background: rgb(0, 206, 196);
-} */
+.stsForClass {
+  background: rgb(180, 233, 231);
+}
 
 .student {
   color: darkblue;
-  background: rgb(147, 241, 241);
-  border-radius: 4px;
-  margin: 10px;
+  background: rgb(0, 206, 196);
+}
+
+.student:hover {
+  color: cyan;
+  background: rgb(5, 20, 85);
 }
 </style>
