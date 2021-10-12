@@ -16,7 +16,7 @@
     <div class="container-body">
       <div class="left-right">
         <div class="left-side">
-          <h3 style="color: white; margin: 4px">School Classes</h3>
+          <h3 style="color: white; margin: 8px">School Classes</h3>
 
           <button
             @click="toggleModal"
