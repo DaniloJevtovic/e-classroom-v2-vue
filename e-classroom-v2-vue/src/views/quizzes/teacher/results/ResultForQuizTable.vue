@@ -1,12 +1,21 @@
 <template>
   <td>{{ index + 1 }}.</td>
   <td>{{ result.student.firstName }} {{ result.student.lastName }}</td>
-  <td>
-    {{ result.points }}
-  </td>
+  <td>{{ result.points }} / {{ result.quiz.totalPoints }}</td>
   <td>
     <ModalSlot v-show="isModalVisible" @close="closeModal">
-      <template v-slot:header> Result </template>
+      <template v-slot:header>
+        <div>
+          <h3>
+            Student: {{ result.student.firstName }}
+            {{ result.student.lastName }}
+            <span style="color: red">
+              | Points: {{ result.points }} /
+              {{ result.quiz.totalPoints }}</span
+            >
+          </h3>
+        </div>
+      </template>
 
       <!-- prikaz rezultata u modalu -->
       <template v-slot:body>
