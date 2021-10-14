@@ -82,7 +82,7 @@ export default {
 .modal-header {
   position: relative;
   border-bottom: 1px solid #eeeeee;
-  color: #4aae9b;
+  color: #1363db;
   justify-content: space-between;
 }
 
@@ -115,7 +115,7 @@ export default {
   color: white;
   background: #4aae9b;
   border: 1px solid #4aae9b;
-  border-radius: 20px;
+  border-radius: 210px;
 }
 
 .modal-fade-enter,
@@ -134,7 +134,7 @@ export default {
 }
 /* scrollbar style */
 ::-webkit-scrollbar {
-  width: 14px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
   background-color: #ffffff;
@@ -142,6 +142,5 @@ export default {
 }
 ::-webkit-scrollbar-thumb {
   background-color: #183588;
-  border-radius: 9px;
 }
 </style>
