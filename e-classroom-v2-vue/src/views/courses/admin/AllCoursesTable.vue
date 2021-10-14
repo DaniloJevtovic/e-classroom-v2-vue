@@ -18,6 +18,7 @@
           <td>Description</td>
           <td>School Class</td>
           <td>Teacher</td>
+          <td>Status</td>
           <td>Action</td>
         </thead>
         <tr v-for="(course, index) in courses.content" :key="course.id">
