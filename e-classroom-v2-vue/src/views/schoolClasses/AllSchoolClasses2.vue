@@ -34,7 +34,7 @@
                 params: { id: scClass.id },
               }"
             >
-              <button>
+              <button class="sc-but">
                 {{ scClass.name }}
 
                 <br />
@@ -141,4 +141,10 @@ export default {
 .card {
   display: inline-block;
 }
+
+.sc-but:hover {
+  color: darkblue;
+  background: darkkhaki;
+}
+
 </style>

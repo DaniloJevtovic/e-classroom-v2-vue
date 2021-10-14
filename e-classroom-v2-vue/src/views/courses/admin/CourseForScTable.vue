@@ -3,13 +3,18 @@
   <td>{{ course.name }}</td>
   <td>{{ course.description }}</td>
   <td>{{ course.schoolClass.name }}</td>
-  <td>{{ course.teacher.firstName }} {{ course.teacher.lastName }}</td>
+
   <td>
     <button @click.prevent="toggleMessageModal">
-      Contact teacher
+      {{ course.teacher.firstName }} {{ course.teacher.lastName }}
       <span>&#9993;</span>
     </button>
-
+  </td>
+  <td :class="{ deletedCourse: course.deleted }">
+    <div v-if="!course.deleted">ACTIVE</div>
+    <div v-else style="background: red">INACTIVE</div>
+  </td>
+  <td>
     <NewMessageModal
       v-if="showNewMessageModal"
       :reciverId="course.teacher.id"
@@ -71,4 +76,7 @@ export default {
 </script>
 
 <style scoped>
+.deletedCourse {
+  background: red;
+}
 </style>

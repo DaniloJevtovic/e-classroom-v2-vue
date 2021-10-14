@@ -1,5 +1,5 @@
 <template>
-  <div class="coursee">
+  <div class="coursee" :class="{ deleted: course.deleted }">
     <!-- izmjena predmeta - nova komponenta -->
     <!-- <router-link
       :to="{ name: 'EditCourse', params: { id: course.id } }"
@@ -22,7 +22,12 @@
 
     <button
       @click.prevent="toggleMessageModal"
-      style="background: springgreen; color: darkblue; padding: 2px 10px; border-radius: 20px"
+      style="
+        background: springgreen;
+        color: darkblue;
+        padding: 2px 10px;
+        border-radius: 20px;
+      "
     >
       {{ course.teacher.firstName }} {{ course.teacher.lastName }}
       <span>&#9993;</span>
@@ -76,5 +81,15 @@ export default {
   border-radius: 2px;
   cursor: pointer;
   margin: 3px;
+}
+
+.coursee:hover {
+  color:darkblue;
+  background: skyblue;
+}
+
+.deleted {
+  color: yellow;
+  background: orangered;
 }
 </style>
