@@ -13,7 +13,11 @@
   <td>
     <ModalSlot v-show="isModalVisible" @close="closeModal">
       <template v-slot:header>
-        <h3>Quiz: {{ result.quiz.name }}</h3>
+        <h3>
+          Quiz: {{ result.quiz.name }} | Course: {{ result.quiz.course.name }} |
+          Teacher: {{ result.quiz.course.teacher.firstName }}
+          {{ result.quiz.course.teacher.lastName }}
+        </h3>
       </template>
 
       <!-- prikaz rezultata u modalu -->
