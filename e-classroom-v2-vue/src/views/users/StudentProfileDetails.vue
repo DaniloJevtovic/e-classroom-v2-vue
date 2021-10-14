@@ -4,7 +4,6 @@
       <button @click="$router.go(-1)">Back</button>
     </div>
     <h3 style="text-align: center">Student details</h3>
-
     <!-- detalji o uceniku -->
     <div v-if="studentDetails" class="studentDetails">
       <div class="student-info">
@@ -200,7 +199,7 @@ export default {
 
 .studentDetails {
   /* background: rgb(0, 132, 255); */
-  padding: 15px;
+  padding: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   text-align: center;

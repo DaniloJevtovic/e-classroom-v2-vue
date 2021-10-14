@@ -4,7 +4,7 @@
     v-if="teachers.length && scClasses.length"
   >
     <!-- ako nema profesora ili razreda u sistemu nece moci da se kreira predmet -->
-    <h2>New Course</h2>
+    <h3>New Course</h3>
     <input type="text" v-model="course.name" placeholder="name" required />
     <textarea v-model="course.description" placeholder="description" rows="3">
     </textarea>
