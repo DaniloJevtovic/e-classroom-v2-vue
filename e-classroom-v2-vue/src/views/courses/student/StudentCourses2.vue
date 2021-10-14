@@ -69,7 +69,7 @@ export default {
 }
 
 .left-side {
-  background: rgb(91, 255, 255);
+  /* background: rgb(91, 255, 255); */
   border: 1px solid darkslateblue;
   max-height: 580px;
   min-height: 580px;
@@ -90,6 +90,11 @@ export default {
   padding: 7px;
   margin: 5px;
   border: 1px solid indigo;
+}
+
+.st-course:hover {
+  background: cyan;
+  color: darkblue;
 }
 
 .activeCourse div {

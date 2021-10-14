@@ -3,7 +3,7 @@
     <div class="stClassInfo" @click="toggleModal">
       <h3>{{ stClass.name }}</h3>
       <p>
-        <small>{{ stClass.description }}</small>
+        {{ stClass.description }}
       </p>
     </div>
     <div v-if="showEditStModal">
@@ -45,6 +45,7 @@ export default {
 .stClassInfo {
   padding: 3px;
   cursor: pointer;
-  background: rgb(175, 232, 255);
+  background: rgb(11, 68, 90);
+  color: rgb(107, 255, 8);
 }
 </style>

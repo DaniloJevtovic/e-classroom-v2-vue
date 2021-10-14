@@ -16,6 +16,7 @@
     <div>
       <button @click="toggleModal">New St Class</button>
     </div>
+    
     <div v-if="showNewStModal">
       <NewStClassModal
         :sc="id"

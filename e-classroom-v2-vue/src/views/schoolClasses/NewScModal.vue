@@ -16,6 +16,7 @@
           required
         >
         </textarea>
+        
         <button>Save</button>
         <button @click.prevent="closeModal">Cancel</button>
       </form>

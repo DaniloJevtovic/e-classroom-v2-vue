@@ -2,7 +2,7 @@
   <div class="backdrop" @click.self="closeModal">
     <div class="modal">
       <form @submit.prevent="handleSubmit">
-        <h3 style="color: hotpink">Edit School Class</h3>
+        <h3>Edit School Class</h3>
         <input
           type="text"
           v-model="scToEdit.name"
