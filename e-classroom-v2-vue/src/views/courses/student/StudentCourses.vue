@@ -73,9 +73,10 @@ export default {
       let student = store.getters["getLoggedUser"];
       console.log(student);
 
+      // "stClass" - i nekativni, "active/stClass" - samo aktivni predmeti
       courses.value = await getSubItems(
         "courses",
-        "stClass",
+        "active/stClass",
         student.studentClass.id
       ); //id razreda kojem ucenik pripada
     };

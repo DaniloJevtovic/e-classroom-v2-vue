@@ -55,7 +55,9 @@ export default {
 
     const getCourses = async () => {
       let teacher = store.getters["getLoggedUser"];
-      courses.value = await getSubItems("courses", "teacher", teacher.id);
+      
+      // "teacher" - i nekativni, "active/teacher" - samo aktivni predmeti
+      courses.value = await getSubItems("courses", "active/teacher", teacher.id);
     };
 
     onMounted(getCourses);
