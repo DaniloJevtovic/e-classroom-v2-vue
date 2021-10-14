@@ -29,6 +29,11 @@
           </option>
         </select>
 
+        <select name="status" v-model="courseToEdit.deleted" required>
+          <option :value="false">ACTIVE</option>
+          <option :value="true">INACTIVE</option>
+        </select>
+
         <button>Save</button>
         <button @click.prevent="closeModal">Cancel</button>
       </form>
@@ -54,6 +59,7 @@ export default {
       description: props.course.description,
       teacherId: props.course.teacher.id,
       schoolClassId: props.course.schoolClass.id,
+      deleted: props.course.deleted,
     });
 
     const loadTeachers = async () => {
@@ -81,6 +87,7 @@ export default {
         props.course.name = courseToEdit.name;
         props.course.description = courseToEdit.description;
         props.course.teacher = res.teacher;
+        props.course.deleted = res.deleted;
 
         closeModal();
       }
