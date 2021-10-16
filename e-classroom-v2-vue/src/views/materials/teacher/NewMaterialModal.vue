@@ -13,7 +13,7 @@
               required
             />
             <textarea
-              rows="3"
+              rows="15"
               v-model="newMaterial.description"
               placeholder="Description"
             >
@@ -115,16 +115,17 @@ export default {
 <style scoped>
 .mat-txt-files {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .text-mat,
 .mat-files {
-  margin: 10px;
+  margin: 5px;
   color: rgb(40, 55, 190);
   border: 1px solid indigo;
   padding: 20px;
   border-radius: 5px;
+  /* height: 300px; */
 }
 
 /* .mat-files {
@@ -135,9 +136,11 @@ export default {
 
 .modal {
   width: 900px;
+  height: 450px;
 }
 
 form {
   max-width: 900px;
+  
 }
 </style>
