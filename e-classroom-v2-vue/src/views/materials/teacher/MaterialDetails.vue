@@ -6,9 +6,25 @@
     <div class="container-body">
       <h2>Name: {{ materialInfo.name }}</h2>
       <h3>Descriptions: {{ materialInfo.description }}</h3>
-      <router-link :to="{ name: 'EditMaterial', params: { id: matId } }">
+
+      <!-- izmjena materijala - komponenta -->
+      <!-- <router-link :to="{ name: 'EditMaterial', params: { id: matId } }">
         <button>Edit</button>
-      </router-link>
+      </router-link> -->
+
+      <!-- izmjena materijala modal -->
+
+      <button @click="toggleModal">Edit Material</button>
+
+      <div v-if="showNewMatModal">
+        <EditMaterialModal
+          :material="materialInfo"
+          @zatvoriModal="toggleModal"
+          @dodajUListu="addToList"
+        >
+        </EditMaterialModal>
+      </div>
+
       <button @click.prevent="deleteMaterial">Delete</button>
 
       <div class="mats-coms">
@@ -29,10 +45,11 @@ import { useRouter } from "vue-router";
 
 import MaterialFiles from "../MaterialFiles.vue";
 import MaterialComments from "./../MaterialComments.vue";
+import EditMaterialModal from "./EditMaterialModal.vue";
 
 export default {
   props: ["matId"],
-  components: { MaterialFiles, MaterialComments },
+  components: { MaterialFiles, MaterialComments, EditMaterialModal },
   setup(props) {
     const { getById, deleteById } = useCRUD();
     const router = useRouter();
@@ -52,9 +69,22 @@ export default {
       getMaterial();
     });
 
+    const showNewMatModal = ref(false);
+
+    const toggleModal = () => {
+      showNewMatModal.value = !showNewMatModal.value;
+    };
+
+    const addToList = (res) => {
+      materials.value.push(res);
+    };
+
     return {
       materialInfo,
       deleteMaterial,
+      toggleModal,
+      addToList,
+      showNewMatModal,
     };
   },
 };
