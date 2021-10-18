@@ -5,6 +5,7 @@
         <p>
           {{ post.author.firstName }} {{ post.author.lastName }} / Date:
           {{ post.date }}
+          <span v-if="post.edited" style="color: yellow">| [edited]</span>
         </p>
         <h3 style="color: cyan">{{ post.post }}</h3>
       </div>
@@ -36,6 +37,7 @@
           <p>
             {{ post.author.firstName }} {{ post.author.lastName }} / Date:
             {{ post.date }}
+            <span v-if="post.edited" style="color: yellow">| [edited]</span>
           </p>
 
           <textarea rows="5" v-model="postToEdit.post"></textarea>
@@ -97,6 +99,8 @@ export default {
       res.edit = false; //dodajem edit atribut i stavljam mu vrijednost false (isto ono sto sam radio kad sam ucitao sve objave u foreach petlji)
 
       props.post.post = res.post;
+      props.post.date = res.date;
+      props.post.edited = true;
     };
 
     const cancelEdit = () => {
