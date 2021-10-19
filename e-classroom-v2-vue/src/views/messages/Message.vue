@@ -56,13 +56,14 @@ export default {
       if (!props.message.seen) {
         markAsRead();
         console.log("poslao");
-        
+
         props.message.seen = true;
       }
     };
 
     const closeModal = () => {
       isModalVisible.value = false;
+      reply.message = "";
     };
 
     const reply = reactive({
@@ -76,6 +77,7 @@ export default {
       console.log(reply);
 
       let res = await save("messages", reply, false, true);
+
       closeModal();
     };
 
