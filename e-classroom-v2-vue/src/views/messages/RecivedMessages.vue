@@ -1,19 +1,30 @@
 <template>
-  <div class="recived-messages" >
-    <h2>Recived messages ({{ recivedMessages.length }})</h2>
-    <div v-for="message in recivedMessages" :key="message.id">
+  <div class="recived-messages">
+    <h3>Recived messages ({{ recivedMessages.totalElements }})</h3>
+    <div v-for="message in recivedMessages.content" :key="message.id">
       <router-link
         :to="{ name: 'MessageDetails', params: { messId: message.id } }"
       >
         <div class="message" :class="{ readed: message.seen }">
-          <p>
-            Sender: {{ message.sender.firstName }} {{ message.sender.lastName }}
-          </p>
-          <p>Date: {{ message.date }}</p>
+          <p>{{ message.sender.firstName }} {{ message.sender.lastName }}</p>
           <p>Subject: {{ message.subject }}</p>
-          <p>Message: {{ message.message }}</p>
+          <p>Date: {{ message.date }}</p>
+
+          <!-- <p>Message: {{ message.message }}</p> -->
         </div>
       </router-link>
+    </div>
+
+    <!-- dugmici za paginaciju -->
+    <div class="page-buttons">
+      <div v-for="(but, index) in recivedMessages.totalPages" :key="but.id">
+        <button
+          @click="switchPage(index), (selectedButton = index)"
+          :class="{ highlight: index == selectedButton }"
+        >
+          {{ but }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -25,7 +36,7 @@ import { onMounted, ref } from "vue";
 
 export default {
   setup() {
-    const { getSubItems } = useCRUD();
+    const { getAll } = useCRUD();
     const store = useStore();
 
     const loggedUser = store.getters["getLoggedUser"];
@@ -33,10 +44,14 @@ export default {
     const recivedMessages = ref([]);
 
     const getRecivedMessages = async () => {
-      recivedMessages.value = await getSubItems(
-        "messages",
-        "recived",
-        loggedUser.id
+      recivedMessages.value = await getAll(
+        "messages/recived/page/" + loggedUser.id
+      );
+    };
+
+    const switchPage = async (page) => {
+      recivedMessages.value = await getAll(
+        "messages/recived/page/" + loggedUser.id + "?page=" + page
       );
     };
 
@@ -44,7 +59,7 @@ export default {
       getRecivedMessages();
     });
 
-    return { recivedMessages };
+    return { recivedMessages, switchPage, selectedButton: ref("") };
   },
 };
 </script>
@@ -57,6 +72,8 @@ export default {
 }
 
 .message {
+  display: grid;
+  grid-template-columns: 1fr 2fr 0.7fr;
   color: darkblue;
   background: rgb(119, 218, 6);
   margin: 5px;
@@ -70,5 +87,14 @@ export default {
   margin: 5px;
   padding: 10px;
   border-radius: 5px;
+}
+
+.page-buttons {
+  padding: 5px;
+  display: flex;
+}
+
+.highlight {
+  background: hotpink;
 }
 </style>
