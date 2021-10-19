@@ -2,17 +2,18 @@
   <div class="recived-messages">
     <h3>Recived messages ({{ recivedMessages.totalElements }})</h3>
     <div v-for="message in recivedMessages.content" :key="message.id">
-      <router-link
+      <!-- prikaz poruke nova komponenta-->
+      <!-- <router-link
         :to="{ name: 'MessageDetails', params: { messId: message.id } }"
       >
         <div class="message" :class="{ readed: message.seen }">
           <p>{{ message.sender.firstName }} {{ message.sender.lastName }}</p>
           <p>Subject: {{ message.subject }}</p>
           <p>Date: {{ message.date }}</p>
-
-          <!-- <p>Message: {{ message.message }}</p> -->
         </div>
-      </router-link>
+      </router-link> -->
+
+      <Message :message="message" />
     </div>
 
     <!-- dugmici za paginaciju -->
@@ -33,8 +34,10 @@
 import useCRUD from "@/composables/useCRUD.js";
 import { useStore } from "vuex";
 import { onMounted, ref } from "vue";
+import Message from "./Message.vue";
 
 export default {
+  components: { Message },
   setup() {
     const { getAll } = useCRUD();
     const store = useStore();
@@ -59,7 +62,11 @@ export default {
       getRecivedMessages();
     });
 
-    return { recivedMessages, switchPage, selectedButton: ref("") };
+    return {
+      recivedMessages,
+      switchPage,
+      selectedButton: ref(""),
+    };
   },
 };
 </script>
