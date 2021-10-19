@@ -1,11 +1,11 @@
 <template>
-  <div class="recived-messages">
+  <div class="recived-messages" >
     <h2>Recived messages ({{ recivedMessages.length }})</h2>
     <div v-for="message in recivedMessages" :key="message.id">
       <router-link
         :to="{ name: 'MessageDetails', params: { messId: message.id } }"
       >
-        <div class="message">
+        <div class="message" :class="{ readed: message.seen }">
           <p>
             Sender: {{ message.sender.firstName }} {{ message.sender.lastName }}
           </p>
@@ -58,7 +58,15 @@ export default {
 
 .message {
   color: darkblue;
-  background: rgb(202, 250, 226);
+  background: rgb(119, 218, 6);
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.readed {
+  color: darkblue;
+  background: rgb(235, 236, 221);
   margin: 5px;
   padding: 10px;
   border-radius: 5px;

@@ -43,7 +43,7 @@ export default {
     const reply = reactive({ message: "" });
 
     const getMessage = async () => {
-      let mess = await getById("messages", props.messId);
+      let mess = await getById("messages/seen", props.messId);
 
       message.value = mess;
 

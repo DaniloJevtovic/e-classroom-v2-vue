@@ -10,6 +10,7 @@
         <p>Date: {{ message.date }}</p>
         <p>Subject: {{ message.subject }}</p>
         <p>Message: {{ message.message }}</p>
+        <p v-if="message.seen" style="background: springgreen">Seen</p>
       </div>
     </div>
   </div>
