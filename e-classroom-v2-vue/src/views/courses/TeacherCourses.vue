@@ -34,6 +34,7 @@ export default {
     const { getSubItems } = useCRUD();
 
     const courses = ref([]);
+    
     const getCourses = async () => {
       let teacher = store.getters["getLoggedUser"];
       courses.value = await getSubItems("courses", "teacher", teacher.id);

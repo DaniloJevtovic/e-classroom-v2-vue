@@ -25,7 +25,7 @@
         <h3>Email: {{ user.email }}</h3>
         <h3>ROLE: {{ user.authorities[0].authority }}</h3>
         <h3 v-if="user.authorities[0].authority == 'ROLE_TEACHER'">
-          Subjects: {{ user.subjects }}
+          Interests: {{ user.subjects }}
         </h3>
         <div v-if="user.authorities[0].authority == 'ROLE_STUDENT'">
           <h3>St Class: {{ user.studentClass.name }}</h3>

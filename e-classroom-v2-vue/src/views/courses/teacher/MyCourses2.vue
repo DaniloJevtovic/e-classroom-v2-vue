@@ -7,7 +7,7 @@
       <div class="courses-details">
         <!-- svi predmeti - lijeva strana -->
         <div class="courses">
-          <h3 style="color: deeppink">Courses</h3>
+          <h3 style="color: deeppink">Courses [{{ courses.length }}]</h3>
           <div v-for="course in courses" :key="course.id">
             <router-link
               active-class="active"
@@ -55,9 +55,13 @@ export default {
 
     const getCourses = async () => {
       let teacher = store.getters["getLoggedUser"];
-      
+
       // "teacher" - i nekativni, "active/teacher" - samo aktivni predmeti
-      courses.value = await getSubItems("courses", "active/teacher", teacher.id);
+      courses.value = await getSubItems(
+        "courses",
+        "active/teacher",
+        teacher.id
+      );
     };
 
     onMounted(getCourses);

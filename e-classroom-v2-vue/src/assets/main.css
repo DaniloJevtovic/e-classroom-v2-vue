@@ -6,6 +6,7 @@
 body {
   background: #fafafa;
   /* background: rgb(64, 59, 122); */
+  /* font-family: cursive; */
 }
 
 a {
@@ -34,6 +35,7 @@ textarea {
   width: 100%;
   box-sizing: border-box;
   margin: 15px auto;
+  /* font-family: cursive; */
 }
 
 /* buttons */

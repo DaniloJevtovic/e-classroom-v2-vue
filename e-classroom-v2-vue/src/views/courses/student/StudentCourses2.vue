@@ -8,7 +8,7 @@
       <div class="coursess">
         <!-- grid prikaz predmeta -->
         <div class="left-side">
-          <h3>Courses</h3>
+          <h3>Courses [{{ courses.length }}]</h3>
           <div v-for="course in courses" :key="course.id">
             <router-link
               active-class="activeCourse"
