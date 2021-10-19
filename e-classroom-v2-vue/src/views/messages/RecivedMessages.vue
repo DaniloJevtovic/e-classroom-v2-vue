@@ -1,6 +1,10 @@
 <template>
   <div class="recived-messages">
-    <h3>Recived messages ({{ recivedMessages.totalElements }})</h3>
+    <div style="display: flex; align-items: center">
+      <h3>Recived messages ({{ recivedMessages.totalElements }})</h3>
+      <button class="pill-button">Sort by date</button>
+      <button class="pill-button">Sort by sender</button>
+    </div>
     <div v-for="message in recivedMessages.content" :key="message.id">
       <!-- prikaz poruke nova komponenta-->
       <!-- <router-link
