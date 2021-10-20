@@ -17,6 +17,8 @@
     <div class="container-body">
       <!-- <h2>All School Classes</h2>   -->
 
+      <Toast :message="toastMessage" v-if="showToast" />
+
       <div class="sclasses" v-if="view">
         <div v-for="scClass in scClasses" :key="scClass.id">
           <div class="sc-card">
@@ -66,9 +68,10 @@
 import { ref, onMounted } from "vue";
 import useCRUD from "../../composables/useCRUD.js";
 import NewScModal from "./NewScModal.vue";
+import Toast from "./../../components/Toast.vue";
 
 export default {
-  components: { NewScModal },
+  components: { NewScModal, Toast },
   setup() {
     const scClasses = ref([]);
     const { getAll } = useCRUD();
@@ -86,9 +89,24 @@ export default {
     const addToList = (res) => {
       scClasses.value.push(res);
       console.log("reszu", res);
+
+      triggerToast(res);
     };
 
     onMounted(getAllScClasses);
+
+    const showToast = ref(false);
+    const toastMessage = ref("");
+
+    const triggerToast = (message) => {
+      showToast.value = true;
+      toastMessage.value = message;
+
+      setTimeout(() => {
+        showToast.value = false;
+        toastMessage.value = "";
+      }, 3000);
+    };
 
     return {
       scClasses,
@@ -96,6 +114,8 @@ export default {
       showNewScModal,
       toggleModal,
       view: ref(true),
+      showToast,
+      toastMessage,
     };
   },
 };

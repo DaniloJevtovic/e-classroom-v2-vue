@@ -16,7 +16,7 @@
           required
         >
         </textarea>
-        
+
         <button>Save</button>
         <button @click.prevent="closeModal">Cancel</button>
       </form>
@@ -25,12 +25,14 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import useCRUD from "../../composables/useCRUD.js";
 import { useToast } from "vue-toastification";
+import Toast from "./../../components/Toast.vue";
 
 export default {
+  components: { Toast },
   setup(props, context) {
     // vodi racuna da u setup() metodi prvi parametar mora biti props
     // pa tek onda moze context!!!
