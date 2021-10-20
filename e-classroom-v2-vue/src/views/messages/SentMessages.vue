@@ -13,8 +13,8 @@
     </div>
 
     <div v-for="message in sentMessages.content" :key="message.id">
-      <div class="message">
-        <p :class="{ seen: message.seen }">
+      <div class="message" @click="message.show = !message.show">
+        <p>
           {{ message.reciver.firstName }}
           {{ message.reciver.lastName }}
           <span v-if="message.seen">&#10004;</span>
@@ -23,7 +23,7 @@
 
         <p>Date: {{ message.date }}</p>
 
-        <!-- <p>Message: {{ message.message }}</p> -->
+        <p v-if="message.show">Message: {{ message.message }}</p>
       </div>
     </div>
 
@@ -57,6 +57,10 @@ export default {
 
     const getSentMessages = async () => {
       sentMessages.value = await getAll("messages/sent/page/" + loggedUser.id);
+
+      sentMessages.value.content.forEach((message) => {
+        message.show = false;
+      });
     };
 
     const switchPage = async (page) => {
@@ -109,9 +113,5 @@ input {
 
 .highlight {
   background: hotpink;
-}
-
-.seen {
-  background: springgreen;
 }
 </style>
