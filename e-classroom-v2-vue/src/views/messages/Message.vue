@@ -12,7 +12,8 @@
 
   <ModalSlot v-show="isModalVisible" @close="closeModal">
     <template v-slot:header>
-      {{ message.sender.firstName }} {{ message.sender.lastName }}
+      {{ message.sender.firstName }} {{ message.sender.lastName }} | Date:
+      {{ message.date }}
     </template>
 
     <template v-slot:body>
@@ -21,16 +22,16 @@
         <p>{{ message.message }}</p>
       </div>
 
-      <textarea
-        rows="10"
-        v-model="reply.message"
-        placeholder="reply"
-      ></textarea>
-      <button @click.prevent="sendReply">Reply</button>
+      <textarea rows="10" v-model="reply.message" placeholder="reply">
+      </textarea>
+      <button @click.prevent="sendReply" style="width: 100%; margin: 0">
+        Reply
+      </button>
     </template>
 
     <template v-slot:footer>
-      <p>Date: {{ message.date }}</p>
+      <div></div>
+      <!-- <p>Date: {{ message.date }}</p> -->
     </template>
   </ModalSlot>
 </template>
