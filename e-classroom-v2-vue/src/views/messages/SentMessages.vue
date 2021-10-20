@@ -1,6 +1,16 @@
 <template>
   <div class="sent-messages">
-    <h3>Sent messages ({{ sentMessages.totalElements }})</h3>
+    <div class="messages-header">
+      <div>
+        <h3>Sent Messages [{{ sentMessages.totalElements }}]</h3>
+      </div>
+
+      <input type="text" placeholder="search" />
+
+      <!-- <div>
+        <button>New Message</button>
+      </div> -->
+    </div>
 
     <div v-for="message in sentMessages.content" :key="message.id">
       <div class="message">
@@ -69,6 +79,18 @@ export default {
   border: 1px solid darkblue;
   padding: 5px;
   background: white;
+}
+
+.messages-header {
+  background: rgb(5, 181, 250);
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+}
+
+input {
+  margin: 0px;
 }
 
 .message {

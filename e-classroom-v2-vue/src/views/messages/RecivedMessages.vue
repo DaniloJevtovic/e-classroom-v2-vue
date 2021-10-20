@@ -1,10 +1,17 @@
 <template>
   <div class="recived-messages">
-    <div style="display: flex; align-items: center">
-      <h3>Recived messages ({{ recivedMessages.totalElements }})</h3>
-      <button class="pill-button">Sort by date</button>
-      <button class="pill-button">Sort by sender</button>
+    <div class="messages-header">
+      <div>
+        <h3>Recived Messages [{{ recivedMessages.totalElements }}]</h3>
+      </div>
+
+      <input type="text" placeholder="search" />
+
+      <!-- <div>
+        <button>New Message</button>
+      </div> -->
     </div>
+
     <div v-for="message in recivedMessages.content" :key="message.id">
       <!-- prikaz poruke nova komponenta-->
       <!-- <router-link
@@ -82,6 +89,14 @@ export default {
   background: white;
 }
 
+.messages-header {
+  background: rgb(5, 181, 250);
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+}
+
 .message {
   display: grid;
   grid-template-columns: 1fr 2fr 0.7fr;
@@ -107,5 +122,9 @@ export default {
 
 .highlight {
   background: hotpink;
+}
+
+input {
+  margin: 0px;
 }
 </style>
