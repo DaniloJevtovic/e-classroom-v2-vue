@@ -6,8 +6,22 @@
       <div class="links">
         <div v-if="loggedUser">
           <span>Hi, {{ loggedUser.firstName }}</span>
-          <router-link v-for="link in links" :key="link" :to="{ name: link }">
+          <!-- <router-link v-for="link in links" :key="link" :to="{ name: link }">
             <button>{{ link }}</button>
+          </router-link> -->
+
+          <router-link
+            v-for="link in links"
+            :key="link"
+            :to="{ name: link.path }"
+          >
+            <button>
+              {{ link.name }}
+            </button>
+          </router-link>
+
+          <router-link :to="{ name: 'Messages' }">
+            <button>Poruke [{{numOfUnreadMessages}}]</button>
           </router-link>
 
           <button @click="handleLogout">Logout</button>
@@ -39,11 +53,15 @@ export default {
       return store.getters["getLinksForLoggedUser"];
     });
 
+    const numOfUnreadMessages = computed(() => {
+      return store.getters["messages/getNumOfUnreadMessages"];
+    });
+
     const handleLogout = () => {
       store.dispatch("logout");
     };
 
-    return { loggedUser, links, handleLogout };
+    return { loggedUser, links, handleLogout, numOfUnreadMessages };
   },
 };
 </script>
