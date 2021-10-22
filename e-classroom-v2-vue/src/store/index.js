@@ -3,28 +3,64 @@ import createPersistedState from "vuex-persistedstate";
 import axios from "axios";
 import router from "../router/index.js";
 
+import messageModule from "./modules/messages.js";
+
 export default createStore({
   state: {
     loggedUser: null,
     linksForLoggedUser: [],
 
+    // adminLinks: [
+    //   "AllScClasses",
+    //   "AllScClasses2",
+    //   "Users",
+    //   "AllCourses",
+    //   "Messages",
+    //   "UserProfile",
+    // ],
+
+    // teacherLinks: ["MyCourses", "MyCourses2", "Messages", "UserProfile"],
+
+    // studentLinks: [
+    //   "StudentCourses",
+    //   "StudentCourses2",
+    //   "StudentAllResults",
+    //   "Messages",
+    //   "UserProfile",
+    // ],
+
+    // parentLinks: ["ParentStList", "ParentStList2", "Messages", "UserProfile"],
+
     adminLinks: [
-      "AllScClasses",
-      "AllScClasses2",
-      "Users",
-      "AllCourses",
-      "Messages",
-      "UserProfile",
+      { name: "Sc Classes", path: "AllScClasses" },
+      { name: "Sc Classes2", path: "AllScClasses2" },
+      { name: "Users", path: "Users" },
+      { name: "Courses", path: "AllCourses" },
+      { name: "Messages", path: "Messages" },
+      { name: "Profile", path: "UserProfile" },
     ],
-    teacherLinks: ["MyCourses", "MyCourses2", "Messages", "UserProfile"],
+
+    teacherLinks: [
+      { name: "My Courses", path: "MyCourses" },
+      { name: "My Courses2", path: "MyCourses2" },
+      { name: "Messages", path: "Messages" },
+      { name: "Profile", path: "UserProfile" },
+    ],
+
     studentLinks: [
-      "StudentCourses",
-      "StudentCourses2",
-      "StudentAllResults",
-      "Messages",
-      "UserProfile",
+      { name: "My Courses", path: "StudentCourses" },
+      { name: "My Courses2", path: "StudentCourses2" },
+      { name: "Results", path: "StudentAllResults" },
+      { name: "Messages", path: "Messages" },
+      { name: "Profile", path: "UserProfile" },
     ],
-    parentLinks: ["ParentStList", "ParentStList2", "Messages", "UserProfile"],
+
+    parentLinks: [
+      { name: "MyChildrens", path: "ParentStList" },
+      { name: "MyChildrens", path: "ParentStList2" },
+      { name: "Messages", path: "Messages" },
+      { name: "Profile", path: "UserProfile" },
+    ],
   },
   getters: {
     getLoggedUser(state) {
@@ -83,7 +119,7 @@ export default createStore({
       console.log("ul. kor", state.loggedUser);
     },
 
-    logout(state) {
+    logout(state, context) {
       state.loggedUser = null;
       state.linksForLoggedUser = [];
       localStorage.clear();
@@ -109,6 +145,8 @@ export default createStore({
         context.commit("parseTokenAndSaveUser");
         context.commit("setLinksForLoggedUser");
 
+        context.dispatch("messages/getNumOfUnreadMessages");
+
         console.log(response);
       } catch (err) {
         console.log("greska", err.message);
@@ -122,8 +160,13 @@ export default createStore({
 
     logout(context) {
       context.commit("logout");
+
+      //poziv akcije za brisanje poruka iz paketa messages
+      context.commit("messages/clearMessages");
     },
   },
-  modules: {},
+  modules: {
+    messages: messageModule,
+  },
   plugins: [createPersistedState()],
 });
