@@ -12,7 +12,7 @@
       </div> -->
     </div>
 
-    <div v-for="message in recivedMessages.content" :key="message.id">
+    <div v-for="(message, index) in recivedMessages.content" :key="message.id">
       <!-- prikaz poruke nova komponenta-->
       <!-- <router-link
         :to="{ name: 'MessageDetails', params: { messId: message.id } }"
@@ -24,7 +24,7 @@
         </div>
       </router-link> -->
 
-      <Message :message="message" />
+      <Message :message="message" :index="index" />
     </div>
 
     <!-- dugmici za paginaciju -->
@@ -57,11 +57,23 @@ export default {
 
     const recivedMessages = ref([]);
 
+    //preko api-ja
     const getRecivedMessages = async () => {
       recivedMessages.value = await getAll(
         "messages/recived/page/" + loggedUser.id
       );
     };
+
+    // preko vuex-a
+    // const getRecivedMessages = async () => {
+    //   if (store.getters["messages/getRecivedMessages"] == null) {
+    //     let res = await getAll("messages/recived/page/" + loggedUser.id);
+
+    //     store.commit("messages/setRecivedMessages", res);
+    //   }
+
+    //   recivedMessages.value = store.getters["messages/getRecivedMessages"];
+    // };
 
     const switchPage = async (page) => {
       recivedMessages.value = await getAll(

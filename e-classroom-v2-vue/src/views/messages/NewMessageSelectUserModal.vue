@@ -84,4 +84,8 @@ form {
 .modal {
   width: 700px;
 }
+
+textarea {
+  border: 1px solid indigo;
+}
 </style>

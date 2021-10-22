@@ -12,18 +12,20 @@
       </div> -->
     </div>
 
-    <div v-for="message in sentMessages.content" :key="message.id">
-      <div class="message" @click="message.show = !message.show">
-        <p>
-          {{ message.reciver.firstName }}
-          {{ message.reciver.lastName }}
-          <span v-if="message.seen">&#10004;</span>
-        </p>
-        <p>Subject: {{ message.subject }}</p>
+    <div class="mess-list">
+      <div v-for="message in sentMessages.content" :key="message.id">
+        <div class="message" @click="message.show = !message.show">
+          <p>
+            {{ message.reciver.firstName }}
+            {{ message.reciver.lastName }}
+            <span v-if="message.seen">&#10004;</span>
+          </p>
+          <p>Subject: {{ message.subject }}</p>
 
-        <p>Date: {{ message.date }}</p>
+          <p>Date: {{ message.date }}</p>
 
-        <p v-if="message.show">Message: {{ message.message }}</p>
+          <p v-if="message.show">Message: {{ message.message }}</p>
+        </div>
       </div>
     </div>
 

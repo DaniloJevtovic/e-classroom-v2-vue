@@ -22,8 +22,9 @@
         <p>{{ message.message }}</p>
       </div>
 
-      <textarea rows="10" v-model="reply.message" placeholder="reply">
+      <textarea rows="10" v-model="reply.message" placeholder="reply" required>
       </textarea>
+
       <button @click.prevent="sendReply" style="width: 100%; margin: 0">
         Reply
       </button>
@@ -39,14 +40,16 @@
 <script>
 import { ref, reactive, onMounted } from "vue";
 import useCRUD from "@/composables/useCRUD.js";
+import { useStore } from "vuex";
 
 import ModalSlot from "../../components/ModalSlot.vue";
 
 export default {
-  props: ["message"],
+  props: ["message", "index"],
   components: { ModalSlot },
   setup(props) {
     const { save, getById } = useCRUD();
+    const store = useStore();
 
     const isModalVisible = ref(false);
 
@@ -59,6 +62,12 @@ export default {
         console.log("poslao");
 
         props.message.seen = true;
+
+        // oznacavanje poruke kao procitane vuex
+        // store.commit("messages/setAsRead", props.index);
+
+        // smanjivanja broja neprocitanih poruka
+        store.commit("messages/decNumOfUnreadMessages");
       }
     };
 
