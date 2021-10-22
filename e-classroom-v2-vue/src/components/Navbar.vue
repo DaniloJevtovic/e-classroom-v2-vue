@@ -20,9 +20,9 @@
             </button>
           </router-link>
 
-          <router-link :to="{ name: 'Messages' }">
+          <!-- <router-link :to="{ name: 'Messages' }">
             <button>Poruke [{{numOfUnreadMessages}}]</button>
-          </router-link>
+          </router-link> -->
 
           <button @click="handleLogout">Logout</button>
         </div>
